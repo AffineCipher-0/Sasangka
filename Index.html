@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Diri | Gatot Sasangka</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Menggunakan font Inter sebagai default */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+            color: #cbd5e1; /* slate-300 */
+        }
+        /* Custom scrollbar (opsional, untuk estetika) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b; /* slate-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155; /* slate-700 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569; /* slate-600 */
+        }
+        /* Efek latar belakang gradien berpendar */
+        .glow-effect {
+            position: absolute;
+            z-index: -1;
+            border-radius: 9999px;
+            filter: blur(100px);
+            opacity: 0.2;
+        }
+        /* Animasi spinner */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .spinner {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            animation: spin 1s linear infinite;
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden">
+
+    <!-- Efek Latar Belakang Gradien -->
+    <div class="glow-effect top-[-10rem] left-[-10rem] h-[300px] w-[300px] md:h-[500px] md:w-[500px] bg-sky-500"></div>
+    <div class="glow-effect bottom-[-10rem] right-[-10rem] h-[300px] w-[300px] md:h-[500px] md:w-[500px] bg-indigo-500"></div>
+
+    <!-- Header / Navigasi -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-sm shadow-md transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">Gatot Sasangka</a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#hero" class="hover:text-sky-400 transition-colors">Beranda</a>
+                <a href="#tentang" class="hover:text-sky-400 transition-colors">Tentang</a>
+                <a href="#proyek" class="hover:text-sky-400 transition-colors">Proyek</a>
+                <a href="#kontak" class="hover:text-sky-400 transition-colors">Kontak</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-white">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        <!-- Menu Mobile -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900">
+            <a href="#hero" class="block py-2 px-6 hover:bg-slate-800">Beranda</a>
+            <a href="#tentang" class="block py-2 px-6 hover:bg-slate-800">Tentang</a>
+            <a href="#proyek" class="block py-2 px-6 hover:bg-slate-800">Proyek</a>
+            <a href="#kontak" class="block py-2 px-6 hover:bg-slate-800">Kontak</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 z-10 relative">
+        <!-- Bagian Hero -->
+        <section id="hero" class="min-h-screen flex items-center pt-24 md:pt-0">
+            <div class="text-center md:text-left w-full">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">
+                    Hai, saya <span class="text-sky-400">Gatot Sasangka</span>.
+                </h1>
+                <h2 class="text-2xl md:text-4xl font-semibold mt-2 text-slate-200">
+                    Lulusan Teknik Informatika
+                </h2>
+                <p class="mt-6 max-w-2xl mx-auto md:mx-0 text-lg text-slate-400">
+                    Lulusan Cumlaude dengan kompetensi di bidang Jaringan (Cisco CCNA), pengembangan IoT dan AI, serta manajemen database. Siap menerapkan keahlian teknis untuk mendukung digitalisasi industri.
+                </p>
+                <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                    <a href="#proyek" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                        Lihat Proyek Saya
+                    </a>
+                    <a href="#kontak" class="bg-slate-700 hover:bg-slate-600 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-transform transform hover:scale-105">
+                        Hubungi Saya
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Tentang Saya -->
+        <section id="tentang" class="py-20 md:py-32">
+            <h2 class="text-4xl font-bold text-white text-center mb-12">Tentang Saya</h2>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/3">
+                    <img src="https://placehold.co/400x400/1e293b/94a3b8?text=Foto+Anda" alt="Foto Profil Gatot Sasangka" class="rounded-full shadow-2xl mx-auto border-4 border-slate-700">
+                </div>
+                <div class="w-full md:w-2/3 text-lg text-slate-300">
+                    <p class="mb-4">
+                        Saya adalah lulusan S1 Teknik Informatika dari Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki hasrat mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.
+                    </p>
+                    <p class="mb-4">
+                        Dengan fondasi yang kuat di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh dan mempublikasikan penelitian tentang mikrokontroler. Saya selalu antusias untuk belajar hal baru dan berkolaborasi dalam tim.
+                    </p>
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold text-white mb-4">Keahlian Utama</h3>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="bg-slate-700 text-sky-300 text-sm font-medium px-4 py-2 rounded-full">JavaScript</span>
+                            <span class="bg-slate-700 text-sky-300 text-sm font-medium px-4 py-2 rounded-full">HTML & CSS</span>
+                            <span class="bg-slate-700 text-sky-300 text-sm font-medium px-4 py-2 rounded-full">Mikrokontroler (Arduino, NodeMCU)</span>
+                            <span class="bg-slate-700 text-sky-300 text-sm font-medium px-4 py-2 rounded-full">IoT</span>
+                            <span class="bg-slate-700 text-sky-300 text-sm font-medium px-4 py-2 rounded-full">SQL</span>
+                            <span class="bg-slate-700 text-sky-300 text-sm font-medium px-4 py-2 rounded-full">Desain ERD</span>
+                            <span class="bg-slate-700 text-sky-300 text-sm font-medium px-4 py-2 rounded-full">Cisco CCNA</span>
+                            <span class="bg-slate-700 text-sky-300 text-sm font-medium px-4 py-2 rounded-full">Python</span>
+                            <span class="bg-slate-700 text-sky-300 text-sm font-medium px-4 py-2 rounded-full">Microsoft Office</span>
+                            <span class="bg-slate-700 text-sky-300 text-sm font-medium px-4 py-2 rounded-full">Google Workspace</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Proyek -->
+        <section id="proyek" class="py-20 md:py-32">
+            <h2 class="text-4xl font-bold text-white text-center mb-12">Proyek Pilihan</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Proyek 1 -->
+                <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg transform transition-transform hover:-translate-y-2 group">
+                    <img src="https://placehold.co/600x400/1e293b/38bdf8?text=Jurnal+Ilmiah" alt="Gambar Proyek Jurnal Ilmiah" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Penerjemah Sandi Morse</h3>
+                        <p class="text-slate-400 mb-4">Merancang dan membangun alat penerjemah berbasis mikrokontroler dengan algoritma Brute Force. Dipublikasikan di Jurnal INFOS.</p>
+                        <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" class="inline-flex items-center text-sky-400 font-semibold group-hover:underline">
+                            Lihat Detail <i data-lucide="arrow-right" class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Proyek 2 -->
+                <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg transform transition-transform hover:-translate-y-2 group">
+                    <img src="https://placehold.co/600x400/1e293b/6366f1?text=E-Commerce" alt="Gambar Proyek E-Commerce" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Website E-Commerce</h3>
+                        <p class="text-slate-400 mb-4">Memimpin tim 3 orang membangun aplikasi e-commerce fungsional menggunakan PHP, CSS, dan JavaScript.</p>
+                        <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" class="inline-flex items-center text-sky-400 font-semibold group-hover:underline">
+                            Lihat Detail <i data-lucide="arrow-right" class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- Proyek 3 -->
+                <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg transform transition-transform hover:-translate-y-2 group">
+                    <img src="https://placehold.co/600x400/1e293b/ec4899?text=IoT+Greenhouse" alt="Gambar Proyek Otomatisasi Greenhouse" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-white mb-2">Otomatisasi Greenhouse (IoT)</h3>
+                        <p class="text-slate-400 mb-4">Menyusun SRS dan merancang arsitektur sistem (UML) untuk monitoring dan kontrol sensor IoT secara real-time via aplikasi mobile.</p>
+                        <a href="https://docs.google.com/document/d/1k-1eR1BLNI2a9yP-EyyvkzlmljOK8GIsx2nmV3pNGQ4/edit?usp=sharing" target="_blank" class="inline-flex items-center text-sky-400 font-semibold group-hover:underline">
+                           Lihat Detail <i data-lucide="arrow-right" class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian Kontak -->
+        <section id="kontak" class="py-20 md:py-32">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-4xl font-bold text-white mb-4">Mari Terhubung</h2>
+                <p class="text-lg text-slate-400 mb-8">
+                    Saya selalu terbuka untuk diskusi, kolaborasi, atau sekadar menyapa. Jangan ragu untuk menghubungi saya melalui email atau media sosial.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="mailto:sasangkagatot@gmail.com" class="inline-block bg-sky-500 hover:bg-sky-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg text-lg transition-transform transform hover:scale-105">
+                        sasangkagatot@gmail.com
+                    </a>
+                    <button id="ai-drafter-button" class="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-4 px-8 rounded-lg shadow-lg text-lg transition-transform transform hover:scale-105">
+                        ✨ Buat Draf Email dengan AI
+                    </button>
+                </div>
+                <div class="flex justify-center space-x-6 mt-10">
+                    <a href="https://github.com/AffineCipher-0" target="_blank" class="text-slate-400 hover:text-white transition-colors"><i data-lucide="github" class="w-8 h-8"></i></a>
+                    <a href="https://linkedin.com/in/Sasangka" target="_blank" class="text-slate-400 hover:text-white transition-colors"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="border-t border-slate-800">
+        <div class="container mx-auto px-6 py-6 text-center text-slate-500">
+            <p>&copy; <span id="year"></span> Gatot Sasangka. Dibuat dengan sepenuh hati.</p>
+        </div>
+    </footer>
+
+    <!-- Tombol Scroll to Top -->
+    <button id="scrollToTopBtn" class="hidden fixed bottom-5 right-5 bg-sky-500 hover:bg-sky-600 text-white p-3 rounded-full shadow-lg transition-opacity duration-300">
+        <i data-lucide="arrow-up" class="w-6 h-6"></i>
+    </button>
+    
+    <!-- Modal AI Email Drafter -->
+    <div id="ai-modal" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
+        <div class="bg-slate-800 rounded-lg shadow-2xl w-full max-w-2xl p-6 relative transform transition-all scale-95 opacity-0" id="ai-modal-content">
+            <button id="close-modal-button" class="absolute top-4 right-4 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h3 class="text-2xl font-bold text-white mb-4">Asisten AI untuk Perekrut</h3>
+            <p class="text-slate-400 mb-6">Isi detail di bawah ini dan biarkan AI membuat draf email profesional untuk menghubungi Gatot.</p>
+            
+            <div class="space-y-4">
+                <div>
+                    <label for="recruiterName" class="block text-sm font-medium text-slate-300 mb-1">Nama Anda</label>
+                    <input type="text" id="recruiterName" class="w-full bg-slate-700 border border-slate-600 text-white rounded-md p-2 focus:ring-2 focus:ring-sky-500 focus:border-sky-500" placeholder="Contoh: Budi Santoso">
+                </div>
+                <div>
+                    <label for="companyName" class="block text-sm font-medium text-slate-300 mb-1">Perusahaan Anda</label>
+                    <input type="text" id="companyName" class="w-full bg-slate-700 border border-slate-600 text-white rounded-md p-2 focus:ring-2 focus:ring-sky-500 focus:border-sky-500" placeholder="Contoh: PT Teknologi Maju">
+                </div>
+                <div>
+                    <label for="opportunity" class="block text-sm font-medium text-slate-300 mb-1">Posisi / Peluang yang Ditawarkan</label>
+                    <input type="text" id="opportunity" class="w-full bg-slate-700 border border-slate-600 text-white rounded-md p-2 focus:ring-2 focus:ring-sky-500 focus:border-sky-500" placeholder="Contoh: Junior IoT Engineer">
+                </div>
+            </div>
+            
+            <button id="generate-draft-button" class="mt-6 w-full bg-sky-500 hover:bg-sky-600 text-white font-bold py-3 px-4 rounded-md flex items-center justify-center gap-2 transition-colors">
+                <span id="generate-btn-text">Buat Draf</span>
+                <div id="loading-spinner" class="hidden spinner w-5 h-5 rounded-full"></div>
+            </button>
+            
+            <div id="draft-output-container" class="hidden mt-6">
+                <label class="block text-sm font-medium text-slate-300 mb-1">Draf Email yang Dihasilkan:</label>
+                <textarea id="email-draft" rows="8" class="w-full bg-slate-900 border border-slate-600 text-slate-300 rounded-md p-3" readonly></textarea>
+                <button id="copy-draft-button" class="mt-2 bg-slate-600 hover:bg-slate-500 text-white font-semibold py-2 px-4 rounded-md text-sm flex items-center gap-2">
+                    <i data-lucide="copy" class="w-4 h-4"></i>
+                    <span id="copy-btn-text">Salin Teks</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Inisialisasi Lucide Icons
+        lucide.createIcons();
+
+        // JavaScript untuk fungsionalitas website
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('header');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+            // --- Menu Mobile ---
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            mobileMenu.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+            // --- Efek shadow pada header saat scroll ---
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-xl');
+                } else {
+                    header.classList.remove('shadow-xl');
+                }
+            });
+
+            // --- Tombol Scroll to Top ---
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.remove('hidden');
+                } else {
+                    scrollToTopBtn.classList.add('hidden');
+                }
+            });
+
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // --- Update tahun di footer secara otomatis ---
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // --- Gemini AI Email Drafter ---
+            const aiDrafterButton = document.getElementById('ai-drafter-button');
+            const aiModal = document.getElementById('ai-modal');
+            const aiModalContent = document.getElementById('ai-modal-content');
+            const closeModalButton = document.getElementById('close-modal-button');
+            const generateDraftButton = document.getElementById('generate-draft-button');
+            const draftOutputContainer = document.getElementById('draft-output-container');
+            const emailDraftTextarea = document.getElementById('email-draft');
+            const copyDraftButton = document.getElementById('copy-draft-button');
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const generateBtnText = document.getElementById('generate-btn-text');
+            
+            // Buka Modal
+            aiDrafterButton.addEventListener('click', () => {
+                aiModal.classList.remove('hidden');
+                setTimeout(() => {
+                    aiModalContent.classList.remove('scale-95', 'opacity-0');
+                }, 10); // sedikit delay untuk transisi
+            });
+            
+            // Tutup Modal
+            const closeModal = () => {
+                aiModalContent.classList.add('scale-95', 'opacity-0');
+                 setTimeout(() => {
+                    aiModal.classList.add('hidden');
+                }, 200);
+            };
+            closeModalButton.addEventListener('click', closeModal);
+            aiModal.addEventListener('click', (e) => {
+                if (e.target === aiModal) {
+                    closeModal();
+                }
+            });
+            
+            // Fungsi untuk memanggil Gemini API
+            async function generateEmailDraft() {
+                const recruiterName = document.getElementById('recruiterName').value.trim();
+                const companyName = document.getElementById('companyName').value.trim();
+                const opportunity = document.getElementById('opportunity').value.trim();
+
+                if (!recruiterName || !companyName || !opportunity) {
+                    alert('Mohon isi semua field yang tersedia.');
+                    return;
+                }
+                
+                // Tampilkan loading
+                loadingSpinner.classList.remove('hidden');
+                generateBtnText.textContent = 'Memproses...';
+                generateDraftButton.disabled = true;
+
+                const apiKey = ""; // API key tidak diperlukan saat dijalankan di environment ini
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+                const systemPrompt = "Anda adalah asisten yang membantu seorang perekrut (recruiter) untuk membuat draf email profesional dalam Bahasa Indonesia. Tujuannya adalah untuk menghubungi seorang kandidat bernama Gatot Sasangka, yang merupakan lulusan baru Teknik Informatika. Buat email yang sopan, singkat, dan jelas.";
+                
+                const userQuery = `
+                    Tolong buatkan draf email untuk menghubungi Gatot Sasangka.
+                    
+                    Informasi Perekrut:
+                    - Nama: ${recruiterName}
+                    - Perusahaan: ${companyName}
+                    
+                    Peluang yang ditawarkan:
+                    - Posisi: ${opportunity}
+                    
+                    Konteks:
+                    - Perekrut menemukan portofolio online Gatot dan terkesan dengan keahliannya di bidang IoT, AI, dan Jaringan (Cisco CCNA).
+                    - Tujuan email adalah untuk memulai percakapan dan menjadwalkan panggilan singkat untuk membahas peluang tersebut lebih lanjut.
+                    
+                    Struktur Email:
+                    - Subjek: Harus menarik, contoh: "Peluang Karir sebagai [Posisi] di [Perusahaan]"
+                    - Sapaan: "Yth. Gatot Sasangka,"
+                    - Isi: Perkenalkan diri dan perusahaan, sebutkan bahwa Anda menemukan portofolionya dan terkesan, jelaskan peluang yang ditawarkan secara singkat, dan ajakan untuk berdiskusi lebih lanjut (call to action).
+                    - Penutup: "Hormat saya," diikuti nama dan perusahaan perekrut.
+                `;
+
+                const payload = {
+                    contents: [{ parts: [{ text: userQuery }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API Error: ${response.statusText}`);
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+                    
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        const generatedText = candidate.content.parts[0].text;
+                        emailDraftTextarea.value = generatedText;
+                        draftOutputContainer.classList.remove('hidden');
+                    } else {
+                        throw new Error("Respon API tidak valid atau kosong.");
+                    }
+
+                } catch (error) {
+                    console.error("Gagal menghubungi Gemini API:", error);
+                    emailDraftTextarea.value = "Maaf, terjadi kesalahan saat membuat draf. Silakan coba lagi nanti.";
+                    draftOutputContainer.classList.remove('hidden');
+                } finally {
+                    // Sembunyikan loading
+                    loadingSpinner.classList.add('hidden');
+                    generateBtnText.textContent = 'Buat Draf';
+                    generateDraftButton.disabled = false;
+                }
+            }
+
+            generateDraftButton.addEventListener('click', generateEmailDraft);
+            
+            // Fungsi untuk menyalin teks
+            copyDraftButton.addEventListener('click', () => {
+                emailDraftTextarea.select();
+                document.execCommand('copy');
+                const copyBtnText = document.getElementById('copy-btn-text');
+                copyBtnText.textContent = 'Tersalin!';
+                setTimeout(() => {
+                    copyBtnText.textContent = 'Salin Teks';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+</html>
+
+
