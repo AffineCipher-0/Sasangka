@@ -92,8 +92,8 @@
                         <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm">Google Workspace</span>
                     </div>
                 </div>
-                <div class="md:w-1/2">
-                    <img src="https://github.com/AffineCipher-0/Sasangka/blob/main/Sasangka.png" alt="Foto Profil Gatot Sasangka" class="rounded-lg shadow-2xl mx-auto w-2/3 md:w-full">
+                <div class="md:w-1/2 flex justify-center items-center">
+                    <img src="https://github.com/AffineCipher-0/Sasangka/blob/main/Sasangka.png?raw=true" alt="Foto Profil Gatot Sasangka" class="rounded-full shadow-2xl mx-auto w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-slate-800">
                 </div>
             </div>
         </section>
@@ -204,6 +204,7 @@
                             <input type="text" id="recruiter-position" class="mt-1 w-full p-2 bg-slate-700 border border-slate-600 rounded-md text-white">
                         </div>
                     </div>
+                    <p id="ai-email-error" class="text-red-400 text-sm mt-4 text-center hidden"></p>
                     <button id="generate-email-btn" class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg transition-colors">
                         Buat Draf
                     </button>
@@ -258,12 +259,14 @@
         const recruiterNameInput = document.getElementById('recruiter-name');
         const recruiterCompanyInput = document.getElementById('recruiter-company');
         const recruiterPositionInput = document.getElementById('recruiter-position');
+        const aiEmailError = document.getElementById('ai-email-error');
         
         const openEmailModal = () => {
             aiEmailModal.classList.remove('hidden');
             setTimeout(() => aiEmailModalContent.classList.remove('scale-95', 'opacity-0'), 10);
             aiEmailForm.classList.remove('hidden');
             aiEmailResult.classList.add('hidden');
+            aiEmailError.classList.add('hidden'); // Sembunyikan pesan error saat modal dibuka
         };
 
         const closeEmailModal = () => {
@@ -276,6 +279,7 @@
         regenerateEmailBtn.addEventListener('click', () => {
             aiEmailForm.classList.remove('hidden');
             aiEmailResult.classList.add('hidden');
+            aiEmailError.classList.add('hidden');
         });
         
         copyEmailBtn.addEventListener('click', () => {
@@ -286,12 +290,14 @@
         });
 
         const generateEmailContent = async () => {
+            aiEmailError.classList.add('hidden'); // Sembunyikan pesan error sebelum request baru
             const name = recruiterNameInput.value.trim();
             const company = recruiterCompanyInput.value.trim();
             const position = recruiterPositionInput.value.trim();
 
             if (!name || !company || !position) {
-                alert('Harap isi semua kolom.');
+                aiEmailError.textContent = 'Harap isi semua kolom.';
+                aiEmailError.classList.remove('hidden');
                 return;
             }
             
@@ -313,7 +319,7 @@
 
             try {
                 const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                if (!response.ok) throw new Error('API request failed');
+                if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
                 const result = await response.json();
                 const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
                 if (text) {
@@ -321,11 +327,12 @@
                     aiEmailForm.classList.add('hidden');
                     aiEmailResult.classList.remove('hidden');
                 } else {
-                    throw new Error('Invalid API response');
+                    throw new Error('Invalid API response structure');
                 }
             } catch (error) {
                 console.error("Error calling Gemini API:", error);
-                alert("Gagal membuat draf. Silakan coba lagi.");
+                aiEmailError.textContent = 'Gagal membuat draf. Periksa koneksi Anda dan coba lagi.';
+                aiEmailError.classList.remove('hidden');
             } finally {
                 generateEmailBtn.textContent = 'Buat Draf';
                 generateEmailBtn.disabled = false;
@@ -394,3 +401,4 @@
     </script>
 </body>
 </html>
+
