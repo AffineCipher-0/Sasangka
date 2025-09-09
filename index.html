@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id" class="scroll-smooth dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,30 +25,31 @@
 <body class="bg-slate-900 text-slate-300">
 
     <!-- Navigasi -->
-    <header class="bg-slate-900/70 backdrop-blur-lg fixed top-0 left-0 right-0 z-50">
+    <header class="bg-slate-900/70 backdrop-blur-lg fixed top-0 left-0 right-0 z-50 border-b border-slate-800">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-xl font-bold text-white">Gatot Sasangka</a>
             <div class="hidden md:flex space-x-6 items-center">
-                <a href="#about" class="hover:text-sky-400 transition-colors">Tentang Saya</a>
-                <a href="#portfolio" class="hover:text-sky-400 transition-colors">Portofolio</a>
-                <a href="#certificates" class="hover:text-sky-400 transition-colors">Sertifikat</a>
-                <a href="#contact" class="hover:text-sky-400 transition-colors">Kontak</a>
+                <a href="#about" class="text-slate-300 hover:text-sky-400 transition-colors">Tentang Saya</a>
+                <a href="#portfolio" class="text-slate-300 hover:text-sky-400 transition-colors">Portofolio</a>
+                <a href="#certificates" class="text-slate-300 hover:text-sky-400 transition-colors">Sertifikat</a>
+                <a href="#contact" class="text-slate-300 hover:text-sky-400 transition-colors">Kontak</a>
             </div>
-            <!-- TOMBOL DIUBAH MENJADI UNDUH CV DENGAN LINK BARU -->
-            <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" class="hidden md:block bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors">
-                Unduh CV
-            </a>
+            <div class="hidden md:flex items-center gap-4">
+                <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors">
+                    Unduh CV
+                </a>
+            </div>
             <button id="mobile-menu-button" class="md:hidden text-white">
                 <i data-lucide="menu"></i>
             </button>
         </nav>
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
-            <a href="#about" class="block py-2 px-6 hover:bg-slate-800">Tentang Saya</a>
-            <a href="#portfolio" class="block py-2 px-6 hover:bg-slate-800">Portofolio</a>
-            <a href="#certificates" class="block py-2 px-6 hover:bg-slate-800">Sertifikat</a>
-            <a href="#contact" class="block py-2 px-6 hover:bg-slate-800">Kontak</a>
-            <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" class="block py-2 px-6 hover:bg-slate-800">Unduh CV</a>
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-800 border-t border-slate-700">
+            <a href="#about" class="block py-2 px-6 text-slate-300 hover:bg-slate-700">Tentang Saya</a>
+            <a href="#portfolio" class="block py-2 px-6 text-slate-300 hover:bg-slate-700">Portofolio</a>
+            <a href="#certificates" class="block py-2 px-6 text-slate-300 hover:bg-slate-700">Sertifikat</a>
+            <a href="#contact" class="block py-2 px-6 text-slate-300 hover:bg-slate-700">Kontak</a>
+            <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" class="block py-2 px-6 text-slate-300 hover:bg-slate-700">Unduh CV</a>
         </div>
     </header>
 
@@ -85,16 +86,16 @@
                     </p>
                     <h3 class="text-2xl font-bold text-white mt-8 mb-4">Keahlian Utama</h3>
                     <div class="flex flex-wrap gap-3">
-                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm">JavaScript</span>
-                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm">HTML & CSS</span>
-                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm">Mikrokontroler (Arduino, NodeMCU)</span>
-                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm">IoT</span>
-                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm">SQL</span>
-                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm">Desain ERD</span>
-                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm">Cisco CCNA</span>
-                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm">Python</span>
-                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm">Microsoft Office</span>
-                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm">Google Workspace</span>
+                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
+                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm font-medium">HTML & CSS</span>
+                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm font-medium">Mikrokontroler (Arduino, NodeMCU)</span>
+                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm font-medium">IoT</span>
+                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm font-medium">SQL</span>
+                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm font-medium">Desain ERD</span>
+                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm font-medium">Cisco CCNA</span>
+                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm font-medium">Python</span>
+                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm font-medium">Microsoft Office</span>
+                        <span class="bg-slate-700 text-sky-300 px-3 py-1 rounded-full text-sm font-medium">Google Workspace</span>
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center items-center">
@@ -109,7 +110,6 @@
                 <h2 class="text-3xl font-bold text-white text-center mb-12">Portofolio Proyek</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
-                    <!-- Proyek 1 -->
                     <div class="bg-slate-700 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex">
                         <div class="p-6 flex flex-col h-full w-full">
                             <h3 class="text-xl font-bold text-white mb-2">Penerjemah Sandi Morse (Jurnal Ilmiah)</h3>
@@ -122,7 +122,6 @@
                         </div>
                     </div>
                     
-                    <!-- Proyek 2 -->
                     <div class="bg-slate-700 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex">
                         <div class="p-6 flex flex-col h-full w-full">
                             <h3 class="text-xl font-bold text-white mb-2">Website E-Commerce</h3>
@@ -135,7 +134,6 @@
                         </div>
                     </div>
 
-                    <!-- Proyek 3 -->
                     <div class="bg-slate-700 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex">
                         <div class="p-6 flex flex-col h-full w-full">
                             <h3 class="text-xl font-bold text-white mb-2">Otomatisasi Greenhouse (Proyek IoT)</h3>
@@ -152,7 +150,6 @@
                     </div>
 
                 </div>
-                <!-- TAUTAN GITHUB DIPINDAHKAN KE SINI -->
                 <p class="text-center text-slate-400 mt-12">
                     Untuk melihat lebih banyak proyek, silakan kunjungi 
                     <a href="https://github.com/AffineCipher-0" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:underline font-semibold">
@@ -168,8 +165,7 @@
                 <h2 class="text-3xl font-bold text-white text-center mb-12">Sertifikasi & Pelatihan</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     
-                    <!-- Sertifikat (2023) -->
-                    <div class="bg-slate-700 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border border-slate-700">
                         <a href="https://i.pinimg.com/736x/80/04/47/80044719d9dd838022232dffed7f506d.jpg" target="_blank" rel="noopener noreferrer">
                              <img src="https://i.pinimg.com/736x/80/04/47/80044719d9dd838022232dffed7f506d.jpg" alt="Sertifikat Literasi Digital" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
@@ -178,7 +174,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="bg-slate-700 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border border-slate-700">
                         <a href="https://i.pinimg.com/736x/34/65/98/3465982370d3bac68d058909b2d466bd.jpg" target="_blank" rel="noopener noreferrer">
                              <img src="https://i.pinimg.com/736x/34/65/98/3465982370d3bac68d058909b2d466bd.jpg" alt="Sertifikat Seminar Cyber Security" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
@@ -187,9 +183,9 @@
                             </div>
                         </a>
                     </div>
-                    <div class="bg-slate-700 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group">
-                        <a href="https://i.pinimg.com/736x/64/1b/8b/641b8bcc800045f7a3b3e61251e42199.jpg" target="_blank" rel="noopener noreferrer">
-                             <img src="https://i.pinimg.com/736x/64/1b/8b/641b8bcc800045f7a3b3e61251e42199.jpg" alt="Sertifikat Webinar Pengolahan Data" class="w-full h-48 object-cover object-center">
+                    <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border border-slate-700">
+                        <a href="https://i.pinimg.com/736x/64/1b/8b/641b8bcc800045f7a3b3e-61251e42199.jpg" target="_blank" rel="noopener noreferrer">
+                             <img src="https://i.pinimg.com/736x/64/1b/8b/641b8bcc800045f7a3b3e-61251e42199.jpg" alt="Sertifikat Webinar Pengolahan Data" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-sky-400 transition-colors">Webinar Pengolahan Data</h3>
                                 <p class="text-sm text-slate-400">XREI Institute (Mar 2023)</p>
@@ -197,8 +193,7 @@
                         </a>
                     </div>
                     
-                    <!-- Sertifikat (2022) -->
-                    <div class="bg-slate-700 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border border-slate-700">
                         <a href="https://i.pinimg.com/736x/10/3e/ec/103eec875850f1c24ce4273271494f9b.jpg" target="_blank" rel="noopener noreferrer">
                              <img src="https://i.pinimg.com/736x/10/3e/ec/103eec875850f1c24ce4273271494f9b.jpg" alt="Sertifikat CCNA Security" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
@@ -208,8 +203,7 @@
                         </a>
                     </div>
                     
-                    <!-- Sertifikat (2021) -->
-                    <div class="bg-slate-700 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border border-slate-700">
                         <a href="https://i.pinimg.com/736x/4a/c9/62/4ac9625dbabc98452f218fdc57177814.jpg" target="_blank" rel="noopener noreferrer">
                              <img src="https://i.pinimg.com/736x/4a/c9/62/4ac9625dbabc98452f218fdc57177814.jpg" alt="Sertifikat Fundamental Python" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
@@ -218,16 +212,16 @@
                             </div>
                         </a>
                     </div>
-                    <div class="bg-slate-700 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group">
-                        <a href="https://i.pinimg.com/736x/c0/e2/71/c0e271b1b3e37016041934b0696a9ca8.jpg" target="_blank" rel="noopener noreferrer">
-                             <img src="https://i.pinimg.com/736x/c0/e2/71/c0e271b1b3e37016041934b0696a9ca8.jpg" alt="Sertifikat Switching, Routing, and Wireless Essentials" class="w-full h-48 object-cover object-center">
+                    <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border border-slate-700">
+                        <a href="https://i.pinimg.com/736x/c0/e2/71/c0e271b1b3e-37016041934b0696a9ca8.jpg" target="_blank" rel="noopener noreferrer">
+                             <img src="https://i.pinimg.com/736x/c0/e2/71/c0e271b1b3e-37016041934b0696a9ca8.jpg" alt="Sertifikat Switching, Routing, and Wireless Essentials" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-sky-400 transition-colors">Switching, Routing, & Wireless Essentials</h3>
                                 <p class="text-sm text-slate-400">Cisco Networking Academy (2021)</p>
                             </div>
                         </a>
                     </div>
-                    <div class="bg-slate-700 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group">
+                    <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border border-slate-700">
                         <a href="https://i.pinimg.com/736x/ca/60/34/ca60345ae00dd6f695df1f5e9bee1127.jpg" target="_blank" rel="noopener noreferrer">
                              <img src="https://i.pinimg.com/736x/ca/60/34/ca60345ae00dd6f695df1f5e9bee1127.jpg" alt="Sertifikat Introduction to Networks" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
@@ -236,11 +230,9 @@
                             </div>
                         </a>
                     </div>
-
-                    <!-- Sertifikat (2020) -->
-                    <div class="bg-slate-700 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group">
-                        <a href="https://i.pinimg.com/736x/ca/60/34/ca60345ae00dd6f695df1f5e9bee1127.jpg" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.pinimg.com/736x/ca/60/34/ca60345ae00dd6f695df1f5e9bee1127.jpg" alt="Sertifikat IT Essentials" class="w-full h-48 object-cover object-top">
+                    <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border border-slate-700">
+                        <a href="https://i.pinimg.com/736x/5e/89/e1/5e89e1f616c1bf7fa8e2350336093e53.jpg" target="_blank" rel="noopener noreferrer">
+                            <img src="https://i.pinimg.com/736x/5e/89/e1/5e89e1f616c1bf7fa8e2350336093e53.jpg" alt="Sertifikat IT Essentials" class="w-full h-48 object-cover object-top">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-sky-400 transition-colors">IT Essentials</h3>
                                 <p class="text-sm text-slate-400">Cisco Networking Academy (Aug 2020)</p>
@@ -253,28 +245,35 @@
         </section>
 
         <!-- Kontak Section -->
-        <section id="contact" class="bg-slate-900 py-20">
+        <section id="contact" class="bg-slate-800 py-20">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold text-white">Hubungi Saya</h2>
                 <p class="text-slate-400 mt-4 max-w-xl mx-auto">
                     Saya terbuka untuk diskusi mengenai peluang kerja, proyek freelance, atau sekadar untuk bertukar pikiran. Jangan ragu untuk menghubungi saya.
                 </p>
                 <div class="mt-8">
-                    <a href="mailto:sasangkagatot@gmail.com" class="text-2xl font-semibold text-sky-400 hover:text-sky-300 transition-colors">
+                    <a href="mailto:sasangkagatot@gmail.com" class="text-2xl font-semibold text-white hover:text-sky-300 transition-colors">
                         sasangkagatot@gmail.com
                     </a>
                 </div>
                 <div class="mt-8 flex justify-center gap-6">
-                    <a href="https://github.com/AffineCipher-0" target="_blank" class="text-slate-400 hover:text-white"><i data-lucide="github" class="w-8 h-8"></i></a>
-                    <a href="https://www.linkedin.com/in/sasangka/" target="_blank" class="text-slate-400 hover:text-white"><i data-lucide="linkedin" class="w-8 h-8"></i></a>
+                    <a href="https://wa.me/6287832165306" target="_blank" class="text-slate-400 hover:text-sky-400" title="Hubungi via WhatsApp">
+                        <i data-lucide="message-square" class="w-8 h-8"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sasangka/" target="_blank" class="text-slate-400 hover:text-sky-400" title="Lihat Profil LinkedIn">
+                        <i data-lucide="linkedin" class="w-8 h-8"></i>
+                    </a>
+                    <a href="https://github.com/AffineCipher-0" target="_blank" class="text-slate-400 hover:text-sky-400" title="Lihat Profil GitHub">
+                        <i data-lucide="github" class="w-8 h-8"></i>
+                    </a>
                 </div>
                 
                  <!-- Fitur Gemini API: Email Generator -->
-                <div class="mt-12 bg-slate-800 p-6 rounded-lg max-w-2xl mx-auto">
+                <div class="mt-12 bg-slate-700 p-6 rounded-lg max-w-2xl mx-auto border border-slate-600">
                     <h3 class="font-bold text-white flex items-center justify-center gap-2">
                         <i data-lucide="sparkles" class="text-yellow-400"></i> Asisten AI untuk Perekrut
                     </h3>
-                    <p class="text-sm text-slate-400 mt-2">Ingin menghubungi saya? Biarkan AI membantu Anda membuat draf email profesional.</p>
+                    <p class="text-sm text-slate-300 mt-2">Ingin menghubungi saya? Biarkan AI membantu Anda membuat draf email profesional.</p>
                     <button id="ai-email-btn" class="mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2 rounded-lg transition-colors">
                         Buat Draf Email dengan AI
                     </button>
@@ -284,7 +283,7 @@
     </main>
 
     <footer class="bg-slate-900 border-t border-slate-800">
-        <div class="container mx-auto px-6 py-4 text-center text-slate-500">
+        <div class="container mx-auto px-6 py-4 text-center text-slate-400">
             &copy; 2024 Gatot Sasangka. Dibuat dengan semangat.
         </div>
     </footer>
@@ -300,26 +299,26 @@
                 <div id="ai-email-form">
                     <div class="space-y-4">
                         <div>
-                            <label for="recruiter-name" class="text-sm text-slate-300">Nama Anda</label>
+                            <label for="recruiter-name" class="text-sm font-medium text-slate-300">Nama Anda</label>
                             <input type="text" id="recruiter-name" class="mt-1 w-full p-2 bg-slate-700 border border-slate-600 rounded-md text-white">
                         </div>
                         <div>
-                            <label for="recruiter-company" class="text-sm text-slate-300">Nama Perusahaan</label>
+                            <label for="recruiter-company" class="text-sm font-medium text-slate-300">Nama Perusahaan</label>
                             <input type="text" id="recruiter-company" class="mt-1 w-full p-2 bg-slate-700 border border-slate-600 rounded-md text-white">
                         </div>
                         <div>
-                            <label for="recruiter-position" class="text-sm text-slate-300">Posisi yang Ditawarkan</label>
+                            <label for="recruiter-position" class="text-sm font-medium text-slate-300">Posisi yang Ditawarkan</label>
                             <input type="text" id="recruiter-position" class="mt-1 w-full p-2 bg-slate-700 border border-slate-600 rounded-md text-white">
                         </div>
                     </div>
-                    <p id="ai-email-error" class="text-red-400 text-sm mt-4 text-center hidden"></p>
+                    <p id="ai-email-error" class="text-red-500 text-sm mt-4 text-center hidden"></p>
                     <button id="generate-email-btn" class="w-full mt-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 rounded-lg transition-colors">
                         Buat Draf
                     </button>
                 </div>
                 <div id="ai-email-result" class="hidden">
                     <p class="text-sm text-slate-400 mb-2">Berikut draf yang dihasilkan AI:</p>
-                    <textarea id="email-output" rows="10" class="w-full p-3 bg-slate-700 border border-slate-600 rounded-md text-white text-sm" readonly></textarea>
+                    <textarea id="email-output" rows="10" class="w-full p-3 bg-slate-700 border border-slate-600 rounded-md text-slate-200 text-sm" readonly></textarea>
                     <div class="flex gap-4 mt-4">
                         <button id="copy-email-btn" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 rounded-lg">Salin Teks</button>
                         <button id="regenerate-email-btn" class="w-full bg-slate-600 hover:bg-slate-500 text-white font-semibold py-2 rounded-lg">Buat Ulang</button>
@@ -329,10 +328,8 @@
         </div>
     </div>
     
-    <!-- Modal AI Project Explanation (REMOVED) -->
-
-
     <script>
+        // Panggil createIcons sekali di awal
         lucide.createIcons();
 
         // Mobile Menu Toggle
@@ -363,7 +360,7 @@
             setTimeout(() => aiEmailModalContent.classList.remove('scale-95', 'opacity-0'), 10);
             aiEmailForm.classList.remove('hidden');
             aiEmailResult.classList.add('hidden');
-            aiEmailError.classList.add('hidden'); // Sembunyikan pesan error saat modal dibuka
+            aiEmailError.classList.add('hidden');
         };
 
         const closeEmailModal = () => {
@@ -386,9 +383,8 @@
             setTimeout(() => { copyEmailBtn.textContent = 'Salin Teks'; }, 2000);
         });
 
-        // FUNGSI AI DIPERBAIKI (SIMULASI)
         const generateEmailContent = () => {
-            aiEmailError.classList.add('hidden'); // Sembunyikan pesan error sebelum request baru
+            aiEmailError.classList.add('hidden'); 
             const name = recruiterNameInput.value.trim();
             const company = recruiterCompanyInput.value.trim();
             const position = recruiterPositionInput.value.trim();
@@ -402,24 +398,8 @@
             generateEmailBtn.textContent = 'Membuat...';
             generateEmailBtn.disabled = true;
 
-            // Simulasi jeda waktu seolah-olah memanggil AI
             setTimeout(() => {
-                const emailTemplate = `Subjek: Peluang Karir sebagai ${position} di ${company}
-
-Yth. Bapak Gatot Sasangka,
-
-Perkenalkan, nama saya ${name}, dari tim rekrutmen ${company}.
-
-Setelah melihat portofolio dan latar belakang Anda yang mengesankan di bidang Teknik Informatika, khususnya pada proyek-proyek terkait IoT dan Jaringan, kami sangat tertarik untuk mendiskusikan lebih lanjut mengenai peluang karir sebagai ${position} di perusahaan kami.
-
-Kami percaya keahlian Anda akan sangat berharga bagi tim kami. Apakah Bapak bersedia meluangkan waktu untuk berdiskusi singkat dalam beberapa hari ke depan?
-
-Terima kasih atas perhatian Bapak. Kami menantikan kabar baik dari Anda.
-
-Hormat saya,
-
-${name}
-${company}`;
+                const emailTemplate = `Subjek: Peluang Karir sebagai ${position} di ${company}\n\nYth. Bapak Gatot Sasangka,\n\nPerkenalkan, nama saya ${name}, dari tim rekrutmen ${company}.\n\nSetelah melihat portofolio dan latar belakang Anda yang mengesankan di bidang Teknik Informatika, khususnya pada proyek-proyek terkait IoT dan Jaringan, kami sangat tertarik untuk mendiskusikan lebih lanjut mengenai peluang karir sebagai ${position} di perusahaan kami.\n\nKami percaya keahlian Anda akan sangat berharga bagi tim kami. Apakah Bapak bersedia meluangkan waktu untuk berdiskusi singkat dalam beberapa hari ke depan?\n\nTerima kasih atas perhatian Bapak. Kami menantikan kabar baik dari Anda.\n\nHormat saya,\n\n${name}\n${company}`;
 
                 emailOutput.value = emailTemplate;
                 aiEmailForm.classList.add('hidden');
@@ -427,13 +407,11 @@ ${company}`;
                 
                 generateEmailBtn.textContent = 'Buat Draf';
                 generateEmailBtn.disabled = false;
-            }, 1500); // Jeda 1.5 detik
+            }, 1500);
         };
 
         generateEmailBtn.addEventListener('click', generateEmailContent);
         
-        // --- Gemini AI Project Explanation Logic (REMOVED) ---
-
     </script>
 </body>
 </html>
