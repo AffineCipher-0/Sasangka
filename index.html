@@ -42,14 +42,34 @@
         /* Skill Icons */
         .skill-icon-item {
             transition: transform 0.2s ease-in-out;
+            animation: gentle-float 4s ease-in-out infinite;
         }
         .skill-icon-item:hover {
-            transform: translateY(-6px);
+            animation-play-state: paused;
+            transform: translateY(-8px) scale(1.1);
         }
         .skill-icon-item:hover i {
-            color: #E0E0E0; /* Ganti warna ikon saat disentuh */
+            color: #E0E0E0;
             transition: color 0.2s ease-in-out;
         }
+
+        /* Keyframes untuk animasi mengapung */
+        @keyframes gentle-float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0); }
+        }
+
+        /* Beri jeda animasi yang berbeda untuk setiap ikon */
+        .skill-icon-item:nth-child(1) { animation-delay: 0s; }
+        .skill-icon-item:nth-child(2) { animation-delay: 0.3s; }
+        .skill-icon-item:nth-child(3) { animation-delay: 0.6s; }
+        .skill-icon-item:nth-child(4) { animation-delay: 0.2s; }
+        .skill-icon-item:nth-child(5) { animation-delay: 0.8s; }
+        .skill-icon-item:nth-child(6) { animation-delay: 0.1s; }
+        .skill-icon-item:nth-child(7) { animation-delay: 0.5s; }
+        .skill-icon-item:nth-child(8) { animation-delay: 0.7s; }
+        .skill-icon-item:nth-child(9) { animation-delay: 0.4s; }
         
         /* Warna Link & Aksen */
         .highlight-link { color: #B48A5C; }
