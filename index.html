@@ -21,56 +21,17 @@
             color: #E0E0E0;
         }
 
-        /* Hero Section */
-        #home {
-            background-image: url('https://i.imgur.com/lgIOJhj.gif'); 
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-color: #373A3E;
-            position: relative;
-            overflow: hidden;
-        }
-
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5); 
-            z-index: 1;
-        }
-
-        #home > div {
-            position: relative;
-            z-index: 2;
-        }
-        
-        /* Judul Gradasi */
-        #home h1 {
-            background: linear-gradient(to right, #D8DDE3, #E3CAAF);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-        }
-
         /* Navigasi */
         header {
             background-color: rgba(43, 46, 49, 0.8);
             border-bottom-color: rgba(255, 255, 255, 0.1);
         }
-       
+        
         /* Section lain */
         #about, #certificates { background-color: #2B2E31; }
         #portfolio, #contact { background-color: #373A3E; }
-        
-        #about img {
-            border-color: #373A3E;
-        }
-        
-        #certificates .border {
-             border-color: rgba(255, 255, 255, 0.1);
-        }
+        #about img { border-color: #373A3E; }
+        #certificates .border { border-color: rgba(255, 255, 255, 0.1); }
 
         /* Kartu Proyek & Sertifikat */
         .card-bg {
@@ -78,10 +39,16 @@
             border-color: rgba(255, 255, 255, 0.1);
         }
         
-        /* Skill Tags */
-        .skill-tag {
-            background-color: #4A4D51;
-            color: #F0F0F0;
+        /* Skill Icons */
+        .skill-icon-item {
+            transition: transform 0.2s ease-in-out;
+        }
+        .skill-icon-item:hover {
+            transform: translateY(-6px);
+        }
+        .skill-icon-item:hover i {
+            color: #E0E0E0; /* Ganti warna ikon saat disentuh */
+            transition: color 0.2s ease-in-out;
         }
         
         /* Warna Link & Aksen */
@@ -117,9 +84,171 @@
         .modal-button-primary:hover { background-color: #A07A4F; }
         .modal-button-secondary { background-color: #555; }
         .modal-button-secondary:hover { background-color: #666; }
+
+        /* --- CSS DARI KODE KEDUA UNTUK HERO SECTION --- */
+        #home {
+            background: linear-gradient(to top, #0a0a0a, #1a1a2e);
+            position: relative;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+        #home::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: repeating-linear-gradient(90deg, rgba(255,183,77,0.12) 0 2px, transparent 2px 100px),
+                        repeating-linear-gradient(0deg, rgba(100,181,246,0.12) 0 2px, transparent 2px 100px);
+            mix-blend-mode: overlay;
+            animation: circuitFlow 12s linear infinite, glowShift 14s ease-in-out infinite;
+            z-index: 1;
+        }
+        #home > div {
+             position: relative;
+             z-index: 2;
+        }
+        @keyframes circuitFlow {
+            from { background-position: 0 0, 0 0; }
+            to   { background-position: 200px 0, 0 200px; }
+        }
+        @keyframes glowShift {
+            0%   { filter: hue-rotate(0deg); opacity: 0.6; }
+            50%  { filter: hue-rotate(180deg); opacity: 1; }
+            100% { filter: hue-rotate(360deg); opacity: 0.6; }
+        }
+        .cityline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(to top, #0d47a1 10%, transparent 90%);
+            clip-path: polygon(
+                0% 100%, 0% 50%, 5% 50%, 5% 70%, 10% 70%, 10% 40%, 15% 40%, 15% 60%, 20% 60%, 20% 30%, 25% 30%, 25% 65%, 30% 65%, 30% 45%, 35% 45%, 35% 75%, 40% 75%, 40% 35%, 45% 35%, 45% 55%, 50% 55%, 50% 25%, 55% 25%, 55% 60%, 60% 60%, 60% 40%, 65% 40%, 65% 70%, 70% 70%, 70% 30%, 75% 30%, 75% 65%, 80% 65%, 80% 45%, 85% 45%, 85% 75%, 90% 75%, 90% 35%, 95% 35%, 95% 55%, 100% 55%, 100% 100%
+            );
+            animation: cityGlow 6s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+        @keyframes cityGlow {
+            from { opacity: 0.5; filter: drop-shadow(0 0 6px #64b5f6); }
+            to   { opacity: 1; filter: drop-shadow(0 0 20px #ffcc80); }
+        }
+        .cloud {
+            position: absolute;
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 25px;
+            backdrop-filter: blur(6px);
+            background: rgba(255,255,255,0.2);
+            color: #263238;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            animation: float 6s ease-in-out infinite;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
+            z-index: 2;
+        }
+        .cloud:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+        }
+        .ai { top: 15%; left: 25%; background: #90caf9; color: #0d47a1; }
+        .iot { top: 15%; right: 25%; animation-delay: 2s; background: #ffcc80; color: #e65100; }
+        @media (max-width: 768px) {
+            .ai { left: 10%; }
+            .iot { right: 10%; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .code-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(33,33,33,0.8);
+            color: #ffcc80;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 0 30px rgba(255,183,77,0.6);
+            width: 90%;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 2s ease;
+            will-change: transform;
+            z-index: 2;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        .code-box h1 {
+            background: linear-gradient(to right, #D8DDE3, #E3CAAF);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+        }
+        .code-box p {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            color: #B48A5C;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+        @media (max-width: 768px) {
+             .code-box h1 { font-size: 2rem; }
+             .code-box p { font-size: 0.9rem; }
+        }
+        .node {
+            position: absolute;
+            bottom: 25%;
+            right: 20%;
+            width: 24px;
+            height: 24px;
+            background: #64b5f6;
+            border-radius: 50%;
+            animation: pulse 3s infinite;
+            box-shadow: 0 0 20px rgba(100,181,246,0.8);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
+            z-index: 2;
+        }
+        .node:hover {
+            transform: scale(1.3);
+            box-shadow: 0 0 35px rgba(100,181,246,1);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .overlay-text {
+            position: absolute;
+            top: 5%;
+            left: 5%;
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            text-align: center;
+            font-style: italic;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+            backdrop-filter: blur(4px);
+            animation: fadeIn 3s ease, float 8s ease-in-out infinite;
+            z-index: 2;
+            max-width: 300px;
+        }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-300">
+<body>
 
     <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -154,20 +283,20 @@
 
     <main>
         <section id="home" class="min-h-screen flex items-center justify-center text-center">
-            <div class="container mx-auto px-6">
-                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-                    Gatot Sasangka
-                </h1>
-                <p class="mt-4 text-lg md:text-xl text-gray-200 max-w-2xl mx-auto" data-lang-key="heroSubtitle">
-                    Lulusan Teknik Informatika dengan keahlian di bidang Jaringan, IoT, dan Pengembangan Web.
-                </p>
-                <div class="mt-10">
-                    <p class="text-gray-300 italic text-md md:text-lg" data-lang-key="heroQuote">
-                        "Please don’t see just a boy caught up in dreams and fantasies..."
-                        <br>
-                        "We are all lost stars, trying to light up the dark." ✨
+            <div class="container mx-auto px-6 w-full h-full">
+                <div class="cloud ai">AI</div>
+                <div class="cloud iot">IoT</div>
+                <div class="code-box">
+                    <h1>Gatot Sasangka</h1>
+                    <p data-lang-key="heroSubtitle">
+                        Lulusan Teknik Informatika dengan keahlian di bidang Jaringan, IoT, dan Pengembangan Web.
                     </p>
                 </div>
+                <div class="node"></div>
+                <div class="overlay-text" data-lang-key="heroQuote">
+                    "Please don’t see just a boy caught up in dreams and fantasies..."<br>"We are all lost stars, trying to light up the dark." ✨
+                </div>
+                <div class="cityline"></div>
             </div>
         </section>
 
@@ -181,18 +310,55 @@
                     <p class="text-gray-300 text-justify" data-lang-key="aboutP2">
                         Dengan fondasi yang kuat di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh dan mempublikasikan penelitian tentang mikrokontroler. Saya selalu antusias untuk belajar hal baru dan berkolaborasi dalam tim.
                     </p>
+                    
                     <h3 class="text-2xl font-bold text-white mt-8 mb-4" data-lang-key="skillsTitle">Keahlian Utama</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">JavaScript</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">HTML & CSS</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Mikrokontroler</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">IoT</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">SQL</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Desain ERD</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Cisco CCNA</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Python</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Microsoft Office</span>
-                        <span class="skill-tag px-3 py-1 rounded-full text-sm font-medium">Google Workspace</span>
+                    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-y-6 gap-x-4 text-center mt-6">
+                        
+                        <div class="skill-icon-item">
+                            <i data-lucide="braces" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
+                            <span class="mt-2 text-xs font-medium text-gray-300 block">JavaScript</span>
+                        </div>
+
+                        <div class="skill-icon-item">
+                            <i data-lucide="file-code-2" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
+                            <span class="mt-2 text-xs font-medium text-gray-300 block">HTML & CSS</span>
+                        </div>
+
+                        <div class="skill-icon-item">
+                            <i data-lucide="cpu" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
+                            <span class="mt-2 text-xs font-medium text-gray-300 block">Mikrokontroler</span>
+                        </div>
+
+                        <div class="skill-icon-item">
+                            <i data-lucide="wifi" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
+                            <span class="mt-2 text-xs font-medium text-gray-300 block">IoT</span>
+                        </div>
+
+                        <div class="skill-icon-item">
+                            <i data-lucide="database" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
+                            <span class="mt-2 text-xs font-medium text-gray-300 block">SQL / ERD</span>
+                        </div>
+
+                        <div class="skill-icon-item">
+                            <i data-lucide="network" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
+                            <span class="mt-2 text-xs font-medium text-gray-300 block">Cisco CCNA</span>
+                        </div>
+                        
+                        <div class="skill-icon-item">
+                            <i data-lucide="code" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
+                            <span class="mt-2 text-xs font-medium text-gray-300 block">Python</span>
+                        </div>
+
+                        <div class="skill-icon-item">
+                            <i data-lucide="briefcase" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
+                            <span class="mt-2 text-xs font-medium text-gray-300 block">Ms. Office</span>
+                        </div>
+
+                        <div class="skill-icon-item">
+                            <i data-lucide="cloud" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
+                            <span class="mt-2 text-xs font-medium text-gray-300 block">G. Workspace</span>
+                        </div>
+
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center items-center">
@@ -428,17 +594,22 @@
     </div>
     
     <script>
-        // Panggil createIcons sekali di awal
         lucide.createIcons();
 
-        // Mobile Menu Toggle
+        document.addEventListener("mousemove", (e) => {
+            const moveX = (e.clientX / window.innerWidth - 0.5) * -20;
+            const moveY = (e.clientY / window.innerHeight - 0.5) * -20;
+            document.querySelectorAll('#home .cloud, #home .code-box, #home .node, #home .overlay-text').forEach(el => {
+                el.style.transform = `translateX(${moveX}px) translateY(${moveY}px)`;
+            });
+        });
+
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-        
-        // --- Language Switcher Logic ---
+
         const translations = {
             id: {
                 navAbout: "Tentang Saya",
@@ -525,7 +696,6 @@
         const languageToggle = document.getElementById('language-toggle');
         const langIdIcon = document.getElementById('lang-id-icon');
         const langEnIcon = document.getElementById('lang-en-icon');
-
         function setLanguage(lang) {
             document.documentElement.lang = lang;
             const elements = document.querySelectorAll('[data-lang-key]');
@@ -535,7 +705,6 @@
                     el.innerHTML = translations[lang][key];
                 }
             });
-
             if (lang === 'id') {
                 langEnIcon.classList.remove('hidden');
                 langIdIcon.classList.add('hidden');
@@ -545,17 +714,14 @@
             }
             localStorage.setItem('language', lang);
         }
-        
         languageToggle.addEventListener('click', () => {
             const currentLang = localStorage.getItem('language') || 'id';
             const newLang = currentLang === 'id' ? 'en' : 'id';
             setLanguage(newLang);
         });
-
         const initialLang = localStorage.getItem('language') || 'id';
         setLanguage(initialLang);
 
-        // --- Gemini AI Email Generator Logic ---
         const aiEmailBtn = document.getElementById('ai-email-btn');
         const aiEmailModal = document.getElementById('ai-email-modal');
         const aiEmailModalContent = document.getElementById('ai-email-modal-content');
@@ -570,7 +736,6 @@
         const recruiterCompanyInput = document.getElementById('recruiter-company');
         const recruiterPositionInput = document.getElementById('recruiter-position');
         const aiEmailError = document.getElementById('ai-email-error');
-        
         const openEmailModal = () => {
             aiEmailModal.classList.remove('hidden');
             setTimeout(() => aiEmailModalContent.classList.remove('scale-95', 'opacity-0'), 10);
@@ -578,12 +743,10 @@
             aiEmailResult.classList.add('hidden');
             aiEmailError.classList.add('hidden');
         };
-
         const closeEmailModal = () => {
             aiEmailModalContent.classList.add('scale-95', 'opacity-0');
             setTimeout(() => aiEmailModal.classList.add('hidden'), 300);
         };
-
         aiEmailBtn.addEventListener('click', openEmailModal);
         closeAiEmailModalBtn.addEventListener('click', closeEmailModal);
         regenerateEmailBtn.addEventListener('click', () => {
@@ -591,7 +754,6 @@
             aiEmailResult.classList.add('hidden');
             aiEmailError.classList.add('hidden');
         });
-        
         copyEmailBtn.addEventListener('click', () => {
             emailOutput.select();
             document.execCommand('copy');
@@ -601,23 +763,19 @@
                 copyEmailBtn.textContent = translations[currentLang].modalCopy;
             }, 2000);
         });
-
         const generateEmailContent = () => {
             aiEmailError.classList.add('hidden'); 
             const name = recruiterNameInput.value.trim();
             const company = recruiterCompanyInput.value.trim();
             const position = recruiterPositionInput.value.trim();
             const currentLang = localStorage.getItem('language') || 'id';
-
             if (!name || !company || !position) {
                 aiEmailError.textContent = currentLang === 'id' ? 'Harap isi semua kolom.' : 'Please fill in all fields.';
                 aiEmailError.classList.remove('hidden');
                 return;
             }
-            
             generateEmailBtn.textContent = currentLang === 'id' ? 'Membuat...' : 'Generating...';
             generateEmailBtn.disabled = true;
-
             setTimeout(() => {
                 let emailTemplate;
                 if (currentLang === 'id') {
@@ -625,39 +783,30 @@
                 } else {
                     emailTemplate = `Subject: Career Opportunity as ${position} at ${company}\n\nDear Mr. Gatot Sasangka,\n\nMy name is ${name}, and I am from the recruitment team at ${company}.\n\nAfter reviewing your impressive portfolio and background in Informatics Engineering, especially your projects related to IoT and Networking, we are very interested in discussing a career opportunity for the ${position} role at our company.\n\nWe believe your skills would be a valuable asset to our team. Would you be available for a brief discussion in the coming days?\n\nThank you for your time and consideration. We look forward to hearing from you.\n\nBest regards,\n\n${name}\n${company}`;
                 }
-                
                 emailOutput.value = emailTemplate;
                 aiEmailForm.classList.add('hidden');
                 aiEmailResult.classList.remove('hidden');
-                
                 generateEmailBtn.textContent = translations[currentLang].modalGenerate;
                 generateEmailBtn.disabled = false;
             }, 1500);
         };
-
         generateEmailBtn.addEventListener('click', generateEmailContent);
-        
-        // --- Smooth Scroll dengan memperhitungkan tinggi Header ---
+
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     const href = this.getAttribute('href');
-                    
                     if (href.length > 1) {
                         e.preventDefault();
-
                         const targetElement = document.querySelector(href);
-
                         if (targetElement) {
                             const headerOffset = document.querySelector('header').offsetHeight;
                             const elementPosition = targetElement.getBoundingClientRect().top;
                             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
                             window.scrollTo({
                                 top: offsetPosition,
                                 behavior: "smooth"
                             });
-
                             const mobileMenu = document.getElementById('mobile-menu');
                             if (!mobileMenu.classList.contains('hidden')) {
                                 mobileMenu.classList.add('hidden');
@@ -667,7 +816,7 @@
                 });
             });
         });
-
     </script>
+
 </body>
 </html>
