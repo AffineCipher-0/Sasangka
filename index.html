@@ -33,7 +33,10 @@
                 <a href="#portfolio" class="hover:text-sky-400 transition-colors">Portofolio</a>
                 <a href="#contact" class="hover:text-sky-400 transition-colors">Kontak</a>
             </div>
-            <a href="#contact" class="hidden md:block bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors">Hubungi Saya</a>
+            <!-- TOMBOL DIUBAH MENJADI UNDUH CV DENGAN LINK BARU -->
+            <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" class="hidden md:block bg-sky-500 hover:bg-sky-600 text-white font-semibold px-4 py-2 rounded-lg transition-colors">
+                Unduh CV
+            </a>
             <button id="mobile-menu-button" class="md:hidden text-white">
                 <i data-lucide="menu"></i>
             </button>
@@ -43,6 +46,7 @@
             <a href="#about" class="block py-2 px-6 hover:bg-slate-800">Tentang Saya</a>
             <a href="#portfolio" class="block py-2 px-6 hover:bg-slate-800">Portofolio</a>
             <a href="#contact" class="block py-2 px-6 hover:bg-slate-800">Kontak</a>
+            <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" class="block py-2 px-6 hover:bg-slate-800">Unduh CV</a>
         </div>
     </header>
 
@@ -56,13 +60,12 @@
                 <p class="mt-4 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto">
                     Lulusan Teknik Informatika dengan keahlian di bidang Jaringan, IoT, dan Pengembangan Web.
                 </p>
-                <div class="mt-8 flex justify-center gap-4">
-                    <a href="#portfolio" class="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors text-lg">
-                        Lihat Portofolio
-                    </a>
-                    <a href="#contact" class="bg-slate-700 hover:bg-slate-600 text-white font-semibold px-8 py-3 rounded-lg transition-colors text-lg">
-                        Kontak
-                    </a>
+                <div class="mt-10">
+                    <p class="text-slate-400 italic text-md md:text-lg">
+                        "Please don’t see just a boy caught up in dreams and fantasies..."
+                        <br>
+                        "We are all lost stars, trying to light up the dark." ✨
+                    </p>
                 </div>
             </div>
         </section>
@@ -284,7 +287,8 @@
             setTimeout(() => { copyEmailBtn.textContent = 'Salin Teks'; }, 2000);
         });
 
-        const generateEmailContent = async () => {
+        // FUNGSI AI DIPERBAIKI (SIMULASI)
+        const generateEmailContent = () => {
             aiEmailError.classList.add('hidden'); // Sembunyikan pesan error sebelum request baru
             const name = recruiterNameInput.value.trim();
             const company = recruiterCompanyInput.value.trim();
@@ -299,39 +303,32 @@
             generateEmailBtn.textContent = 'Membuat...';
             generateEmailBtn.disabled = true;
 
-            const apiKey = "";
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            // Simulasi jeda waktu seolah-olah memanggil AI
+            setTimeout(() => {
+                const emailTemplate = `Subjek: Peluang Karir sebagai ${position} di ${company}
 
-            const systemPrompt = `Anda adalah asisten perekrutan yang sopan dan profesional. Buat draf email dalam Bahasa Indonesia untuk menghubungi seorang kandidat bernama Gatot Sasangka. Gunakan informasi yang diberikan untuk membuat email yang personal dan to the point. Draf harus memiliki subjek yang jelas dan isi yang ringkas.`;
-            
-            const userQuery = `
-                Nama saya ${name} dari perusahaan ${company}. 
-                Saya ingin menghubungi Gatot Sasangka untuk menawarkan posisi sebagai ${position}.
-                Buat draf email yang sesuai.
-            `;
+Yth. Bapak Gatot Sasangka,
 
-            const payload = { contents: [{ parts: [{ text: userQuery }] }], systemInstruction: { parts: [{ text: systemPrompt }] } };
+Perkenalkan, nama saya ${name}, dari tim rekrutmen ${company}.
 
-            try {
-                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                if (!response.ok) throw new Error(`API request failed with status ${response.status}`);
-                const result = await response.json();
-                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (text) {
-                    emailOutput.value = text;
-                    aiEmailForm.classList.add('hidden');
-                    aiEmailResult.classList.remove('hidden');
-                } else {
-                    throw new Error('Invalid API response structure');
-                }
-            } catch (error) {
-                console.error("Error calling Gemini API:", error);
-                aiEmailError.textContent = 'Gagal membuat draf. Periksa koneksi Anda dan coba lagi.';
-                aiEmailError.classList.remove('hidden');
-            } finally {
+Setelah melihat portofolio dan latar belakang Anda yang mengesankan di bidang Teknik Informatika, khususnya pada proyek-proyek terkait IoT dan Jaringan, kami sangat tertarik untuk mendiskusikan lebih lanjut mengenai peluang karir sebagai ${position} di perusahaan kami.
+
+Kami percaya keahlian Anda akan sangat berharga bagi tim kami. Apakah Bapak bersedia meluangkan waktu untuk berdiskusi singkat dalam beberapa hari ke depan?
+
+Terima kasih atas perhatian Bapak. Kami menantikan kabar baik dari Anda.
+
+Hormat saya,
+
+${name}
+${company}`;
+
+                emailOutput.value = emailTemplate;
+                aiEmailForm.classList.add('hidden');
+                aiEmailResult.classList.remove('hidden');
+                
                 generateEmailBtn.textContent = 'Buat Draf';
                 generateEmailBtn.disabled = false;
-            }
+            }, 1500); // Jeda 1.5 detik
         };
 
         generateEmailBtn.addEventListener('click', generateEmailContent);
