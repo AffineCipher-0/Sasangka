@@ -105,7 +105,7 @@
         .modal-button-secondary { background-color: #555; }
         .modal-button-secondary:hover { background-color: #666; }
 
-        /* --- CSS DARI KODE KEDUA UNTUK HERO SECTION --- */
+        /* --- CSS BARU DARI KODE ANIMASI ANDA --- */
         #home {
             background: linear-gradient(to top, #0a0a0a, #1a1a2e);
             position: relative;
@@ -154,7 +154,7 @@
         }
         .cloud {
             position: absolute;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 600;
             padding: 12px 28px;
             border-radius: 25px;
@@ -171,8 +171,8 @@
             transform: scale(1.1);
             box-shadow: 0 12px 25px rgba(0,0,0,0.25);
         }
-        .ai { top: 15%; left: 25%; background: #90caf9; color: #0d47a1; }
-        .iot { top: 15%; right: 25%; animation-delay: 2s; background: #ffcc80; color: #e65100; }
+        .ai { top: 20%; left: 38%; background: #90caf9; color: #0d47a1; }
+        .iot { top: 20%; right: 28%; animation-delay: 2s; background: #ffcc80; color: #e65100; }
         @media (max-width: 768px) {
             .ai { left: 10%; }
             .iot { right: 10%; }
@@ -191,63 +191,43 @@
             padding: 24px;
             border-radius: 16px;
             box-shadow: 0 0 30px rgba(255,183,77,0.6);
-            width: 90%;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            width: 420px;
+            max-width: 90%;
+            height: auto;
+            overflow: hidden;
+            white-space: nowrap;
+            font-size: 15px;
+            font-family: "Courier New", Courier, monospace;
             animation: fadeIn 2s ease;
             will-change: transform;
             z-index: 2;
+            text-align: center;
+        }
+        .typing {
+            border-right: 2px solid #ffcc80;
+            animation: typing 8s steps(60, end) infinite alternate,
+                       blink 0.7s step-end infinite;
+            display: inline-block;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
         }
         @keyframes fadeIn {
             from { opacity: 0; transform: translate(-50%, -60%); }
             to { opacity: 1; transform: translate(-50%, -50%); }
         }
-        .code-box h1 {
-            background: linear-gradient(to right, #D8DDE3, #E3CAAF);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            font-size: 2.5rem;
-            font-weight: 800;
-            text-align: center;
-        }
-        .code-box p {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 1rem;
-            color: #B48A5C;
-            text-align: center;
-            margin-top: 0.5rem;
-        }
-        @media (max-width: 768px) {
-             .code-box h1 { font-size: 2rem; }
-             .code-box p { font-size: 0.9rem; }
-        }
         .node {
             position: absolute;
-            bottom: 25%;
-            right: 20%;
             width: 24px;
             height: 24px;
             background: #64b5f6;
             border-radius: 50%;
-            animation: pulse 3s infinite;
             box-shadow: 0 0 20px rgba(100,181,246,0.8);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            will-change: transform;
             z-index: 2;
-        }
-        .node:hover {
-            transform: scale(1.3);
-            box-shadow: 0 0 35px rgba(100,181,246,1);
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.4); opacity: 0.7; }
-            100% { transform: scale(1); opacity: 1; }
         }
         .overlay-text {
             position: absolute;
@@ -257,14 +237,20 @@
             color: #fff;
             padding: 12px 20px;
             border-radius: 12px;
-            font-size: 0.9rem;
-            text-align: center;
+            font-size: 1rem;
+            text-align: left;
             font-style: italic;
             box-shadow: 0 6px 15px rgba(0,0,0,0.3);
             backdrop-filter: blur(4px);
             animation: fadeIn 3s ease, float 8s ease-in-out infinite;
             z-index: 2;
-            max-width: 300px;
+        }
+        .cv-name {
+            margin-top: 6px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #90caf9;
+            display: block;
         }
     </style>
 </head>
@@ -307,14 +293,13 @@
                 <div class="cloud ai">AI</div>
                 <div class="cloud iot">IoT</div>
                 <div class="code-box">
-                    <h1>Gatot Sasangka</h1>
-                    <p data-lang-key="heroSubtitle">
-                        Lulusan Teknik Informatika dengan keahlian di bidang Jaringan, IoT, dan Pengembangan Web.
-                    </p>
+                    <a href="#" class="text-xl font-bold text-white">Gatot Sasangka</a><br>
+                    <span class="typing" data-lang-key="heroTyping">Jaringan, IoT, dan Pengembangan Web.</span>
                 </div>
                 <div class="node"></div>
-                <div class="overlay-text" data-lang-key="heroQuote">
-                    "Please don’t see just a boy caught up in dreams and fantasies..."<br>"We are all lost stars, trying to light up the dark." ✨
+                <div class="overlay-text">
+                    <span data-lang-key="heroOverlay">Annoying isn’t it? But those cables are truly connected and messy.</span>
+                    <span class="cv-name" data-lang-key="heroQuote">"We are all lost stars, trying to light up the dark." ✨</span>
                 </div>
                 <div class="cityline"></div>
             </div>
@@ -392,11 +377,16 @@
                 <h2 class="text-3xl font-bold text-white text-center mb-12" data-lang-key="portfolioTitle">Portofolio Proyek</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex border">
-                        <div class="p-6 flex flex-col h-full w-full">
-                            <h3 class="text-xl font-bold text-white mb-2" data-lang-key="project1Title">Penerjemah Sandi Morse (Jurnal Ilmiah)</h3>
-                            <p class="text-gray-300 text-sm mb-4 flex-grow" data-lang-key="project1Desc">Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler dengan algoritma Brute Force. Dipublikasikan di Jurnal INFOS.</p>
-                            <div class="mt-auto">
+                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center gap-4 mb-3">
+                                <i data-lucide="radio-tower" class="w-10 h-10 text-[#B48A5C]"></i>
+                                <h3 class="text-xl font-bold text-white" data-lang-key="project1Title">Penerjemah Sandi Morse (Jurnal Ilmiah)</h3>
+                            </div>
+                            <p class="text-gray-300 text-sm text-justify" data-lang-key="project1Desc">
+                                Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler. Proyek ini <strong>membuktikan kelayakan algoritma Brute Force</strong> untuk pencocokan sinyal secara akurat, mencapai <strong>efektivitas 100%</strong> dalam pengujian. Dipublikasikan di Jurnal INFOS.
+                            </p>
+                            <div class="mt-auto pt-4 text-center">
                                 <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetail">
                                     Lihat Detail <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
                                 </a>
@@ -404,11 +394,16 @@
                         </div>
                     </div>
                     
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex border">
-                        <div class="p-6 flex flex-col h-full w-full">
-                            <h3 class="text-xl font-bold text-white mb-2" data-lang-key="project2Title">Website E-Commerce</h3>
-                            <p class="text-gray-300 text-sm mb-4 flex-grow" data-lang-key="project2Desc">Membangun aplikasi e-commerce fungsional menggunakan PHP untuk backend dan CSS/JavaScript untuk frontend, lengkap dengan panel admin.</p>
-                            <div class="mt-auto">
+                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center gap-4 mb-3">
+                                <i data-lucide="shopping-cart" class="w-10 h-10 text-[#B48A5C]"></i>
+                                <h3 class="text-xl font-bold text-white" data-lang-key="project2Title">Website E-Commerce</h3>
+                            </div>
+                            <p class="text-gray-300 text-sm text-justify" data-lang-key="project2Desc">
+                                Sebagai <strong>Ketua Tim</strong>, saya mengoordinasikan 3 kontributor untuk membangun aplikasi e-commerce fungsional. Proyek ini mencakup fitur lengkap mulai dari registrasi pengguna hingga manajemen pesanan oleh admin, <strong>menyelesaikan tantangan dalam menciptakan alur transaksi yang aman dan intuitif</strong>.
+                            </p>
+                            <div class="mt-auto pt-4 text-center">
                                 <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetail">
                                     Lihat Detail <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
                                 </a>
@@ -416,11 +411,16 @@
                         </div>
                     </div>
 
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex border">
-                        <div class="p-6 flex flex-col h-full w-full">
-                            <h3 class="text-xl font-bold text-white mb-2" data-lang-key="project3Title">Otomatisasi Greenhouse (Proyek IoT)</h3>
-                            <p class="text-gray-300 text-sm mb-4 flex-grow" data-lang-key="project3Desc">Menyusun dokumen SRS dan merancang arsitektur sistem untuk monitoring dan kontrol sensor IoT secara real-time melalui aplikasi smartphone.</p>
-                            <div class="mt-auto flex flex-wrap gap-x-4 gap-y-2">
+                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex items-center gap-4 mb-3">
+                                <i data-lucide="sprout" class="w-10 h-10 text-[#B48A5C]"></i>
+                                <h3 class="text-xl font-bold text-white" data-lang-key="project3Title">Otomatisasi Greenhouse (Proyek IoT)</h3>
+                            </div>
+                            <p class="text-gray-300 text-sm text-justify" data-lang-key="project3Desc">
+                                Merancang arsitektur sistem dan UI/UX untuk otomatisasi greenhouse berbasis IoT. Desain ini bertujuan untuk <strong>meningkatkan efisiensi pemantauan dan mengurangi kebutuhan intervensi manual</strong>, menjadikannya sebuah blueprint komprehensif untuk implementasi nyata.
+                            </p>
+                            <div class="mt-auto pt-4 flex flex-wrap justify-center gap-x-6 gap-y-2">
                                 <a href="https://docs.google.com/document/d/1k-1eR1BLNI2a9yP-EyyvkzlmljOK8GIsx2nmV3pNGQ4/edit?usp=sharing" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetailSRS">
                                     Lihat Detail (SRS) <i data-lucide="file-text" class="w-4 h-4 ml-1"></i>
                                 </a>
@@ -616,11 +616,49 @@
     <script>
         lucide.createIcons();
 
+        const node = document.querySelector('.node');
+        if (node) {
+            let x = 100, y = 100;
+            let vx = 3, vy = 2.5;
+            const radius = 24;
+            const gravity = 0.2;
+            const bounceFactor = 0.8;
+
+            function animate() {
+                const width = window.innerWidth;
+                const height = document.getElementById('home').offsetHeight;
+
+                x += vx;
+                y += vy;
+                vy += gravity;
+
+                if (x + radius > width || x - radius < 0) {
+                    vx = -vx * bounceFactor;
+                    x = Math.max(radius, Math.min(x, width - radius));
+                }
+
+                if (y + radius > height) {
+                    vy = -vy * bounceFactor;
+                    y = height - radius;
+                }
+                if (y - radius < 0) {
+                    vy = -vy * bounceFactor;
+                    y = radius;
+                }
+
+                node.style.left = x + 'px';
+                node.style.top = y + 'px';
+
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
         document.addEventListener("mousemove", (e) => {
-            const moveX = (e.clientX / window.innerWidth - 0.5) * -20;
-            const moveY = (e.clientY / window.innerHeight - 0.5) * -20;
-            document.querySelectorAll('#home .cloud, #home .code-box, #home .node, #home .overlay-text').forEach(el => {
-                el.style.transform = `translateX(${moveX}px) translateY(${moveY}px)`;
+            const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
+            const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
+            document.querySelectorAll('#home .cloud, #home .code-box').forEach(el => {
+                el.style.transform = `translate(${moveX}px, ${moveY}px)`;
             });
         });
 
@@ -637,20 +675,21 @@
                 navCertificates: "Sertifikat",
                 navContact: "Kontak",
                 navCV: "Unduh CV",
-                heroSubtitle: "Lulusan Teknik Informatika dengan keahlian di bidang Jaringan, IoT, dan Pengembangan Web.",
-                heroQuote: `"Please don’t see just a boy caught up in dreams and fantasies..."<br>"We are all lost stars, trying to light up the dark." ✨`,
+                heroTyping: "Jaringan, IoT, dan Pengembangan Web.",
+                heroOverlay: "Annoying isn’t it? But those cables are truly connected and messy.",
+                heroQuote: `"We are all lost stars, trying to light up the dark." ✨`,
                 aboutTitle: "Tentang Saya",
                 aboutP1: "Saya adalah lulusan S1 Teknik Informatika dari Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki hasrat mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.",
                 aboutP2: "Dengan fondasi yang kuat di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh dan mempublikasikan penelitian tentang mikrokontroler. Saya selalu antusias untuk belajar hal baru dan berkolaborasi dalam tim.",
                 skillsTitle: "Keahlian Utama",
                 portfolioTitle: "Portofolio Proyek",
                 project1Title: "Penerjemah Sandi Morse (Jurnal Ilmiah)",
-                project1Desc: "Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler dengan algoritma Brute Force. Dipublikasikan di Jurnal INFOS.",
+                project1Desc: "Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler. Proyek ini <strong>membuktikan kelayakan algoritma Brute Force</strong> untuk pencocokan sinyal secara akurat, mencapai <strong>efektivitas 100%</strong> dalam pengujian. Dipublikasikan di Jurnal INFOS.",
                 viewDetail: "Lihat Detail",
                 project2Title: "Website E-Commerce",
-                project2Desc: "Membangun aplikasi e-commerce fungsional menggunakan PHP untuk backend dan CSS/JavaScript untuk frontend, lengkap dengan panel admin.",
+                project2Desc: "Sebagai <strong>Ketua Tim</strong>, saya mengoordinasikan 3 kontributor untuk membangun aplikasi e-commerce fungsional. Proyek ini mencakup fitur lengkap mulai dari registrasi pengguna hingga manajemen pesanan oleh admin, <strong>menyelesaikan tantangan dalam menciptakan alur transaksi yang aman dan intuitif</strong>.",
                 project3Title: "Otomatisasi Greenhouse (Proyek IoT)",
-                project3Desc: "Menyusun dokumen SRS dan merancang arsitektur sistem untuk monitoring dan kontrol sensor IoT secara real-time melalui aplikasi smartphone.",
+                project3Desc: "Merancang arsitektur sistem dan UI/UX untuk otomatisasi greenhouse berbasis IoT. Desain ini bertujuan untuk <strong>meningkatkan efisiensi pemantauan dan mengurangi kebutuhan intervensi manual</strong>, menjadikannya sebuah blueprint komprehensif untuk implementasi nyata.",
                 viewDetailSRS: "Lihat Detail (SRS)",
                 viewPrototype: "Lihat Prototipe",
                 seeMore: "Untuk melihat lebih banyak proyek, silakan kunjungi",
@@ -677,20 +716,21 @@
                 navCertificates: "Certificates",
                 navContact: "Contact",
                 navCV: "Download CV",
-                heroSubtitle: "An Informatics Engineering graduate with expertise in Networking, IoT, and Web Development.",
-                heroQuote: `"Please don’t see just a boy caught up in dreams and fantasies..."<br>"We are all lost stars, trying to light up the dark." ✨`,
+                heroTyping: "Networking, IoT, and Web Development.",
+                heroOverlay: "Annoying isn’t it? But those cables are truly connected and messy.",
+                heroQuote: `"We are all lost stars, trying to light up the dark." ✨`,
                 aboutTitle: "About Me",
                 aboutP1: "I am a cum laude graduate in Informatics Engineering from Amikom University of Yogyakarta (GPA 3.83). I have a deep passion for applying technical skills to support industrial digitalization and operational efficiency.",
                 aboutP2: "With a strong foundation in Networking (Cisco CCNA), IoT development, AI, and database management (SQL), I have successfully designed remote monitoring systems and published research on microcontrollers. I am always enthusiastic about learning new things and collaborating in a team.",
                 skillsTitle: "Main Skills",
                 portfolioTitle: "Project Portfolio",
                 project1Title: "Morse Code Translator (Scientific Journal)",
-                project1Desc: "Designed and built a microcontroller-based morse code translator using the Brute Force algorithm. Published in the INFOS Journal.",
+                project1Desc: "Designed and built a microcontroller-based morse code translator. This project <strong>proved the feasibility of the Brute Force algorithm</strong> for accurate signal matching, achieving <strong>100% effectiveness</strong> in testing. Published in the INFOS Journal.",
                 viewDetail: "View Details",
                 project2Title: "E-Commerce Website",
-                project2Desc: "Built a functional e-commerce application using PHP for the backend and CSS/JavaScript for the frontend, complete with an admin panel.",
+                project2Desc: "As <strong>Team Lead</strong>, I coordinated 3 contributors to build a functional e-commerce application. The project included complete features from user registration to admin order management, <strong>solving the challenge of creating a secure and intuitive transaction flow</strong>.",
                 project3Title: "Greenhouse Automation (IoT Project)",
-                project3Desc: "Developed an SRS document and designed a system architecture for real-time monitoring and control of IoT sensors via a smartphone application.",
+                project3Desc: "Designed the system architecture and UI/UX for an IoT-based greenhouse automation. This design aims to <strong>increase monitoring efficiency and reduce the need for manual intervention</strong>, serving as a comprehensive blueprint for real-world implementation.",
                 viewDetailSRS: "View Details (SRS)",
                 viewPrototype: "View Prototype",
                 seeMore: "To see more projects, please visit my",
