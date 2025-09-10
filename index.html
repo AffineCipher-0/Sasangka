@@ -75,31 +75,27 @@
         .highlight-link:hover { color: #E0E0E0; }
         .prototype-link { color: #6EE7B7; }
         .prototype-link:hover { color: #E0E0E0; }
-
-        #contact .ai-box {
-            background-color: #2B2E31;
-            border-color: rgba(255, 255, 255, 0.1);
+        
+        /* Form Kontak Baru */
+        #contact-form input, #contact-form textarea {
+             background-color: #2B2E31;
+             border-color: rgba(255, 255, 255, 0.1);
+             color: #E0E0E0;
         }
-        #contact .text-yellow-400 { color: #FFD700; }
-
+        #contact-form input::placeholder, #contact-form textarea::placeholder {
+            color: #aaa;
+        }
+        #form-status {
+            transition: opacity 0.3s ease-in-out;
+        }
+        
         footer {
             background-color: #2B2E31;
             border-top-color: rgba(255, 255, 255, 0.1);
         }
-
-        #ai-email-modal-content { background-color: #2B2E31; }
-        #ai-email-modal-content .border-b { border-color: rgba(255, 255, 255, 0.1); }
-        #ai-email-modal-content input, #ai-email-modal-content textarea {
-            background-color: #373A3E;
-            border-color: #555;
-            color: #F0F0F0;
-        }
-        #ai-email-modal-content label { color: #D0D0D0; }
-        #ai-email-error { color: #FF6B6B; }
+        
         .modal-button-primary { background-color: #B48A5C; }
         .modal-button-primary:hover { background-color: #A07A4F; }
-        .modal-button-secondary { background-color: #555; }
-        .modal-button-secondary:hover { background-color: #666; }
 
         /* --- CSS UNTUK HERO SECTION --- */
         #home { background: linear-gradient(to top, #0a0a0a, #1a1a2e); position: relative; overflow: hidden; }
@@ -282,17 +278,6 @@
                             <span class="mt-2 text-xs font-medium text-gray-300 block">G. Workspace</span>
                         </div>
                     </div>
-                     <!-- GEMINI FEATURE: Project Idea Generator -->
-                    <div class="mt-12 text-center">
-                        <button id="generate-idea-btn" class="modal-button-primary inline-flex items-center text-white font-semibold px-6 py-3 rounded-lg transition-transform transform hover:scale-105">
-                            <i data-lucide="sparkles" class="w-5 h-5 mr-2"></i>
-                            <span data-lang-key="aiProjectIdea">Hasilkan Ide Proyek AI</span>
-                        </button>
-                        <div id="idea-container" class="mt-6 p-6 rounded-lg bg-[#373A3E] border border-gray-700 text-left hidden">
-                            <p id="idea-loading" class="text-center text-gray-400" data-lang-key="aiLoadingIdea">AI sedang berpikir...</p>
-                            <p id="idea-output" class="text-gray-300" style="white-space: pre-wrap;"></p>
-                        </div>
-                    </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center items-center">
                     <div class="relative w-80 h-80 md:w-96 md:h-96 mx-auto">
@@ -414,7 +399,7 @@
                             <img src="https://i.imgur.com/wZ7owwo.png" alt="Sertifikat Magang DLHK" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Magang DLHK DIY</h3>
-                                <p class="text-sm text-gray-400">Dinas Lingkungan Hidup & Kehutanan DIY (2024)</p>
+                                <p class="text-sm text-gray-300">Dinas Lingkungan Hidup & Kehutanan DIY (2024)</p>
                             </div>
                         </a>
                     </div>
@@ -427,7 +412,7 @@
                             <img src="https://i.imgur.com/ltwjESR.png" alt="Sertifikat CCNA Security" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">CCNA Security</h3>
-                                <p class="text-sm text-gray-400">Cisco Networking Academy (Sep 2022)</p>
+                                <p class="text-sm text-gray-300">Cisco Networking Academy (Sep 2022)</p>
                             </div>
                         </a>
                     </div>
@@ -436,7 +421,7 @@
                             <img src="https://i.imgur.com/iCRbLK8.png" alt="Sertifikat Switching, Routing, and Wireless Essentials" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Switching, Routing, & Wireless Essentials</h3>
-                                <p class="text-sm text-gray-400">Cisco Networking Academy (2021)</p>
+                                <p class="text-sm text-gray-300">Cisco Networking Academy (2021)</p>
                             </div>
                         </a>
                     </div>
@@ -445,7 +430,7 @@
                             <img src="https://i.imgur.com/5frcsDW.png" alt="Sertifikat Introduction to Networks" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Introduction to Networks</h3>
-                                <p class="text-sm text-gray-400">Cisco Networking Academy (2021)</p>
+                                <p class="text-sm text-gray-300">Cisco Networking Academy (2021)</p>
                             </div>
                         </a>
                     </div>
@@ -454,7 +439,7 @@
                             <img src="https://i.imgur.com/Pqwf8N1.png" alt="Sertifikat IT Essentials" class="w-full h-48 object-cover object-top">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">IT Essentials</h3>
-                                <p class="text-sm text-gray-400">Cisco Networking Academy (Aug 2020)</p>
+                                <p class="text-sm text-gray-300">Cisco Networking Academy (Aug 2020)</p>
                             </div>
                         </a>
                     </div>
@@ -467,7 +452,7 @@
                             <img src="https://i.imgur.com/fgV6iQP.png" alt="Sertifikat Literasi Digital" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Literasi Digital</h3>
-                                <p class="text-sm text-gray-400">Kemkominfo (Apr 2023)</p>
+                                <p class="text-sm text-gray-300">Kemkominfo (Apr 2023)</p>
                             </div>
                         </a>
                     </div>
@@ -476,7 +461,7 @@
                             <img src="https://i.imgur.com/eyW5LUw.png" alt="Sertifikat Seminar Cyber Security" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Seminar Cyber Security</h3>
-                                <p class="text-sm text-gray-400">HIMATEKNO FTTI UNJAYA (Mar 2023)</p>
+                                <p class="text-sm text-gray-300">HIMATEKNO FTTI UNJAYA (Mar 2023)</p>
                             </div>
                         </a>
                     </div>
@@ -485,7 +470,7 @@
                             <img src="https://i.imgur.com/fRg3hmp.png" alt="Sertifikat Webinar Pengolahan Data" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Webinar Pengolahan Data</h3>
-                                <p class="text-sm text-gray-400">XREI Institute (Mar 2023)</p>
+                                <p class="text-sm text-gray-300">XREI Institute (Mar 2023)</p>
                             </div>
                         </a>
                     </div>
@@ -494,7 +479,7 @@
                             <img src="https://i.imgur.com/zruR3Gv.png" alt="Sertifikat Fundamental Python" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
                                 <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Fundamental Python</h3>
-                                <p class="text-sm text-gray-400">Progate (Sep 2021)</p>
+                                <p class="text-sm text-gray-300">Progate (Sep 2021)</p>
                             </div>
                         </a>
                     </div>
@@ -506,32 +491,30 @@
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold text-white" data-lang-key="contactTitle">Hubungi Saya</h2>
                 <p class="text-gray-300 mt-4 max-w-xl mx-auto" data-lang-key="contactSubtitle">
-                    Saya terbuka untuk diskusi mengenai peluang kerja, proyek freelance, atau sekadar untuk bertukar pikiran. Jangan ragu untuk menghubungi saya.
+                    Saya terbuka untuk diskusi, peluang kerja, atau sekadar bertukar pikiran.
                 </p>
-                <div class="mt-8">
-                    <a href="mailto:sasangkagatot@gmail.com" class="text-2xl font-semibold text-white hover:text-[#B48A5C] transition-colors">
-                        sasangkagatot@gmail.com
+                <div class="mt-12 flex justify-center gap-8">
+                    <a href="#" id="email-link" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="Email">
+                        <i data-lucide="mail" class="w-10 h-10"></i>
+                    </a>
+                    <a href="https://wa.me/6287832165306" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="Hubungi via WhatsApp">
+                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-10 h-10"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-.88-.436-1.017-.487-.137-.05-.274-.074-.412.074-.137.148-.517.655-.634.782-.117.127-.234.149-.412.05-.177-.1-.747-.274-1.424-.867-.527-.453-.88-1.017-1.017-1.194-.137-.177-.024-.274.05-.374.074-.1.177-.248.274-.374.098-.127.149-.248.223-.423.074-.177.024-.325-.05-.423-.074-.098-.412-.99-.559-1.342-.148-.351-.297-.302-.412-.302-.117 0-.274 0-.412 0-.137 0-.374.05-.559.274-.186.223-.722.722-.722 1.753s.747 2.03.844 2.178c.098.149 1.445 2.203 3.507 3.088.495.223.88.351 1.181.449.302.098.58.074.799-.05.248-.126.88-.517 1.017-.99.137-.473.137-.88.098-1.017-.05-.137-.177-.223-.297-.274zM12.052 2c-5.454 0-9.891 4.437-9.891 9.891 0 1.748.453 3.496 1.342 4.957L2 22l5.254-1.548a9.866 9.866 0 0 0 4.798 1.228h.024c5.454 0 9.891-4.437 9.891-9.891S17.506 2 12.052 2z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sasangka/" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="Lihat Profil LinkedIn">
+                        <i data-lucide="linkedin" class="w-10 h-10"></i>
+                    </a>
+                    <a href="https://github.com/AffineCipher-0" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="Lihat Profil GitHub">
+                        <i data-lucide="github" class="w-10 h-10"></i>
                     </a>
                 </div>
-                <div class="mt-8 flex justify-center gap-6">
-                    <a href="https://wa.me/6287832165306" target="_blank" class="social-icon text-gray-400 hover:text-[#B48A5C]" title="Hubungi via WhatsApp">
-                        <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-.88-.436-1.017-.487-.137-.05-.274-.074-.412.074-.137.148-.517.655-.634.782-.117.127-.234.149-.412.05-.177-.1-.747-.274-1.424-.867-.527-.453-.88-1.017-1.017-1.194-.137-.177-.024-.274.05-.374.074-.1.177-.248.274-.374.098-.127.149-.248.223-.423.074-.177.024-.325-.05-.423-.074-.098-.412-.99-.559-1.342-.148-.351-.297-.302-.412-.302-.117 0-.274 0-.412 0-.137 0-.374.05-.559.274-.186.223-.722.722-.722 1.753s.747 2.03.844 2.178c.098.149 1.445 2.203 3.507 3.088.495.223.88.351 1.181.449.302.098.58.074.799-.05.248-.126.88-.517 1.017-.99.137-.473.137-.88.098-1.017-.05-.137-.177-.223-.297-.274zM12.052 2c-5.454 0-9.891 4.437-9.891 9.891 0 1.748.453 3.496 1.342 4.957L2 22l5.254-1.548a9.866 9.866 0 0 0 4.798 1.228h.024c5.454 0 9.891-4.437 9.891-9.891S17.506 2 12.052 2z"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/sasangka/" target="_blank" class="social-icon text-gray-400 hover:text-[#B48A5C]" title="Lihat Profil LinkedIn">
-                        <i data-lucide="linkedin" class="w-8 h-8"></i>
-                    </a>
-                    <a href="https://github.com/AffineCipher-0" target="_blank" class="social-icon text-gray-400 hover:text-[#B48A5C]" title="Lihat Profil GitHub">
-                        <i data-lucide="github" class="w-8 h-8"></i>
-                    </a>
-                </div>
-                
-                <div class="ai-box mt-12 p-6 rounded-lg max-w-2xl mx-auto border">
-                    <h3 class="font-bold text-white flex items-center justify-center gap-2" data-lang-key="aiTitle">
-                        <i data-lucide="sparkles" class="text-yellow-400"></i> Asisten AI untuk Perekrut
+                 <div class="contact-box mt-12 p-6 rounded-lg max-w-2xl mx-auto border">
+                    <h3 class="font-bold text-white flex items-center justify-center gap-2" data-lang-key="contactBoxTitle">
+                        <i data-lucide="send" class="text-yellow-400"></i>
+                        Kirim Pesan Langsung
                     </h3>
-                    <p class="text-sm text-gray-300 mt-2" data-lang-key="aiSubtitle">Ingin menghubungi saya? Biarkan AI membantu Anda membuat draf email profesional.</p>
-                    <button id="ai-email-btn" class="modal-button-primary mt-4 text-white font-semibold px-6 py-2 rounded-lg transition-colors" data-lang-key="aiButton">
-                        Buat Draf Email dengan AI
+                    <p class="text-sm text-gray-300 mt-2" data-lang-key="contactBoxSubtitle">Klik ikon email di atas atau tombol di bawah untuk menampilkan alamat email saya.</p>
+                    <button id="show-email-btn" class="modal-button-primary mt-4 text-white font-semibold px-6 py-2 rounded-lg transition-colors" data-lang-key="contactBoxButton">
+                        Tampilkan Alamat Email
                     </button>
                 </div>
             </div>
@@ -539,46 +522,21 @@
     </main>
 
     <footer class="border-t">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+        <div class="container mx-auto px-6 py-4 text-center text-gray-300">
             <p>&copy; 2025 Gatot Sasangka. <span data-lang-key="footerText">Dibuat dengan semangat.</span></p>
         </div>
     </footer>
     
-    <div id="ai-email-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
-        <div id="ai-email-modal-content" class="rounded-lg shadow-xl w-full max-w-lg transform transition-all scale-95 opacity-0">
-            <div class="p-5 border-b flex justify-between items-center">
-                <h3 class="text-lg font-bold text-white" data-lang-key="modalTitle">Buat Draf Email</h3>
-                <button id="close-ai-email-modal" class="text-gray-400 hover:text-white"><i data-lucide="x"></i></button>
+    <div id="email-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
+        <div id="email-modal-content" class="bg-[#2B2E31] rounded-lg shadow-xl w-full max-w-sm transform transition-all scale-95 opacity-0 text-center p-8">
+            <h3 class="text-lg font-bold text-white mb-2" data-lang-key="emailModalTitle">Alamat Email Saya</h3>
+            <p class="text-gray-400 mb-6" data-lang-key="emailModalSubtitle">Silakan salin alamat email di bawah ini.</p>
+            <div class="relative bg-[#373A3E] p-4 rounded-lg border border-gray-700">
+                <input id="email-address" type="text" readonly value="sasangkagatot@gmail.com" class="bg-transparent text-white w-full text-center outline-none">
             </div>
-            <div class="p-5">
-                <div id="ai-email-form">
-                    <div class="space-y-4">
-                        <div>
-                            <label for="recruiter-name" class="text-sm font-medium" data-lang-key="modalName">Nama Anda</label>
-                            <input type="text" id="recruiter-name" class="mt-1 w-full p-2 border rounded-md">
-                        </div>
-                        <div>
-                            <label for="recruiter-company" class="text-sm font-medium" data-lang-key="modalCompany">Nama Perusahaan</label>
-                            <input type="text" id="recruiter-company" class="mt-1 w-full p-2 border rounded-md">
-                        </div>
-                        <div>
-                            <label for="recruiter-position" class="text-sm font-medium" data-lang-key="modalPosition">Posisi yang Ditawarkan</label>
-                            <input type="text" id="recruiter-position" class="mt-1 w-full p-2 border rounded-md">
-                        </div>
-                    </div>
-                    <p id="ai-email-error" class="text-sm mt-4 text-center hidden"></p>
-                    <button id="generate-email-btn" class="modal-button-primary w-full mt-6 text-white font-semibold py-2 rounded-lg transition-colors" data-lang-key="modalGenerate">
-                        Buat Draf
-                    </button>
-                </div>
-                <div id="ai-email-result" class="hidden">
-                    <p class="text-sm text-gray-300 mb-2" data-lang-key="modalResult">Berikut draf yang dihasilkan AI:</p>
-                    <textarea id="email-output" rows="10" class="w-full p-3 border rounded-md text-sm" readonly></textarea>
-                    <div class="flex gap-4 mt-4">
-                        <button id="copy-email-btn" class="modal-button-primary w-full text-white font-semibold py-2 rounded-lg" data-lang-key="modalCopy">Salin Teks</button>
-                        <button id="regenerate-email-btn" class="modal-button-secondary w-full text-white font-semibold py-2 rounded-lg" data-lang-key="modalRegenerate">Buat Ulang</button>
-                    </div>
-                </div>
+            <div class="flex gap-4 mt-6">
+                <button id="copy-email-btn" class="modal-button-primary w-full text-white font-semibold py-2 rounded-lg" data-lang-key="modalCopy">Salin Teks</button>
+                <button id="close-email-modal" class="modal-button-secondary w-full text-white font-semibold py-2 rounded-lg" data-lang-key="modalClose">Tutup</button>
             </div>
         </div>
     </div>
@@ -646,8 +604,6 @@
                 aboutP1: "Saya adalah lulusan S1 Teknik Informatika dari Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki hasrat mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.",
                 aboutP2: "Dengan fondasi yang kuat di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh dan mempublikasikan penelitian tentang mikrokontroler. Saya selalu antusias untuk belajar hal baru dan berkolaborasi dalam tim.",
                 skillsTitle: "Keahlian Utama",
-                aiProjectIdea: "Hasilkan Ide Proyek AI",
-                aiLoadingIdea: "AI sedang berpikir...",
                 portfolioTitle: "Portofolio Proyek",
                 project1Title: "Penerjemah Sandi Morse (Jurnal Ilmiah)",
                 project1Desc: "Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler. Proyek ini <strong>membuktikan kelayakan algoritma Brute Force</strong> untuk pencocokan sinyal secara akurat, mencapai <strong>efektivitas 100%</strong> dalam pengujian. Dipublikasikan di Jurnal INFOS.",
@@ -665,19 +621,15 @@
                 certCatNetwork: "Jaringan & Keamanan (Cisco)",
                 certCatDev: "Pengembangan Diri & Pelatihan",
                 contactTitle: "Hubungi Saya",
-                contactSubtitle: "Saya terbuka untuk diskusi mengenai peluang kerja, proyek freelance, atau sekadar untuk bertukar pikiran. Jangan ragu untuk menghubungi saya.",
-                aiTitle: "Asisten AI untuk Perekrut",
-                aiSubtitle: "Ingin menghubungi saya? Biarkan AI membantu Anda membuat draf email profesional.",
-                aiButton: "Buat Draf Email dengan AI",
+                contactSubtitle: "Saya terbuka untuk diskusi, peluang kerja, atau sekadar bertukar pikiran.",
+                contactBoxTitle: "Kirim Pesan Langsung",
+                contactBoxSubtitle: "Klik ikon email di atas atau tombol di bawah untuk menampilkan alamat email saya.",
+                contactBoxButton: "Tampilkan Alamat Email",
                 footerText: "Dibuat dengan semangat.",
-                modalTitle: "Buat Draf Email",
-                modalName: "Nama Anda",
-                modalCompany: "Nama Perusahaan",
-                modalPosition: "Posisi yang Ditawarkan",
-                modalGenerate: "Buat Draf",
-                modalResult: "Berikut draf yang dihasilkan AI:",
+                emailModalTitle: "Alamat Email Saya",
+                emailModalSubtitle: "Silakan salin alamat email di bawah ini.",
                 modalCopy: "Salin Teks",
-                modalRegenerate: "Buat Ulang"
+                modalClose: "Tutup"
             },
             en: {
                 navAbout: "About Me",
@@ -692,8 +644,6 @@
                 aboutP1: "I am a cum laude graduate in Informatics Engineering from Amikom University of Yogyakarta (GPA 3.83). I have a deep passion for applying technical skills to support industrial digitalization and operational efficiency.",
                 aboutP2: "With a strong foundation in Networking (Cisco CCNA), IoT development, AI, and database management (SQL), I have successfully designed remote monitoring systems and published research on microcontrollers. I am always enthusiastic about learning new things and collaborating in a team.",
                 skillsTitle: "Main Skills",
-                aiProjectIdea: "Generate AI Project Idea",
-                aiLoadingIdea: "AI is thinking...",
                 portfolioTitle: "Project Portfolio",
                 project1Title: "Morse Code Translator (Scientific Journal)",
                 project1Desc: "Designed and built a microcontroller-based morse code translator. This project <strong>proved the feasibility of the Brute Force algorithm</strong> for accurate signal matching, achieving <strong>100% effectiveness</strong> in testing. Published in the INFOS Journal.",
@@ -711,19 +661,15 @@
                 certCatNetwork: "Networking & Security (Cisco)",
                 certCatDev: "Self-Development & Training",
                 contactTitle: "Contact Me",
-                contactSubtitle: "I am open to discussions about job opportunities, freelance projects, or just to exchange ideas. Feel free to contact me.",
-                aiTitle: "AI Assistant for Recruiters",
-                aiSubtitle: "Want to contact me? Let AI help you draft a professional email.",
-                aiButton: "Draft Email with AI",
+                contactSubtitle: "I'm open for discussions, job opportunities, or just to exchange ideas.",
+                contactBoxTitle: "Send a Direct Message",
+                contactBoxSubtitle: "Click the email icon above or the button below to show my email address.",
+                contactBoxButton: "Show Email Address",
                 footerText: "Made with passion.",
-                modalTitle: "Draft an Email",
-                modalName: "Your Name",
-                modalCompany: "Company Name",
-                modalPosition: "Position Offered",
-                modalGenerate: "Generate Draft",
-                modalResult: "Here is the draft generated by AI:",
+                emailModalTitle: "My Email Address",
+                emailModalSubtitle: "Please copy the email address below.",
                 modalCopy: "Copy Text",
-                modalRegenerate: "Regenerate"
+                modalClose: "Close"
             }
         };
 
@@ -829,124 +775,54 @@
                     observer.observe(card);
                 });
             });
-        });
 
-        async function callGemini(prompt) {
-            const apiKey = ""; 
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
-                });
-                if (!response.ok) {
-                    throw new Error(`API request failed with status ${response.status}`);
+            // --- SCRIPT EMAIL MODAL ---
+            const emailLink = document.getElementById('email-link');
+            const showEmailBtn = document.getElementById('show-email-btn');
+            const emailModal = document.getElementById('email-modal');
+            const emailModalContent = document.getElementById('email-modal-content');
+            const closeEmailModalBtn = document.getElementById('close-email-modal');
+            const copyEmailBtn = document.getElementById('copy-email-btn');
+            const emailAddressInput = document.getElementById('email-address');
+
+            const openEmailModal = (e) => {
+                e.preventDefault();
+                emailModal.classList.remove('hidden');
+                setTimeout(() => emailModalContent.classList.remove('scale-95', 'opacity-0'), 10);
+            };
+
+            const closeEmailModal = () => {
+                emailModalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => emailModal.classList.add('hidden'), 300);
+            };
+
+            emailLink.addEventListener('click', openEmailModal);
+            showEmailBtn.addEventListener('click', openEmailModal);
+            closeEmailModalBtn.addEventListener('click', closeEmailModal);
+            emailModal.addEventListener('click', (e) => {
+                if (e.target === emailModal) {
+                    closeEmailModal();
                 }
-                const result = await response.json();
-                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
-                if (!text) { throw new Error("No content received from API."); }
-                return text;
-            } catch (error) {
-                console.error("Gemini API call failed:", error);
-                const currentLang = localStorage.getItem('language') || 'id';
-                return currentLang === 'id' ? "Maaf, terjadi kesalahan saat menghubungi AI. Silakan coba lagi." : "Sorry, an error occurred while contacting the AI. Please try again.";
-            }
-        }
+            });
 
-        const generateIdeaBtn = document.getElementById('generate-idea-btn');
-        const ideaContainer = document.getElementById('idea-container');
-        const ideaLoading = document.getElementById('idea-loading');
-        const ideaOutput = document.getElementById('idea-output');
+            copyEmailBtn.addEventListener('click', () => {
+                emailAddressInput.select();
+                emailAddressInput.setSelectionRange(0, 99999);
+                
+                try {
+                    document.execCommand('copy');
+                    const currentLang = localStorage.getItem('language') || 'id';
+                    copyEmailBtn.textContent = currentLang === 'id' ? 'Berhasil Disalin!' : 'Copied!';
+                    setTimeout(() => { 
+                        copyEmailBtn.textContent = translations[currentLang].modalCopy || 'Salin Teks';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Gagal menyalin email: ', err);
+                }
+            });
 
-        generateIdeaBtn.addEventListener('click', async () => {
-            ideaContainer.classList.remove('hidden');
-            ideaOutput.classList.add('hidden');
-            ideaLoading.classList.remove('hidden');
-            const currentLang = localStorage.getItem('language') || 'id';
-            const langPrompt = currentLang === 'id' ? 'dalam Bahasa Indonesia' : 'in English';
-            const prompt = `Sebagai seorang mentor teknologi yang kreatif, berikan sebuah ide proyek portofolio yang mengesankan untuk seorang lulusan Teknik Informatika. Ide ini harus menggabungkan setidaknya tiga dari keahlian berikut: Jaringan (Cisco), Internet of Things (IoT), Pengembangan Web, dan Mikrokontroler. Jelaskan konsep proyek, teknologi yang bisa digunakan, dan mengapa proyek ini akan menonjol. Buat jawaban dalam satu paragraf yang ringkas dan menarik ${langPrompt}.`;
-            const result = await callGemini(prompt);
-            ideaOutput.innerText = result;
-            ideaLoading.classList.add('hidden');
-            ideaOutput.classList.remove('hidden');
         });
-
-        const aiEmailBtn = document.getElementById('ai-email-btn');
-        const aiEmailModal = document.getElementById('ai-email-modal');
-        const aiEmailModalContent = document.getElementById('ai-email-modal-content');
-        const closeAiEmailModalBtn = document.getElementById('close-ai-email-modal');
-        const generateEmailBtn = document.getElementById('generate-email-btn');
-        const regenerateEmailBtn = document.getElementById('regenerate-email-btn');
-        const copyEmailBtn = document.getElementById('copy-email-btn');
-        const emailOutput = document.getElementById('email-output');
-        const aiEmailForm = document.getElementById('ai-email-form');
-        const aiEmailResult = document.getElementById('ai-email-result');
-        const recruiterNameInput = document.getElementById('recruiter-name');
-        const recruiterCompanyInput = document.getElementById('recruiter-company');
-        const recruiterPositionInput = document.getElementById('recruiter-position');
-        const aiEmailError = document.getElementById('ai-email-error');
-        const openEmailModal = () => {
-            aiEmailModal.classList.remove('hidden');
-            setTimeout(() => aiEmailModalContent.classList.remove('scale-95', 'opacity-0'), 10);
-            aiEmailForm.classList.remove('hidden');
-            aiEmailResult.classList.add('hidden');
-            aiEmailError.classList.add('hidden');
-        };
-        const closeEmailModal = () => {
-            aiEmailModalContent.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => aiEmailModal.classList.add('hidden'), 300);
-        };
-        aiEmailBtn.addEventListener('click', openEmailModal);
-        closeAiEmailModalBtn.addEventListener('click', closeEmailModal);
-        regenerateEmailBtn.addEventListener('click', () => {
-            aiEmailForm.classList.remove('hidden');
-            aiEmailResult.classList.add('hidden');
-            aiEmailError.classList.add('hidden');
-        });
-        copyEmailBtn.addEventListener('click', () => {
-            emailOutput.select();
-            document.execCommand('copy');
-            const currentLang = localStorage.getItem('language') || 'id';
-            copyEmailBtn.textContent = currentLang === 'id' ? 'Berhasil Disalin!' : 'Copied!';
-            setTimeout(() => { copyEmailBtn.textContent = translations[currentLang].modalCopy; }, 2000);
-        });
-
-        const generateEmailContent = async () => {
-            aiEmailError.classList.add('hidden');
-            const name = recruiterNameInput.value.trim();
-            const company = recruiterCompanyInput.value.trim();
-            const position = recruiterPositionInput.value.trim();
-            const currentLang = localStorage.getItem('language') || 'id';
-
-            if (!name || !company || !position) {
-                aiEmailError.textContent = currentLang === 'id' ? 'Harap isi semua kolom.' : 'Please fill in all fields.';
-                aiEmailError.classList.remove('hidden');
-                return;
-            }
-            
-            generateEmailBtn.textContent = currentLang === 'id' ? 'Membuat...' : 'Generating...';
-            generateEmailBtn.disabled = true;
-
-            const promptLang = currentLang === 'id' ? 'dalam Bahasa Indonesia' : 'in English';
-            const prompt = `Anda adalah asisten komunikasi profesional. Buat draf email yang sopan dan profesional dari seorang perekrut kepada Gatot Sasangka, seorang lulusan Teknik Informatika dengan keahlian di bidang Jaringan, IoT, dan Pengembangan Web. Informasi Perekrut: - Nama: ${name} - Perusahaan: ${company} - Posisi yang ditawarkan: ${position}. Instruksi: 1. Email harus menyebutkan kekaguman perekrut terhadap portofolio dan keahlian Gatot. 2. Tanyakan ketersediaan Gatot untuk diskusi singkat. 3. Jaga agar email tetap ringkas dan profesional. 4. Tulis email ini ${promptLang}. Jangan sertakan "Subjek:" di awal, langsung mulai dengan isi email.`;
-            
-            try {
-                const emailTemplate = await callGemini(prompt);
-                emailOutput.value = emailTemplate;
-                aiEmailForm.classList.add('hidden');
-                aiEmailResult.classList.remove('hidden');
-            } catch (error) {
-                aiEmailError.textContent = currentLang === 'id' ? 'Gagal membuat email. Coba lagi.' : 'Failed to generate email. Please try again.';
-                aiEmailError.classList.remove('hidden');
-            } finally {
-                generateEmailBtn.textContent = translations[currentLang].modalGenerate;
-                generateEmailBtn.disabled = false;
-            }
-        };
-        generateEmailBtn.addEventListener('click', generateEmailContent);
     </script>
 
 </body>
 </html>
-
