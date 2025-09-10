@@ -76,19 +76,6 @@
         .prototype-link { color: #6EE7B7; }
         .prototype-link:hover { color: #E0E0E0; }
         
-        /* Form Kontak Baru */
-        #contact-form input, #contact-form textarea {
-             background-color: #2B2E31;
-             border-color: rgba(255, 255, 255, 0.1);
-             color: #E0E0E0;
-        }
-        #contact-form input::placeholder, #contact-form textarea::placeholder {
-            color: #aaa;
-        }
-        #form-status {
-            transition: opacity 0.3s ease-in-out;
-        }
-        
         footer {
             background-color: #2B2E31;
             border-top-color: rgba(255, 255, 255, 0.1);
@@ -96,6 +83,10 @@
         
         .modal-button-primary { background-color: #B48A5C; }
         .modal-button-primary:hover { background-color: #A07A4F; }
+        .modal-button-secondary { background-color: #555; }
+        .modal-button-secondary:hover { background-color: #666; }
+        #email-modal-content { background-color: #2B2E31; }
+
 
         /* --- CSS UNTUK HERO SECTION --- */
         #home { background: linear-gradient(to top, #0a0a0a, #1a1a2e); position: relative; overflow: hidden; }
@@ -490,6 +481,7 @@
         <section id="contact" class="py-20">
             <div class="container mx-auto px-6 text-center">
                 <h2 class="text-3xl font-bold text-white" data-lang-key="contactTitle">Hubungi Saya</h2>
+                <div class="w-24 h-px bg-gray-600 mx-auto mt-4 mb-6"></div>
                 <p class="text-gray-300 mt-4 max-w-xl mx-auto" data-lang-key="contactSubtitle">
                     Saya terbuka untuk diskusi, peluang kerja, atau sekadar bertukar pikiran.
                 </p>
@@ -506,16 +498,6 @@
                     <a href="https://github.com/AffineCipher-0" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="Lihat Profil GitHub">
                         <i data-lucide="github" class="w-10 h-10"></i>
                     </a>
-                </div>
-                 <div class="contact-box mt-12 p-6 rounded-lg max-w-2xl mx-auto border">
-                    <h3 class="font-bold text-white flex items-center justify-center gap-2" data-lang-key="contactBoxTitle">
-                        <i data-lucide="send" class="text-yellow-400"></i>
-                        Kirim Pesan Langsung
-                    </h3>
-                    <p class="text-sm text-gray-300 mt-2" data-lang-key="contactBoxSubtitle">Klik ikon email di atas atau tombol di bawah untuk menampilkan alamat email saya.</p>
-                    <button id="show-email-btn" class="modal-button-primary mt-4 text-white font-semibold px-6 py-2 rounded-lg transition-colors" data-lang-key="contactBoxButton">
-                        Tampilkan Alamat Email
-                    </button>
                 </div>
             </div>
         </section>
@@ -622,9 +604,6 @@
                 certCatDev: "Pengembangan Diri & Pelatihan",
                 contactTitle: "Hubungi Saya",
                 contactSubtitle: "Saya terbuka untuk diskusi, peluang kerja, atau sekadar bertukar pikiran.",
-                contactBoxTitle: "Kirim Pesan Langsung",
-                contactBoxSubtitle: "Klik ikon email di atas atau tombol di bawah untuk menampilkan alamat email saya.",
-                contactBoxButton: "Tampilkan Alamat Email",
                 footerText: "Dibuat dengan semangat.",
                 emailModalTitle: "Alamat Email Saya",
                 emailModalSubtitle: "Silakan salin alamat email di bawah ini.",
@@ -662,9 +641,6 @@
                 certCatDev: "Self-Development & Training",
                 contactTitle: "Contact Me",
                 contactSubtitle: "I'm open for discussions, job opportunities, or just to exchange ideas.",
-                contactBoxTitle: "Send a Direct Message",
-                contactBoxSubtitle: "Click the email icon above or the button below to show my email address.",
-                contactBoxButton: "Show Email Address",
                 footerText: "Made with passion.",
                 emailModalTitle: "My Email Address",
                 emailModalSubtitle: "Please copy the email address below.",
@@ -778,7 +754,6 @@
 
             // --- SCRIPT EMAIL MODAL ---
             const emailLink = document.getElementById('email-link');
-            const showEmailBtn = document.getElementById('show-email-btn');
             const emailModal = document.getElementById('email-modal');
             const emailModalContent = document.getElementById('email-modal-content');
             const closeEmailModalBtn = document.getElementById('close-email-modal');
@@ -797,7 +772,6 @@
             };
 
             emailLink.addEventListener('click', openEmailModal);
-            showEmailBtn.addEventListener('click', openEmailModal);
             closeEmailModalBtn.addEventListener('click', closeEmailModal);
             emailModal.addEventListener('click', (e) => {
                 if (e.target === emailModal) {
@@ -820,7 +794,6 @@
                     console.error('Gagal menyalin email: ', err);
                 }
             });
-
         });
     </script>
 
