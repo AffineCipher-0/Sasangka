@@ -281,7 +281,17 @@
                             <i data-lucide="cloud" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
                             <span class="mt-2 text-xs font-medium text-gray-300 block">G. Workspace</span>
                         </div>
-
+                    </div>
+                     <!-- GEMINI FEATURE: Project Idea Generator -->
+                    <div class="mt-12 text-center">
+                        <button id="generate-idea-btn" class="modal-button-primary inline-flex items-center text-white font-semibold px-6 py-3 rounded-lg transition-transform transform hover:scale-105">
+                            <i data-lucide="sparkles" class="w-5 h-5 mr-2"></i>
+                            <span data-lang-key="aiProjectIdea">Hasilkan Ide Proyek AI</span>
+                        </button>
+                        <div id="idea-container" class="mt-6 p-6 rounded-lg bg-[#373A3E] border border-gray-700 text-left hidden">
+                            <p id="idea-loading" class="text-center text-gray-400" data-lang-key="aiLoadingIdea">AI sedang berpikir...</p>
+                            <p id="idea-output" class="text-gray-300" style="white-space: pre-wrap;"></p>
+                        </div>
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center items-center">
@@ -517,11 +527,11 @@
                 
                 <div class="ai-box mt-12 p-6 rounded-lg max-w-2xl mx-auto border">
                     <h3 class="font-bold text-white flex items-center justify-center gap-2" data-lang-key="aiTitle">
-                        <i data-lucide="sparkles" class="text-yellow-400"></i> Untuk Perekrut
+                        <i data-lucide="sparkles" class="text-yellow-400"></i> Asisten AI untuk Perekrut
                     </h3>
-                    <p class="text-sm text-gray-300 mt-2" data-lang-key="aiSubtitle">Ingin menghubungi saya? draf email.</p>
+                    <p class="text-sm text-gray-300 mt-2" data-lang-key="aiSubtitle">Ingin menghubungi saya? Biarkan AI membantu Anda membuat draf email profesional.</p>
                     <button id="ai-email-btn" class="modal-button-primary mt-4 text-white font-semibold px-6 py-2 rounded-lg transition-colors" data-lang-key="aiButton">
-                        Buat Draf Email
+                        Buat Draf Email dengan AI
                     </button>
                 </div>
             </div>
@@ -636,6 +646,8 @@
                 aboutP1: "Saya adalah lulusan S1 Teknik Informatika dari Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki hasrat mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.",
                 aboutP2: "Dengan fondasi yang kuat di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh dan mempublikasikan penelitian tentang mikrokontroler. Saya selalu antusias untuk belajar hal baru dan berkolaborasi dalam tim.",
                 skillsTitle: "Keahlian Utama",
+                aiProjectIdea: "Hasilkan Ide Proyek AI",
+                aiLoadingIdea: "AI sedang berpikir...",
                 portfolioTitle: "Portofolio Proyek",
                 project1Title: "Penerjemah Sandi Morse (Jurnal Ilmiah)",
                 project1Desc: "Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler. Proyek ini <strong>membuktikan kelayakan algoritma Brute Force</strong> untuk pencocokan sinyal secara akurat, mencapai <strong>efektivitas 100%</strong> dalam pengujian. Dipublikasikan di Jurnal INFOS.",
@@ -680,6 +692,8 @@
                 aboutP1: "I am a cum laude graduate in Informatics Engineering from Amikom University of Yogyakarta (GPA 3.83). I have a deep passion for applying technical skills to support industrial digitalization and operational efficiency.",
                 aboutP2: "With a strong foundation in Networking (Cisco CCNA), IoT development, AI, and database management (SQL), I have successfully designed remote monitoring systems and published research on microcontrollers. I am always enthusiastic about learning new things and collaborating in a team.",
                 skillsTitle: "Main Skills",
+                aiProjectIdea: "Generate AI Project Idea",
+                aiLoadingIdea: "AI is thinking...",
                 portfolioTitle: "Project Portfolio",
                 project1Title: "Morse Code Translator (Scientific Journal)",
                 project1Desc: "Designed and built a microcontroller-based morse code translator. This project <strong>proved the feasibility of the Brute Force algorithm</strong> for accurate signal matching, achieving <strong>100% effectiveness</strong> in testing. Published in the INFOS Journal.",
@@ -741,6 +755,122 @@
         });
         const initialLang = localStorage.getItem('language') || 'id';
         setLanguage(initialLang);
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            const activateNavLink = () => {
+                let current = 'home';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+            window.addEventListener('scroll', activateNavLink);
+
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href.length > 1 && href.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(href);
+                        if (targetElement) {
+                            const headerOffset = document.querySelector('header').offsetHeight;
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            window.scrollTo({
+                                top: offsetPosition,
+                                behavior: "smooth"
+                            });
+                            const mobileMenu = document.getElementById('mobile-menu');
+                            if (!mobileMenu.classList.contains('hidden')) {
+                                mobileMenu.classList.add('hidden');
+                            }
+                        }
+                    }
+                });
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '0px 0px -100px 0px'
+            });
+            
+            const portfolioGrid = document.querySelector('#portfolio .grid');
+            if(portfolioGrid) {
+                const portfolioCards = portfolioGrid.querySelectorAll('.animated-card');
+                portfolioCards.forEach((card, index) => {
+                    card.style.transitionDelay = `${index * 150}ms`;
+                    observer.observe(card);
+                });
+            }
+
+            const certGrids = document.querySelectorAll('#certificates .grid');
+            certGrids.forEach(grid => {
+                const certCards = grid.querySelectorAll('.animated-card');
+                certCards.forEach((card, index) => {
+                    card.style.transitionDelay = `${index * 150}ms`;
+                    observer.observe(card);
+                });
+            });
+        });
+
+        async function callGemini(prompt) {
+            const apiKey = ""; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+                const result = await response.json();
+                const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (!text) { throw new Error("No content received from API."); }
+                return text;
+            } catch (error) {
+                console.error("Gemini API call failed:", error);
+                const currentLang = localStorage.getItem('language') || 'id';
+                return currentLang === 'id' ? "Maaf, terjadi kesalahan saat menghubungi AI. Silakan coba lagi." : "Sorry, an error occurred while contacting the AI. Please try again.";
+            }
+        }
+
+        const generateIdeaBtn = document.getElementById('generate-idea-btn');
+        const ideaContainer = document.getElementById('idea-container');
+        const ideaLoading = document.getElementById('idea-loading');
+        const ideaOutput = document.getElementById('idea-output');
+
+        generateIdeaBtn.addEventListener('click', async () => {
+            ideaContainer.classList.remove('hidden');
+            ideaOutput.classList.add('hidden');
+            ideaLoading.classList.remove('hidden');
+            const currentLang = localStorage.getItem('language') || 'id';
+            const langPrompt = currentLang === 'id' ? 'dalam Bahasa Indonesia' : 'in English';
+            const prompt = `Sebagai seorang mentor teknologi yang kreatif, berikan sebuah ide proyek portofolio yang mengesankan untuk seorang lulusan Teknik Informatika. Ide ini harus menggabungkan setidaknya tiga dari keahlian berikut: Jaringan (Cisco), Internet of Things (IoT), Pengembangan Web, dan Mikrokontroler. Jelaskan konsep proyek, teknologi yang bisa digunakan, dan mengapa proyek ini akan menonjol. Buat jawaban dalam satu paragraf yang ringkas dan menarik ${langPrompt}.`;
+            const result = await callGemini(prompt);
+            ideaOutput.innerText = result;
+            ideaLoading.classList.add('hidden');
+            ideaOutput.classList.remove('hidden');
+        });
 
         const aiEmailBtn = document.getElementById('ai-email-btn');
         const aiEmailModal = document.getElementById('ai-email-modal');
@@ -779,122 +909,44 @@
             document.execCommand('copy');
             const currentLang = localStorage.getItem('language') || 'id';
             copyEmailBtn.textContent = currentLang === 'id' ? 'Berhasil Disalin!' : 'Copied!';
-            setTimeout(() => { 
-                copyEmailBtn.textContent = translations[currentLang].modalCopy;
-            }, 2000);
+            setTimeout(() => { copyEmailBtn.textContent = translations[currentLang].modalCopy; }, 2000);
         });
-        const generateEmailContent = () => {
-            aiEmailError.classList.add('hidden'); 
+
+        const generateEmailContent = async () => {
+            aiEmailError.classList.add('hidden');
             const name = recruiterNameInput.value.trim();
             const company = recruiterCompanyInput.value.trim();
             const position = recruiterPositionInput.value.trim();
             const currentLang = localStorage.getItem('language') || 'id';
+
             if (!name || !company || !position) {
                 aiEmailError.textContent = currentLang === 'id' ? 'Harap isi semua kolom.' : 'Please fill in all fields.';
                 aiEmailError.classList.remove('hidden');
                 return;
             }
+            
             generateEmailBtn.textContent = currentLang === 'id' ? 'Membuat...' : 'Generating...';
             generateEmailBtn.disabled = true;
-            setTimeout(() => {
-                let emailTemplate;
-                if (currentLang === 'id') {
-                    emailTemplate = `Subjek: Peluang Karir sebagai ${position} di ${company}\n\nYth. Bapak Gatot Sasangka,\n\nPerkenalkan, nama saya ${name}, dari tim rekrutmen ${company}.\n\nSetelah melihat portofolio dan latar belakang Anda yang mengesankan di bidang Teknik Informatika, khususnya pada proyek-proyek terkait IoT dan Jaringan, kami sangat tertarik untuk mendiskusikan lebih lanjut mengenai peluang karir sebagai ${position} di perusahaan kami.\n\nKami percaya keahlian Anda akan sangat berharga bagi tim kami. Apakah Bapak bersedia meluangkan waktu untuk berdiskusi singkat dalam beberapa hari ke depan?\n\nTerima kasih atas perhatian Bapak. Kami menantikan kabar baik dari Anda.\n\nHormat saya,\n\n${name}\n${company}`;
-                } else {
-                    emailTemplate = `Subject: Career Opportunity as ${position} at ${company}\n\nDear Mr. Gatot Sasangka,\n\nMy name is ${name}, and I am from the recruitment team at ${company}.\n\nAfter reviewing your impressive portfolio and background in Informatics Engineering, especially your projects related to IoT and Networking, we are very interested in discussing a career opportunity for the ${position} role at our company.\n\nWe believe your skills would be a valuable asset to our team. Would you be available for a brief discussion in the coming days?\n\nThank you for your time and consideration. We look forward to hearing from you.\n\nBest regards,\n\n${name}\n${company}`;
-                }
+
+            const promptLang = currentLang === 'id' ? 'dalam Bahasa Indonesia' : 'in English';
+            const prompt = `Anda adalah asisten komunikasi profesional. Buat draf email yang sopan dan profesional dari seorang perekrut kepada Gatot Sasangka, seorang lulusan Teknik Informatika dengan keahlian di bidang Jaringan, IoT, dan Pengembangan Web. Informasi Perekrut: - Nama: ${name} - Perusahaan: ${company} - Posisi yang ditawarkan: ${position}. Instruksi: 1. Email harus menyebutkan kekaguman perekrut terhadap portofolio dan keahlian Gatot. 2. Tanyakan ketersediaan Gatot untuk diskusi singkat. 3. Jaga agar email tetap ringkas dan profesional. 4. Tulis email ini ${promptLang}. Jangan sertakan "Subjek:" di awal, langsung mulai dengan isi email.`;
+            
+            try {
+                const emailTemplate = await callGemini(prompt);
                 emailOutput.value = emailTemplate;
                 aiEmailForm.classList.add('hidden');
                 aiEmailResult.classList.remove('hidden');
+            } catch (error) {
+                aiEmailError.textContent = currentLang === 'id' ? 'Gagal membuat email. Coba lagi.' : 'Failed to generate email. Please try again.';
+                aiEmailError.classList.remove('hidden');
+            } finally {
                 generateEmailBtn.textContent = translations[currentLang].modalGenerate;
                 generateEmailBtn.disabled = false;
-            }, 1500);
+            }
         };
         generateEmailBtn.addEventListener('click', generateEmailContent);
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('main section');
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            // --- SCRIPT UNTUK NAVIGASI AKTIF ---
-            const activateNavLink = () => {
-                let current = 'home'; // Default to home
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 100) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
-            };
-            window.addEventListener('scroll', activateNavLink);
-
-            // --- SCRIPT SMOOTH SCROLL ---
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    if (href.length > 1 && href.startsWith('#')) {
-                        e.preventDefault();
-                        const targetElement = document.querySelector(href);
-                        if (targetElement) {
-                            const headerOffset = document.querySelector('header').offsetHeight;
-                            const elementPosition = targetElement.getBoundingClientRect().top;
-                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: "smooth"
-                            });
-                            const mobileMenu = document.getElementById('mobile-menu');
-                            if (!mobileMenu.classList.contains('hidden')) {
-                                mobileMenu.classList.add('hidden');
-                            }
-                        }
-                    }
-                });
-            });
-
-            // --- SCRIPT UNTUK ANIMASI FADE-IN ON SCROLL ---
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                rootMargin: '0px 0px -100px 0px'
-            });
-
-            const animatedElements = document.querySelectorAll('.animated-card');
-            
-            const portfolioGrid = document.querySelector('#portfolio .grid');
-            const certGrids = document.querySelectorAll('#certificates .grid');
-
-            if (portfolioGrid) {
-                const portfolioCards = portfolioGrid.querySelectorAll('.animated-card');
-                portfolioCards.forEach((card, index) => {
-                    card.style.transitionDelay = `${index * 150}ms`;
-                    observer.observe(card);
-                });
-            }
-
-            certGrids.forEach(grid => {
-                const certCards = grid.querySelectorAll('.animated-card');
-                certCards.forEach((card, index) => {
-                    card.style.transitionDelay = `${index * 150}ms`;
-                    observer.observe(card);
-                });
-            });
-        });
     </script>
 
 </body>
 </html>
-
 
