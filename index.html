@@ -30,7 +30,6 @@
         /* Section lain */
         #about, #certificates { background-color: #2B2E31; }
         #portfolio, #contact { background-color: #373A3E; }
-        #about img { border-color: #373A3E; }
         #certificates .border { border-color: rgba(255, 255, 255, 0.1); }
 
         /* Kartu Proyek & Sertifikat */
@@ -53,14 +52,12 @@
             transition: color 0.2s ease-in-out;
         }
 
-        /* Keyframes untuk animasi mengapung */
         @keyframes gentle-float {
             0% { transform: translateY(0); }
             50% { transform: translateY(-6px); }
             100% { transform: translateY(0); }
         }
 
-        /* Beri jeda animasi yang berbeda untuk setiap ikon */
         .skill-icon-item:nth-child(1) { animation-delay: 0s; }
         .skill-icon-item:nth-child(2) { animation-delay: 0.3s; }
         .skill-icon-item:nth-child(3) { animation-delay: 0.6s; }
@@ -69,28 +66,23 @@
         .skill-icon-item:nth-child(6) { animation-delay: 0.1s; }
         .skill-icon-item:nth-child(7) { animation-delay: 0.5s; }
         .skill-icon-item:nth-child(8) { animation-delay: 0.7s; }
-        .skill-icon-item:nth-child(9) { animation-delay: 0.4s; }
         
-        /* Warna Link & Aksen */
         .highlight-link { color: #B48A5C; }
         .highlight-link:hover { color: #E0E0E0; }
         .prototype-link { color: #6EE7B7; }
         .prototype-link:hover { color: #E0E0E0; }
 
-        /* Kontak & AI Box */
         #contact .ai-box {
             background-color: #2B2E31;
             border-color: rgba(255, 255, 255, 0.1);
         }
         #contact .text-yellow-400 { color: #FFD700; }
 
-        /* Footer */
         footer {
             background-color: #2B2E31;
             border-top-color: rgba(255, 255, 255, 0.1);
         }
 
-        /* Modal AI */
         #ai-email-modal-content { background-color: #2B2E31; }
         #ai-email-modal-content .border-b { border-color: rgba(255, 255, 255, 0.1); }
         #ai-email-modal-content input, #ai-email-modal-content textarea {
@@ -105,7 +97,7 @@
         .modal-button-secondary { background-color: #555; }
         .modal-button-secondary:hover { background-color: #666; }
 
-        /* --- CSS UNTUK BAGIAN ATAS (HERO SECTION) DARI KODE PERTAMA --- */
+        /* --- CSS UNTUK HERO SECTION --- */
         #home { background: linear-gradient(to top, #0a0a0a, #1a1a2e); position: relative; overflow: hidden; }
         #home::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(255,183,77,0.12) 0 2px, transparent 2px 100px), repeating-linear-gradient(0deg, rgba(100,181,246,0.12) 0 2px, transparent 2px 100px); mix-blend-mode: overlay; animation: circuitFlow 12s linear infinite, glowShift 14s ease-in-out infinite; z-index: 1; }
         @keyframes circuitFlow { from { background-position: 0 0, 0 0; } to { background-position: 200px 0, 0 200px; } }
@@ -130,14 +122,19 @@
         .node { position:absolute; width:20px; height:20px; background: radial-gradient(circle, #64b5f6, #0d47a1); border-radius:50%; box-shadow:0 0 25px rgba(100,181,246,.9); z-index:1; }
         #home::after { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 4px); animation: flicker 0.15s infinite; z-index: 5; pointer-events: none; }
         @keyframes flicker { 0% { opacity: 0.2; } 50% { opacity: 0.4; } 100% { opacity: 0.2; } }
+        .cv-name { margin-top: 6px; font-size: 0.9rem; font-weight: bold; color: #90caf9; display: block; }
         
-        .cv-name {
-            margin-top: 6px;
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: #90caf9;
-            display: block;
+        /* --- CSS BARU UNTUK ANIMASI FOTO PROFIL --- */
+        .photo-slide-animation {
+            animation: photo-fade 8s ease-in-out infinite;
         }
+        @keyframes photo-fade {
+            0%   { opacity: 0; }
+            25%  { opacity: 1; }
+            75%  { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
     </style>
 </head>
 <body>
@@ -199,7 +196,7 @@
                 <div class="md:w-1/2 text-center md:text-left">
                     <h2 class="text-3xl font-bold text-white mb-6" data-lang-key="aboutTitle">Tentang Saya</h2>
                     <p class="text-gray-300 mb-4 text-justify" data-lang-key="aboutP1">
-                        Saya adalah lulusan S1 Teknik Informatika dari Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki hasrat mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.
+                        Saya adalah lulusan S1 Teknik Informatika dari Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki keinginan mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.
                     </p>
                     <p class="text-gray-300 text-justify" data-lang-key="aboutP2">
                         Dengan fondasi yang kuat di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh dan mempublikasikan penelitian tentang mikrokontroler. Saya selalu antusias untuk belajar hal baru dan berkolaborasi dalam tim.
@@ -212,42 +209,30 @@
                             <i data-lucide="braces" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
                             <span class="mt-2 text-xs font-medium text-gray-300 block">JavaScript</span>
                         </div>
-
                         <div class="skill-icon-item">
                             <i data-lucide="file-code-2" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
                             <span class="mt-2 text-xs font-medium text-gray-300 block">HTML & CSS</span>
                         </div>
-
                         <div class="skill-icon-item">
                             <i data-lucide="cpu" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
                             <span class="mt-2 text-xs font-medium text-gray-300 block">Mikrokontroler</span>
                         </div>
-
                         <div class="skill-icon-item">
                             <i data-lucide="wifi" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
                             <span class="mt-2 text-xs font-medium text-gray-300 block">IoT</span>
                         </div>
-
                         <div class="skill-icon-item">
                             <i data-lucide="database" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
                             <span class="mt-2 text-xs font-medium text-gray-300 block">SQL / ERD</span>
                         </div>
-
                         <div class="skill-icon-item">
                             <i data-lucide="network" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
                             <span class="mt-2 text-xs font-medium text-gray-300 block">Cisco CCNA</span>
                         </div>
-                        
-                        <div class="skill-icon-item">
-                            <i data-lucide="code" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
-                            <span class="mt-2 text-xs font-medium text-gray-300 block">Python</span>
-                        </div>
-
                         <div class="skill-icon-item">
                             <i data-lucide="briefcase" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
                             <span class="mt-2 text-xs font-medium text-gray-300 block">Ms. Office</span>
                         </div>
-
                         <div class="skill-icon-item">
                             <i data-lucide="cloud" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
                             <span class="mt-2 text-xs font-medium text-gray-300 block">G. Workspace</span>
@@ -256,7 +241,13 @@
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center items-center">
-                    <img src="https://i.imgur.com/QDBBrAN.png" alt="Foto Profil Gatot Sasangka" class="rounded-full shadow-2xl mx-auto w-64 h-64 md:w-80 md:h-80 object-cover border-4">
+                    <div class="relative w-80 h-80 md:w-96 md:h-96 mx-auto rounded-full shadow-2xl border-4 border-[#373A3E]">
+                        <img src="https://i.imgur.com/QDBBrAN.png" alt="Foto Profil Gatot Sasangka 1" 
+                             class="absolute inset-0 w-full h-full object-cover rounded-full">
+                        
+                        <img src="https://i.imgur.com/9u9KDFJ.png" alt="Foto Profil Gatot Sasangka 2" 
+                             class="absolute inset-0 w-full h-full object-cover rounded-full photo-slide-animation">
+                    </div>
                 </div>
             </div>
         </section>
@@ -505,7 +496,7 @@
     <script>
         lucide.createIcons();
 
-        // --- SCRIPT ANIMASI NODE DARI KODE PERTAMA ---
+        // --- SCRIPT ANIMASI NODE ---
         const node = document.querySelector('.node');
         if (node) {
             let x=150, y=150;
@@ -536,7 +527,7 @@
             animate();
         }
 
-        // --- SISA SCRIPT DARI KODE KEDUA ---
+        // --- SCRIPT LAINNYA ---
         document.addEventListener("mousemove", (e) => {
             const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
             const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
