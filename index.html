@@ -124,8 +124,8 @@
         @keyframes flicker { 0% { opacity: 0.2; } 50% { opacity: 0.4; } 100% { opacity: 0.2; } }
         .cv-name { margin-top: 6px; font-size: 0.9rem; font-weight: bold; color: #90caf9; display: block; }
         
-        /* --- CSS BARU UNTUK ANIMASI FOTO PROFIL --- */
         .photo-slide-animation {
+            opacity: 0;
             animation: photo-fade 8s ease-in-out infinite;
         }
         @keyframes photo-fade {
@@ -133,6 +133,24 @@
             25%  { opacity: 1; }
             75%  { opacity: 1; }
             100% { opacity: 0; }
+        }
+
+        /* CSS UNTUK ANIMASI FADE-IN ON SCROLL (DIGUNAKAN UNTUK PROYEK & SERTIFIKAT) */
+        .animated-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animated-card.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .social-icon {
+            transition: transform 0.3s ease-in-out;
+        }
+        .social-icon:hover {
+            transform: scale(1.2) translateY(-4px);
         }
 
     </style>
@@ -196,7 +214,7 @@
                 <div class="md:w-1/2 text-center md:text-left">
                     <h2 class="text-3xl font-bold text-white mb-6" data-lang-key="aboutTitle">Tentang Saya</h2>
                     <p class="text-gray-300 mb-4 text-justify" data-lang-key="aboutP1">
-                        Saya adalah lulusan S1 Teknik Informatika dari Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki keinginan mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.
+                        Saya adalah lulusan S1 Teknik Informatika dari Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki hasrat mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.
                     </p>
                     <p class="text-gray-300 text-justify" data-lang-key="aboutP2">
                         Dengan fondasi yang kuat di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh dan mempublikasikan penelitian tentang mikrokontroler. Saya selalu antusias untuk belajar hal baru dan berkolaborasi dalam tim.
@@ -241,12 +259,17 @@
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center items-center">
-                    <div class="relative w-80 h-80 md:w-96 md:h-96 mx-auto rounded-full shadow-2xl border-4 border-[#373A3E]">
-                        <img src="https://i.imgur.com/QDBBrAN.png" alt="Foto Profil Gatot Sasangka 1" 
-                             class="absolute inset-0 w-full h-full object-cover rounded-full">
-                        
-                        <img src="https://i.imgur.com/9u9KDFJ.png" alt="Foto Profil Gatot Sasangka 2" 
-                             class="absolute inset-0 w-full h-full object-cover rounded-full photo-slide-animation">
+                    <div class="relative w-80 h-80 md:w-96 md:h-96 mx-auto">
+                        <img src="https://i.imgur.com/QDBBrAN.png" alt="Foto Profil Gatot Sasangka 1"
+                             class="absolute inset-0 w-full h-full object-cover rounded-full shadow-2xl">
+                        <div class="absolute inset-0 w-full h-full photo-slide-animation">
+                            <div class="relative w-full h-full rounded-full overflow-hidden shadow-2xl">
+                                <img src="https://i.imgur.com/9u9KDFJ.png" alt="Background Profil"
+                                     class="absolute inset-0 w-full h-full object-cover scale-110 blur-sm opacity-50">
+                                <img src="https://i.imgur.com/9u9KDFJ.png" alt="Foto Profil Gatot Sasangka 2"
+                                     class="relative w-full h-full object-cover rounded-full border-4 border-[#373A3E]">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -257,76 +280,101 @@
                 <h2 class="text-3xl font-bold text-white text-center mb-12" data-lang-key="portfolioTitle">Portofolio Proyek</h2>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
+                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex items-center gap-4 mb-3">
                                 <i data-lucide="radio-tower" class="w-10 h-10 text-[#B48A5C]"></i>
                                 <h3 class="text-xl font-bold text-white" data-lang-key="project1Title">Penerjemah Sandi Morse (Jurnal Ilmiah)</h3>
                             </div>
-                            <p class="text-gray-300 text-sm text-justify" data-lang-key="project1Desc">
+                            <p class="text-gray-300 text-sm text-justify mb-4" data-lang-key="project1Desc">
                                 Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler. Proyek ini <strong>membuktikan kelayakan algoritma Brute Force</strong> untuk pencocokan sinyal secara akurat, mencapai <strong>efektivitas 100%</strong> dalam pengujian. Dipublikasikan di Jurnal INFOS.
                             </p>
-                            <div class="mt-auto pt-4 text-center">
-                                <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetail">
-                                    Lihat Detail <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
-                                </a>
+                            <div class="mt-auto pt-4 border-t border-gray-700">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex gap-3" title="Teknologi yang Digunakan">
+                                        <i data-lucide="cpu" class="w-5 h-5 text-gray-400" title="Mikrokontroler"></i>
+                                    </div>
+                                    <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetail">
+                                        Lihat Detail <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
+                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex items-center gap-4 mb-3">
                                 <i data-lucide="shopping-cart" class="w-10 h-10 text-[#B48A5C]"></i>
                                 <h3 class="text-xl font-bold text-white" data-lang-key="project2Title">Website E-Commerce</h3>
                             </div>
-                            <p class="text-gray-300 text-sm text-justify" data-lang-key="project2Desc">
+                            <p class="text-gray-300 text-sm text-justify mb-4" data-lang-key="project2Desc">
                                 Sebagai <strong>Ketua Tim</strong>, saya mengoordinasikan 3 kontributor untuk membangun aplikasi e-commerce fungsional. Proyek ini mencakup fitur lengkap mulai dari registrasi pengguna hingga manajemen pesanan oleh admin, <strong>menyelesaikan tantangan dalam menciptakan alur transaksi yang aman dan intuitif</strong>.
                             </p>
-                            <div class="mt-auto pt-4 text-center">
-                                <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetail">
-                                    Lihat Detail <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
-                                </a>
+                            <div class="mt-auto pt-4 border-t border-gray-700">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex gap-3" title="Teknologi yang Digunakan">
+                                        <i data-lucide="braces" class="w-5 h-5 text-gray-400" title="JavaScript"></i>
+                                        <i data-lucide="file-code-2" class="w-5 h-5 text-gray-400" title="HTML & CSS"></i>
+                                    </div>
+                                    <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetail">
+                                        Lihat Detail <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
+                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
                         <div class="p-6 flex flex-col flex-grow">
                             <div class="flex items-center gap-4 mb-3">
                                 <i data-lucide="sprout" class="w-10 h-10 text-[#B48A5C]"></i>
                                 <h3 class="text-xl font-bold text-white" data-lang-key="project3Title">Otomatisasi Greenhouse (Proyek IoT)</h3>
                             </div>
-                            <p class="text-gray-300 text-sm text-justify" data-lang-key="project3Desc">
+                            <p class="text-gray-300 text-sm text-justify mb-4" data-lang-key="project3Desc">
                                 Merancang arsitektur sistem dan UI/UX untuk otomatisasi greenhouse berbasis IoT. Desain ini bertujuan untuk <strong>meningkatkan efisiensi pemantauan dan mengurangi kebutuhan intervensi manual</strong>, menjadikannya sebuah blueprint komprehensif untuk implementasi nyata.
                             </p>
-                            <div class="mt-auto pt-4 flex flex-wrap justify-center gap-x-6 gap-y-2">
-                                <a href="https://docs.google.com/document/d/1k-1eR1BLNI2a9yP-EyyvkzlmljOK8GIsx2nmV3pNGQ4/edit?usp=sharing" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetailSRS">
-                                    Lihat Detail (SRS) <i data-lucide="file-text" class="w-4 h-4 ml-1"></i>
-                                </a>
-                                <a href="https://affinecipher-0.github.io/prototype-greenhouse/" target="_blank" class="prototype-link font-semibold inline-flex items-center text-sm" data-lang-key="viewPrototype">
-                                    Lihat Prototipe <i data-lucide="mouse-pointer-2" class="w-4 h-4 ml-1"></i>
-                                </a>
+                             <div class="mt-auto pt-4 border-t border-gray-700">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex gap-3" title="Teknologi yang Digunakan">
+                                        <i data-lucide="wifi" class="w-5 h-5 text-gray-400" title="IoT"></i>
+                                        <i data-lucide="layout-template" class="w-5 h-5 text-gray-400" title="UI/UX Design"></i>
+                                    </div>
+                                    <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                                        <a href="https://docs.google.com/document/d/1k-1eR1BLNI2a9yP-EyyvkzlmljOK8GIsx2nmV3pNGQ4/edit?usp=sharing" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetailSRS">
+                                             (SRS) <i data-lucide="file-text" class="w-4 h-4 ml-1"></i>
+                                        </a>
+                                        <a href="https://affinecipher-0.github.io/prototype-greenhouse/" target="_blank" class="prototype-link font-semibold inline-flex items-center text-sm" data-lang-key="viewPrototype">
+                                            Prototipe <i data-lucide="mouse-pointer-2" class="w-4 h-4 ml-1"></i>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
 
                 </div>
-                <p class="text-center text-gray-300 mt-12">
-                    <span data-lang-key="seeMore">Untuk melihat lebih banyak proyek, silakan kunjungi</span> 
-                    <a href="https://github.com/AffineCipher-0" target="_blank" rel="noopener noreferrer" class="highlight-link hover:underline font-semibold" data-lang-key="githubProfile">
-                        profil GitHub saya.
+                <!-- BAGIAN GITHUB CTA YANG DIPERBARUI -->
+                <div class="text-center mt-16">
+                    <p class="text-gray-300 max-w-2xl mx-auto mb-6" data-lang-key="seeMoreContext">
+                        Penasaran dengan kode di balik proyek ini? Lihat semua repositori, kontribusi, dan eksperimen saya di profil GitHub saya.
+                    </p>
+                    <a href="https://github.com/AffineCipher-0" target="_blank" rel="noopener noreferrer" 
+                       class="modal-button-primary inline-flex items-center text-white font-semibold px-6 py-3 rounded-lg transition-transform transform hover:scale-105">
+                        <i data-lucide="github" class="w-5 h-5 mr-2"></i>
+                        <span data-lang-key="githubButton">Kunjungi GitHub Saya</span>
                     </a>
-                </p>
+                </div>
             </div>
         </section>
         
         <section id="certificates" class="py-28">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-white text-center mb-12" data-lang-key="certificatesTitle">Sertifikasi & Pelatihan</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
+                <h2 class="text-3xl font-bold text-white text-center mb-16" data-lang-key="certificatesTitle">Sertifikasi & Pelatihan</h2>
+
+                <h3 class="text-2xl font-semibold text-white text-center mb-8" data-lang-key="certCatExperience">Pengalaman Praktis & Profesional</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
+                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
                         <a href="https://drive.google.com/file/d/1Y3VW0xUN9dW-vbJ5zU-x-F3nCiNBaIX0/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                             <img src="https://i.imgur.com/wZ7owwo.png" alt="Sertifikat Magang DLHK" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
@@ -335,34 +383,11 @@
                             </div>
                         </a>
                     </div>
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1vs2A6PckZR2EdNaLsJKm-pdINUiWcf0i/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/fgV6iQP.png" alt="Sertifikat Literasi Digital" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Literasi Digital</h3>
-                                <p class="text-sm text-gray-400">Kemkominfo (Apr 2023)</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1Y02PijK2soKCo0STFN1isCQcEUCU-LDJ/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/eyW5LUw.png" alt="Sertifikat Seminar Cyber Security" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Seminar Cyber Security</h3>
-                                <p class="text-sm text-gray-400">HIMATEKNO FTTI UNJAYA (Mar 2023)</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1zchzs3U4_AkuUt3KeVRPt_J1ve6G_Trg/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/fRg3hmp.png" alt="Sertifikat Webinar Pengolahan Data" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Webinar Pengolahan Data</h3>
-                                <p class="text-sm text-gray-400">XREI Institute (Mar 2023)</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
+                </div>
+
+                <h3 class="text-2xl font-semibold text-white text-center mt-20 mb-8" data-lang-key="certCatNetwork">Jaringan & Keamanan (Cisco)</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
                         <a href="https://drive.google.com/file/d/1vPCSBaFzxmcFU0E4WHhuJRehKpsjSY0X/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                             <img src="https://i.imgur.com/ltwjESR.png" alt="Sertifikat CCNA Security" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
@@ -371,16 +396,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1PcLXnBqaYy0r_D7utYBeBWpyber1msHE/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/zruR3Gv.png" alt="Sertifikat Fundamental Python" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Fundamental Python</h3>
-                                <p class="text-sm text-gray-400">Progate (Sep 2021)</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
+                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
                         <a href="https://drive.google.com/file/d/1SsQ9tMr0DcFsrTPImab9AFQ89qXdVc9P/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                             <img src="https://i.imgur.com/iCRbLK8.png" alt="Sertifikat Switching, Routing, and Wireless Essentials" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
@@ -389,7 +405,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
+                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
                         <a href="https://drive.google.com/file/d/1enjcK-yMxhLaqD1XXHdiZA_pz7zBTgJf/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                             <img src="https://i.imgur.com/5frcsDW.png" alt="Sertifikat Introduction to Networks" class="w-full h-48 object-cover object-center">
                             <div class="p-4">
@@ -398,7 +414,7 @@
                             </div>
                         </a>
                     </div>
-                    <div class="card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
+                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
                         <a href="https://drive.google.com/file/d/1iqdSqPVHU36aNKPOJDnm8wuPEsvXQNji/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                             <img src="https://i.imgur.com/Pqwf8N1.png" alt="Sertifikat IT Essentials" class="w-full h-48 object-cover object-top">
                             <div class="p-4">
@@ -407,7 +423,46 @@
                             </div>
                         </a>
                     </div>
+                </div>
 
+                <h3 class="text-2xl font-semibold text-white text-center mt-20 mb-8" data-lang-key="certCatDev">Pengembangan Diri & Pelatihan</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                     <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
+                        <a href="https://drive.google.com/file/d/1vs2A6PckZR2EdNaLsJKm-pdINUiWcf0i/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                            <img src="https://i.imgur.com/fgV6iQP.png" alt="Sertifikat Literasi Digital" class="w-full h-48 object-cover object-center">
+                            <div class="p-4">
+                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Literasi Digital</h3>
+                                <p class="text-sm text-gray-400">Kemkominfo (Apr 2023)</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
+                        <a href="https://drive.google.com/file/d/1Y02PijK2soKCo0STFN1isCQcEUCU-LDJ/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                            <img src="https://i.imgur.com/eyW5LUw.png" alt="Sertifikat Seminar Cyber Security" class="w-full h-48 object-cover object-center">
+                            <div class="p-4">
+                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Seminar Cyber Security</h3>
+                                <p class="text-sm text-gray-400">HIMATEKNO FTTI UNJAYA (Mar 2023)</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
+                        <a href="https://drive.google.com/file/d/1zchzs3U4_AkuUt3KeVRPt_J1ve6G_Trg/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                            <img src="https://i.imgur.com/fRg3hmp.png" alt="Sertifikat Webinar Pengolahan Data" class="w-full h-48 object-cover object-center">
+                            <div class="p-4">
+                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Webinar Pengolahan Data</h3>
+                                <p class="text-sm text-gray-400">XREI Institute (Mar 2023)</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
+                        <a href="https://drive.google.com/file/d/1PcLXnBqaYy0r_D7utYBeBWpyber1msHE/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                            <img src="https://i.imgur.com/zruR3Gv.png" alt="Sertifikat Fundamental Python" class="w-full h-48 object-cover object-center">
+                            <div class="p-4">
+                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Fundamental Python</h3>
+                                <p class="text-sm text-gray-400">Progate (Sep 2021)</p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -424,13 +479,13 @@
                     </a>
                 </div>
                 <div class="mt-8 flex justify-center gap-6">
-                    <a href="https://wa.me/6287832165306" target="_blank" class="text-gray-400 hover:text-[#B48A5C]" title="Hubungi via WhatsApp">
+                    <a href="https://wa.me/6287832165306" target="_blank" class="social-icon text-gray-400 hover:text-[#B48A5C]" title="Hubungi via WhatsApp">
                         <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-8 h-8"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-.88-.436-1.017-.487-.137-.05-.274-.074-.412.074-.137.148-.517.655-.634.782-.117.127-.234.149-.412.05-.177-.1-.747-.274-1.424-.867-.527-.453-.88-1.017-1.017-1.194-.137-.177-.024-.274.05-.374.074-.1.177-.248.274-.374.098-.127.149-.248.223-.423.074-.177.024-.325-.05-.423-.074-.098-.412-.99-.559-1.342-.148-.351-.297-.302-.412-.302-.117 0-.274 0-.412 0-.137 0-.374.05-.559.274-.186.223-.722.722-.722 1.753s.747 2.03.844 2.178c.098.149 1.445 2.203 3.507 3.088.495.223.88.351 1.181.449.302.098.58.074.799-.05.248-.126.88-.517 1.017-.99.137-.473.137-.88.098-1.017-.05-.137-.177-.223-.297-.274zM12.052 2c-5.454 0-9.891 4.437-9.891 9.891 0 1.748.453 3.496 1.342 4.957L2 22l5.254-1.548a9.866 9.866 0 0 0 4.798 1.228h.024c5.454 0 9.891-4.437 9.891-9.891S17.506 2 12.052 2z"/></svg>
                     </a>
-                    <a href="https://www.linkedin.com/in/sasangka/" target="_blank" class="text-gray-400 hover:text-[#B48A5C]" title="Lihat Profil LinkedIn">
+                    <a href="https://www.linkedin.com/in/sasangka/" target="_blank" class="social-icon text-gray-400 hover:text-[#B48A5C]" title="Lihat Profil LinkedIn">
                         <i data-lucide="linkedin" class="w-8 h-8"></i>
                     </a>
-                    <a href="https://github.com/AffineCipher-0" target="_blank" class="text-gray-400 hover:text-[#B48A5C]" title="Lihat Profil GitHub">
+                    <a href="https://github.com/AffineCipher-0" target="_blank" class="social-icon text-gray-400 hover:text-[#B48A5C]" title="Lihat Profil GitHub">
                         <i data-lucide="github" class="w-8 h-8"></i>
                     </a>
                 </div>
@@ -564,11 +619,14 @@
                 project2Desc: "Sebagai <strong>Ketua Tim</strong>, saya mengoordinasikan 3 kontributor untuk membangun aplikasi e-commerce fungsional. Proyek ini mencakup fitur lengkap mulai dari registrasi pengguna hingga manajemen pesanan oleh admin, <strong>menyelesaikan tantangan dalam menciptakan alur transaksi yang aman dan intuitif</strong>.",
                 project3Title: "Otomatisasi Greenhouse (Proyek IoT)",
                 project3Desc: "Merancang arsitektur sistem dan UI/UX untuk otomatisasi greenhouse berbasis IoT. Desain ini bertujuan untuk <strong>meningkatkan efisiensi pemantauan dan mengurangi kebutuhan intervensi manual</strong>, menjadikannya sebuah blueprint komprehensif untuk implementasi nyata.",
-                viewDetailSRS: "Lihat Detail (SRS)",
-                viewPrototype: "Lihat Prototipe",
-                seeMore: "Untuk melihat lebih banyak proyek, silakan kunjungi",
-                githubProfile: "profil GitHub saya.",
+                viewDetailSRS: "(SRS)",
+                viewPrototype: "Prototipe",
+                seeMoreContext: "Penasaran dengan kode di balik proyek ini? Lihat semua repositori, kontribusi, dan eksperimen saya di profil GitHub saya.",
+                githubButton: "Kunjungi GitHub Saya",
                 certificatesTitle: "Sertifikasi & Pelatihan",
+                certCatExperience: "Pengalaman Praktis & Profesional",
+                certCatNetwork: "Jaringan & Keamanan (Cisco)",
+                certCatDev: "Pengembangan Diri & Pelatihan",
                 contactTitle: "Hubungi Saya",
                 contactSubtitle: "Saya terbuka untuk diskusi mengenai peluang kerja, proyek freelance, atau sekadar untuk bertukar pikiran. Jangan ragu untuk menghubungi saya.",
                 aiTitle: "Asisten AI untuk Perekrut",
@@ -605,11 +663,14 @@
                 project2Desc: "As <strong>Team Lead</strong>, I coordinated 3 contributors to build a functional e-commerce application. The project included complete features from user registration to admin order management, <strong>solving the challenge of creating a secure and intuitive transaction flow</strong>.",
                 project3Title: "Greenhouse Automation (IoT Project)",
                 project3Desc: "Designed the system architecture and UI/UX for an IoT-based greenhouse automation. This design aims to <strong>increase monitoring efficiency and reduce the need for manual intervention</strong>, serving as a comprehensive blueprint for real-world implementation.",
-                viewDetailSRS: "View Details (SRS)",
-                viewPrototype: "View Prototype",
-                seeMore: "To see more projects, please visit my",
-                githubProfile: "GitHub profile.",
+                viewDetailSRS: "(SRS)",
+                viewPrototype: "Prototype",
+                seeMoreContext: "Curious about the code behind these projects? See all my repositories, contributions, and experiments on my GitHub profile.",
+                githubButton: "Visit My GitHub",
                 certificatesTitle: "Certifications & Training",
+                certCatExperience: "Practical & Professional Experience",
+                certCatNetwork: "Networking & Security (Cisco)",
+                certCatDev: "Self-Development & Training",
                 contactTitle: "Contact Me",
                 contactSubtitle: "I am open to discussions about job opportunities, freelance projects, or just to exchange ideas. Feel free to contact me.",
                 aiTitle: "AI Assistant for Recruiters",
@@ -749,8 +810,43 @@
                     }
                 });
             });
+
+            // --- SCRIPT UNTUK ANIMASI FADE-IN ON SCROLL ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                rootMargin: '0px 0px -100px 0px'
+            });
+
+            const animatedElements = document.querySelectorAll('.animated-card');
+            
+            // Logika untuk menunda animasi per grup
+            const portfolioGrid = document.querySelector('#portfolio .grid');
+            const certGrids = document.querySelectorAll('#certificates .grid');
+
+            if (portfolioGrid) {
+                const portfolioCards = portfolioGrid.querySelectorAll('.animated-card');
+                portfolioCards.forEach((card, index) => {
+                    card.style.transitionDelay = `${index * 150}ms`;
+                    observer.observe(card);
+                });
+            }
+
+            certGrids.forEach(grid => {
+                const certCards = grid.querySelectorAll('.animated-card');
+                certCards.forEach((card, index) => {
+                    card.style.transitionDelay = `${index * 150}ms`;
+                    observer.observe(card);
+                });
+            });
         });
     </script>
 
 </body>
 </html>
+
