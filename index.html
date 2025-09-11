@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- FONT AWESOME CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
@@ -87,7 +86,7 @@
         .modal-button-primary:hover { background-color: #A07A4F; }
         .modal-button-secondary { background-color: #555; }
         .modal-button-secondary:hover { background-color: #666; }
-        #email-modal-content { background-color: #2B2E31; }
+        #email-modal-content, #certificate-modal-content { background-color: #2B2E31; }
 
 
         /* --- CSS UNTUK HERO SECTION --- */
@@ -163,6 +162,20 @@
             60% {
                 transform: translateX(-50%) translateY(-10px);
             }
+        }
+        
+        .certificate-card-image-wrapper {
+            height: 180px;
+            overflow: hidden;
+        }
+        .certificate-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+        .group:hover .certificate-card-image {
+            transform: scale(1.05);
         }
 
     </style>
@@ -359,7 +372,7 @@
                                              (SRS) <i data-lucide="file-text" class="w-4 h-4 ml-1"></i>
                                         </a>
                                         <a href="https://affinecipher-0.github.io/prototype-greenhouse/" target="_blank" class="prototype-link font-semibold inline-flex items-center text-sm" data-lang-key="viewPrototype">
-                                            Prototipe <i data-lucide="mouse-pointer-2" class="w-4 h-4 ml-1"></i>
+                                             Prototipe <i data-lucide="mouse-pointer-2" class="w-4 h-4 ml-1"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -384,97 +397,115 @@
         <section id="certificates" class="py-28">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-white text-center mb-16" data-lang-key="certificatesTitle">Sertifikasi & Pelatihan</h2>
-
-                <h3 class="text-2xl font-semibold text-white text-center mb-8" data-lang-key="certCatExperience">Pengalaman Praktis & Profesional</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
-                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1Y3VW0xUN9dW-vbJ5zU-x-F3nCiNBaIX0/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/wZ7owwo.png" alt="Sertifikat Magang DLHK" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Magang DLHK DIY</h3>
-                                <p class="text-sm text-gray-300">Dinas Lingkungan Hidup & Kehutanan DIY (2024)</p>
-                            </div>
-                        </a>
+        
+                <h3 class="text-2xl font-semibold text-white text-center mb-8">Pengalaman Profesional</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
+                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
+                         data-img-src="https://i.imgur.com/wZ7owwo.png"
+                         data-doc-url="https://drive.google.com/file/d/1Y3VW0xUN9dW-vbJ5zU-x-F3nCiNBaIX0/view?usp=sharing">
+                        <div class="certificate-card-image-wrapper">
+                            <img src="https://i.imgur.com/wZ7owwo.png" alt="Sertifikat Magang DLHK DIY" class="certificate-card-image">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Magang DLHK DIY</h3>
+                            <p class="text-sm text-gray-300 mt-auto">Dinas Lingkungan Hidup & Kehutanan DIY (2024)</p>
+                        </div>
                     </div>
                 </div>
-
-                <h3 class="text-2xl font-semibold text-white text-center mt-20 mb-8" data-lang-key="certCatNetwork">Jaringan & Keamanan (Cisco)</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1vPCSBaFzxmcFU0E4WHhuJRehKpsjSY0X/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/ltwjESR.png" alt="Sertifikat CCNA Security" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">CCNA Security</h3>
-                                <p class="text-sm text-gray-300">Cisco Networking Academy (Sep 2022)</p>
-                            </div>
-                        </a>
+        
+                <h3 class="text-2xl font-semibold text-white text-center mt-20 mb-8">Sertifikasi Inti (Jaringan & Keamanan)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
+                         data-img-src="https://i.imgur.com/ltwjESR.png"
+                         data-doc-url="https://drive.google.com/file/d/1vPCSBaFzxmcFU0E4WHhuJRehKpsjSY0X/view?usp=sharing">
+                        <div class="certificate-card-image-wrapper">
+                            <img src="https://i.imgur.com/ltwjESR.png" alt="Sertifikat CCNA Security" class="certificate-card-image">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">CCNA Security</h3>
+                            <p class="text-sm text-gray-300 mt-auto">Cisco Networking Academy (Sep 2022)</p>
+                        </div>
                     </div>
-                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1SsQ9tMr0DcFsrTPImab9AFQ89qXdVc9P/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/iCRbLK8.png" alt="Sertifikat Switching, Routing, and Wireless Essentials" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Switching, Routing, & Wireless Essentials</h3>
-                                <p class="text-sm text-gray-300">Cisco Networking Academy (2021)</p>
-                            </div>
-                        </a>
+                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
+                         data-img-src="https://i.imgur.com/iCRbLK8.png"
+                         data-doc-url="https://drive.google.com/file/d/1SsQ9tMr0DcFsrTPImab9AFQ89qXdVc9P/view?usp=sharing">
+                        <div class="certificate-card-image-wrapper">
+                            <img src="https://i.imgur.com/iCRbLK8.png" alt="Sertifikat Switching, Routing, & Wireless Essentials" class="certificate-card-image">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Switching, Routing, & Wireless Essentials</h3>
+                            <p class="text-sm text-gray-300 mt-auto">Cisco Networking Academy (2021)</p>
+                        </div>
                     </div>
-                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1enjcK-yMxhLaqD1XXHdiZA_pz7zBTgJf/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/5frcsDW.png" alt="Sertifikat Introduction to Networks" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Introduction to Networks</h3>
-                                <p class="text-sm text-gray-300">Cisco Networking Academy (2021)</p>
-                            </div>
-                        </a>
+                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
+                         data-img-src="https://i.imgur.com/5frcsDW.png"
+                         data-doc-url="https://drive.google.com/file/d/1enjcK-yMxhLaqD1XXHdiZA_pz7zBTgJf/view?usp=sharing">
+                        <div class="certificate-card-image-wrapper">
+                            <img src="https://i.imgur.com/5frcsDW.png" alt="Sertifikat Introduction to Networks" class="certificate-card-image">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Introduction to Networks</h3>
+                            <p class="text-sm text-gray-300 mt-auto">Cisco Networking Academy (2021)</p>
+                        </div>
                     </div>
-                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1iqdSqPVHU36aNKPOJDnm8wuPEsvXQNji/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/Pqwf8N1.png" alt="Sertifikat IT Essentials" class="w-full h-48 object-cover object-top">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">IT Essentials</h3>
-                                <p class="text-sm text-gray-300">Cisco Networking Academy (Aug 2020)</p>
-                            </div>
-                        </a>
+                     <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
+                         data-img-src="https://i.imgur.com/Pqwf8N1.png"
+                         data-doc-url="https://drive.google.com/file/d/1iqdSqPVHU36aNKPOJDnm8wuPEsvXQNji/view?usp=sharing">
+                        <div class="certificate-card-image-wrapper">
+                             <img src="https://i.imgur.com/Pqwf8N1.png" alt="Sertifikat IT Essentials" class="certificate-card-image">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">IT Essentials</h3>
+                            <p class="text-sm text-gray-300 mt-auto">Cisco Networking Academy (Aug 2020)</p>
+                        </div>
                     </div>
                 </div>
-
-                <h3 class="text-2xl font-semibold text-white text-center mt-20 mb-8" data-lang-key="certCatDev">Pengembangan Diri & Pelatihan</h3>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                     <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1vs2A6PckZR2EdNaLsJKm-pdINUiWcf0i/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/fgV6iQP.png" alt="Sertifikat Literasi Digital" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Literasi Digital</h3>
-                                <p class="text-sm text-gray-300">Kemkominfo (Apr 2023)</p>
-                            </div>
-                        </a>
+        
+                <h3 class="text-2xl font-semibold text-white text-center mt-20 mb-8">Pengembangan Diri & Pelatihan</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
+                         data-img-src="https://i.imgur.com/fgV6iQP.png"
+                         data-doc-url="https://drive.google.com/file/d/1vs2A6PckZR2EdNaLsJKm-pdINUiWcf0i/view?usp=sharing">
+                        <div class="certificate-card-image-wrapper">
+                            <img src="https://i.imgur.com/fgV6iQP.png" alt="Sertifikat Literasi Digital" class="certificate-card-image">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Literasi Digital</h3>
+                            <p class="text-sm text-gray-300 mt-auto">Kemkominfo (Apr 2023)</p>
+                        </div>
                     </div>
-                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1Y02PijK2soKCo0STFN1isCQcEUCU-LDJ/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/eyW5LUw.png" alt="Sertifikat Seminar Cyber Security" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Seminar Cyber Security</h3>
-                                <p class="text-sm text-gray-300">HIMATEKNO FTTI UNJAYA (Mar 2023)</p>
-                            </div>
-                        </a>
+                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
+                         data-img-src="https://i.imgur.com/eyW5LUw.png"
+                         data-doc-url="https://drive.google.com/file/d/1Y02PijK2soKCo0STFN1isCQcEUCU-LDJ/view?usp=sharing">
+                        <div class="certificate-card-image-wrapper">
+                            <img src="https://i.imgur.com/eyW5LUw.png" alt="Sertifikat Seminar Cyber Security" class="certificate-card-image">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Seminar Cyber Security</h3>
+                            <p class="text-sm text-gray-300 mt-auto">HIMATEKNO FTTI UNJAYA (Mar 2023)</p>
+                        </div>
                     </div>
-                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1zchzs3U4_AkuUt3KeVRPt_J1ve6G_Trg/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/fRg3hmp.png" alt="Sertifikat Webinar Pengolahan Data" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Webinar Pengolahan Data</h3>
-                                <p class="text-sm text-gray-300">XREI Institute (Mar 2023)</p>
-                            </div>
-                        </a>
+                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
+                         data-img-src="https://i.imgur.com/fRg3hmp.png"
+                         data-doc-url="https://drive.google.com/file/d/1zchzs3U4_AkuUt3KeVRPt_J1ve6G_Trg/view?usp=sharing">
+                        <div class="certificate-card-image-wrapper">
+                             <img src="https://i.imgur.com/fRg3hmp.png" alt="Sertifikat Webinar Pengolahan Data" class="certificate-card-image">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Webinar Pengolahan Data</h3>
+                            <p class="text-sm text-gray-300 mt-auto">XREI Institute (Mar 2023)</p>
+                        </div>
                     </div>
-                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border">
-                        <a href="https://drive.google.com/file/d/1PcLXnBqaYy0r_D7utYBeBWpyber1msHE/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                            <img src="https://i.imgur.com/zruR3Gv.png" alt="Sertifikat Fundamental Python" class="w-full h-48 object-cover object-center">
-                            <div class="p-4">
-                                <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors">Fundamental Python</h3>
-                                <p class="text-sm text-gray-300">Progate (Sep 2021)</p>
-                            </div>
-                        </a>
+                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
+                         data-img-src="https://i.imgur.com/zruR3Gv.png"
+                         data-doc-url="https://drive.google.com/file/d/1PcLXnBqaYy0r_D7utYBeBWpyber1msHE/view?usp=sharing">
+                        <div class="certificate-card-image-wrapper">
+                            <img src="https://i.imgur.com/zruR3Gv.png" alt="Sertifikat Fundamental Python" class="certificate-card-image">
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Fundamental Python</h3>
+                            <p class="text-sm text-gray-300 mt-auto">Progate (Sep 2021)</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -505,14 +536,20 @@
         </section>
     </main>
 
-    <footer class="border-t">
-        <div class="container mx-auto px-6 py-4 text-center text-gray-300">
-            <p>&copy; 2025 Gatot Sasangka. <span data-lang-key="footerText">Dibuat dengan semangat.</span></p>
+    <footer class="border-t border-white/10">
+        <div class="container mx-auto px-6 py-4 text-gray-400 flex flex-col sm:flex-row justify-between items-center text-sm">
+            <p class="mb-2 sm:mb-0">&copy; 2025 Gatot Sasangka. <span data-lang-key="footerText">Dibuat dengan semangat.</span></p>
+            <div id="datetime-container" class="flex items-center gap-2">
+                <span id="digital-date"></span>
+                <span class="opacity-50">|</span>
+                <i data-lucide="clock" class="w-4 h-4"></i>
+                <span id="digital-clock"></span>
+            </div>
         </div>
     </footer>
     
     <div id="email-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
-        <div id="email-modal-content" class="bg-[#2B2E31] rounded-lg shadow-xl w-full max-w-sm transform transition-all scale-95 opacity-0 text-center p-8">
+        <div id="email-modal-content" class="rounded-lg shadow-xl w-full max-w-sm transform transition-all scale-95 opacity-0 text-center p-8">
             <h3 class="text-lg font-bold text-white mb-2" data-lang-key="emailModalTitle">Alamat Email Saya</h3>
             <p class="text-gray-400 mb-6" data-lang-key="emailModalSubtitle">Silakan salin alamat email di bawah ini.</p>
             <div class="relative bg-[#373A3E] p-4 rounded-lg border border-gray-700">
@@ -521,6 +558,23 @@
             <div class="flex gap-4 mt-6">
                 <button id="copy-email-btn" class="modal-button-primary w-full text-white font-semibold py-2 rounded-lg" data-lang-key="modalCopy">Salin Teks</button>
                 <button id="close-email-modal" class="modal-button-secondary w-full text-white font-semibold py-2 rounded-lg" data-lang-key="modalClose">Tutup</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="certificate-modal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div id="certificate-modal-content" class="rounded-lg shadow-xl w-full max-w-3xl transform transition-all scale-95 opacity-0 p-6 border border-white/10">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="certificate-modal-title" class="text-xl font-bold text-white"></h3>
+                <button id="close-certificate-modal" class="text-gray-400 hover:text-white">&times;</button>
+            </div>
+            <div class="bg-gray-900 rounded-md p-2">
+                 <img id="certificate-modal-image" src="" alt="Gambar Sertifikat" class="w-full h-auto max-h-[60vh] object-contain">
+            </div>
+            <div class="flex gap-4 mt-6">
+                 <a id="certificate-modal-doc-link" href="#" target="_blank" class="modal-button-primary w-full text-white text-center font-semibold py-2.5 rounded-lg">
+                    Lihat Dokumen Asli
+                 </a>
             </div>
         </div>
     </div>
@@ -610,7 +664,7 @@
                 emailModalTitle: "Alamat Email Saya",
                 emailModalSubtitle: "Silakan salin alamat email di bawah ini.",
                 modalCopy: "Salin Teks",
-                modalClose: "Tutup" 
+                modalClose: "Tutup"
             },
             en: {
                 navAbout: "About Me",
@@ -642,7 +696,7 @@
                 certCatNetwork: "Networking & Security (Cisco)",
                 certCatDev: "Self-Development & Training",
                 contactTitle: "Contact Me",
-                contactSubtitle: "I am open to building new connections, exploring career opportunities, and engaging in meaningful collaborations.",
+                contactSubtitle: "I'm open for discussions, job opportunities, or just to exchange ideas.",
                 footerText: "Made with passion.",
                 emailModalTitle: "My Email Address",
                 emailModalSubtitle: "Please copy the email address below.",
@@ -736,22 +790,10 @@
                 rootMargin: '0px 0px -100px 0px'
             });
             
-            const portfolioGrid = document.querySelector('#portfolio .grid');
-            if(portfolioGrid) {
-                const portfolioCards = portfolioGrid.querySelectorAll('.animated-card');
-                portfolioCards.forEach((card, index) => {
-                    card.style.transitionDelay = `${index * 150}ms`;
-                    observer.observe(card);
-                });
-            }
-
-            const certGrids = document.querySelectorAll('#certificates .grid');
-            certGrids.forEach(grid => {
-                const certCards = grid.querySelectorAll('.animated-card');
-                certCards.forEach((card, index) => {
-                    card.style.transitionDelay = `${index * 150}ms`;
-                    observer.observe(card);
-                });
+            const animatedCards = document.querySelectorAll('.animated-card');
+            animatedCards.forEach((card, index) => {
+                card.style.transitionDelay = `${(index % 4) * 100}ms`;
+                observer.observe(card);
             });
 
             // --- SCRIPT EMAIL MODAL ---
@@ -775,31 +817,77 @@
 
             emailLink.addEventListener('click', openEmailModal);
             closeEmailModalBtn.addEventListener('click', closeEmailModal);
-            emailModal.addEventListener('click', (e) => {
-                if (e.target === emailModal) {
-                    closeEmailModal();
-                }
-            });
+            emailModal.addEventListener('click', (e) => { if (e.target === emailModal) { closeEmailModal(); } });
 
             copyEmailBtn.addEventListener('click', () => {
                 emailAddressInput.select();
                 emailAddressInput.setSelectionRange(0, 99999);
-                
                 try {
                     document.execCommand('copy');
                     const currentLang = localStorage.getItem('language') || 'id';
                     copyEmailBtn.textContent = currentLang === 'id' ? 'Berhasil Disalin!' : 'Copied!';
-                    setTimeout(() => { 
-                        copyEmailBtn.textContent = translations[currentLang].modalCopy || 'Salin Teks';
-                    }, 2000);
-                } catch (err) {
-                    console.error('Gagal menyalin email: ', err);
-                }
+                    setTimeout(() => { copyEmailBtn.textContent = translations[currentLang].modalCopy || 'Salin Teks'; }, 2000);
+                } catch (err) { console.error('Gagal menyalin email: ', err); }
             });
+            
+            // --- SCRIPT MODAL SERTIFIKAT BARU ---
+            const certificateModal = document.getElementById('certificate-modal');
+            const certificateModalContent = document.getElementById('certificate-modal-content');
+            const certificateModalImage = document.getElementById('certificate-modal-image');
+            const certificateModalTitle = document.getElementById('certificate-modal-title');
+            const certificateModalDocLink = document.getElementById('certificate-modal-doc-link');
+            const closeCertificateModalBtn = document.getElementById('close-certificate-modal');
+            const certificateCards = document.querySelectorAll('.certificate-card');
+
+            const openCertificateModal = (imgSrc, title, docUrl) => {
+                certificateModalImage.src = imgSrc;
+                certificateModalTitle.textContent = title;
+                certificateModalDocLink.href = docUrl;
+                certificateModal.classList.remove('hidden');
+                setTimeout(() => certificateModalContent.classList.remove('scale-95', 'opacity-0'), 10);
+            };
+
+            const closeCertificateModal = () => {
+                certificateModalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => certificateModal.classList.add('hidden'), 300);
+            };
+            
+            certificateCards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const imgSrc = card.dataset.imgSrc;
+                    const docUrl = card.dataset.docUrl;
+                    const title = card.querySelector('.cert-title').textContent;
+                    openCertificateModal(imgSrc, title, docUrl);
+                });
+            });
+            
+            closeCertificateModalBtn.addEventListener('click', closeCertificateModal);
+            certificateModal.addEventListener('click', (e) => { if(e.target === certificateModal) { closeCertificateModal(); }});
+
+
+            // --- SCRIPT JAM & TANGGAL OTOMATIS ---
+            const clockElement = document.getElementById('digital-clock');
+            const dateElement = document.getElementById('digital-date');
+
+            const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+
+            function updateDateTime() {
+                const nowWITA = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Makassar" }));
+                const day = nowWITA.getDate();
+                const month = monthNames[nowWITA.getMonth()];
+                const year = nowWITA.getFullYear();
+                if (dateElement) { dateElement.textContent = `${day} ${month} ${year}`; }
+
+                const hours = String(nowWITA.getHours()).padStart(2, '0');
+                const minutes = String(nowWITA.getMinutes()).padStart(2, '0');
+                const seconds = String(nowWITA.getSeconds()).padStart(2, '0');
+                if (clockElement) { clockElement.textContent = `${hours}:${minutes}:${seconds}`; }
+            }
+            setInterval(updateDateTime, 1000);
+            updateDateTime();
         });
     </script>
 
 </body>
 </html>
-
-
