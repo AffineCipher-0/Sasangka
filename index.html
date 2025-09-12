@@ -17,6 +17,12 @@
 
     <style>
         /* GAYA VISUAL UTAMA */
+        :root {
+            --primary-color: #B48A5C; /* Light Brown */
+            --primary-color-glow: rgba(180, 138, 92, 0.7);
+            --primary-hover: #D9AD7C;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #373A3E;  
@@ -26,12 +32,35 @@
         .anton-font {
             font-family: 'Anton', sans-serif;
         }
-        .highlight-link { color: #B48A5C; }
-        .highlight-link:hover { color: #E0E0E0; }
-        .modal-button-primary { background-color: #B48A5C; }
-        .modal-button-primary:hover { background-color: #A07A4F; }
-        .modal-button-secondary { background-color: #555; }
-        .modal-button-secondary:hover { background-color: #666; }
+        .highlight-link { 
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        .highlight-link:hover { 
+            color: var(--primary-hover); 
+            text-shadow: 0 0 8px var(--primary-color-glow);
+        }
+        .modal-button-primary { 
+            background-color: var(--primary-color);
+            color: #0d0d0d;
+            font-weight: bold;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px var(--primary-color-glow);
+        }
+        .modal-button-primary:hover { 
+            background-color: var(--primary-hover);
+            box-shadow: 0 0 25px var(--primary-color-glow);
+            transform: translateY(-3px) scale(1.05);
+        }
+        .modal-button-secondary { 
+            background-color: #555; 
+            transition: all 0.3s ease;
+        }
+        .modal-button-secondary:hover { 
+            background-color: #666;
+            transform: translateY(-3px);
+        }
         #email-modal-content, #certificate-modal-content, #portfolio-modal-content { background-color: #2B2E31; }
         
         /* GAYA HERO SECTION BARU */
@@ -42,7 +71,7 @@
             height: 100%; 
             overflow: hidden; 
         }
-        #matrix-canvas {
+        #hero-canvas {
             position: absolute;
             top: 0;
             left: 0;
@@ -64,17 +93,17 @@
             font-weight: 800; 
             color: #E0E0E0;
             margin-bottom: 1rem; 
-            text-shadow: 0 0 10px rgba(180, 138, 92, 0.7);
+            text-shadow: 0 0 15px var(--primary-color-glow);
         }
         .hero-subtitle { 
             font-size: 1.2rem; 
-            color: #B48A5C; 
+            color: var(--primary-color); 
             font-family: "Courier New", monospace; 
-            border-right: 2px solid #B48A5C; 
+            border-right: 2px solid var(--primary-color); 
             white-space: nowrap; 
             overflow: hidden; 
             display: inline-block; 
-            animation: typing 6s steps(50,end) infinite alternate, blink .7s step-end infinite;
+            animation: typing 6s steps(44,end) infinite alternate, blink .7s step-end infinite;
             max-width: 100%;
         }
         @keyframes typing { 
@@ -113,22 +142,84 @@
         }
         .menu-item .bar {
             position: absolute; bottom: 0; left: -100%; width: 100%; height: 5px;
-            background-color: #B48A5C;
+            background-color: var(--primary-color);
             transition: left 0.4s ease;
         }
         .menu-item:hover .bar { left: 0; }
         
-        /* GAYA KARTU DAN ANIMASI (DARI KODE ANDA) */
-        .card-bg { background-color: #2B2E31; border-color: rgba(255, 255, 255, 0.1); }
-        .animated-card {
-            opacity: 0; transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        .icon-primary {
+            color: var(--primary-color);
         }
-        .animated-card.is-visible { opacity: 1; transform: translateY(0); }
-        .social-icon { transition: transform 0.3s ease-in-out; }
-        .social-icon:hover { transform: scale(1.2) translateY(-4px); }
         
-        /* Skill Icons */
+        /* GAYA KARTU INTERAKTIF */
+        .interactive-card {
+            background: #1c1c1c;
+            border-radius: 0.75rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: border 0.3s ease;
+        }
+        .interactive-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 250%; /* Make it larger to ensure coverage */
+            height: 250%;
+            background: conic-gradient(transparent, var(--primary-color), transparent 20%);
+            transform: translate(-50%, -50%) rotate(0deg);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: rotate-glow 4s linear infinite paused;
+        }
+        .interactive-card:hover::before {
+            opacity: 1;
+            animation-play-state: running;
+        }
+        .interactive-card::after {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: #2B2E31; /* Match page BG */
+            border-radius: 0.7rem;
+        }
+        @keyframes rotate-glow {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        .card-content {
+            position: relative;
+            z-index: 2;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .interactive-card:hover .card-content {
+            transform: translateY(-5px);
+        }
+        .card-icon {
+            transition: all 0.3s ease;
+        }
+        .interactive-card:hover .card-icon {
+            color: var(--primary-hover);
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 10px var(--primary-color-glow));
+        }
+
+        /* ANIMASI PEMUATAN */
+        .loader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #2B2E31; display: flex;
+            justify-content: center; align-items: center; z-index: 9999;
+        }
+        .loader-text {
+            position: absolute; font-family: 'Anton', sans-serif;
+            font-size: 5vw; color: #E0E0E0; opacity: 0;
+        }
+        @keyframes fadeIn { to { opacity: 1; } }
+
+        /* Skill Icons Animation */
         .skill-icon-item {
             transition: transform 0.2s ease-in-out;
             animation: gentle-float 4s ease-in-out infinite;
@@ -136,10 +227,6 @@
         .skill-icon-item:hover {
             animation-play-state: paused;
             transform: translateY(-8px) scale(1.1);
-        }
-        .skill-icon-item:hover i {
-            color: #E0E0E0;
-            transition: color 0.2s ease-in-out;
         }
         @keyframes gentle-float {
             0% { transform: translateY(0); }
@@ -155,57 +242,6 @@
         .skill-icon-item:nth-child(7) { animation-delay: 0.5s; }
         .skill-icon-item:nth-child(8) { animation-delay: 0.7s; }
 
-        /* GAYA HALAMAN INTERAKTIF */
-        #certificate-image-mask, #portfolio-viewer, #about-viewer {
-            position: relative;
-            background-color: #373A3E;
-            border-radius: 0.5rem;
-            transition: opacity 0.5s ease-in-out;
-        }
-        #certificate-image-mask img {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: contain;
-            transition: opacity 0.5s ease-in-out;
-            opacity: 0;
-            border-radius: 0.5rem;
-        }
-        #certificate-image-mask img.active { opacity: 1; }
-        #certificate-list li, #portfolio-list li, #about-list li {
-            cursor: pointer; transition: color 0.3s; color: #888;
-            padding: 0.2rem 0;
-        }
-        #certificate-list li.active,
-        #certificate-list li:hover,
-        #portfolio-list li.active,
-        #portfolio-list li:hover,
-        #about-list li.active,
-        #about-list li:hover { color: #E0E0E0; }
-
-        #portfolio-viewer-content, #about-viewer-content {
-            transition: opacity 0.4s ease-in-out;
-        }
-
-        /* ANIMASI PEMUATAN */
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #2B2E31;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        .loader-text {
-            position: absolute;
-            font-family: 'Anton', sans-serif;
-            font-size: 5vw;
-            color: #E0E0E0;
-            opacity: 0;
-        }
-
     </style>
 </head>
 <body>
@@ -220,7 +256,7 @@
     <header class="fixed top-0 left-0 w-full p-6 z-50 flex justify-between items-center" style="background-color: rgba(43, 46, 49, 0.8); backdrop-filter: blur(10px);">
         <div id="logo" class="text-xl font-bold tracking-wider cursor-pointer">Gatot Sasangka</div>
         <div class="flex items-center gap-4">
-             <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" class="modal-button-primary text-white font-semibold px-4 py-2 rounded-lg transition-colors hidden sm:block">
+             <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" class="modal-button-primary text-black font-semibold px-4 py-2 transition-colors hidden sm:block">
                  Unduh CV
              </a>
             <div id="menu-button" class="text-lg font-bold tracking-widest cursor-pointer">[ MENU ]</div>
@@ -232,81 +268,101 @@
         <!-- Home Page (Hero Section) -->
         <section id="home" class="page active p-0 flex items-center justify-center">
              <div id="home-content">
-                 <canvas id="matrix-canvas"></canvas>
+                 <canvas id="hero-canvas"></canvas>
                  <div class="hero-content flex flex-col items-center justify-center h-full">
                      <h1 class="hero-title anton-font">Gatot Sasangka</h1>
-                     <span class="hero-subtitle">Lulusan Teknik Informatika | Jaringan, IoT, & Web Dev</span>
+                     <span class="hero-subtitle">Teknik Informatika | Jaringan, IoT, & Web Dev</span>
                  </div>
              </div>
         </section>
 
         <!-- About Page -->
-        <section id="about" class="page flex items-center justify-center">
-            <div class="container mx-auto px-6 grid md:grid-cols-10 gap-16 items-center">
-                <!-- Left Column: Content Viewer -->
-                <div id="about-viewer" class="relative w-full aspect-[1.4/1] md:col-span-6 flex items-center justify-center p-8">
-                    <div id="about-viewer-content" class="w-full">
-                        <!-- Dynamic content will go here -->
+        <section id="about" class="page">
+            <div class="container mx-auto px-6">
+                <h2 class="text-5xl anton-font tracking-wider text-white mb-12 text-center">TENTANG SAYA</h2>
+                <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Bio Card -->
+                    <div class="interactive-card about-card" data-modal-type="bio">
+                        <div class="card-content">
+                            <i data-lucide="user" class="w-12 h-12 icon-primary mb-4 card-icon"></i>
+                            <h3 class="text-xl font-bold text-white mb-2">Perkenalan Diri</h3>
+                            <p class="text-gray-400 text-sm">Latar belakang, pendidikan, dan hasrat saya di dunia teknologi.</p>
+                        </div>
                     </div>
-                </div>
-
-                <!-- Right Column: Topic List -->
-                <div class="w-full md:col-span-4">
-                    <h2 class="text-5xl anton-font tracking-wider text-white mb-6">TENTANG SAYA</h2>
-                    <ul id="about-list" class="space-y-1 text-xl md:text-2xl anton-font tracking-wider">
-                        <!-- List items will be dynamically generated -->
-                    </ul>
+                    <!-- Skills Card -->
+                    <div class="interactive-card about-card" data-modal-type="skills">
+                        <div class="card-content">
+                           <i data-lucide="gem" class="w-12 h-12 icon-primary mb-4 card-icon"></i>
+                           <h3 class="text-xl font-bold text-white mb-2">Keahlian Teknis</h3>
+                           <p class="text-gray-400 text-sm">Kumpulan teknologi dan alat yang saya kuasai.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-
         <!-- Portfolio Page -->
-        <section id="portfolio" class="page flex items-center justify-center">
-            <div class="container mx-auto px-6 grid md:grid-cols-10 gap-16 items-center">
-                <!-- Left Column: Project Viewer -->
-                <div id="portfolio-viewer" class="relative w-full aspect-[1.4/1] md:col-span-6 flex items-center justify-center p-8">
-                    <div id="portfolio-viewer-content" class="w-full">
-                        <!-- Content will be dynamically added here -->
-                    </div>
-                </div>
-
-                <!-- Right Column: Project List -->
-                <div class="w-full md:col-span-4">
-                     <h2 class="text-5xl anton-font tracking-wider text-white mb-6">PROYEK SAYA</h2>
-                    <ul id="portfolio-list" class="space-y-1 text-xl md:text-2xl anton-font tracking-wider">
-                        <!-- List items will be dynamically generated -->
-                    </ul>
-                      <div class="text-left mt-8">
-                         <a href="https://github.com/AffineCipher-0" target="_blank" rel="noopener noreferrer" class="modal-button-primary inline-flex items-center text-white font-semibold px-6 py-3 rounded-lg transition-transform transform hover:scale-105">
-                             <i data-lucide="github" class="w-5 h-5 mr-2"></i>
-                             <span>Lihat Semua di GitHub</span>
-                         </a>
+        <section id="portfolio" class="page">
+             <div class="container mx-auto px-6">
+                 <h2 class="text-5xl anton-font tracking-wider text-white mb-12 text-center">PROYEK SAYA</h2>
+                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                     <!-- Card 1 -->
+                     <div class="interactive-card portfolio-card" 
+                          data-title="Penerjemah Sandi Morse"
+                          data-icon="radio-tower"
+                          data-description="Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler. Proyek ini <strong>membuktikan kelayakan algoritma Brute Force</strong> untuk pencocokan sinyal secara akurat, mencapai <strong>efektivitas 100%</strong> dalam pengujian. Dipublikasikan di Jurnal INFOS."
+                          data-link1-url="https://jurnal.amikom.ac.id/index.php/infos/article/view/965"
+                          data-link1-text="Lihat Jurnal">
+                         <div class="card-content">
+                            <i data-lucide="radio-tower" class="w-12 h-12 icon-primary mb-4 card-icon"></i>
+                            <h3 class="text-xl font-bold text-white mb-2">Penerjemah Sandi Morse</h3>
+                            <p class="text-gray-400 text-sm">Alat penerjemah sandi morse berbasis mikrokontroler dengan algoritma Brute Force.</p>
+                         </div>
                      </div>
-                </div>
-            </div>
+                     <!-- Card 2 -->
+                      <div class="interactive-card portfolio-card"
+                          data-title="Website E-Commerce"
+                          data-icon="shopping-cart"
+                          data-description="Sebagai <strong>Ketua Tim</strong>, saya mengoordinasikan 3 kontributor untuk membangun aplikasi e-commerce fungsional. Proyek ini mencakup fitur lengkap mulai dari registrasi pengguna hingga manajemen pesanan oleh admin, <strong>menyelesaikan tantangan dalam menciptakan alur transaksi yang aman dan intuitif</strong>."
+                          data-link1-url="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand"
+                          data-link1-text="Kode di GitHub">
+                         <div class="card-content">
+                            <i data-lucide="shopping-cart" class="w-12 h-12 icon-primary mb-4 card-icon"></i>
+                            <h3 class="text-xl font-bold text-white mb-2">Website E-Commerce</h3>
+                            <p class="text-gray-400 text-sm">Aplikasi e-commerce fungsional dengan alur transaksi yang aman dan intuitif.</p>
+                         </div>
+                     </div>
+                     <!-- Card 3 -->
+                      <div class="interactive-card portfolio-card"
+                           data-title="Otomatisasi Greenhouse (Proyek IoT)"
+                           data-icon="sprout"
+                           data-description="Merancang arsitektur sistem dan UI/UX untuk otomatisasi greenhouse berbasis IoT. Desain ini bertujuan untuk <strong>meningkatkan efisiensi pemantauan dan mengurangi kebutuhan intervensi manual</strong>, menjadikannya sebuah blueprint komprehensif untuk implementasi nyata."
+                           data-link1-url="https://docs.google.com/document/d/1k-1eR1BLNI2a9yP-EyyvkzlmljOK8GIsx2nmV3pNGQ4/edit?usp=sharing"
+                           data-link1-text="Lihat Dokumen (SRS)"
+                           data-link2-url="https://affinecipher-0.github.io/prototype-greenhouse/"
+                           data-link2-text="Lihat Prototipe">
+                         <div class="card-content">
+                            <i data-lucide="sprout" class="w-12 h-12 icon-primary mb-4 card-icon"></i>
+                            <h3 class="text-xl font-bold text-white mb-2">Otomatisasi Greenhouse</h3>
+                            <p class="text-gray-400 text-sm">Desain arsitektur dan UI/UX sistem monitoring greenhouse berbasis IoT.</p>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="text-center mt-16">
+                     <a href="https://github.com/AffineCipher-0" target="_blank" rel="noopener noreferrer" class="modal-button-primary inline-flex items-center text-black font-semibold px-6 py-3">
+                         <i data-lucide="github" class="w-5 h-5 mr-2"></i>
+                         <span>Lihat Semua di GitHub</span>
+                     </a>
+                 </div>
+             </div>
         </section>
         
         <!-- Certificates Page -->
-        <section id="certificates" class="page flex items-center justify-center">
-             <div class="container mx-auto px-6 grid md:grid-cols-10 gap-16 items-center">
-                 <!-- Left Column: Image Viewer -->
-                 <div class="relative w-full aspect-[1.4/1] md:col-span-6 group">
-                     <div id="certificate-image-mask" class="w-full h-full">
-                         <!-- Images will be dynamically added here -->
-                     </div>
-                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg cursor-pointer" id="image-overlay">
-                         <i data-lucide="zoom-in" class="w-12 h-12 text-white"></i>
-                         <span class="mt-2 text-white font-semibold">Lihat Penuh</span>
-                     </div>
-                 </div>
-
-                 <!-- Right Column: Certificate List -->
-                 <div class="w-full md:col-span-4">
-                     <h2 class="text-5xl anton-font tracking-wider text-white mb-6">SERTIFIKAT</h2>
-                     <ul id="certificate-list" class="space-y-1 text-xl md:text-2xl lg:text-3xl anton-font tracking-wider">
-                         <!-- List items will be dynamically generated -->
-                     </ul>
+        <section id="certificates" class="page">
+             <div class="container mx-auto px-6">
+                 <h2 class="text-5xl anton-font tracking-wider text-white mb-12 text-center">SERTIFIKAT</h2>
+                 <div id="certificates-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                     <!-- Certificate cards will be dynamically inserted here -->
                  </div>
              </div>
         </section>
@@ -314,7 +370,7 @@
         <!-- Contact Page -->
         <section id="contact" class="page flex items-center justify-center">
             <div class="container mx-auto px-6 text-left">
-                <h2 id="email-link" class="anton-font text-5xl md:text-7xl lg:text-8xl tracking-tighter break-all cursor-pointer hover:text-[#B48A5C] transition-colors">
+                <h2 id="email-link" class="anton-font text-5xl md:text-7xl lg:text-8xl tracking-tighter break-all cursor-pointer highlight-link transition-colors">
                     SASANGKAGATOT@GMAIL.COM
                 </h2>
                 <div class="mt-12 grid md:grid-cols-3 gap-8">
@@ -327,9 +383,9 @@
                     <div>
                         <h3 class="font-bold mb-2">[ Socials ]</h3>
                         <div class="flex gap-6 text-2xl">
-                             <a href="https://wa.me/6287832165306" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                            <a href="https://www.linkedin.com/in/sasangka/" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="https://github.com/AffineCipher-0" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="GitHub"><i class="fab fa-github"></i></a>
+                             <a href="https://wa.me/6287832165306" target="_blank" class="social-icon text-gray-300 highlight-link" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.linkedin.com/in/sasangka/" target="_blank" class="social-icon text-gray-300 highlight-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/AffineCipher-0" target="_blank" class="social-icon text-gray-300 highlight-link" title="GitHub"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                 </div>
@@ -371,8 +427,8 @@
             <p class="text-gray-400 mb-6">Silakan salin alamat email di bawah ini.</p>
             <div class="relative bg-[#373A3E] p-4 rounded-lg border border-gray-700"><input id="email-address" type="text" readonly value="sasangkagatot@gmail.com" class="bg-transparent text-white w-full text-center outline-none"></div>
             <div class="flex gap-4 mt-6">
-                <button id="copy-email-btn" class="modal-button-primary w-full text-white font-semibold py-2 rounded-lg">Salin Teks</button>
-                <button id="close-email-modal" class="modal-button-secondary w-full text-white font-semibold py-2 rounded-lg">Tutup</button>
+                <button id="copy-email-btn" class="modal-button-primary w-full text-black font-semibold py-2 px-6 rounded-lg">Salin Teks</button>
+                <button id="close-email-modal" class="modal-button-secondary w-full text-white font-semibold py-2 px-6 rounded-lg">Tutup</button>
             </div>
         </div>
     </div>
@@ -380,17 +436,18 @@
         <div id="certificate-modal-content" class="rounded-lg shadow-xl w-full max-w-3xl transform transition-all scale-95 opacity-0 p-6 border border-white/10">
             <div class="flex justify-between items-center mb-4"><h3 id="certificate-modal-title" class="text-xl font-bold text-white"></h3><button id="close-certificate-modal" class="text-gray-400 hover:text-white text-3xl">&times;</button></div>
             <div class="bg-gray-900 rounded-md p-2"><img id="certificate-modal-image" src="" alt="Gambar Sertifikat" class="w-full h-auto max-h-[60vh] object-contain"></div>
-            <div class="flex gap-4 mt-6"><a id="certificate-modal-doc-link" href="#" target="_blank" class="modal-button-primary w-full text-white text-center font-semibold py-2.5 rounded-lg">Lihat Dokumen Asli</a></div>
+            <div class="flex gap-4 mt-6"><a id="certificate-modal-doc-link" href="#" target="_blank" class="modal-button-primary w-full text-black text-center font-semibold py-2.5 px-6">Lihat Dokumen Asli</a></div>
         </div>
     </div>
      <div id="portfolio-modal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
-        <div id="portfolio-modal-content" class="rounded-lg shadow-xl w-full max-w-2xl transform transition-all scale-95 opacity-0 p-6 border border-white/10">
+        <div id="portfolio-modal-content" class="rounded-lg shadow-xl w-full max-w-3xl transform transition-all scale-95 opacity-0 p-6 border border-white/10">
             <div class="flex justify-between items-center mb-4">
                 <h3 id="portfolio-modal-title" class="text-2xl font-bold text-white"></h3>
                 <button id="close-portfolio-modal" class="text-gray-400 hover:text-white text-3xl">&times;</button>
             </div>
-            <div class="bg-gray-900 rounded-md p-6 my-4 text-center" id="portfolio-modal-icon-container"></div>
-            <p id="portfolio-modal-description" class="text-gray-300 text-left mb-6"></p>
+            <div id="portfolio-modal-body" class="my-4">
+                 <p id="portfolio-modal-description" class="text-gray-300 text-left mt-6"></p>
+            </div>
             <div id="portfolio-modal-links" class="flex flex-col sm:flex-row gap-4 mt-6"></div>
         </div>
     </div>
@@ -413,9 +470,23 @@
             const pageTransitioner = document.querySelector('.page-transitioner');
             const transitionCurrentEl = document.getElementById('transition-current');
             const transitionNextEl = document.getElementById('transition-next');
+            const exploreBtn = document.getElementById('explore-btn');
 
             let currentPage = 'home';
             let isAnimating = false;
+
+            // --- DATA ---
+            const certificatesData = [
+                { title: "Magang DLHK DIY", details: "Dinas Lingkungan Hidup & Kehutanan DIY (2024)", img: "https://i.imgur.com/wZ7owwo.png", docUrl: "https://drive.google.com/file/d/1Y3VW0xUN9dW-vbJ5zU-x-F3nCiNBaIX0/view?usp=sharing" },
+                { title: "Literasi Digital", details: "Kemkominfo (2023)", img: "https://i.imgur.com/fgV6iQP.png", docUrl: "https://drive.google.com/file/d/1vs2A6PckZR2EdNaLsJKm-pdINUiWcf0i/view?usp=sharing" },
+                { title: "Seminar Cyber Security", details: "HIMATEKNO FTTI UNJAYA (2023)", img: "https://i.imgur.com/eyW5LUw.png", docUrl: "https://drive.google.com/file/d/1Y02PijK2soKCo0STFN1isCQcEUCU-LDJ/view?usp=sharing" },
+                { title: "Webinar Pengolahan Data", details: "XREI Institute (2023)", img: "https://i.imgur.com/fRg3hmp.png", docUrl: "https://drive.google.com/file/d/1zchzs3U4_AkuUt3KeVRPt_J1ve6G_Trg/view?usp=sharing" },
+                { title: "CCNA Security", details: "Cisco Networking Academy (2022)", img: "https://i.imgur.com/ltwjESR.png", docUrl: "https://drive.google.com/file/d/1vPCSBaFzxmcFU0E4WHhuJRehKpsjSY0X/view?usp=sharing" },
+                { title: "Switching, Routing, & Wireless", details: "Cisco Networking Academy (2021)", img: "https://i.imgur.com/iCRbLK8.png", docUrl: "https://drive.google.com/file/d/1SsQ9tMr0DcFsrTPImab9AFQ89qXdVc9P/view?usp=sharing" },
+                { title: "Introduction to Networks", details: "Cisco Networking Academy (2021)", img: "https://i.imgur.com/5frcsDW.png", docUrl: "https://drive.google.com/file/d/1enjcK-yMxhLaqD1XXHdiZA_pz7zBTgJf/view?usp=sharing" },
+                { title: "Fundamental Python", details: "Progate (2021)", img: "https://i.imgur.com/zruR3Gv.png", docUrl: "https://drive.google.com/file/d/1PcLXnBqaYy0r_D7utYBeBWpyber1msHE/view?usp=sharing" },
+                { title: "IT Essentials", details: "Cisco Networking Academy (2020)", img: "https://i.imgur.com/Pqwf8N1.png", docUrl: "https://drive.google.com/file/d/1iqdSqPVHU36aNKPOJDnm8wuPEsvXQNji/view?usp=sharing" }
+            ];
 
             // --- FUNCTIONS ---
             function runLoadingAnimation() {
@@ -429,24 +500,7 @@
             }
 
             function updatePageContent() {
-                const activePage = document.querySelector('.page.active');
-                if (activePage) {
-                    const animatedCards = activePage.querySelectorAll('.animated-card');
-                    animatedCards.forEach(card => card.classList.remove('is-visible'));
-                     const observer = new IntersectionObserver((entries) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('is-visible');
-                                observer.unobserve(entry.target);
-                            }
-                        });
-                    }, { root: activePage, rootMargin: '0px 0px -100px 0px' });
-                    animatedCards.forEach((card, index) => {
-                         card.style.transitionDelay = `${(index % 4) * 100}ms`;
-                         observer.observe(card);
-                    });
-                }
-                 lucide.createIcons();
+                lucide.createIcons();
             }
 
             function performTransition(targetId) {
@@ -502,51 +556,77 @@
             });
 
             logo.addEventListener('click', () => performTransition('home'));
-
-            // Matrix Animation
-            const canvas = document.getElementById('matrix-canvas');
+            
+            // Particle Animation
+            const canvas = document.getElementById('hero-canvas');
             if (canvas) {
                 const ctx = canvas.getContext('2d');
-                let width, height, columns, drops;
-                const characters = '0123456789ABCDEF';
-                const fontSize = 16;
+                let particlesArray;
 
-                function initializeMatrix() {
-                    width = canvas.width = window.innerWidth;
-                    height = canvas.height = window.innerHeight;
-                    columns = Math.floor(width / fontSize);
-                    drops = [];
-                    for (let i = 0; i < columns; i++) {
-                        drops[i] = 1;
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                class Particle {
+                    constructor(x, y, directionX, directionY, size, color) {
+                        this.x = x; this.y = y; this.directionX = directionX;
+                        this.directionY = directionY; this.size = size; this.color = color;
+                    }
+                    draw() {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                        ctx.fillStyle = 'rgba(180, 138, 92, 0.8)'; ctx.fill();
+                    }
+                    update() {
+                        if (this.x > canvas.width || this.x < 0) { this.directionX = -this.directionX; }
+                        if (this.y > canvas.height || this.y < 0) { this.directionY = -this.directionY; }
+                        this.x += this.directionX; this.y += this.directionY; this.draw();
                     }
                 }
-                
-                function drawMatrix() {
-                    ctx.fillStyle = 'rgba(13, 13, 13, 0.05)';
-                    ctx.fillRect(0, 0, width, height);
-                    ctx.fillStyle = '#B48A5C'; // Warna teks
-                    ctx.font = `${fontSize}px monospace`;
 
-                    for (let i = 0; i < drops.length; i++) {
-                        const text = characters.charAt(Math.floor(Math.random() * characters.length));
-                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                        if (drops[i] * fontSize > height && Math.random() > 0.975) {
-                            drops[i] = 0;
+                function init() {
+                    particlesArray = [];
+                    let numberOfParticles = (canvas.height * canvas.width) / 9000;
+                    for (let i = 0; i < numberOfParticles; i++) {
+                        let size = (Math.random() * 2) + 1;
+                        let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                        let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                        let directionX = (Math.random() * .4) - 0.2;
+                        let directionY = (Math.random() * .4) - 0.2;
+                        particlesArray.push(new Particle(x, y, directionX, directionY, size));
+                    }
+                }
+
+                function animate() {
+                    requestAnimationFrame(animate);
+                    ctx.clearRect(0, 0, innerWidth, innerHeight);
+                    particlesArray.forEach(p => p.update());
+                    connect();
+                }
+                
+                function connect() {
+                    let opacityValue = 1;
+                    for (let a = 0; a < particlesArray.length; a++) {
+                        for (let b = a; b < particlesArray.length; b++) {
+                            let distance = ((particlesArray[a].x - particlesArray[b].x) ** 2) + ((particlesArray[a].y - particlesArray[b].y) ** 2);
+                            if (distance < (canvas.width/7) * (canvas.height/7)) {
+                                opacityValue = 1 - (distance/20000);
+                                ctx.strokeStyle = `rgba(180, 138, 92, ${opacityValue})`;
+                                ctx.lineWidth = 1;
+                                ctx.beginPath();
+                                ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                                ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                                ctx.stroke();
+                            }
                         }
-                        drops[i]++;
                     }
                 }
 
-                initializeMatrix();
-                const matrixInterval = setInterval(drawMatrix, 33);
-                
-                window.addEventListener('resize', () => {
-                    initializeMatrix();
-                });
+                init(); animate();
+                window.addEventListener('resize', () => { canvas.width = innerWidth; canvas.height = innerHeight; init(); });
             }
 
             
-            // --- Modals and other scripts ---
+            // --- MODAL LOGIC ---
             
             // Certificate Modal
             const certificateModal = document.getElementById('certificate-modal');
@@ -556,283 +636,166 @@
             const certificateModalDocLink = document.getElementById('certificate-modal-doc-link');
             const closeCertificateModalBtn = document.getElementById('close-certificate-modal');
             
-            const openCertificateModal = (imgSrc, title, docUrl) => {
-                certificateModalImage.src = imgSrc;
-                certificateModalTitle.textContent = title;
-                certificateModalDocLink.href = docUrl;
+            function openCertificateModal(cert) {
+                certificateModalImage.src = cert.img;
+                certificateModalTitle.textContent = cert.title;
+                certificateModalDocLink.href = cert.docUrl;
                 certificateModal.classList.remove('hidden');
                 setTimeout(() => certificateModalContent.classList.remove('scale-95', 'opacity-0'), 10);
             };
-            const closeCertificateModal = () => {
+            function closeCertificateModal() {
                 certificateModalContent.classList.add('scale-95', 'opacity-0');
                 setTimeout(() => certificateModal.classList.add('hidden'), 300);
             };
-
             closeCertificateModalBtn.addEventListener('click', closeCertificateModal);
             certificateModal.addEventListener('click', (e) => { if(e.target === certificateModal) closeCertificateModal(); });
            
-            // --- About Page Setup ---
-            function setupAboutPage() {
-                const aboutViewer = document.getElementById('about-viewer-content');
-                const aboutList = document.getElementById('about-list');
+            // Portfolio & About Modal
+            const portfolioModal = document.getElementById('portfolio-modal');
+            const portfolioModalContent = document.getElementById('portfolio-modal-content');
+            const portfolioModalTitle = document.getElementById('portfolio-modal-title');
+            const portfolioModalBody = document.getElementById('portfolio-modal-body');
+            const portfolioModalDescription = document.getElementById('portfolio-modal-description');
+            const portfolioModalLinks = document.getElementById('portfolio-modal-links');
+            const closePortfolioModalBtn = document.getElementById('close-portfolio-modal');
 
-                if (!aboutViewer || !aboutList) return;
+            function openPortfolioModal(data) {
+                portfolioModalTitle.textContent = data.title;
+                portfolioModalDescription.innerHTML = data.description;
                 
-                const bioHtml = `
-                    <div class="text-left text-justify text-sm">
-                        <p class="text-gray-300 mb-4">
-                            Saya adalah lulusan S1 Teknik Informatika Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki hasrat mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.
-                        </p>
-                        <p class="text-gray-300 mb-3">
-                            Selama studi, saya memperoleh fondasi yang kuat dalam:
-                        </p>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-gray-400 mb-4">
-                            <div>
-                                <h4 class="font-semibold text-white mb-1">Pemrograman & Rekayasa Perangkat Lunak</h4>
-                                <ul class="list-disc list-inside">
-                                    <li>Rekayasa Perangkat Lunak</li>
-                                    <li>Pemrograman Web</li>
-                                    <li>Algoritma & Pemrograman</li>
-                                    <li>Struktur Data</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-white mb-1">Data dan Analisis</h4>
-                                <ul class="list-disc list-inside">
-                                    <li>Sistem Basis Data</li>
-                                    <li>Kecerdasan Buatan (AI)</li>
-                                    <li>Statistika & Metode Numerik</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-white mb-1">Jaringan dan Keamanan</h4>
-                                <ul class="list-disc list-inside">
-                                    <li>Keamanan & Perancangan Jaringan</li>
-                                    <li>Jaringan Komputer</li>
-                                    <li>Infrastruktur IT</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-white mb-1">Soft Skills dan Manajemen</h4>
-                                <ul class="list-disc list-inside">
-                                    <li>Manajemen Strategik</li>
-                                    <li>Kepemimpinan</li>
-                                    <li>Metodologi Penelitian & Etika Profesi</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <p class="text-gray-300 mb-4">
-                            Dengan keahlian tambahan di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh serta mempublikasikan penelitian tentang mikrokontroler.
-                        </p>
-                         <p class="text-gray-300">
-                            Saya selalu antusias untuk belajar hal baru, beradaptasi dengan teknologi terkini, dan berkolaborasi dalam tim untuk menciptakan solusi inovatif.
-                        </p>
-                    </div>
-                `;
-
-                const skillsHtml = `
-                    <div>
-                        <h3 class="text-3xl anton-font tracking-wider text-white mb-6">KEAHLIAN UTAMA</h3>
-                        <div class="grid grid-cols-4 sm:grid-cols-5 gap-y-6 gap-x-4 text-center">
-                            <div class="skill-icon-item"><i data-lucide="braces" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">JavaScript</span></div>
-                            <div class="skill-icon-item"><i data-lucide="file-code-2" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">HTML & CSS</span></div>
-                            <div class="skill-icon-item"><i data-lucide="cpu" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">Mikrokontroler</span></div>
-                            <div class="skill-icon-item"><i data-lucide="wifi" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">IoT</span></div>
-                            <div class="skill-icon-item"><i data-lucide="database" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">SQL / ERD</span></div>
-                            <div class="skill-icon-item"><i data-lucide="network" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">Cisco CCNA</span></div>
-                            <div class="skill-icon-item"><i data-lucide="briefcase" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">Ms. Office</span></div>
-                            <div class="skill-icon-item"><i data-lucide="cloud" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">G. Workspace</span></div>
-                        </div>
-                    </div>
-                `;
-
-                const photoHtml = `<img src="https://i.imgur.com/QDBBrAN.png" alt="Foto Profil Gatot Sasangka" class="w-full h-full object-contain rounded-lg shadow-2xl">`;
-
-                const aboutData = [
-                    { title: "Perkenalan Diri", content: bioHtml },
-                    { title: "Keahlian Teknis", content: skillsHtml },
-                    { title: "Foto Profil", content: photoHtml }
-                ];
-
-                function updateAboutViewer(index) {
-                    const data = aboutData[index];
-                    gsap.to(aboutViewer.parentNode, { opacity: 0, duration: 0.2, onComplete: () => {
-                        aboutViewer.innerHTML = data.content;
-                        lucide.createIcons();
-                        aboutViewer.querySelectorAll('.skill-icon-item').forEach((item, i) => {
-                            item.style.animationDelay = `${(i % 8) * 0.1}s`;
-                        });
-                        gsap.to(aboutViewer.parentNode, { opacity: 1, duration: 0.2 });
-                    }});
+                portfolioModalLinks.innerHTML = '';
+                if(data.link1Url && data.link1Text) {
+                    const link1 = document.createElement('a');
+                    link1.href = data.link1Url; link1.target = '_blank';
+                    link1.className = 'modal-button-primary block text-center text-black font-semibold py-2.5 px-6 rounded-lg';
+                    link1.textContent = data.link1Text;
+                    portfolioModalLinks.appendChild(link1);
+                }
+                if(data.link2Url && data.link2Text) {
+                    const link2 = document.createElement('a');
+                    link2.href = data.link2Url; link2.target = '_blank';
+                    link2.className = 'modal-button-secondary block text-center mt-3 text-white font-semibold py-2.5 px-6 rounded-lg';
+                    link2.textContent = data.link2Text;
+                    portfolioModalLinks.appendChild(link2);
                 }
 
-                aboutList.innerHTML = '';
-                aboutData.forEach((item, index) => {
-                    const li = document.createElement('li');
-                    li.textContent = item.title;
-                    li.dataset.index = index;
-                    if (index === 0) {
-                        li.classList.add('active');
-                    }
-                    aboutList.appendChild(li);
-                });
+                portfolioModal.classList.remove('hidden');
+                setTimeout(() => {
+                    portfolioModalContent.classList.remove('scale-95', 'opacity-0');
+                    lucide.createIcons();
+                }, 10);
+            };
+            function closePortfolioModal() {
+                portfolioModalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => portfolioModal.classList.add('hidden'), 300);
+            };
+            closePortfolioModalBtn.addEventListener('click', closePortfolioModal);
+            portfolioModal.addEventListener('click', (e) => { if(e.target === portfolioModal) closePortfolioModal(); });
 
-                aboutList.addEventListener('mouseover', e => {
-                    if (e.target.tagName === 'LI') {
-                        const index = e.target.dataset.index;
-                        updateAboutViewer(index);
-                        aboutList.querySelectorAll('li').forEach(li => li.classList.remove('active'));
-                        e.target.classList.add('active');
-                    }
-                });
-                
-                updateAboutViewer(0);
-            }
+            // --- PAGE SETUP ---
 
-            // --- Sertifikat Page Setup ---
-            function setupCertificatePage() {
-                const imageMask = document.getElementById('certificate-image-mask');
-                const certList = document.getElementById('certificate-list');
-                const imageOverlay = document.getElementById('image-overlay');
-                
-                if (!imageMask || !certList || !imageOverlay) return;
+            // About Page Setup
+            document.querySelectorAll('.about-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const type = card.dataset.modalType;
+                    let modalData = {};
 
-                imageMask.innerHTML = '';
-                certList.innerHTML = '';
+                    const bioHtml = `
+                        <div class="flex flex-col md:flex-row gap-8 items-start">
+                             <div class="md:w-1/3 flex-shrink-0">
+                                 <img src="https://i.imgur.com/QDBBrAN.png" alt="Foto Profil" class="rounded-lg w-full">
+                             </div>
+                             <div class="md:w-2/3 text-left text-justify text-sm">
+                                <p class="text-gray-300 mb-4">Saya adalah lulusan S1 Teknik Informatika Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki hasrat mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.</p>
+                                <p class="text-gray-300 mb-4">Dengan keahlian tambahan di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh serta mempublikasikan penelitian tentang mikrokontroler.</p>
+                                <p class="text-gray-300">Saya selalu antusias untuk belajar hal baru, beradaptasi dengan teknologi terkini, dan berkolaborasi dalam tim untuk menciptakan solusi inovatif.</p>
+                             </div>
+                        </div>`;
 
-                const certificatesData = [
-                    { title: "Magang DLHK DIY", details: "Dinas Lingkungan Hidup & Kehutanan DIY (2024)", img: "https://i.imgur.com/wZ7owwo.png", docUrl: "https://drive.google.com/file/d/1Y3VW0xUN9dW-vbJ5zU-x-F3nCiNBaIX0/view?usp=sharing" },
-                    { title: "Literasi Digital", details: "Kemkominfo (2023)", img: "https://i.imgur.com/fgV6iQP.png", docUrl: "https://drive.google.com/file/d/1vs2A6PckZR2EdNaLsJKm-pdINUiWcf0i/view?usp=sharing" },
-                    { title: "Seminar Cyber Security", details: "HIMATEKNO FTTI UNJAYA (2023)", img: "https://i.imgur.com/eyW5LUw.png", docUrl: "https://drive.google.com/file/d/1Y02PijK2soKCo0STFN1isCQcEUCU-LDJ/view?usp=sharing" },
-                    { title: "Webinar Pengolahan Data", details: "XREI Institute (2023)", img: "https://i.imgur.com/fRg3hmp.png", docUrl: "https://drive.google.com/file/d/1zchzs3U4_AkuUt3KeVRPt_J1ve6G_Trg/view?usp=sharing" },
-                    { title: "CCNA Security", details: "Cisco Networking Academy (2022)", img: "https://i.imgur.com/ltwjESR.png", docUrl: "https://drive.google.com/file/d/1vPCSBaFzxmcFU0E4WHhuJRehKpsjSY0X/view?usp=sharing" },
-                    { title: "Switching, Routing, & Wireless", details: "Cisco Networking Academy (2021)", img: "https://i.imgur.com/iCRbLK8.png", docUrl: "https://drive.google.com/file/d/1SsQ9tMr0DcFsrTPImab9AFQ89qXdVc9P/view?usp=sharing" },
-                    { title: "Introduction to Networks", details: "Cisco Networking Academy (2021)", img: "https://i.imgur.com/5frcsDW.png", docUrl: "https://drive.google.com/file/d/1enjcK-yMxhLaqD1XXHdiZA_pz7zBTgJf/view?usp=sharing" },
-                    { title: "Fundamental Python", details: "Progate (2021)", img: "https://i.imgur.com/zruR3Gv.png", docUrl: "https://drive.google.com/file/d/1PcLXnBqaYy0r_D7utYBeBWpyber1msHE/view?usp=sharing" },
-                    { title: "IT Essentials", details: "Cisco Networking Academy (2020)", img: "https://i.imgur.com/Pqwf8N1.png", docUrl: "https://drive.google.com/file/d/1iqdSqPVHU36aNKPOJDnm8wuPEsvXQNji/view?usp=sharing" }
-                ];
-
-                certificatesData.forEach((cert, index) => {
-                    const img = document.createElement('img');
-                    img.src = cert.img;
-                    img.alt = cert.title;
-                    img.dataset.index = index;
-                    if (index === 0) img.classList.add('active');
-                    imageMask.appendChild(img);
-
-                    const li = document.createElement('li');
-                    li.textContent = cert.title;
-                    li.dataset.index = index;
-                    if (index === 0) {
-                        li.classList.add('active');
-                    }
-                    certList.appendChild(li);
-                });
-
-                certList.addEventListener('mouseover', (e) => {
-                    if (e.target.tagName === 'LI') {
-                        const index = e.target.dataset.index;
-                        certList.querySelectorAll('li').forEach(li => li.classList.remove('active'));
-                        e.target.classList.add('active');
-                        imageMask.querySelectorAll('img').forEach(img => img.classList.remove('active'));
-                        imageMask.querySelector(`img[data-index="${index}"]`).classList.add('active');
-                    }
-                });
-                
-                imageOverlay.addEventListener('click', () => {
-                    const activeImage = imageMask.querySelector('img.active');
-                    if (activeImage) {
-                        const index = activeImage.dataset.index;
-                        const cert = certificatesData[index];
-                        openCertificateModal(cert.img, cert.title, cert.docUrl);
-                    }
-                });
-            }
-            
-            // --- Portfolio Page Setup ---
-            function setupPortfolioPage() {
-                const portfolioViewer = document.getElementById('portfolio-viewer-content');
-                const portfolioList = document.getElementById('portfolio-list');
-
-                if (!portfolioViewer || !portfolioList) return;
-
-                const portfolioData = [
-                    { 
-                        title: "Penerjemah Sandi Morse",
-                        description: "Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler. Proyek ini <strong>membuktikan kelayakan algoritma Brute Force</strong> untuk pencocokan sinyal secara akurat, mencapai <strong>efektivitas 100%</strong> dalam pengujian. Dipublikasikan di Jurnal INFOS.",
-                        icon: "radio-tower",
-                        link1Url: "https://jurnal.amikom.ac.id/index.php/infos/article/view/965",
-                        link1Text: "Lihat Jurnal"
-                    },
-                    {
-                        title: "Website E-Commerce",
-                        description: "Sebagai <strong>Ketua Tim</strong>, saya mengoordinasikan 3 kontributor untuk membangun aplikasi e-commerce fungsional. Proyek ini mencakup fitur lengkap mulai dari registrasi pengguna hingga manajemen pesanan oleh admin, <strong>menyelesaikan tantangan dalam menciptakan alur transaksi yang aman dan intuitif</strong>.",
-                        icon: "shopping-cart",
-                        link1Url: "https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand",
-                        link1Text: "Kode di GitHub"
-                    },
-                    {
-                        title: "Otomatisasi Greenhouse",
-                        description: "Merancang arsitektur sistem dan UI/UX untuk otomatisasi greenhouse berbasis IoT. Desain ini bertujuan untuk <strong>meningkatkan efisiensi pemantauan dan mengurangi kebutuhan intervensi manual</strong>, menjadikannya sebuah blueprint komprehensif untuk implementasi nyata.",
-                        icon: "sprout",
-                        link1Url: "https://docs.google.com/document/d/1k-1eR1BLNI2a9yP-EyyvkzlmljOK8GIsx2nmV3pNGQ4/edit?usp=sharing",
-                        link1Text: "Lihat Dokumen (SRS)",
-                        link2Url: "https://affinecipher-0.github.io/prototype-greenhouse/",
-                        link2Text: "Lihat Prototipe"
-                    }
-                ];
-
-                function updatePortfolioViewer(index) {
-                    const data = portfolioData[index];
-                    let linksHtml = '';
-                    if (data.link1Url) {
-                        linksHtml += `<a href="${data.link1Url}" target="_blank" class="modal-button-primary block text-center text-white font-semibold py-2.5 rounded-lg">${data.link1Text}</a>`;
-                    }
-                    if (data.link2Url) {
-                        linksHtml += `<a href="${data.link2Url}" target="_blank" class="modal-button-secondary block text-center mt-3 text-white font-semibold py-2.5 rounded-lg">${data.link2Text}</a>`;
-                    }
-                    
-                    const newHtml = `
-                        <div class="text-center mb-6">
-                            <i data-lucide="${data.icon}" class="w-16 h-16 text-[#B48A5C] mx-auto"></i>
+                    const skillsHtml = `
+                        <div>
+                            <p class="text-gray-300 mb-4 text-center">Selama studi, saya memperoleh fondasi yang kuat dalam berbagai bidang:</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-gray-400 mb-4 text-sm text-left">
+                                <div><h4 class="font-semibold text-white mb-1">Pemrograman & RPA</h4><ul class="list-disc list-inside"><li>Rekayasa Perangkat Lunak</li><li>Pemrograman Web</li><li>Algoritma & Pemrograman</li><li>Struktur Data</li></ul></div>
+                                <div><h4 class="font-semibold text-white mb-1">Data dan Analisis</h4><ul class="list-disc list-inside"><li>Sistem Basis Data</li><li>Kecerdasan Buatan (AI)</li><li>Statistika & Metode Numerik</li></ul></div>
+                                <div><h4 class="font-semibold text-white mb-1">Jaringan dan Keamanan</h4><ul class="list-disc list-inside"><li>Keamanan & Perancangan Jaringan</li><li>Jaringan Komputer</li><li>Infrastruktur IT</li></ul></div>
+                                <div><h4 class="font-semibold text-white mb-1">Soft Skills dan Manajemen</h4><ul class="list-disc list-inside"><li>Manajemen Strategik</li><li>Kepemimpinan</li><li>Metodologi Penelitian & Etika Profesi</li></ul></div>
+                            </div>
+                            <hr class="border-gray-700 my-6">
+                            <h4 class="font-semibold text-white mb-4 text-center">Teknologi & Alat Utama</h4>
+                            <div class="grid grid-cols-4 sm:grid-cols-5 gap-y-6 gap-x-4 text-center">
+                                <div class="skill-icon-item"><i data-lucide="braces" class="w-10 h-10 mx-auto icon-primary"></i><span class="mt-2 text-xs font-medium text-gray-300 block">JavaScript</span></div>
+                                <div class="skill-icon-item"><i data-lucide="file-code-2" class="w-10 h-10 mx-auto icon-primary"></i><span class="mt-2 text-xs font-medium text-gray-300 block">HTML & CSS</span></div>
+                                <div class="skill-icon-item"><i data-lucide="cpu" class="w-10 h-10 mx-auto icon-primary"></i><span class="mt-2 text-xs font-medium text-gray-300 block">Mikrokontroler</span></div>
+                                <div class="skill-icon-item"><i data-lucide="wifi" class="w-10 h-10 mx-auto icon-primary"></i><span class="mt-2 text-xs font-medium text-gray-300 block">IoT</span></div>
+                                <div class="skill-icon-item"><i data-lucide="database" class="w-10 h-10 mx-auto icon-primary"></i><span class="mt-2 text-xs font-medium text-gray-300 block">SQL / ERD</span></div>
+                                <div class="skill-icon-item"><i data-lucide="network" class="w-10 h-10 mx-auto icon-primary"></i><span class="mt-2 text-xs font-medium text-gray-300 block">Cisco CCNA</span></div>
+                                <div class="skill-icon-item"><i data-lucide="briefcase" class="w-10 h-10 mx-auto icon-primary"></i><span class="mt-2 text-xs font-medium text-gray-300 block">Ms. Office</span></div>
+                                <div class="skill-icon-item"><i data-lucide="cloud" class="w-10 h-10 mx-auto icon-primary"></i><span class="mt-2 text-xs font-medium text-gray-300 block">G. Workspace</span></div>
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-white text-center mb-4">${data.title}</h3>
-                        <p class="text-gray-300 text-sm text-left mb-6">${data.description}</p>
-                        <div class="mt-auto">${linksHtml}</div>
+                        `;
+                    
+                    if (type === 'bio') {
+                        modalData = { title: "Perkenalan Diri", description: bioHtml };
+                    } else if (type === 'skills') {
+                        modalData = { title: "Keahlian Teknis", description: skillsHtml };
+                    }
+                    openPortfolioModal(modalData);
+                });
+            });
+
+            // Portfolio Page Setup
+            document.querySelectorAll('.portfolio-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const data = card.dataset;
+                    const portfolioModalDescription = document.querySelector('#portfolio-modal #portfolio-modal-description');
+                    const portfolioModalLinks = document.querySelector('#portfolio-modal #portfolio-modal-links');
+                    
+                    const fullDescription = `
+                        <div class="text-center mb-6">
+                            <i data-lucide="${data.icon}" class="w-16 h-16 icon-primary mx-auto"></i>
+                        </div>
+                        <p class="text-gray-300 text-left">${data.description}</p>
                     `;
 
-                    gsap.to(portfolioViewer, { opacity: 0, duration: 0.2, onComplete: () => {
-                        portfolioViewer.innerHTML = newHtml;
-                        lucide.createIcons();
-                        gsap.to(portfolioViewer, { opacity: 1, duration: 0.2 });
-                    }});
-                }
-
-                portfolioList.innerHTML = '';
-                portfolioData.forEach((project, index) => {
-                    const li = document.createElement('li');
-                    li.textContent = project.title;
-                    li.dataset.index = index;
-                    if (index === 0) {
-                        li.classList.add('active');
-                    }
-                    portfolioList.appendChild(li);
+                    openPortfolioModal({
+                      title: data.title,
+                      description: fullDescription,
+                      link1Url: data.link1Url,
+                      link1Text: data.link1Text,
+                      link2Url: data.link2Url,
+                      link2Text: data.link2Text,
+                    });
                 });
-                
-                portfolioList.addEventListener('mouseover', e => {
-                    if (e.target.tagName === 'LI') {
-                        const index = e.target.dataset.index;
-                        updatePortfolioViewer(index);
-                        portfolioList.querySelectorAll('li').forEach(li => li.classList.remove('active'));
-                        e.target.classList.add('active');
-                    }
-                });
+            });
 
-                // Initial load
-                updatePortfolioViewer(0);
+
+            // Certificate Page Setup
+            const certGrid = document.getElementById('certificates-grid');
+            if (certGrid) {
+                certificatesData.forEach((cert, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'interactive-card certificate-card';
+                    card.dataset.index = index;
+                    card.innerHTML = `
+                        <div class="card-content">
+                            <i data-lucide="award" class="w-12 h-12 icon-primary mb-4 card-icon"></i>
+                            <h3 class="text-xl font-bold text-white mb-2">${cert.title}</h3>
+                            <p class="text-gray-400 text-sm">${cert.details}</p>
+                        </div>
+                    `;
+                    certGrid.appendChild(card);
+                });
+                document.querySelectorAll('.certificate-card').forEach(card => {
+                    card.addEventListener('click', () => {
+                        const index = card.dataset.index;
+                        openCertificateModal(certificatesData[index]);
+                    });
+                });
             }
 
-
+            // Email Modal Setup
             const emailLink = document.getElementById('email-link');
             const emailModal = document.getElementById('email-modal');
             const emailModalContent = document.getElementById('email-modal-content');
@@ -857,6 +820,7 @@
                 setTimeout(() => { copyEmailBtn.textContent = 'Salin Teks'; }, 2000);
             });
             
+            // Date & Time
             const clockElement = document.getElementById('digital-clock');
             const dateElement = document.getElementById('digital-date');
             const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
@@ -877,10 +841,6 @@
             // Initial load
             runLoadingAnimation();
             updatePageContent();
-            setupAboutPage();
-            setupCertificatePage();
-            setupPortfolioPage();
-
         });
     </script>
 
