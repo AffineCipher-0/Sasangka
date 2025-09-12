@@ -34,20 +34,55 @@
         .modal-button-secondary:hover { background-color: #666; }
         #email-modal-content, #certificate-modal-content, #portfolio-modal-content { background-color: #2B2E31; }
         
-        /* GAYA HERO SECTION (DARI KODE ANDA) */
-        #home-content { background: linear-gradient(to top, #0a0a0a, #1a1a2e); position: relative; width:100%; height:100%; overflow: hidden; }
-        #home-content::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(255,183,77,0.12) 0 2px, transparent 2px 100px), repeating-linear-gradient(0deg, rgba(100,181,246,0.12) 0 2px, transparent 2px 100px); mix-blend-mode: overlay; animation: circuitFlow 12s linear infinite, glowShift 14s ease-in-out infinite; z-index: 1; }
-        @keyframes circuitFlow { from { background-position: 0 0, 0 0; } to { background-position: 200px 0, 0 200px; } }
-        @keyframes glowShift { 0%{filter:hue-rotate(0deg);opacity:.6}50%{filter:hue-rotate(180deg);opacity:1}100%{filter:hue-rotate(360deg);opacity:.6} }
-        .hero-content { position: relative; z-index: 3; text-align: center; }
-        .hero-title { font-size: 2.5rem; font-weight: 800; background: linear-gradient(90deg, #90caf9, #ffcc80); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
-        .hero-subtitle { font-size: 1.2rem; color: #ffcc80; font-family: "Courier New", monospace; border-right: 2px solid #ffcc80; white-space: nowrap; overflow: hidden; display: inline-block; animation: typing 10s steps(60,end) infinite alternate, blink .7s step-end infinite; }
-        @keyframes typing { from{width:0} to{width:100%} }
-        @keyframes blink { 50%{border-color:transparent} }
-        .celestial { position: absolute; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-weight:bold; z-index:2; color:#fff; font-size:0.9rem; letter-spacing:1px; background: radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent 70%), radial-gradient(circle at bottom right, rgba(0,0,0,0.5), transparent 70%); backdrop-filter: blur(6px); border: 2px solid rgba(255,255,255,0.15); animation: pulse 6s ease-in-out infinite; }
-        .ai { top: 20%; left: 10%; width: 90px; height: 90px; background: radial-gradient(circle, #90caf9, #0d47a1); box-shadow:0 0 40px 12px rgba(144,202,249,0.6); animation: orbit 40s linear infinite; transform-origin: 200px 200px; }
-        .iot{ top: 22%; right: 10%; width: 110px; height: 110px; background: radial-gradient(circle, #ffcc80, #e65100); box-shadow:0 0 50px 18px rgba(255,204,128,0.7); animation: orbit 55s linear infinite reverse; transform-origin: -200px 150px; }
-        .node { position:absolute; width:20px; height:20px; background: radial-gradient(circle, #64b5f6, #0d47a1); border-radius:50%; box-shadow:0 0 25px rgba(100,181,246,.9); z-index:1; }
+        /* GAYA HERO SECTION BARU */
+        #home-content { 
+            background-color: #0d0d0d;
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+        }
+        #matrix-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-content { 
+            position: relative; 
+            z-index: 2; 
+            text-align: center; 
+            background-color: rgba(13, 13, 13, 0.7);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            backdrop-filter: blur(5px);
+        }
+        .hero-title { 
+            font-size: 3.5rem; 
+            font-weight: 800; 
+            color: #E0E0E0;
+            margin-bottom: 1rem; 
+            text-shadow: 0 0 10px rgba(180, 138, 92, 0.7);
+        }
+        .hero-subtitle { 
+            font-size: 1.2rem; 
+            color: #B48A5C; 
+            font-family: "Courier New", monospace; 
+            border-right: 2px solid #B48A5C; 
+            white-space: nowrap; 
+            overflow: hidden; 
+            display: inline-block; 
+            animation: typing 6s steps(50,end) infinite alternate, blink .7s step-end infinite;
+            max-width: 100%;
+        }
+        @keyframes typing { 
+            from{width:0} to{width:100%} 
+        }
+        @keyframes blink { 
+            50%{border-color:transparent} 
+        }
 
         /* STRUKTUR HALAMAN UNTUK TRANSISI */
         .page {
@@ -196,14 +231,12 @@
     <main id="app" class="opacity-0">
         <!-- Home Page (Hero Section) -->
         <section id="home" class="page active p-0 flex items-center justify-center">
-             <div id="home-content" class="w-full h-full">
+             <div id="home-content">
+                 <canvas id="matrix-canvas"></canvas>
                  <div class="hero-content flex flex-col items-center justify-center h-full">
-                     <h1 class="hero-title">Gatot Sasangka</h1>
-                     <span class="hero-subtitle">Lulusan Teknik Informatika dengan keahlian di bidang Jaringan, IoT, dan Pengembangan Web.</span>
+                     <h1 class="hero-title anton-font">Gatot Sasangka</h1>
+                     <span class="hero-subtitle">Lulusan Teknik Informatika | Jaringan, IoT, & Web Dev</span>
                  </div>
-                 <div class="celestial ai">AI</div>
-                 <div class="celestial iot">IoT</div>
-                 <div class="node"></div>
              </div>
         </section>
 
@@ -470,23 +503,48 @@
 
             logo.addEventListener('click', () => performTransition('home'));
 
-            // Node Animation
-            const node = document.querySelector('.node');
-            if(node) {
-                let x=150, y=150, vx=2, vy=2, radius=10;
-                function animateNode(){
-                    const homeEl = document.getElementById('home-content');
-                    if(!homeEl) return;
-                    const w = homeEl.offsetWidth;
-                    const h = homeEl.offsetHeight;
-                    x+=vx; y+=vy;
-                    if(x+radius>w||x-radius<0) vx=-vx;
-                    if(y+radius>h||y-radius<0) vy=-vy;
-                    node.style.left=x+"px"; node.style.top=y+"px";
-                    requestAnimationFrame(animateNode);
+            // Matrix Animation
+            const canvas = document.getElementById('matrix-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let width, height, columns, drops;
+                const characters = '0123456789ABCDEF';
+                const fontSize = 16;
+
+                function initializeMatrix() {
+                    width = canvas.width = window.innerWidth;
+                    height = canvas.height = window.innerHeight;
+                    columns = Math.floor(width / fontSize);
+                    drops = [];
+                    for (let i = 0; i < columns; i++) {
+                        drops[i] = 1;
+                    }
                 }
-                animateNode();
+                
+                function drawMatrix() {
+                    ctx.fillStyle = 'rgba(13, 13, 13, 0.05)';
+                    ctx.fillRect(0, 0, width, height);
+                    ctx.fillStyle = '#B48A5C'; // Warna teks
+                    ctx.font = `${fontSize}px monospace`;
+
+                    for (let i = 0; i < drops.length; i++) {
+                        const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                        if (drops[i] * fontSize > height && Math.random() > 0.975) {
+                            drops[i] = 0;
+                        }
+                        drops[i]++;
+                    }
+                }
+
+                initializeMatrix();
+                const matrixInterval = setInterval(drawMatrix, 33);
+                
+                window.addEventListener('resize', () => {
+                    initializeMatrix();
+                });
             }
+
             
             // --- Modals and other scripts ---
             
