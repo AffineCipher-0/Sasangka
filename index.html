@@ -121,7 +121,7 @@
             padding-top: 8rem; padding-bottom: 6rem;
         }
         .page.active { opacity: 1; visibility: visible; }
-        #about, #certificates, #portfolio { background-color: #2B2E31; }
+        #about, #certificates, #portfolio, #contact { background-color: #2B2E31; }
 
         /* ELEMEN TRANSISI */
         .page-transitioner {
@@ -135,17 +135,26 @@
             position: absolute; color: #E0E0E0; font-family: 'Anton', sans-serif;
         }
 
-        /* MENU SAMPING */
-        .menu-item {
-            font-size: clamp(2rem, 8vw, 5rem); line-height: 1.1; cursor: pointer;
-            position: relative; overflow: hidden; padding: 0.2em 0;
+        /* MENU SAMPING BARU */
+        .nav-card {
+            background-color: #373A3E;
+            border: 1px solid #4a4d52;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
         }
-        .menu-item .bar {
-            position: absolute; bottom: 0; left: -100%; width: 100%; height: 5px;
-            background-color: var(--primary-color);
-            transition: left 0.4s ease;
+        .nav-card:hover {
+            background-color: #4a4d52;
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px var(--primary-color-glow);
+            color: var(--primary-hover);
         }
-        .menu-item:hover .bar { left: 0; }
         
         .icon-primary {
             color: var(--primary-color);
@@ -271,7 +280,6 @@
                  <canvas id="hero-canvas"></canvas>
                  <div class="hero-content flex flex-col items-center justify-center h-full">
                      <h1 class="hero-title anton-font">Gatot Sasangka</h1>
-                     <span class="hero-subtitle">Teknik Informatika | Jaringan, IoT, & Web Dev</span>
                  </div>
              </div>
         </section>
@@ -401,21 +409,23 @@
 
     <!-- Menu Overlay -->
     <div id="menu-overlay" class="fixed top-0 right-0 h-full w-full md:w-1/2 lg:w-1/3 bg-[#2B2E31] text-white p-16 z-40 transform translate-x-full" style="transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);">
-        <div id="close-menu-button" class="absolute top-8 right-8 text-2xl font-bold tracking-widest cursor-pointer text-white">[ CLOSE ]</div>
+        <div id="close-menu-button" class="absolute top-8 right-8 cursor-pointer text-white hover:text-primary-color transition-colors">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </div>
         <nav class="h-full flex flex-col justify-center">
-            <ul class="space-y-4">
-                <li><div class="menu-item nav-link anton-font" data-target="about">TENTANG SAYA<div class="bar"></div></div></li>
-                <li><div class="menu-item nav-link anton-font" data-target="portfolio">PORTOFOLIO<div class="bar"></div></div></li>
-                <li><div class="menu-item nav-link anton-font" data-target="certificates">SERTIFIKAT<div class="bar"></div></div></li>
-                <li><div class="menu-item nav-link anton-font" data-target="contact">KONTAK<div class="bar"></div></div></li>
-            </ul>
+            <div class="flex flex-col gap-6">
+                <div class="nav-card nav-link anton-font" data-target="about">TENTANG SAYA</div>
+                <div class="nav-card nav-link anton-font" data-target="portfolio">PORTOFOLIO</div>
+                <div class="nav-card nav-link anton-font" data-target="certificates">SERTIFIKAT</div>
+                <div class="nav-card nav-link anton-font" data-target="contact">KONTAK</div>
+            </div>
         </nav>
     </div>
     
     <!-- Footer -->
     <footer class="fixed bottom-0 left-0 w-full p-4 z-50" style="background-color: #2B2E31; border-top: 1px solid rgba(255, 255, 255, 0.1);">
         <div class="container mx-auto flex justify-between items-center text-sm text-gray-400">
-            <p>&copy; 2025 Gatot Sasangka.</p>
+            <p id="copyright">&copy; 2025 Gatot Sasangka.</p>
             <div id="datetime-container" class="flex items-center gap-2"><span id="digital-date"></span><span class="opacity-50">|</span><i data-lucide="clock" class="w-4 h-4"></i><span id="digital-clock"></span></div>
         </div>
     </footer>
@@ -820,16 +830,20 @@
                 setTimeout(() => { copyEmailBtn.textContent = 'Salin Teks'; }, 2000);
             });
             
-            // Date & Time
+            // Date, Time, and Copyright
             const clockElement = document.getElementById('digital-clock');
             const dateElement = document.getElementById('digital-date');
+            const copyrightElement = document.getElementById('copyright');
             const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
             function updateDateTime() {
                 const nowWITA = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Makassar" }));
                 const day = nowWITA.getDate();
                 const month = monthNames[nowWITA.getMonth()];
                 const year = nowWITA.getFullYear();
+
                 if (dateElement) dateElement.textContent = `${day} ${month} ${year}`;
+                if (copyrightElement) copyrightElement.innerHTML = `&copy; ${year} Gatot Sasangka.`;
+
                 const hours = String(nowWITA.getHours()).padStart(2, '0');
                 const minutes = String(nowWITA.getMinutes()).padStart(2, '0');
                 const seconds = String(nowWITA.getSeconds()).padStart(2, '0');
