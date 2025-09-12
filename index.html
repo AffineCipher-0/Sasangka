@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,39 +9,89 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
-        /* GAYA VISUAL TEMA COKLAT TUA */
+        /* GAYA VISUAL UTAMA */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #373A3E; 
+            background-color: #373A3E;  
             color: #E0E0E0;
+            overflow: hidden; /* Mencegah scroll utama saat animasi */
         }
-
-        /* Navigasi */
-        header {
-            background-color: rgba(43, 46, 49, 0.8);
-            border-bottom-color: rgba(255, 255, 255, 0.1);
+        .anton-font {
+            font-family: 'Anton', sans-serif;
         }
-        .nav-link.active {
-            color: #B48A5C;
-            font-weight: 600;
-        }
+        .highlight-link { color: #B48A5C; }
+        .highlight-link:hover { color: #E0E0E0; }
+        .modal-button-primary { background-color: #B48A5C; }
+        .modal-button-primary:hover { background-color: #A07A4F; }
+        .modal-button-secondary { background-color: #555; }
+        .modal-button-secondary:hover { background-color: #666; }
+        #email-modal-content, #certificate-modal-content, #portfolio-modal-content { background-color: #2B2E31; }
         
-        /* Section lain */
-        #about, #certificates { background-color: #2B2E31; }
-        #portfolio, #contact { background-color: #373A3E; }
-        #certificates .border { border-color: rgba(255, 255, 255, 0.1); }
+        /* GAYA HERO SECTION (DARI KODE ANDA) */
+        #home-content { background: linear-gradient(to top, #0a0a0a, #1a1a2e); position: relative; width:100%; height:100%; overflow: hidden; }
+        #home-content::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(255,183,77,0.12) 0 2px, transparent 2px 100px), repeating-linear-gradient(0deg, rgba(100,181,246,0.12) 0 2px, transparent 2px 100px); mix-blend-mode: overlay; animation: circuitFlow 12s linear infinite, glowShift 14s ease-in-out infinite; z-index: 1; }
+        @keyframes circuitFlow { from { background-position: 0 0, 0 0; } to { background-position: 200px 0, 0 200px; } }
+        @keyframes glowShift { 0%{filter:hue-rotate(0deg);opacity:.6}50%{filter:hue-rotate(180deg);opacity:1}100%{filter:hue-rotate(360deg);opacity:.6} }
+        .hero-content { position: relative; z-index: 3; text-align: center; }
+        .hero-title { font-size: 2.5rem; font-weight: 800; background: linear-gradient(90deg, #90caf9, #ffcc80); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
+        .hero-subtitle { font-size: 1.2rem; color: #ffcc80; font-family: "Courier New", monospace; border-right: 2px solid #ffcc80; white-space: nowrap; overflow: hidden; display: inline-block; animation: typing 10s steps(60,end) infinite alternate, blink .7s step-end infinite; }
+        @keyframes typing { from{width:0} to{width:100%} }
+        @keyframes blink { 50%{border-color:transparent} }
+        .celestial { position: absolute; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-weight:bold; z-index:2; color:#fff; font-size:0.9rem; letter-spacing:1px; background: radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent 70%), radial-gradient(circle at bottom right, rgba(0,0,0,0.5), transparent 70%); backdrop-filter: blur(6px); border: 2px solid rgba(255,255,255,0.15); animation: pulse 6s ease-in-out infinite; }
+        .ai { top: 20%; left: 10%; width: 90px; height: 90px; background: radial-gradient(circle, #90caf9, #0d47a1); box-shadow:0 0 40px 12px rgba(144,202,249,0.6); animation: orbit 40s linear infinite; transform-origin: 200px 200px; }
+        .iot{ top: 22%; right: 10%; width: 110px; height: 110px; background: radial-gradient(circle, #ffcc80, #e65100); box-shadow:0 0 50px 18px rgba(255,204,128,0.7); animation: orbit 55s linear infinite reverse; transform-origin: -200px 150px; }
+        .node { position:absolute; width:20px; height:20px; background: radial-gradient(circle, #64b5f6, #0d47a1); border-radius:50%; box-shadow:0 0 25px rgba(100,181,246,.9); z-index:1; }
 
-        /* Kartu Proyek & Sertifikat */
-        .card-bg {
-            background-color: #2B2E31;
-            border-color: rgba(255, 255, 255, 0.1);
+        /* STRUKTUR HALAMAN UNTUK TRANSISI */
+        .page {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0; visibility: hidden;
+            overflow-y: auto;
+            padding-top: 8rem; padding-bottom: 6rem;
         }
+        .page.active { opacity: 1; visibility: visible; }
+        #about, #certificates, #portfolio { background-color: #2B2E31; }
+
+        /* ELEMEN TRANSISI */
+        .page-transitioner {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 100; pointer-events: none; background-color: #373A3E;
+            opacity: 0;
+        }
+        .transition-text {
+            font-size: clamp(3rem, 12vw, 12rem); line-height: 1;
+            position: absolute; color: #E0E0E0; font-family: 'Anton', sans-serif;
+        }
+
+        /* MENU SAMPING */
+        .menu-item {
+            font-size: clamp(2rem, 8vw, 5rem); line-height: 1.1; cursor: pointer;
+            position: relative; overflow: hidden; padding: 0.2em 0;
+        }
+        .menu-item .bar {
+            position: absolute; bottom: 0; left: -100%; width: 100%; height: 5px;
+            background-color: #B48A5C;
+            transition: left 0.4s ease;
+        }
+        .menu-item:hover .bar { left: 0; }
+        
+        /* GAYA KARTU DAN ANIMASI (DARI KODE ANDA) */
+        .card-bg { background-color: #2B2E31; border-color: rgba(255, 255, 255, 0.1); }
+        .animated-card {
+            opacity: 0; transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animated-card.is-visible { opacity: 1; transform: translateY(0); }
+        .social-icon { transition: transform 0.3s ease-in-out; }
+        .social-icon:hover { transform: scale(1.2) translateY(-4px); }
         
         /* Skill Icons */
         .skill-icon-item {
@@ -56,13 +106,11 @@
             color: #E0E0E0;
             transition: color 0.2s ease-in-out;
         }
-
         @keyframes gentle-float {
             0% { transform: translateY(0); }
             50% { transform: translateY(-6px); }
             100% { transform: translateY(0); }
         }
-
         .skill-icon-item:nth-child(1) { animation-delay: 0s; }
         .skill-icon-item:nth-child(2) { animation-delay: 0.3s; }
         .skill-icon-item:nth-child(3) { animation-delay: 0.6s; }
@@ -71,774 +119,385 @@
         .skill-icon-item:nth-child(6) { animation-delay: 0.1s; }
         .skill-icon-item:nth-child(7) { animation-delay: 0.5s; }
         .skill-icon-item:nth-child(8) { animation-delay: 0.7s; }
-        
-        .highlight-link { color: #B48A5C; }
-        .highlight-link:hover { color: #E0E0E0; }
-        .prototype-link { color: #6EE7B7; }
-        .prototype-link:hover { color: #E0E0E0; }
-        
-        footer {
-            background-color: #2B2E31;
-            border-top-color: rgba(255, 255, 255, 0.1);
+
+        /* GAYA HALAMAN INTERAKTIF */
+        #certificate-image-mask, #portfolio-viewer, #about-viewer {
+            position: relative;
+            background-color: #373A3E;
+            border-radius: 0.5rem;
+            transition: opacity 0.5s ease-in-out;
         }
-        
-        .modal-button-primary { background-color: #B48A5C; }
-        .modal-button-primary:hover { background-color: #A07A4F; }
-        .modal-button-secondary { background-color: #555; }
-        .modal-button-secondary:hover { background-color: #666; }
-        #email-modal-content, #certificate-modal-content { background-color: #2B2E31; }
-
-
-        /* --- CSS UNTUK HERO SECTION --- */
-        #home { background: linear-gradient(to top, #0a0a0a, #1a1a2e); position: relative; overflow: hidden; }
-        #home::before { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, rgba(255,183,77,0.12) 0 2px, transparent 2px 100px), repeating-linear-gradient(0deg, rgba(100,181,246,0.12) 0 2px, transparent 2px 100px); mix-blend-mode: overlay; animation: circuitFlow 12s linear infinite, glowShift 14s ease-in-out infinite; z-index: 1; }
-        @keyframes circuitFlow { from { background-position: 0 0, 0 0; } to { background-position: 200px 0, 0 200px; } }
-        @keyframes glowShift { 0%{filter:hue-rotate(0deg);opacity:.6}50%{filter:hue-rotate(180deg);opacity:1}100%{filter:hue-rotate(360deg);opacity:.6} }
-        .hero-content { position: relative; z-index: 3; text-align: center; }
-        .hero-title { font-size: 2.5rem; font-weight: 800; background: linear-gradient(90deg, #90caf9, #ffcc80); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem; }
-        .hero-subtitle { font-size: 1.2rem; color: #ffcc80; font-family: "Courier New", monospace; border-right: 2px solid #ffcc80; white-space: nowrap; overflow: hidden; display: inline-block; animation: typing 10s steps(60,end) infinite alternate, blink .7s step-end infinite; }
-        @keyframes typing { from{width:0} to{width:100%} }
-        @keyframes blink { 50%{border-color:transparent} }
-        .celestial { position: absolute; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-weight:bold; z-index:2; color:#fff; font-size:0.9rem; letter-spacing:1px; background: radial-gradient(circle at top left, rgba(255,255,255,0.4), transparent 70%), radial-gradient(circle at bottom right, rgba(0,0,0,0.5), transparent 70%); backdrop-filter: blur(6px); border: 2px solid rgba(255,255,255,0.15); animation: pulse 6s ease-in-out infinite; }
-        .ai { top: 20%; left: 10%; width: 90px; height: 90px; background: radial-gradient(circle, #90caf9, #0d47a1); box-shadow:0 0 40px 12px rgba(144,202,249,0.6); animation: orbit 40s linear infinite; transform-origin: 200px 200px; }
-        .iot{ top: 22%; right: 10%; width: 110px; height: 110px; background: radial-gradient(circle, #ffcc80, #e65100); box-shadow:0 0 50px 18px rgba(255,204,128,0.7); animation: orbit 55s linear infinite reverse; transform-origin: -200px 150px; }
-        .cisco{ bottom: 20%; left: 15%; width: 90px; height: 90px; background: radial-gradient(circle, #1abc9c, #0e6655); box-shadow:0 0 35px 12px rgba(26,188,156,0.6); animation: orbit 50s linear infinite; transform-origin: 150px -150px; }
-        .office{ bottom: 30%; right: 12%; width: 85px; height: 85px; background: radial-gradient(circle, #d83b01, #922b21); box-shadow:0 0 35px 12px rgba(216,59,1,0.6); animation: orbit 60s linear infinite reverse; transform-origin: -180px -200px; }
-        .gworkspace{ top: 35%; left: 45%; width: 95px; height: 95px; background: radial-gradient(circle, #fbbc05, #b9770e); color:#000; box-shadow:0 0 35px 12px rgba(251,188,5,0.6); animation: orbit 65s linear infinite; transform-origin: 220px 100px; }
-        .sql{ bottom: 15%; right: 35%; width: 90px; height: 90px; background: radial-gradient(circle, #336791, #1a2c44); box-shadow:0 0 35px 12px rgba(51,103,145,0.6); animation: orbit 70s linear infinite reverse; transform-origin: -220px 120px; }
-        .micro{ top: 60%; left: 20%; width: 85px; height: 85px; background: radial-gradient(circle, #8e44ad, #4a235a); box-shadow:0 0 35px 12px rgba(142,68,173,0.6); animation: orbit 75s linear infinite; transform-origin: 250px -150px; }
-        .webprog{ top: 70%; right: 22%; width: 100px; height: 100px; background: radial-gradient(circle, #27ae60, #145a32); box-shadow:0 0 35px 12px rgba(39,174,96,0.6); animation: orbit 80s linear infinite reverse; transform-origin: -250px -180px; }
-        @keyframes orbit { from { transform: rotate(0deg) translateX(0); } to { transform: rotate(360deg) translateX(0); } }
-        @keyframes pulse { 0% { transform: scale(1); opacity:0.9;} 50% { transform: scale(1.1); opacity:1;} 100% { transform: scale(1); opacity:0.9;} }
-        .overlay-text { position:absolute; top:12%; left:5%; background:rgba(0,0,0,0.5); color:#fff; padding:10px 18px; border-radius:10px; font-size:.95rem; font-style:italic; backdrop-filter:blur(4px); z-index:2; max-width: 600px; white-space: normal; }
-        .node { position:absolute; width:20px; height:20px; background: radial-gradient(circle, #64b5f6, #0d47a1); border-radius:50%; box-shadow:0 0 25px rgba(100,181,246,.9); z-index:1; }
-        #home::after { content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 4px); animation: flicker 0.15s infinite; z-index: 5; pointer-events: none; }
-        @keyframes flicker { 0% { opacity: 0.2; } 50% { opacity: 0.4; } 100% { opacity: 0.2; } }
-        .cv-name { margin-top: 6px; font-size: 0.9rem; font-weight: bold; color: #90caf9; display: block; }
-        
-        .photo-slide-animation {
+        #certificate-image-mask img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: contain;
+            transition: opacity 0.5s ease-in-out;
             opacity: 0;
-            animation: photo-fade 8s ease-in-out infinite;
+            border-radius: 0.5rem;
         }
-        @keyframes photo-fade {
-            0%   { opacity: 0; }
-            25%  { opacity: 1; }
-            75%  { opacity: 1; }
-            100% { opacity: 0; }
+        #certificate-image-mask img.active { opacity: 1; }
+        #certificate-list li, #portfolio-list li, #about-list li {
+            cursor: pointer; transition: color 0.3s; color: #888;
+            padding: 0.2rem 0;
+        }
+        #certificate-list li.active,
+        #certificate-list li:hover,
+        #portfolio-list li.active,
+        #portfolio-list li:hover,
+        #about-list li.active,
+        #about-list li:hover { color: #E0E0E0; }
+
+        #portfolio-viewer-content, #about-viewer-content {
+            transition: opacity 0.4s ease-in-out;
         }
 
-        .animated-card {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .animated-card.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .social-icon {
-            transition: transform 0.3s ease-in-out;
-        }
-        .social-icon:hover {
-            transform: scale(1.2) translateY(-4px);
-        }
-        
-        .scroll-down-arrow {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-15px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-        }
-        
-        .certificate-card-image-wrapper {
-            height: 180px;
-            overflow: hidden;
-        }
-        .certificate-card-image {
+        /* ANIMASI PEMUATAN */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease-in-out;
+            background-color: #2B2E31;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
         }
-        .group:hover .certificate-card-image {
-            transform: scale(1.05);
+        .loader-text {
+            position: absolute;
+            font-family: 'Anton', sans-serif;
+            font-size: 5vw;
+            color: #E0E0E0;
+            opacity: 0;
         }
 
     </style>
 </head>
 <body>
 
-    <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-white">Gatot Sasangka</a>
-            <div id="desktop-nav" class="hidden md:flex space-x-6 items-center">
-                <a href="#about" class="nav-link text-gray-200 hover:text-[#B48A5C] transition-colors" data-lang-key="navAbout">Tentang Saya</a>
-                <a href="#portfolio" class="nav-link text-gray-200 hover:text-[#B48A5C] transition-colors" data-lang-key="navPortfolio">Portofolio</a>
-                <a href="#certificates" class="nav-link text-gray-200 hover:text-[#B48A5C] transition-colors" data-lang-key="navCertificates">Sertifikat</a>
-                <a href="#contact" class="nav-link text-gray-200 hover:text-[#B48A5C] transition-colors" data-lang-key="navContact">Kontak</a>
-            </div>
-            <div class="hidden md:flex items-center gap-4">
-                <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" class="modal-button-primary text-white font-semibold px-4 py-2 rounded-lg transition-colors" data-lang-key="navCV">
-                    Unduh CV
-                </a>
-                <button id="language-toggle" class="p-2 rounded-lg text-gray-200 hover:bg-white/10 w-10 text-center">
-                    <span id="lang-id-icon" class="hidden font-bold text-sm">ID</span>
-                    <span id="lang-en-icon" class="hidden font-bold text-sm">EN</span>
-                </button>
-            </div>
-            <button id="mobile-menu-button" class="md:hidden text-white">
-                <i data-lucide="menu"></i>
-            </button>
-        </nav>
-        <div id="mobile-menu" class="hidden md:hidden" style="background-color: rgba(43, 46, 49, 0.95); border-top: 1px solid rgba(255, 255, 255, 0.1);">
-            <a href="#about" class="nav-link block py-2 px-6 text-gray-200 hover:bg-white/5" data-lang-key="navAbout">Tentang Saya</a>
-            <a href="#portfolio" class="nav-link block py-2 px-6 text-gray-200 hover:bg-white/5" data-lang-key="navPortfolio">Portofolio</a>
-            <a href="#certificates" class="nav-link block py-2 px-6 text-gray-200 hover:bg-white/5" data-lang-key="navCertificates">Sertifikat</a>
-            <a href="#contact" class="nav-link block py-2 px-6 text-gray-200 hover:bg-white/5" data-lang-key="navContact">Kontak</a>
-            <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" class="block py-2 px-6 text-gray-200 hover:bg-white/5" data-lang-key="navCV">Unduh CV</a>
+    <!-- Animasi Pemuatan -->
+    <div class="loader">
+        <div class="loader-text" id="loader-text-1">GATOT</div>
+        <div class="loader-text" id="loader-text-2">SASANGKA</div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 w-full p-6 z-50 flex justify-between items-center" style="background-color: rgba(43, 46, 49, 0.8); backdrop-filter: blur(10px);">
+        <div id="logo" class="text-xl font-bold tracking-wider cursor-pointer">Gatot Sasangka</div>
+        <div class="flex items-center gap-4">
+             <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" class="modal-button-primary text-white font-semibold px-4 py-2 rounded-lg transition-colors hidden sm:block">
+                 Unduh CV
+             </a>
+            <div id="menu-button" class="text-lg font-bold tracking-widest cursor-pointer">[ MENU ]</div>
         </div>
     </header>
 
-    <main>
-        <section id="home" class="min-h-screen flex items-center justify-center">
-            <div class="hero-content">
-                <h1 class="hero-title">Gatot Sasangka</h1>
-                <span class="hero-subtitle" data-lang-key="heroTyping">Lulusan Teknik Informatika dengan keahlian di bidang Jaringan, IoT, dan Pengembangan Web.</span>
-            </div>
-            <div class="celestial ai">AI</div>
-            <div class="celestial iot">IoT</div>
-            <div class="celestial cisco">Cisco</div>
-            <div class="celestial office">Office</div>
-            <div class="celestial gworkspace">GWS</div>
-            <div class="celestial sql">SQL</div>
-            <div class="celestial micro">Micro</div>
-            <div class="celestial webprog">Web</div>
-            <div class="overlay-text">
-                 <span data-lang-key="heroOverlay">Annoying isn’t it? But those cables are truly connected and messy.</span><br>
-                 <span class="cv-name" data-lang-key="heroQuote">"We are all lost stars, trying to light up the dark." ✨</span>
-            </div>
-            <div class="node"></div>
-            <a href="#about" class="scroll-down-arrow">
-                <i data-lucide="chevron-down" class="w-8 h-8 text-white/50"></i>
-            </a>
+    <!-- Halaman Utama -->
+    <main id="app" class="opacity-0">
+        <!-- Home Page (Hero Section) -->
+        <section id="home" class="page active p-0 flex items-center justify-center">
+             <div id="home-content" class="w-full h-full">
+                 <div class="hero-content flex flex-col items-center justify-center h-full">
+                     <h1 class="hero-title">Gatot Sasangka</h1>
+                     <span class="hero-subtitle">Lulusan Teknik Informatika dengan keahlian di bidang Jaringan, IoT, dan Pengembangan Web.</span>
+                 </div>
+                 <div class="celestial ai">AI</div>
+                 <div class="celestial iot">IoT</div>
+                 <div class="node"></div>
+             </div>
         </section>
 
-        <section id="about" class="py-20 pt-32">
-            <div class="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-                <div class="md:w-1/2 text-center md:text-left">
-                    <h2 class="text-3xl font-bold text-white mb-6" data-lang-key="aboutTitle">Tentang Saya</h2>
-                    <p class="text-gray-300 mb-4 text-justify" data-lang-key="aboutP1">
-                        Saya adalah lulusan S1 Teknik Informatika dari Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki hasrat mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.
-                    </p>
-                    <p class="text-gray-300 text-justify" data-lang-key="aboutP2">
-                        Dengan fondasi yang kuat di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh dan mempublikasikan penelitian tentang mikrokontroler. Saya selalu antusias untuk belajar hal baru dan berkolaborasi dalam tim.
-                    </p>
-                    
-                    <h3 class="text-2xl font-bold text-white mt-8 mb-4" data-lang-key="skillsTitle">Keahlian Utama</h3>
-                    <div class="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-y-6 gap-x-4 text-center mt-6">
-                        
-                        <div class="skill-icon-item">
-                            <i data-lucide="braces" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
-                            <span class="mt-2 text-xs font-medium text-gray-300 block">JavaScript</span>
-                        </div>
-                        <div class="skill-icon-item">
-                            <i data-lucide="file-code-2" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
-                            <span class="mt-2 text-xs font-medium text-gray-300 block">HTML & CSS</span>
-                        </div>
-                        <div class="skill-icon-item">
-                            <i data-lucide="cpu" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
-                            <span class="mt-2 text-xs font-medium text-gray-300 block">Mikrokontroler</span>
-                        </div>
-                        <div class="skill-icon-item">
-                            <i data-lucide="wifi" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
-                            <span class="mt-2 text-xs font-medium text-gray-300 block">IoT</span>
-                        </div>
-                        <div class="skill-icon-item">
-                            <i data-lucide="database" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
-                            <span class="mt-2 text-xs font-medium text-gray-300 block">SQL / ERD</span>
-                        </div>
-                        <div class="skill-icon-item">
-                            <i data-lucide="network" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
-                            <span class="mt-2 text-xs font-medium text-gray-300 block">Cisco CCNA</span>
-                        </div>
-                        <div class="skill-icon-item">
-                            <i data-lucide="briefcase" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
-                            <span class="mt-2 text-xs font-medium text-gray-300 block">Ms. Office</span>
-                        </div>
-                        <div class="skill-icon-item">
-                            <i data-lucide="cloud" class="w-10 h-10 mx-auto text-[#B48A5C]"></i>
-                            <span class="mt-2 text-xs font-medium text-gray-300 block">G. Workspace</span>
-                        </div>
+        <!-- About Page -->
+        <section id="about" class="page flex items-center justify-center">
+            <div class="container mx-auto px-6 grid md:grid-cols-10 gap-16 items-center">
+                <!-- Left Column: Content Viewer -->
+                <div id="about-viewer" class="relative w-full aspect-[1.4/1] md:col-span-6 flex items-center justify-center p-8">
+                    <div id="about-viewer-content" class="w-full">
+                        <!-- Dynamic content will go here -->
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center items-center">
-                    <div class="relative w-80 h-80 md:w-96 md:h-96 mx-auto">
-                        <img src="https://i.imgur.com/QDBBrAN.png" alt="Foto Profil Gatot Sasangka 1"
-                             class="absolute inset-0 w-full h-full object-cover rounded-full shadow-2xl">
-                        <div class="absolute inset-0 w-full h-full photo-slide-animation">
-                            <div class="relative w-full h-full rounded-full overflow-hidden shadow-2xl">
-                                <img src="https://i.imgur.com/9u9KDFJ.png" alt="Background Profil"
-                                     class="absolute inset-0 w-full h-full object-cover scale-110 blur-sm opacity-50">
-                                <img src="https://i.imgur.com/9u9KDFJ.png" alt="Foto Profil Gatot Sasangka 2"
-                                     class="relative w-full h-full object-cover rounded-full border-4 border-[#373A3E]">
-                            </div>
-                        </div>
-                    </div>
+
+                <!-- Right Column: Topic List -->
+                <div class="w-full md:col-span-4">
+                    <h2 class="text-5xl anton-font tracking-wider text-white mb-6">TENTANG SAYA</h2>
+                    <ul id="about-list" class="space-y-1 text-xl md:text-2xl anton-font tracking-wider">
+                        <!-- List items will be dynamically generated -->
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section id="portfolio" class="py-28">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-white text-center mb-12" data-lang-key="portfolioTitle">Portofolio Proyek</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="flex items-center gap-4 mb-3">
-                                <i data-lucide="radio-tower" class="w-10 h-10 text-[#B48A5C]"></i>
-                                <h3 class="text-xl font-bold text-white" data-lang-key="project1Title">Penerjemah Sandi Morse (Jurnal Ilmiah)</h3>
-                            </div>
-                            <p class="text-gray-300 text-sm text-justify mb-4" data-lang-key="project1Desc">
-                                Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler. Proyek ini <strong>membuktikan kelayakan algoritma Brute Force</strong> untuk pencocokan sinyal secara akurat, mencapai <strong>efektivitas 100%</strong> dalam pengujian. Dipublikasikan di Jurnal INFOS.
-                            </p>
-                            <div class="mt-auto pt-4 border-t border-gray-700">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex gap-3" title="Teknologi yang Digunakan">
-                                        <i data-lucide="cpu" class="w-5 h-5 text-gray-400" title="Mikrokontroler"></i>
-                                    </div>
-                                    <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetail">
-                                        Lihat Detail <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="flex items-center gap-4 mb-3">
-                                <i data-lucide="shopping-cart" class="w-10 h-10 text-[#B48A5C]"></i>
-                                <h3 class="text-xl font-bold text-white" data-lang-key="project2Title">Website E-Commerce</h3>
-                            </div>
-                            <p class="text-gray-300 text-sm text-justify mb-4" data-lang-key="project2Desc">
-                                Sebagai <strong>Ketua Tim</strong>, saya mengoordinasikan 3 kontributor untuk membangun aplikasi e-commerce fungsional. Proyek ini mencakup fitur lengkap mulai dari registrasi pengguna hingga manajemen pesanan oleh admin, <strong>menyelesaikan tantangan dalam menciptakan alur transaksi yang aman dan intuitif</strong>.
-                            </p>
-                            <div class="mt-auto pt-4 border-t border-gray-700">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex gap-3" title="Teknologi yang Digunakan">
-                                        <i data-lucide="braces" class="w-5 h-5 text-gray-400" title="JavaScript"></i>
-                                        <i data-lucide="file-code-2" class="w-5 h-5 text-gray-400" title="HTML & CSS"></i>
-                                    </div>
-                                    <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetail">
-                                        Lihat Detail <i data-lucide="external-link" class="w-4 h-4 ml-2"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="animated-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 flex flex-col border">
-                        <div class="p-6 flex flex-col flex-grow">
-                            <div class="flex items-center gap-4 mb-3">
-                                <i data-lucide="sprout" class="w-10 h-10 text-[#B48A5C]"></i>
-                                <h3 class="text-xl font-bold text-white" data-lang-key="project3Title">Otomatisasi Greenhouse (Proyek IoT)</h3>
-                            </div>
-                            <p class="text-gray-300 text-sm text-justify mb-4" data-lang-key="project3Desc">
-                                Merancang arsitektur sistem dan UI/UX untuk otomatisasi greenhouse berbasis IoT. Desain ini bertujuan untuk <strong>meningkatkan efisiensi pemantauan dan mengurangi kebutuhan intervensi manual</strong>, menjadikannya sebuah blueprint komprehensif untuk implementasi nyata.
-                            </p>
-                             <div class="mt-auto pt-4 border-t border-gray-700">
-                                <div class="flex items-center justify-between">
-                                    <div class="flex gap-3" title="Teknologi yang Digunakan">
-                                        <i data-lucide="wifi" class="w-5 h-5 text-gray-400" title="IoT"></i>
-                                        <i data-lucide="layout-template" class="w-5 h-5 text-gray-400" title="UI/UX Design"></i>
-                                    </div>
-                                    <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
-                                        <a href="https://docs.google.com/document/d/1k-1eR1BLNI2a9yP-EyyvkzlmljOK8GIsx2nmV3pNGQ4/edit?usp=sharing" target="_blank" class="highlight-link font-semibold inline-flex items-center text-sm" data-lang-key="viewDetailSRS">
-                                             (SRS) <i data-lucide="file-text" class="w-4 h-4 ml-1"></i>
-                                        </a>
-                                        <a href="https://affinecipher-0.github.io/prototype-greenhouse/" target="_blank" class="prototype-link font-semibold inline-flex items-center text-sm" data-lang-key="viewPrototype">
-                                             Prototipe <i data-lucide="mouse-pointer-2" class="w-4 h-4 ml-1"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <!-- Portfolio Page -->
+        <section id="portfolio" class="page flex items-center justify-center">
+            <div class="container mx-auto px-6 grid md:grid-cols-10 gap-16 items-center">
+                <!-- Left Column: Project Viewer -->
+                <div id="portfolio-viewer" class="relative w-full aspect-[1.4/1] md:col-span-6 flex items-center justify-center p-8">
+                    <div id="portfolio-viewer-content" class="w-full">
+                        <!-- Content will be dynamically added here -->
                     </div>
-
                 </div>
-                <div class="text-center mt-16">
-                    <p class="text-gray-300 max-w-2xl mx-auto mb-6" data-lang-key="seeMoreContext">
-                        Penasaran dengan kode di balik proyek ini? Lihat semua repositori, kontribusi, dan eksperimen saya di profil GitHub saya.
-                    </p>
-                    <a href="https://github.com/AffineCipher-0" target="_blank" rel="noopener noreferrer" 
-                       class="modal-button-primary inline-flex items-center text-white font-semibold px-6 py-3 rounded-lg transition-transform transform hover:scale-105">
-                        <i data-lucide="github" class="w-5 h-5 mr-2"></i>
-                        <span data-lang-key="githubButton">Kunjungi GitHub Saya</span>
-                    </a>
+
+                <!-- Right Column: Project List -->
+                <div class="w-full md:col-span-4">
+                     <h2 class="text-5xl anton-font tracking-wider text-white mb-6">PROYEK SAYA</h2>
+                    <ul id="portfolio-list" class="space-y-1 text-xl md:text-2xl anton-font tracking-wider">
+                        <!-- List items will be dynamically generated -->
+                    </ul>
+                      <div class="text-left mt-8">
+                         <a href="https://github.com/AffineCipher-0" target="_blank" rel="noopener noreferrer" class="modal-button-primary inline-flex items-center text-white font-semibold px-6 py-3 rounded-lg transition-transform transform hover:scale-105">
+                             <i data-lucide="github" class="w-5 h-5 mr-2"></i>
+                             <span>Lihat Semua di GitHub</span>
+                         </a>
+                     </div>
                 </div>
             </div>
         </section>
         
-        <section id="certificates" class="py-28">
-            <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-white text-center mb-16" data-lang-key="certificatesTitle">Sertifikasi & Pelatihan</h2>
-        
-                <h3 class="text-2xl font-semibold text-white text-center mb-8">Pengalaman Profesional</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
-                         data-img-src="https://i.imgur.com/wZ7owwo.png"
-                         data-doc-url="https://drive.google.com/file/d/1Y3VW0xUN9dW-vbJ5zU-x-F3nCiNBaIX0/view?usp=sharing">
-                        <div class="certificate-card-image-wrapper">
-                            <img src="https://i.imgur.com/wZ7owwo.png" alt="Sertifikat Magang DLHK DIY" class="certificate-card-image">
-                        </div>
-                        <div class="p-4 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Magang DLHK DIY</h3>
-                            <p class="text-sm text-gray-300 mt-auto">Dinas Lingkungan Hidup & Kehutanan DIY (2024)</p>
-                        </div>
-                    </div>
-                </div>
-        
-                <h3 class="text-2xl font-semibold text-white text-center mt-20 mb-8">Sertifikasi Inti</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
-                         data-img-src="https://i.imgur.com/ltwjESR.png"
-                         data-doc-url="https://drive.google.com/file/d/1vPCSBaFzxmcFU0E4WHhuJRehKpsjSY0X/view?usp=sharing">
-                        <div class="certificate-card-image-wrapper">
-                            <img src="https://i.imgur.com/ltwjESR.png" alt="Sertifikat CCNA Security" class="certificate-card-image">
-                        </div>
-                        <div class="p-4 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">CCNA Security</h3>
-                            <p class="text-sm text-gray-300 mt-auto">Cisco Networking Academy (2022)</p>
-                        </div>
-                    </div>
-                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
-                         data-img-src="https://i.imgur.com/iCRbLK8.png"
-                         data-doc-url="https://drive.google.com/file/d/1SsQ9tMr0DcFsrTPImab9AFQ89qXdVc9P/view?usp=sharing">
-                        <div class="certificate-card-image-wrapper">
-                            <img src="https://i.imgur.com/iCRbLK8.png" alt="Sertifikat Switching, Routing, & Wireless Essentials" class="certificate-card-image">
-                        </div>
-                        <div class="p-4 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Switching, Routing, & Wireless Essentials</h3>
-                            <p class="text-sm text-gray-300 mt-auto">Cisco Networking Academy (2021)</p>
-                        </div>
-                    </div>
-                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
-                         data-img-src="https://i.imgur.com/5frcsDW.png"
-                         data-doc-url="https://drive.google.com/file/d/1enjcK-yMxhLaqD1XXHdiZA_pz7zBTgJf/view?usp=sharing">
-                        <div class="certificate-card-image-wrapper">
-                            <img src="https://i.imgur.com/5frcsDW.png" alt="Sertifikat Introduction to Networks" class="certificate-card-image">
-                        </div>
-                        <div class="p-4 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Introduction to Networks</h3>
-                            <p class="text-sm text-gray-300 mt-auto">Cisco Networking Academy (2021)</p>
-                        </div>
-                    </div>
-                     <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
-                         data-img-src="https://i.imgur.com/Pqwf8N1.png"
-                         data-doc-url="https://drive.google.com/file/d/1iqdSqPVHU36aNKPOJDnm8wuPEsvXQNji/view?usp=sharing">
-                        <div class="certificate-card-image-wrapper">
-                             <img src="https://i.imgur.com/Pqwf8N1.png" alt="Sertifikat IT Essentials" class="certificate-card-image">
-                        </div>
-                        <div class="p-4 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">IT Essentials</h3>
-                            <p class="text-sm text-gray-300 mt-auto">Cisco Networking Academy (2020)</p>
-                        </div>
-                    </div>
-                </div>
-        
-                <h3 class="text-2xl font-semibold text-white text-center mt-20 mb-8">Pengembangan Diri & Pelatihan</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
-                         data-img-src="https://i.imgur.com/fgV6iQP.png"
-                         data-doc-url="https://drive.google.com/file/d/1vs2A6PckZR2EdNaLsJKm-pdINUiWcf0i/view?usp=sharing">
-                        <div class="certificate-card-image-wrapper">
-                            <img src="https://i.imgur.com/fgV6iQP.png" alt="Sertifikat Literasi Digital" class="certificate-card-image">
-                        </div>
-                        <div class="p-4 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Literasi Digital</h3>
-                            <p class="text-sm text-gray-300 mt-auto">Kemkominfo (2023)</p>
-                        </div>
-                    </div>
-                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
-                         data-img-src="https://i.imgur.com/eyW5LUw.png"
-                         data-doc-url="https://drive.google.com/file/d/1Y02PijK2soKCo0STFN1isCQcEUCU-LDJ/view?usp=sharing">
-                        <div class="certificate-card-image-wrapper">
-                            <img src="https://i.imgur.com/eyW5LUw.png" alt="Sertifikat Seminar Cyber Security" class="certificate-card-image">
-                        </div>
-                        <div class="p-4 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Seminar Cyber Security</h3>
-                            <p class="text-sm text-gray-300 mt-auto">HIMATEKNO FTTI UNJAYA (2023)</p>
-                        </div>
-                    </div>
-                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
-                         data-img-src="https://i.imgur.com/fRg3hmp.png"
-                         data-doc-url="https://drive.google.com/file/d/1zchzs3U4_AkuUt3KeVRPt_J1ve6G_Trg/view?usp=sharing">
-                        <div class="certificate-card-image-wrapper">
-                             <img src="https://i.imgur.com/fRg3hmp.png" alt="Sertifikat Webinar Pengolahan Data" class="certificate-card-image">
-                        </div>
-                        <div class="p-4 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Webinar Pengolahan Data</h3>
-                            <p class="text-sm text-gray-300 mt-auto">XREI Institute (2023)</p>
-                        </div>
-                    </div>
-                    <div class="animated-card certificate-card card-bg rounded-lg overflow-hidden shadow-lg transform hover:-translate-y-2 transition-transform duration-300 group border flex flex-col cursor-pointer"
-                         data-img-src="https://i.imgur.com/zruR3Gv.png"
-                         data-doc-url="https://drive.google.com/file/d/1PcLXnBqaYy0r_D7utYBeBWpyber1msHE/view?usp=sharing">
-                        <div class="certificate-card-image-wrapper">
-                            <img src="https://i.imgur.com/zruR3Gv.png" alt="Sertifikat Fundamental Python" class="certificate-card-image">
-                        </div>
-                        <div class="p-4 flex flex-col flex-grow">
-                            <h3 class="text-lg font-bold text-white mb-1 group-hover:text-[#B48A5C] transition-colors cert-title">Fundamental Python</h3>
-                            <p class="text-sm text-gray-300 mt-auto">Progate (2021)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Certificates Page -->
+        <section id="certificates" class="page flex items-center justify-center">
+             <div class="container mx-auto px-6 grid md:grid-cols-10 gap-16 items-center">
+                 <!-- Left Column: Image Viewer -->
+                 <div class="relative w-full aspect-[1.4/1] md:col-span-6 group">
+                     <div id="certificate-image-mask" class="w-full h-full">
+                         <!-- Images will be dynamically added here -->
+                     </div>
+                     <div class="absolute inset-0 bg-black/50 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg cursor-pointer" id="image-overlay">
+                         <i data-lucide="zoom-in" class="w-12 h-12 text-white"></i>
+                         <span class="mt-2 text-white font-semibold">Lihat Penuh</span>
+                     </div>
+                 </div>
+
+                 <!-- Right Column: Certificate List -->
+                 <div class="w-full md:col-span-4">
+                     <h2 class="text-5xl anton-font tracking-wider text-white mb-6">SERTIFIKAT</h2>
+                     <ul id="certificate-list" class="space-y-1 text-xl md:text-2xl lg:text-3xl anton-font tracking-wider">
+                         <!-- List items will be dynamically generated -->
+                     </ul>
+                 </div>
+             </div>
         </section>
 
-        <section id="contact" class="py-20">
-            <div class="container mx-auto px-6 text-center">
-                <h2 class="text-3xl font-bold text-white" data-lang-key="contactTitle">Hubungi Saya</h2>
-                <div class="w-24 h-px bg-gray-600 mx-auto mt-4 mb-6"></div>
-                <p class="text-gray-300 mt-4 max-w-xl mx-auto" data-lang-key="contactSubtitle">
-                    Saya selalu menyambut baik koneksi baru, peluang kerja, serta kolaborasi yang bermanfaat.
-                </p>
-                <div class="mt-12 flex justify-center gap-8 text-3xl">
-                    <a href="#" id="email-link" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="Email">
-                       <i class="fa-solid fa-envelope"></i>
-                    </a>
-                    <a href="https://wa.me/6287832165306" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="Hubungi via WhatsApp">
-                       <i class="fab fa-whatsapp"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/sasangka/" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="Lihat Profil LinkedIn">
-                         <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/AffineCipher-0" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="Lihat Profil GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
+        <!-- Contact Page -->
+        <section id="contact" class="page flex items-center justify-center">
+            <div class="container mx-auto px-6 text-left">
+                <h2 id="email-link" class="anton-font text-5xl md:text-7xl lg:text-8xl tracking-tighter break-all cursor-pointer hover:text-[#B48A5C] transition-colors">
+                    SASANGKAGATOT@GMAIL.COM
+                </h2>
+                <div class="mt-12 grid md:grid-cols-3 gap-8">
+                    <div class="md:col-span-2">
+                        <h3 class="font-bold mb-2">[ Mari Bekerja Sama ]</h3>
+                        <p class="text-gray-300">
+                            Saya selalu menyambut baik koneksi baru, peluang kerja, serta kolaborasi yang bermanfaat. Jangan ragu untuk menghubungi saya.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="font-bold mb-2">[ Socials ]</h3>
+                        <div class="flex gap-6 text-2xl">
+                             <a href="https://wa.me/6287832165306" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            <a href="https://www.linkedin.com/in/sasangka/" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://github.com/AffineCipher-0" target="_blank" class="social-icon text-gray-300 hover:text-[#B48A5C]" title="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="border-t border-white/10">
-        <div class="container mx-auto px-6 py-4 text-gray-400 flex flex-col sm:flex-row justify-between items-center text-sm">
-            <p class="mb-2 sm:mb-0">&copy; 2025 Gatot Sasangka. <span data-lang-key="footerText">Dibuat dengan semangat.</span></p>
-            <div id="datetime-container" class="flex items-center gap-2">
-                <span id="digital-date"></span>
-                <span class="opacity-50">|</span>
-                <i data-lucide="clock" class="w-4 h-4"></i>
-                <span id="digital-clock"></span>
-            </div>
+    <!-- Page Transitioner -->
+    <div class="page-transitioner">
+        <div id="transition-current" class="transition-text"></div>
+        <div id="transition-next" class="transition-text"></div>
+    </div>
+
+    <!-- Menu Overlay -->
+    <div id="menu-overlay" class="fixed top-0 right-0 h-full w-full md:w-1/2 lg:w-1/3 bg-[#2B2E31] text-white p-16 z-40 transform translate-x-full" style="transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);">
+        <div id="close-menu-button" class="absolute top-8 right-8 text-2xl font-bold tracking-widest cursor-pointer text-white">[ CLOSE ]</div>
+        <nav class="h-full flex flex-col justify-center">
+            <ul class="space-y-4">
+                <li><div class="menu-item nav-link anton-font" data-target="about">TENTANG SAYA<div class="bar"></div></div></li>
+                <li><div class="menu-item nav-link anton-font" data-target="portfolio">PORTOFOLIO<div class="bar"></div></div></li>
+                <li><div class="menu-item nav-link anton-font" data-target="certificates">SERTIFIKAT<div class="bar"></div></div></li>
+                <li><div class="menu-item nav-link anton-font" data-target="contact">KONTAK<div class="bar"></div></div></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="fixed bottom-0 left-0 w-full p-4 z-50" style="background-color: #2B2E31; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+        <div class="container mx-auto flex justify-between items-center text-sm text-gray-400">
+            <p>&copy; 2025 Gatot Sasangka.</p>
+            <div id="datetime-container" class="flex items-center gap-2"><span id="digital-date"></span><span class="opacity-50">|</span><i data-lucide="clock" class="w-4 h-4"></i><span id="digital-clock"></span></div>
         </div>
     </footer>
-    
+
+    <!-- Modals -->
     <div id="email-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden">
         <div id="email-modal-content" class="rounded-lg shadow-xl w-full max-w-sm transform transition-all scale-95 opacity-0 text-center p-8">
-            <h3 class="text-lg font-bold text-white mb-2" data-lang-key="emailModalTitle">Alamat Email Saya</h3>
-            <p class="text-gray-400 mb-6" data-lang-key="emailModalSubtitle">Silakan salin alamat email di bawah ini.</p>
-            <div class="relative bg-[#373A3E] p-4 rounded-lg border border-gray-700">
-                <input id="email-address" type="text" readonly value="sasangkagatot@gmail.com" class="bg-transparent text-white w-full text-center outline-none">
-            </div>
+            <h3 class="text-lg font-bold text-white mb-2">Alamat Email Saya</h3>
+            <p class="text-gray-400 mb-6">Silakan salin alamat email di bawah ini.</p>
+            <div class="relative bg-[#373A3E] p-4 rounded-lg border border-gray-700"><input id="email-address" type="text" readonly value="sasangkagatot@gmail.com" class="bg-transparent text-white w-full text-center outline-none"></div>
             <div class="flex gap-4 mt-6">
-                <button id="copy-email-btn" class="modal-button-primary w-full text-white font-semibold py-2 rounded-lg" data-lang-key="modalCopy">Salin Teks</button>
-                <button id="close-email-modal" class="modal-button-secondary w-full text-white font-semibold py-2 rounded-lg" data-lang-key="modalClose">Tutup</button>
+                <button id="copy-email-btn" class="modal-button-primary w-full text-white font-semibold py-2 rounded-lg">Salin Teks</button>
+                <button id="close-email-modal" class="modal-button-secondary w-full text-white font-semibold py-2 rounded-lg">Tutup</button>
             </div>
         </div>
     </div>
-
     <div id="certificate-modal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
         <div id="certificate-modal-content" class="rounded-lg shadow-xl w-full max-w-3xl transform transition-all scale-95 opacity-0 p-6 border border-white/10">
+            <div class="flex justify-between items-center mb-4"><h3 id="certificate-modal-title" class="text-xl font-bold text-white"></h3><button id="close-certificate-modal" class="text-gray-400 hover:text-white text-3xl">&times;</button></div>
+            <div class="bg-gray-900 rounded-md p-2"><img id="certificate-modal-image" src="" alt="Gambar Sertifikat" class="w-full h-auto max-h-[60vh] object-contain"></div>
+            <div class="flex gap-4 mt-6"><a id="certificate-modal-doc-link" href="#" target="_blank" class="modal-button-primary w-full text-white text-center font-semibold py-2.5 rounded-lg">Lihat Dokumen Asli</a></div>
+        </div>
+    </div>
+     <div id="portfolio-modal" class="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div id="portfolio-modal-content" class="rounded-lg shadow-xl w-full max-w-2xl transform transition-all scale-95 opacity-0 p-6 border border-white/10">
             <div class="flex justify-between items-center mb-4">
-                <h3 id="certificate-modal-title" class="text-xl font-bold text-white"></h3>
-                <button id="close-certificate-modal" class="text-gray-400 hover:text-white">&times;</button>
+                <h3 id="portfolio-modal-title" class="text-2xl font-bold text-white"></h3>
+                <button id="close-portfolio-modal" class="text-gray-400 hover:text-white text-3xl">&times;</button>
             </div>
-            <div class="bg-gray-900 rounded-md p-2">
-                 <img id="certificate-modal-image" src="" alt="Gambar Sertifikat" class="w-full h-auto max-h-[60vh] object-contain">
-            </div>
-            <div class="flex gap-4 mt-6">
-                 <a id="certificate-modal-doc-link" href="#" target="_blank" class="modal-button-primary w-full text-white text-center font-semibold py-2.5 rounded-lg">
-                    Lihat Dokumen Asli
-                 </a>
-            </div>
+            <div class="bg-gray-900 rounded-md p-6 my-4 text-center" id="portfolio-modal-icon-container"></div>
+            <p id="portfolio-modal-description" class="text-gray-300 text-left mb-6"></p>
+            <div id="portfolio-modal-links" class="flex flex-col sm:flex-row gap-4 mt-6"></div>
         </div>
     </div>
     
+    <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
     <script>
-        lucide.createIcons();
-
-        // --- SCRIPT ANIMASI NODE ---
-        const node = document.querySelector('.node');
-        if (node) {
-            let x=150, y=150;
-            let vx=3, vy=3;
-            const radius=20;
-
-            function animate(){
-                const w=window.innerWidth;
-                const h=document.getElementById('home').offsetHeight;
-
-                x+=vx;
-                y+=vy;
-
-                if(x+radius>w||x-radius<0){
-                    vx=-vx;
-                    x=Math.max(radius,Math.min(x,w-radius));
-                }
-                if(y+radius>h||y-radius<0){
-                    vy=-vy;
-                    y=Math.max(radius,Math.min(y,h-radius));
-                }
-
-                node.style.left=x+"px";
-                node.style.top=y+"px";
-
-                requestAnimationFrame(animate);
-            }
-            animate();
-        }
-
-        // --- SCRIPT LAINNYA ---
-        document.addEventListener("mousemove", (e) => {
-            const moveX = (e.clientX / window.innerWidth - 0.5) * 20;
-            const moveY = (e.clientY / window.innerHeight - 0.5) * 20;
-            document.querySelectorAll('#home .celestial, #home .hero-content').forEach(el => {
-                el.style.transform = `translate(${moveX}px, ${moveY}px)`;
-            });
-        });
-
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        const translations = {
-            id: {
-                navAbout: "Tentang Saya",
-                navPortfolio: "Portofolio",
-                navCertificates: "Sertifikat",
-                navContact: "Kontak",
-                navCV: "Unduh CV",
-                heroTyping: "Lulusan Teknik Informatika dengan keahlian di bidang Jaringan, IoT, dan Pengembangan Web.",
-                heroOverlay: "Annoying isn’t it? But those cables are truly connected and messy.",
-                heroQuote: `"We are all lost stars, trying to light up the dark." ✨`,
-                aboutTitle: "Tentang Saya",
-                aboutP1: "Saya adalah lulusan S1 Teknik Informatika dari Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki hasrat mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.",
-                aboutP2: "Dengan fondasi yang kuat di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh dan mempublikasikan penelitian tentang mikrokontroler. Saya selalu antusias untuk belajar hal baru dan berkolaborasi dalam tim.",
-                skillsTitle: "Keahlian Utama",
-                portfolioTitle: "Portofolio Proyek",
-                project1Title: "Penerjemah Sandi Morse (Jurnal Ilmiah)",
-                project1Desc: "Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler. Proyek ini <strong>membuktikan kelayakan algoritma Brute Force</strong> untuk pencocokan sinyal secara akurat, mencapai <strong>efektivitas 100%</strong> dalam pengujian. Dipublikasikan di Jurnal INFOS.",
-                viewDetail: "Lihat Detail",
-                project2Title: "Website E-Commerce",
-                project2Desc: "Sebagai <strong>Ketua Tim</strong>, saya mengoordinasikan 3 kontributor untuk membangun aplikasi e-commerce fungsional. Proyek ini mencakup fitur lengkap mulai dari registrasi pengguna hingga manajemen pesanan oleh admin, <strong>menyelesaikan tantangan dalam menciptakan alur transaksi yang aman dan intuitif</strong>.",
-                project3Title: "Otomatisasi Greenhouse (Proyek IoT)",
-                project3Desc: "Merancang arsitektur sistem dan UI/UX untuk otomatisasi greenhouse berbasis IoT. Desain ini bertujuan untuk <strong>meningkatkan efisiensi pemantauan dan mengurangi kebutuhan intervensi manual</strong>, menjadikannya sebuah blueprint komprehensif untuk implementasi nyata.",
-                viewDetailSRS: "(SRS)",
-                viewPrototype: "Prototipe",
-                seeMoreContext: "Penasaran dengan kode di balik proyek ini? Lihat semua repositori, kontribusi, dan eksperimen saya di profil GitHub saya.",
-                githubButton: "Kunjungi GitHub Saya",
-                certificatesTitle: "Sertifikasi & Pelatihan",
-                certCatExperience: "Pengalaman Praktis & Profesional",
-                certCatNetwork: "Jaringan & Keamanan (Cisco)",
-                certCatDev: "Pengembangan Diri & Pelatihan",
-                contactTitle: "Hubungi Saya",
-                contactSubtitle: "Saya selalu menyambut baik koneksi baru, peluang kerja, serta kolaborasi yang bermanfaat.",
-                footerText: "Dibuat dengan semangat.",
-                emailModalTitle: "Alamat Email Saya",
-                emailModalSubtitle: "Silakan salin alamat email di bawah ini.",
-                modalCopy: "Salin Teks",
-                modalClose: "Tutup"
-            },
-            en: {
-                navAbout: "About Me",
-                navPortfolio: "Portfolio",
-                navCertificates: "Certificates",
-                navContact: "Contact",
-                navCV: "Download CV",
-                heroTyping: "An Informatics Engineering graduate with skills in Networking, IoT, and Web Development.",
-                heroOverlay: "Annoying isn’t it? But those cables are truly connected and messy.",
-                heroQuote: `"We are all lost stars, trying to light up the dark." ✨`,
-                aboutTitle: "About Me",
-                aboutP1: "I am a cum laude graduate in Informatics Engineering from Amikom University of Yogyakarta (GPA 3.83). I have a deep passion for applying technical skills to support industrial digitalization and operational efficiency.",
-                aboutP2: "With a strong foundation in Networking (Cisco CCNA), IoT development, AI, and database management (SQL), I have successfully designed remote monitoring systems and published research on microcontrollers. I am always enthusiastic about learning new things and collaborating in a team.",
-                skillsTitle: "Main Skills",
-                portfolioTitle: "Project Portfolio",
-                project1Title: "Morse Code Translator (Scientific Journal)",
-                project1Desc: "Designed and built a microcontroller-based morse code translator. This project <strong>proved the feasibility of the Brute Force algorithm</strong> for accurate signal matching, achieving <strong>100% effectiveness</strong> in testing. Published in the INFOS Journal.",
-                viewDetail: "View Details",
-                project2Title: "E-Commerce Website",
-                project2Desc: "As <strong>Team Lead</strong>, I coordinated 3 contributors to build a functional e-commerce application. The project included complete features from user registration to admin order management, <strong>solving the challenge of creating a secure and intuitive transaction flow</strong>.",
-                project3Title: "Greenhouse Automation (IoT Project)",
-                project3Desc: "Designed the system architecture and UI/UX for an IoT-based greenhouse automation. This design aims to <strong>increase monitoring efficiency and reduce the need for manual intervention</strong>, serving as a comprehensive blueprint for real-world implementation.",
-                viewDetailSRS: "(SRS)",
-                viewPrototype: "Prototype",
-                seeMoreContext: "Curious about the code behind these projects? See all my repositories, contributions, and experiments on my GitHub profile.",
-                githubButton: "Visit My GitHub",
-                certificatesTitle: "Certifications & Training",
-                certCatExperience: "Practical & Professional Experience",
-                certCatNetwork: "Networking & Security (Cisco)",
-                certCatDev: "Self-Development & Training",
-                contactTitle: "Contact Me",
-                contactSubtitle: "I'm open for discussions, job opportunities, or just to exchange ideas.",
-                footerText: "Made with passion.",
-                emailModalTitle: "My Email Address",
-                emailModalSubtitle: "Please copy the email address below.",
-                modalCopy: "Copy Text",
-                modalClose: "Close"
-            }
-        };
-
-        const languageToggle = document.getElementById('language-toggle');
-        const langIdIcon = document.getElementById('lang-id-icon');
-        const langEnIcon = document.getElementById('lang-en-icon');
-        function setLanguage(lang) {
-            document.documentElement.lang = lang;
-            const elements = document.querySelectorAll('[data-lang-key]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-lang-key');
-                if (translations[lang][key]) {
-                    el.innerHTML = translations[lang][key];
-                }
-            });
-            if (lang === 'id') {
-                langEnIcon.classList.remove('hidden');
-                langIdIcon.classList.add('hidden');
-            } else {
-                langIdIcon.classList.remove('hidden');
-                langEnIcon.classList.add('hidden');
-            }
-            localStorage.setItem('language', lang);
-        }
-        languageToggle.addEventListener('click', () => {
-            const currentLang = localStorage.getItem('language') || 'id';
-            const newLang = currentLang === 'id' ? 'en' : 'id';
-            setLanguage(newLang);
-        });
-        const initialLang = localStorage.getItem('language') || 'id';
-        setLanguage(initialLang);
-    
         document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('main section');
+            lucide.createIcons();
+
+            // --- VARIABLES ---
+            const app = document.getElementById('app');
+            const loader = document.querySelector('.loader');
+            const menuButton = document.getElementById('menu-button');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const logo = document.getElementById('logo');
             const navLinks = document.querySelectorAll('.nav-link');
-            
-            const activateNavLink = () => {
-                let current = 'home';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 100) {
-                        current = section.getAttribute('id');
-                    }
-                });
+            const pageTransitioner = document.querySelector('.page-transitioner');
+            const transitionCurrentEl = document.getElementById('transition-current');
+            const transitionNextEl = document.getElementById('transition-next');
 
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
-            };
-            window.addEventListener('scroll', activateNavLink);
+            let currentPage = 'home';
+            let isAnimating = false;
 
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    if (href.length > 1 && href.startsWith('#')) {
-                        e.preventDefault();
-                        const targetElement = document.querySelector(href);
-                        if (targetElement) {
-                            const headerOffset = document.querySelector('header').offsetHeight;
-                            const elementPosition = targetElement.getBoundingClientRect().top;
-                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                            window.scrollTo({
-                                top: offsetPosition,
-                                behavior: "smooth"
-                            });
-                            const mobileMenu = document.getElementById('mobile-menu');
-                            if (!mobileMenu.classList.contains('hidden')) {
-                                mobileMenu.classList.add('hidden');
+            // --- FUNCTIONS ---
+            function runLoadingAnimation() {
+                const tl = gsap.timeline();
+                tl.to("#loader-text-1", { opacity: 1, y: -20, duration: 1, ease: 'power2.out' })
+                  .to("#loader-text-1", { opacity: 0, y: -40, duration: 1, ease: 'power2.in' }, "+=0.5")
+                  .to("#loader-text-2", { opacity: 1, y: -20, duration: 1, ease: 'power2.out' }, "-=0.5")
+                  .to("#loader-text-2", { opacity: 0, y: -40, duration: 1, ease: 'power2.in' }, "+=0.5")
+                  .to(loader, { opacity: 0, duration: 0.5, onComplete: () => loader.style.display = 'none' })
+                  .to(app, { opacity: 1, duration: 0.5 }, "-=0.5");
+            }
+
+            function updatePageContent() {
+                const activePage = document.querySelector('.page.active');
+                if (activePage) {
+                    const animatedCards = activePage.querySelectorAll('.animated-card');
+                    animatedCards.forEach(card => card.classList.remove('is-visible'));
+                     const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('is-visible');
+                                observer.unobserve(entry.target);
                             }
-                        }
+                        });
+                    }, { root: activePage, rootMargin: '0px 0px -100px 0px' });
+                    animatedCards.forEach((card, index) => {
+                         card.style.transitionDelay = `${(index % 4) * 100}ms`;
+                         observer.observe(card);
+                    });
+                }
+                 lucide.createIcons();
+            }
+
+            function performTransition(targetId) {
+                if (isAnimating || currentPage === targetId) return;
+                isAnimating = true;
+
+                const currentActive = document.querySelector('.page.active');
+                const nextActive = document.getElementById(targetId);
+                
+                let currentText = currentPage.toUpperCase();
+                if (currentPage === 'certificates') currentText = 'SERTIFIKAT';
+                if (currentPage === 'contact') currentText = 'KONTAK';
+
+                let nextText = targetId.toUpperCase();
+                if (nextText === 'ABOUT') nextText = 'TENTANG';
+                if (nextText === 'CERTIFICATES') nextText = 'SERTIFIKAT';
+                if (nextText === 'CONTACT') nextText = 'KONTAK';
+
+                gsap.set(transitionCurrentEl, { y: '0%', opacity: 1 });
+                gsap.set(transitionNextEl, { y: '100%', opacity: 0 });
+                transitionCurrentEl.textContent = currentText;
+                transitionNextEl.textContent = nextText;
+
+                const tl = gsap.timeline({
+                    onComplete: () => {
+                        currentActive.classList.remove('active');
+                        nextActive.classList.add('active');
+                        currentPage = targetId;
+                        isAnimating = false;
+                        updatePageContent();
                     }
+                });
+                
+                tl.to(pageTransitioner, { opacity: 1, duration: 0.2 })
+                  .to(transitionCurrentEl, { y: '-100%', opacity: 0, duration: 0.8, ease: 'power3.inOut' }, "+=0.1")
+                  .to(transitionNextEl, { y: '0%', opacity: 1, duration: 0.8, ease: 'power3.inOut' }, "-=0.7")
+                  .to(pageTransitioner, { opacity: 0, duration: 0.5, delay: 0.2 });
+                
+                gsap.to(currentActive, { opacity: 0, duration: 0.4, delay: 0.2 });
+                gsap.to(nextActive, { opacity: 1, duration: 0.4, delay: 1.2 });
+            }
+            
+            // --- EVENT LISTENERS ---
+            menuButton.addEventListener('click', () => menuOverlay.classList.remove('translate-x-full'));
+            closeMenuButton.addEventListener('click', () => menuOverlay.classList.add('translate-x-full'));
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const targetPage = link.getAttribute('data-target');
+                    menuOverlay.classList.add('translate-x-full');
+                    setTimeout(() => performTransition(targetPage), 500);
                 });
             });
 
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                rootMargin: '0px 0px -100px 0px'
-            });
+            logo.addEventListener('click', () => performTransition('home'));
+
+            // Node Animation
+            const node = document.querySelector('.node');
+            if(node) {
+                let x=150, y=150, vx=2, vy=2, radius=10;
+                function animateNode(){
+                    const homeEl = document.getElementById('home-content');
+                    if(!homeEl) return;
+                    const w = homeEl.offsetWidth;
+                    const h = homeEl.offsetHeight;
+                    x+=vx; y+=vy;
+                    if(x+radius>w||x-radius<0) vx=-vx;
+                    if(y+radius>h||y-radius<0) vy=-vy;
+                    node.style.left=x+"px"; node.style.top=y+"px";
+                    requestAnimationFrame(animateNode);
+                }
+                animateNode();
+            }
             
-            const animatedCards = document.querySelectorAll('.animated-card');
-            animatedCards.forEach((card, index) => {
-                card.style.transitionDelay = `${(index % 4) * 100}ms`;
-                observer.observe(card);
-            });
-
-            // --- SCRIPT EMAIL MODAL ---
-            const emailLink = document.getElementById('email-link');
-            const emailModal = document.getElementById('email-modal');
-            const emailModalContent = document.getElementById('email-modal-content');
-            const closeEmailModalBtn = document.getElementById('close-email-modal');
-            const copyEmailBtn = document.getElementById('copy-email-btn');
-            const emailAddressInput = document.getElementById('email-address');
-
-            const openEmailModal = (e) => {
-                e.preventDefault();
-                emailModal.classList.remove('hidden');
-                setTimeout(() => emailModalContent.classList.remove('scale-95', 'opacity-0'), 10);
-            };
-
-            const closeEmailModal = () => {
-                emailModalContent.classList.add('scale-95', 'opacity-0');
-                setTimeout(() => emailModal.classList.add('hidden'), 300);
-            };
-
-            emailLink.addEventListener('click', openEmailModal);
-            closeEmailModalBtn.addEventListener('click', closeEmailModal);
-            emailModal.addEventListener('click', (e) => { if (e.target === emailModal) { closeEmailModal(); } });
-
-            copyEmailBtn.addEventListener('click', () => {
-                emailAddressInput.select();
-                emailAddressInput.setSelectionRange(0, 99999);
-                try {
-                    document.execCommand('copy');
-                    const currentLang = localStorage.getItem('language') || 'id';
-                    copyEmailBtn.textContent = currentLang === 'id' ? 'Berhasil Disalin!' : 'Copied!';
-                    setTimeout(() => { copyEmailBtn.textContent = translations[currentLang].modalCopy || 'Salin Teks'; }, 2000);
-                } catch (err) { console.error('Gagal menyalin email: ', err); }
-            });
+            // --- Modals and other scripts ---
             
-            // --- SCRIPT MODAL SERTIFIKAT BARU ---
+            // Certificate Modal
             const certificateModal = document.getElementById('certificate-modal');
             const certificateModalContent = document.getElementById('certificate-modal-content');
             const certificateModalImage = document.getElementById('certificate-modal-image');
             const certificateModalTitle = document.getElementById('certificate-modal-title');
             const certificateModalDocLink = document.getElementById('certificate-modal-doc-link');
             const closeCertificateModalBtn = document.getElementById('close-certificate-modal');
-            const certificateCards = document.querySelectorAll('.certificate-card');
-
+            
             const openCertificateModal = (imgSrc, title, docUrl) => {
                 certificateModalImage.src = imgSrc;
                 certificateModalTitle.textContent = title;
@@ -846,46 +505,324 @@
                 certificateModal.classList.remove('hidden');
                 setTimeout(() => certificateModalContent.classList.remove('scale-95', 'opacity-0'), 10);
             };
-
             const closeCertificateModal = () => {
                 certificateModalContent.classList.add('scale-95', 'opacity-0');
                 setTimeout(() => certificateModal.classList.add('hidden'), 300);
             };
-            
-            certificateCards.forEach(card => {
-                card.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const imgSrc = card.dataset.imgSrc;
-                    const docUrl = card.dataset.docUrl;
-                    const title = card.querySelector('.cert-title').textContent;
-                    openCertificateModal(imgSrc, title, docUrl);
+
+            closeCertificateModalBtn.addEventListener('click', closeCertificateModal);
+            certificateModal.addEventListener('click', (e) => { if(e.target === certificateModal) closeCertificateModal(); });
+           
+            // --- About Page Setup ---
+            function setupAboutPage() {
+                const aboutViewer = document.getElementById('about-viewer-content');
+                const aboutList = document.getElementById('about-list');
+
+                if (!aboutViewer || !aboutList) return;
+                
+                const bioHtml = `
+                    <div class="text-left text-justify text-sm">
+                        <p class="text-gray-300 mb-4">
+                            Saya adalah lulusan S1 Teknik Informatika Universitas Amikom Yogyakarta dengan predikat Cumlaude (IPK 3.83). Saya memiliki hasrat mendalam untuk menerapkan keahlian teknis dalam mendukung digitalisasi dan efisiensi operasional di berbagai industri.
+                        </p>
+                        <p class="text-gray-300 mb-3">
+                            Selama studi, saya memperoleh fondasi yang kuat dalam:
+                        </p>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-gray-400 mb-4">
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Pemrograman & Rekayasa Perangkat Lunak</h4>
+                                <ul class="list-disc list-inside">
+                                    <li>Rekayasa Perangkat Lunak</li>
+                                    <li>Pemrograman Web</li>
+                                    <li>Algoritma & Pemrograman</li>
+                                    <li>Struktur Data</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Data dan Analisis</h4>
+                                <ul class="list-disc list-inside">
+                                    <li>Sistem Basis Data</li>
+                                    <li>Kecerdasan Buatan (AI)</li>
+                                    <li>Statistika & Metode Numerik</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Jaringan dan Keamanan</h4>
+                                <ul class="list-disc list-inside">
+                                    <li>Keamanan & Perancangan Jaringan</li>
+                                    <li>Jaringan Komputer</li>
+                                    <li>Infrastruktur IT</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white mb-1">Soft Skills dan Manajemen</h4>
+                                <ul class="list-disc list-inside">
+                                    <li>Manajemen Strategik</li>
+                                    <li>Kepemimpinan</li>
+                                    <li>Metodologi Penelitian & Etika Profesi</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-4">
+                            Dengan keahlian tambahan di bidang Jaringan (Cisco CCNA), pengembangan IoT, AI, dan manajemen database (SQL), saya telah berhasil merancang sistem monitoring jarak jauh serta mempublikasikan penelitian tentang mikrokontroler.
+                        </p>
+                         <p class="text-gray-300">
+                            Saya selalu antusias untuk belajar hal baru, beradaptasi dengan teknologi terkini, dan berkolaborasi dalam tim untuk menciptakan solusi inovatif.
+                        </p>
+                    </div>
+                `;
+
+                const skillsHtml = `
+                    <div>
+                        <h3 class="text-3xl anton-font tracking-wider text-white mb-6">KEAHLIAN UTAMA</h3>
+                        <div class="grid grid-cols-4 sm:grid-cols-5 gap-y-6 gap-x-4 text-center">
+                            <div class="skill-icon-item"><i data-lucide="braces" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">JavaScript</span></div>
+                            <div class="skill-icon-item"><i data-lucide="file-code-2" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">HTML & CSS</span></div>
+                            <div class="skill-icon-item"><i data-lucide="cpu" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">Mikrokontroler</span></div>
+                            <div class="skill-icon-item"><i data-lucide="wifi" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">IoT</span></div>
+                            <div class="skill-icon-item"><i data-lucide="database" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">SQL / ERD</span></div>
+                            <div class="skill-icon-item"><i data-lucide="network" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">Cisco CCNA</span></div>
+                            <div class="skill-icon-item"><i data-lucide="briefcase" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">Ms. Office</span></div>
+                            <div class="skill-icon-item"><i data-lucide="cloud" class="w-10 h-10 mx-auto text-[#B48A5C]"></i><span class="mt-2 text-xs font-medium text-gray-300 block">G. Workspace</span></div>
+                        </div>
+                    </div>
+                `;
+
+                const photoHtml = `<img src="https://i.imgur.com/QDBBrAN.png" alt="Foto Profil Gatot Sasangka" class="w-full h-full object-contain rounded-lg shadow-2xl">`;
+
+                const aboutData = [
+                    { title: "Perkenalan Diri", content: bioHtml },
+                    { title: "Keahlian Teknis", content: skillsHtml },
+                    { title: "Foto Profil", content: photoHtml }
+                ];
+
+                function updateAboutViewer(index) {
+                    const data = aboutData[index];
+                    gsap.to(aboutViewer.parentNode, { opacity: 0, duration: 0.2, onComplete: () => {
+                        aboutViewer.innerHTML = data.content;
+                        lucide.createIcons();
+                        aboutViewer.querySelectorAll('.skill-icon-item').forEach((item, i) => {
+                            item.style.animationDelay = `${(i % 8) * 0.1}s`;
+                        });
+                        gsap.to(aboutViewer.parentNode, { opacity: 1, duration: 0.2 });
+                    }});
+                }
+
+                aboutList.innerHTML = '';
+                aboutData.forEach((item, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = item.title;
+                    li.dataset.index = index;
+                    if (index === 0) {
+                        li.classList.add('active');
+                    }
+                    aboutList.appendChild(li);
                 });
+
+                aboutList.addEventListener('mouseover', e => {
+                    if (e.target.tagName === 'LI') {
+                        const index = e.target.dataset.index;
+                        updateAboutViewer(index);
+                        aboutList.querySelectorAll('li').forEach(li => li.classList.remove('active'));
+                        e.target.classList.add('active');
+                    }
+                });
+                
+                updateAboutViewer(0);
+            }
+
+            // --- Sertifikat Page Setup ---
+            function setupCertificatePage() {
+                const imageMask = document.getElementById('certificate-image-mask');
+                const certList = document.getElementById('certificate-list');
+                const imageOverlay = document.getElementById('image-overlay');
+                
+                if (!imageMask || !certList || !imageOverlay) return;
+
+                imageMask.innerHTML = '';
+                certList.innerHTML = '';
+
+                const certificatesData = [
+                    { title: "Magang DLHK DIY", details: "Dinas Lingkungan Hidup & Kehutanan DIY (2024)", img: "https://i.imgur.com/wZ7owwo.png", docUrl: "https://drive.google.com/file/d/1Y3VW0xUN9dW-vbJ5zU-x-F3nCiNBaIX0/view?usp=sharing" },
+                    { title: "Literasi Digital", details: "Kemkominfo (2023)", img: "https://i.imgur.com/fgV6iQP.png", docUrl: "https://drive.google.com/file/d/1vs2A6PckZR2EdNaLsJKm-pdINUiWcf0i/view?usp=sharing" },
+                    { title: "Seminar Cyber Security", details: "HIMATEKNO FTTI UNJAYA (2023)", img: "https://i.imgur.com/eyW5LUw.png", docUrl: "https://drive.google.com/file/d/1Y02PijK2soKCo0STFN1isCQcEUCU-LDJ/view?usp=sharing" },
+                    { title: "Webinar Pengolahan Data", details: "XREI Institute (2023)", img: "https://i.imgur.com/fRg3hmp.png", docUrl: "https://drive.google.com/file/d/1zchzs3U4_AkuUt3KeVRPt_J1ve6G_Trg/view?usp=sharing" },
+                    { title: "CCNA Security", details: "Cisco Networking Academy (2022)", img: "https://i.imgur.com/ltwjESR.png", docUrl: "https://drive.google.com/file/d/1vPCSBaFzxmcFU0E4WHhuJRehKpsjSY0X/view?usp=sharing" },
+                    { title: "Switching, Routing, & Wireless", details: "Cisco Networking Academy (2021)", img: "https://i.imgur.com/iCRbLK8.png", docUrl: "https://drive.google.com/file/d/1SsQ9tMr0DcFsrTPImab9AFQ89qXdVc9P/view?usp=sharing" },
+                    { title: "Introduction to Networks", details: "Cisco Networking Academy (2021)", img: "https://i.imgur.com/5frcsDW.png", docUrl: "https://drive.google.com/file/d/1enjcK-yMxhLaqD1XXHdiZA_pz7zBTgJf/view?usp=sharing" },
+                    { title: "Fundamental Python", details: "Progate (2021)", img: "https://i.imgur.com/zruR3Gv.png", docUrl: "https://drive.google.com/file/d/1PcLXnBqaYy0r_D7utYBeBWpyber1msHE/view?usp=sharing" },
+                    { title: "IT Essentials", details: "Cisco Networking Academy (2020)", img: "https://i.imgur.com/Pqwf8N1.png", docUrl: "https://drive.google.com/file/d/1iqdSqPVHU36aNKPOJDnm8wuPEsvXQNji/view?usp=sharing" }
+                ];
+
+                certificatesData.forEach((cert, index) => {
+                    const img = document.createElement('img');
+                    img.src = cert.img;
+                    img.alt = cert.title;
+                    img.dataset.index = index;
+                    if (index === 0) img.classList.add('active');
+                    imageMask.appendChild(img);
+
+                    const li = document.createElement('li');
+                    li.textContent = cert.title;
+                    li.dataset.index = index;
+                    if (index === 0) {
+                        li.classList.add('active');
+                    }
+                    certList.appendChild(li);
+                });
+
+                certList.addEventListener('mouseover', (e) => {
+                    if (e.target.tagName === 'LI') {
+                        const index = e.target.dataset.index;
+                        certList.querySelectorAll('li').forEach(li => li.classList.remove('active'));
+                        e.target.classList.add('active');
+                        imageMask.querySelectorAll('img').forEach(img => img.classList.remove('active'));
+                        imageMask.querySelector(`img[data-index="${index}"]`).classList.add('active');
+                    }
+                });
+                
+                imageOverlay.addEventListener('click', () => {
+                    const activeImage = imageMask.querySelector('img.active');
+                    if (activeImage) {
+                        const index = activeImage.dataset.index;
+                        const cert = certificatesData[index];
+                        openCertificateModal(cert.img, cert.title, cert.docUrl);
+                    }
+                });
+            }
+            
+            // --- Portfolio Page Setup ---
+            function setupPortfolioPage() {
+                const portfolioViewer = document.getElementById('portfolio-viewer-content');
+                const portfolioList = document.getElementById('portfolio-list');
+
+                if (!portfolioViewer || !portfolioList) return;
+
+                const portfolioData = [
+                    { 
+                        title: "Penerjemah Sandi Morse",
+                        description: "Merancang dan membangun alat penerjemah sandi morse berbasis mikrokontroler. Proyek ini <strong>membuktikan kelayakan algoritma Brute Force</strong> untuk pencocokan sinyal secara akurat, mencapai <strong>efektivitas 100%</strong> dalam pengujian. Dipublikasikan di Jurnal INFOS.",
+                        icon: "radio-tower",
+                        link1Url: "https://jurnal.amikom.ac.id/index.php/infos/article/view/965",
+                        link1Text: "Lihat Jurnal"
+                    },
+                    {
+                        title: "Website E-Commerce",
+                        description: "Sebagai <strong>Ketua Tim</strong>, saya mengoordinasikan 3 kontributor untuk membangun aplikasi e-commerce fungsional. Proyek ini mencakup fitur lengkap mulai dari registrasi pengguna hingga manajemen pesanan oleh admin, <strong>menyelesaikan tantangan dalam menciptakan alur transaksi yang aman dan intuitif</strong>.",
+                        icon: "shopping-cart",
+                        link1Url: "https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand",
+                        link1Text: "Kode di GitHub"
+                    },
+                    {
+                        title: "Otomatisasi Greenhouse",
+                        description: "Merancang arsitektur sistem dan UI/UX untuk otomatisasi greenhouse berbasis IoT. Desain ini bertujuan untuk <strong>meningkatkan efisiensi pemantauan dan mengurangi kebutuhan intervensi manual</strong>, menjadikannya sebuah blueprint komprehensif untuk implementasi nyata.",
+                        icon: "sprout",
+                        link1Url: "https://docs.google.com/document/d/1k-1eR1BLNI2a9yP-EyyvkzlmljOK8GIsx2nmV3pNGQ4/edit?usp=sharing",
+                        link1Text: "Lihat Dokumen (SRS)",
+                        link2Url: "https://affinecipher-0.github.io/prototype-greenhouse/",
+                        link2Text: "Lihat Prototipe"
+                    }
+                ];
+
+                function updatePortfolioViewer(index) {
+                    const data = portfolioData[index];
+                    let linksHtml = '';
+                    if (data.link1Url) {
+                        linksHtml += `<a href="${data.link1Url}" target="_blank" class="modal-button-primary block text-center text-white font-semibold py-2.5 rounded-lg">${data.link1Text}</a>`;
+                    }
+                    if (data.link2Url) {
+                        linksHtml += `<a href="${data.link2Url}" target="_blank" class="modal-button-secondary block text-center mt-3 text-white font-semibold py-2.5 rounded-lg">${data.link2Text}</a>`;
+                    }
+                    
+                    const newHtml = `
+                        <div class="text-center mb-6">
+                            <i data-lucide="${data.icon}" class="w-16 h-16 text-[#B48A5C] mx-auto"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white text-center mb-4">${data.title}</h3>
+                        <p class="text-gray-300 text-sm text-left mb-6">${data.description}</p>
+                        <div class="mt-auto">${linksHtml}</div>
+                    `;
+
+                    gsap.to(portfolioViewer, { opacity: 0, duration: 0.2, onComplete: () => {
+                        portfolioViewer.innerHTML = newHtml;
+                        lucide.createIcons();
+                        gsap.to(portfolioViewer, { opacity: 1, duration: 0.2 });
+                    }});
+                }
+
+                portfolioList.innerHTML = '';
+                portfolioData.forEach((project, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = project.title;
+                    li.dataset.index = index;
+                    if (index === 0) {
+                        li.classList.add('active');
+                    }
+                    portfolioList.appendChild(li);
+                });
+                
+                portfolioList.addEventListener('mouseover', e => {
+                    if (e.target.tagName === 'LI') {
+                        const index = e.target.dataset.index;
+                        updatePortfolioViewer(index);
+                        portfolioList.querySelectorAll('li').forEach(li => li.classList.remove('active'));
+                        e.target.classList.add('active');
+                    }
+                });
+
+                // Initial load
+                updatePortfolioViewer(0);
+            }
+
+
+            const emailLink = document.getElementById('email-link');
+            const emailModal = document.getElementById('email-modal');
+            const emailModalContent = document.getElementById('email-modal-content');
+            const closeEmailModalBtn = document.getElementById('close-email-modal');
+            const copyEmailBtn = document.getElementById('copy-email-btn');
+            const emailAddressInput = document.getElementById('email-address');
+            emailLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                emailModal.classList.remove('hidden');
+                setTimeout(() => emailModalContent.classList.remove('scale-95', 'opacity-0'), 10);
+            });
+            const closeEmailModal = () => {
+                emailModalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => emailModal.classList.add('hidden'), 300);
+            };
+            closeEmailModalBtn.addEventListener('click', closeEmailModal);
+            emailModal.addEventListener('click', (e) => { if (e.target === emailModal) closeEmailModal(); });
+            copyEmailBtn.addEventListener('click', () => {
+                emailAddressInput.select();
+                document.execCommand('copy');
+                copyEmailBtn.textContent = 'Berhasil Disalin!';
+                setTimeout(() => { copyEmailBtn.textContent = 'Salin Teks'; }, 2000);
             });
             
-            closeCertificateModalBtn.addEventListener('click', closeCertificateModal);
-            certificateModal.addEventListener('click', (e) => { if(e.target === certificateModal) { closeCertificateModal(); }});
-
-
-            // --- SCRIPT JAM & TANGGAL OTOMATIS ---
             const clockElement = document.getElementById('digital-clock');
             const dateElement = document.getElementById('digital-date');
-
-            const monthNames = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-
+            const monthNames = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Ags", "Sep", "Okt", "Nov", "Des"];
             function updateDateTime() {
                 const nowWITA = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Makassar" }));
                 const day = nowWITA.getDate();
                 const month = monthNames[nowWITA.getMonth()];
                 const year = nowWITA.getFullYear();
-                if (dateElement) { dateElement.textContent = `${day} ${month} ${year}`; }
-
+                if (dateElement) dateElement.textContent = `${day} ${month} ${year}`;
                 const hours = String(nowWITA.getHours()).padStart(2, '0');
                 const minutes = String(nowWITA.getMinutes()).padStart(2, '0');
                 const seconds = String(nowWITA.getSeconds()).padStart(2, '0');
-                if (clockElement) { clockElement.textContent = `${hours}:${minutes}:${seconds}`; }
+                if (clockElement) clockElement.textContent = `${hours}:${minutes}:${seconds}`;
             }
             setInterval(updateDateTime, 1000);
             updateDateTime();
+            
+            // Initial load
+            runLoadingAnimation();
+            updatePageContent();
+            setupAboutPage();
+            setupCertificatePage();
+            setupPortfolioPage();
+
         });
     </script>
 
