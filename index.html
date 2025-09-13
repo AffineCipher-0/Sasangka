@@ -171,13 +171,23 @@
         /* Scroll Animation */
         .fade-in-on-scroll {
             opacity: 0;
-            transform: translateY(30px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
             will-change: opacity, transform;
         }
         .fade-in-on-scroll.is-visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* Timeline-specific animation */
+        .timeline-container.left {
+            transform: translateX(-50px);
+        }
+        .timeline-container.right {
+            transform: translateX(50px);
+        }
+        .timeline-container.is-visible {
+            transform: translateX(0);
         }
 
         .newspaper-columns {
@@ -646,7 +656,7 @@
                 </div>
                 <div class="modal-main-content content-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-8">
                     <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2">Jaringan & Infrastruktur</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2"><i class="fas fa-network-wired text-[#967259] mr-2"></i>Jaringan & Infrastruktur</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Administrasi Jaringan</li>
                             <li>Cisco Packet Tracer</li>
@@ -655,7 +665,7 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2">Pengembangan Perangkat Lunak</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2"><i class="fas fa-code text-[#967259] mr-2"></i>Pengembangan Perangkat Lunak</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>PHP (Natif)</li>
                             <li>HTML, CSS, JavaScript</li>
@@ -665,7 +675,7 @@
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2">IoT & Mikrokontroller</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2"><i class="fas fa-microchip text-[#967259] mr-2"></i>IoT & Mikrokontroller</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Arduino IDE (C++)</li>
                             <li>ESP8266/ESP32</li>
@@ -674,7 +684,7 @@
                         </ul>
                     </div>
                      <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2">Produktifitas & Perkantoran</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2"><i class="fas fa-file-alt text-[#967259] mr-2"></i>Produktifitas & Perkantoran</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Microsoft Office</li>
                             <li>Google Workspace</li>
@@ -755,7 +765,7 @@
                 </div>
                 <div class="modal-main-content content-hidden p-4">
                     <div class="timeline">
-                        <div class="timeline-container left">
+                        <div class="timeline-container left fade-in-on-scroll">
                             <div class="timeline-content">
                                 <h4 class="text-xl font-bold">Abad ke-9 – Awal Perjalanan: Fondasi Algoritma</h4>
                                 <p class="text-sm text-black/60 mb-2">Pada abad ke-9, seorang ilmuwan Muslim bernama Al-Khwarizmi memperkenalkan konsep algoritma, yang menjadi dasar dari semua komputasi modern.</p>
@@ -763,7 +773,7 @@
                                 <p>“Algoritma bukan sekadar perhitungan, tapi cara berpikir yang membentuk masa depan teknologi.”</p>
                             </div>
                         </div>
-                        <div class="timeline-container right">
+                        <div class="timeline-container right fade-in-on-scroll">
                             <div class="timeline-content">
                                 <h4 class="text-xl font-bold">Abad ke-15 – Penyebaran Ilmu Pengetahuan: Mesin Cetak Gutenberg</h4>
                                 <p class="text-sm text-black/60 mb-2">Berabad-abad kemudian, Johannes Gutenberg menemukan mesin cetak, sebuah inovasi yang merevolusi penyebaran informasi.</p>
@@ -771,7 +781,7 @@
                                 <p>Dampaknya sama seperti internet di era kita sekarang: mempercepat kolaborasi, memperluas wawasan, dan memperkuat fondasi peradaban.</p>
                             </div>
                         </div>
-                        <div class="timeline-container left">
+                        <div class="timeline-container left fade-in-on-scroll">
                             <div class="timeline-content">
                                 <h4 class="text-xl font-bold">Abad ke-18 – Revolusi Industri</h4>
                                 <p class="text-sm text-black/60 mb-2">Revolusi Industri mengubah dunia secara drastis.</p>
@@ -779,35 +789,35 @@
                                 <p>Manusia untuk pertama kalinya memiliki tenaga mekanis yang dapat menggantikan kerja fisik, membawa perubahan sosial besar dan menciptakan era industri modern. Era ini juga menanam benih bagi lahirnya teknologi komunikasi instan, yang akan meledak di abad berikutnya.</p>
                             </div>
                         </div>
-                        <div class="timeline-container right">
+                        <div class="timeline-container right fade-in-on-scroll">
                             <div class="timeline-content">
                                 <h4 class="text-xl font-bold">Abad ke-19 – Era Komunikasi Instan</h4>
                                 <p class="text-sm text-black/60 mb-2">Di abad ke-19, Samuel Morse memperkenalkan telegraf, teknologi yang memungkinkan komunikasi jarak jauh dalam hitungan detik.</p>
                                 <p>Untuk pertama kalinya dalam sejarah, informasi dapat bergerak lebih cepat daripada manusia itu sendiri. Sandi Morse menjadi bahasa universal pertama dalam komunikasi digital, membuka jalan bagi telepon, radio, dan internet.</p>
                             </div>
                         </div>
-                        <div class="timeline-container left">
+                        <div class="timeline-container left fade-in-on-scroll">
                             <div class="timeline-content">
                                 <h4 class="text-xl font-bold">Abad ke-20 – Lahirnya Komputer Digital</h4>
                                 <p class="text-sm text-black/60 mb-2">Abad ke-20 menandai lahirnya komputer digital.</p>
                                 <p>Generasi pertama komputer begitu besar hingga memenuhi satu ruangan, namun kekuatannya sangat terbatas. Dalam beberapa dekade, inovasi mikroprosesor dan sirkuit terintegrasi membuat komputer semakin kecil, cepat, dan terjangkau. Komputer tidak lagi sekadar alat perhitungan, tetapi menjadi otak digital yang menopang semua aspek kehidupan manusia modern.</p>
                             </div>
                         </div>
-                        <div class="timeline-container right">
+                        <div class="timeline-container right fade-in-on-scroll">
                             <div class="timeline-content">
                                 <h4 class="text-xl font-bold">Akhir Abad ke-20 – Era Internet dan Jaringan Global</h4>
                                 <p class="text-sm text-black/60 mb-2">Internet muncul sebagai jaringan global yang menghubungkan miliaran orang dan perangkat.</p>
                                 <p>Batasan geografis menghilang, informasi bergerak bebas, dan dunia menjadi lebih terhubung dari sebelumnya. Jika mesin cetak Gutenberg adalah revolusi pertama dalam penyebaran informasi, maka internet adalah revolusi keduanya.</p>
                             </div>
                         </div>
-                        <div class="timeline-container left">
+                        <div class="timeline-container left fade-in-on-scroll">
                             <div class="timeline-content">
                                 <h4 class="text-xl font-bold">Abad ke-21 – AI dan IoT: Teknologi yang Berpikir</h4>
                                 <p class="text-sm text-black/60 mb-2">Kini, kita memasuki era di mana teknologi tidak hanya diprogram, tetapi mampu berpikir dan belajar sendiri.</p>
                                 <p>Kecerdasan buatan (Artificial Intelligence) dan Internet of Things (IoT) memungkinkan perangkat untuk saling berkomunikasi, menganalisis data, dan mengambil keputusan. Mobil bisa mengemudi sendiri, rumah menjadi pintar, dan sistem industri dapat bekerja tanpa campur tangan manusia. Namun, kemajuan ini juga menghadirkan tantangan etika dan tanggung jawab. Kita harus memastikan bahwa teknologi ini digunakan untuk kebaikan, bukan merusak dunia yang telah kita bangun bersama.</p>
                             </div>
                         </div>
-                        <div class="timeline-container right">
+                        <div class="timeline-container right fade-in-on-scroll">
                             <div class="timeline-content">
                                 <h4 class="text-xl font-bold">Masa Depan: Membangun di Atas Bahu Para Raksasa</h4>
                                 <p class="text-sm text-black/60 mb-2">Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa sejarah, menggabungkan warisan klasik dengan inovasi modern.</p>
