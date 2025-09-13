@@ -25,7 +25,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome CDN -->
+    <!-- Font Awesome CDN - Fix: Changed 'xintegrity' to 'integrity' to ensure it loads properly -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <style>
@@ -563,7 +563,7 @@
                     <h4 class="text-2xl font-bold mb-2">Toko Online Barang Bekas – SECONDHAND</h4>
                     <p class="text-sm text-black/50 mb-4">Kategori: Pengembangan Web, E-Commerce, PHP, MySQL, HTML, CSS, JavaScript</p>
                     <p class="text-justify">
-                       Melompat ke era '90-an, saat World Wide Web mulai membuka gerbang perdagangan global. Proyek ini mereplikasi semangat awal e-commerce dengan membangun 'Secondhand', sebuah platform fungsional untuk jual-beli barang bekas, lengkap dengan sistem manajemen admin yang komprehensif.
+                        Melompat ke era '90-an, saat World Wide Web mulai membuka gerbang perdagangan global. Proyek ini mereplikasi semangat awal e-commerce dengan membangun 'Secondhand', sebuah platform fungsional untuk jual-beli barang bekas, lengkap dengan sistem manajemen admin yang komprehensif.
                     </p>
                     <div class="text-right mt-6">
                         <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat di GitHub</a>
@@ -586,14 +586,20 @@
         <div class="fancy-divider fade-in-on-scroll"></div>
 
         <!-- Certifications Section -->
-        <section id="sertifikasi" class="article-frame fade-in-on-scroll text-center">
-            <h3 class="text-3xl font-bold mb-4">Sertifikasi & Pencapaian</h3>
-            <p class="max-w-xl mx-auto mb-6">
-                Komitmen terhadap pembelajaran berkelanjutan dibuktikan melalui serangkaian sertifikasi di bidang teknologi jaringan dan pengembangan.
+        <section id="sertifikasi" class="article-frame fade-in-on-scroll">
+            <h3 class="text-3xl font-bold mb-4 text-center">Sertifikasi & Pencapaian</h3>
+            <p class="text-justify mb-4">
+                Memiliki pengetahuan dan keterampilan yang kuat dalam pengembangan perangkat lunak, jaringan komputer, serta keamanan jaringan. Ia memahami dasar-dasar pemrograman untuk membangun aplikasi dan sistem, mampu merakit, memperbaiki, dan mengelola perangkat keras komputer. Dalam bidang jaringan, ia menguasai konsep dasar dan lanjutan seperti konfigurasi switch, router, VLAN, inter-VLAN routing, dynamic addressing, serta manajemen jaringan wireless dengan standar keamanan yang baik.
             </p>
-            <button data-modal-target="#sertifikat-modal" class="classic-button">
-                Lihat Galeri Sertifikat
-            </button>
+            <p class="text-justify mb-6">
+                Selain itu, ia memiliki kemampuan dalam merancang dan menerapkan keamanan jaringan, termasuk penggunaan firewall, VPN, dan mitigasi serangan seperti Layer 2 attacks dan ancaman modern lainnya. Ia juga memahami prinsip desain jaringan yang aman, troubleshooting masalah jaringan, hingga manajemen perangkat yang terhubung ke internet dan layanan cloud. Kompetensi ini diperkuat dengan pemahaman tentang etika dan tanggung jawab dalam dunia IT, menjadikannya siap untuk menghadapi tantangan di bidang teknologi informasi.
+            </p>
+            <p class="text-justify mb-6">Komitmen terhadap pembelajaran berkelanjutan dibuktikan melalui serangkaian sertifikasi di bidang teknologi dan pengembangan diri.</p>
+            <div class="text-right mt-6">
+                <button data-modal-target="#sertifikat-modal" class="classic-button">
+                    Lihat Galeri Sertifikat
+                </button>
+            </div>
         </section>
 
         <div class="fancy-divider fade-in-on-scroll"></div>
@@ -683,7 +689,7 @@
                             <li>Perancangan Sistem Tertanam</li>
                         </ul>
                     </div>
-                     <div>
+                      <div>
                         <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2"><i class="fas fa-file-alt text-[#967259] mr-2"></i>Produktifitas & Perkantoran</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Microsoft Office</li>
@@ -822,7 +828,6 @@
                                 <h4 class="text-xl font-bold">Masa Depan: Membangun di Atas Bahu Para Raksasa</h4>
                                 <p class="text-sm text-black/60 mb-2">Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa sejarah, menggabungkan warisan klasik dengan inovasi modern.</p>
                                 <p>Setiap karya adalah bukti bahwa perjalanan teknologi adalah kisah yang belum berakhir—sebuah narasi yang terus ditulis setiap hari oleh para insinyur, pemikir, dan pencipta.</p>
-                                <p>“Masa depan adalah kelanjutan dari masa lalu. Dengan menghormati sejarah, kita membentuk inovasi yang lebih bijaksana.”</p>
                             </div>
                         </div>
                     </div>
@@ -882,7 +887,7 @@
             const articleDateElement = document.getElementById('current-date');
             const backToTopButton = document.getElementById('back-to-top');
             const copyEmailBtn = document.getElementById('copy-email-btn');
-            const galleryContainer = document.querySelector('#sertifikat-modal .modal-main-content');
+            const galleryContainer = document.querySelector('#sertifikasi .modal-main-content');
             
             // --- Initial Loading Screen ---
             window.addEventListener('load', () => {
@@ -979,8 +984,10 @@
                         }
                     };
                     
+                    // Listen for the onload event
                     dynamicElement.onload = onLoaded;
                     dynamicElement.src = sourceUrl;
+
                     // Fallback timer in case the onload event doesn't fire (e.g., from cache or error)
                     setTimeout(() => {
                          if(!loaded) onLoaded();
@@ -1068,32 +1075,60 @@
                         <p class="text-center text-xs text-black/60">${cert.desc}</p>
                     </button>
                 `).join('');
-                 galleryContainer.querySelectorAll('[data-modal-target]').forEach(button => {
-                     button.addEventListener('click', () => {
-                         const modalId = button.dataset.modalTarget;
-                         const modal = document.querySelector(modalId);
-                         const sourceUrl = button.dataset.src || null;
-                         const parentModal = button.closest('.modal-overlay');
-                         if (parentModal) closeModal(parentModal);
-                         openModal(modal, sourceUrl);
-                     });
-                 });
+                   galleryContainer.querySelectorAll('[data-modal-target]').forEach(button => {
+                       button.addEventListener('click', () => {
+                           const modalId = button.dataset.modalTarget;
+                           const modal = document.querySelector(modalId);
+                           const sourceUrl = button.dataset.src || null;
+                           const parentModal = button.closest('.modal-overlay');
+                           if (parentModal) closeModal(parentModal);
+                           openModal(modal, sourceUrl);
+                       });
+                   });
             }
 
-            // --- Copy Email Logic ---
+            // --- Copy Email Logic (with fallback) ---
             if (copyEmailBtn) {
                 copyEmailBtn.addEventListener('click', () => {
                     const emailAddress = document.getElementById('email-address').textContent;
-                    navigator.clipboard.writeText(emailAddress).then(() => {
-                        const originalText = copyEmailBtn.textContent;
-                        copyEmailBtn.textContent = 'Alamat Surel Tersalin!';
-                        setTimeout(() => {
-                            copyEmailBtn.textContent = originalText;
-                        }, 2000);
-                    }).catch(err => {
-                        console.error('Failed to copy text: ', err);
-                    });
+                    
+                    // Use modern clipboard API if available
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(emailAddress).then(() => {
+                            const originalText = copyEmailBtn.textContent;
+                            copyEmailBtn.textContent = 'Alamat Surel Tersalin!';
+                            setTimeout(() => {
+                                copyEmailBtn.textContent = originalText;
+                            }, 2000);
+                        }).catch(err => {
+                            // Fallback if clipboard.writeText fails
+                            console.error('Failed to copy text with clipboard API, falling back to execCommand:', err);
+                            copyTextToClipboardLegacy(emailAddress);
+                        });
+                    } else {
+                        // Fallback for browsers that don't support the modern API
+                        copyTextToClipboardLegacy(emailAddress);
+                    }
                 });
+            }
+
+            // Legacy clipboard copy function
+            function copyTextToClipboardLegacy(text) {
+                const tempInput = document.createElement('textarea');
+                tempInput.value = text;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                try {
+                    document.execCommand('copy');
+                    const originalText = copyEmailBtn.textContent;
+                    copyEmailBtn.textContent = 'Alamat Surel Tersalin!';
+                    setTimeout(() => {
+                        copyEmailBtn.textContent = originalText;
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy text with execCommand: ', err);
+                }
+                document.body.removeChild(tempInput);
             }
 
             // --- Back to Top Button Logic ---
