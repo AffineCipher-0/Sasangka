@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Engineering Times | Portofolio Gatot Sasangka</title>
 
-    <!-- Meta Tags untuk SEO dan Social Media -->
+    <!-- Meta Tags for SEO and Social Media -->
     <meta name="description" content="Portofolio Gatot Sasangka yang disajikan dalam format koran antik, menampilkan proyek-proyek di bidang Jaringan, IoT, AI, dan Pemrograman Web.">
     <meta name="keywords" content="Gatot Sasangka, portofolio, insinyur jaringan, IoT, AI, pengembangan web, mikrokontroller, e-commerce, sasangkagatot@gmail.com, CV">
     <meta property="og:title" content="The Engineering Times | Portofolio Gatot Sasangka">
@@ -96,19 +96,17 @@
             margin-top: 0.5rem;
         }
 
-
-        /* CSS Tema Buku Kuno Al-Khawarizmi */
+        /* General Theme Styling */
         body {
-            font-family: 'Amiri', serif; /* Font dengan nuansa naskah kuno */
+            font-family: 'Amiri', serif;
             background-color: #fdf6e3;
-            /* Tekstur kertas kuno yang halus */
             background-image: linear-gradient(45deg, rgba(199, 189, 169, 0.05) 25%, transparent 25%),
                               linear-gradient(-45deg, rgba(199, 189, 169, 0.05) 25%, transparent 25%),
                               linear-gradient(45deg, transparent 75%, rgba(199, 189, 169, 0.05) 75%),
                               linear-gradient(-45deg, transparent 75%, rgba(199, 189, 169, 0.05) 75%);
             background-size: 20px 20px;
             color: #4a2c2a;
-            font-size: 18px; /* Sedikit lebih besar untuk keterbacaan font Amiri */
+            font-size: 18px;
             line-height: 1.8;
         }
         
@@ -118,13 +116,13 @@
         
         h2, h3, h4 {
             font-family: 'Amiri', serif;
-            font-weight: 700; /* Judul lebih tebal */
+            font-weight: 700;
         }
 
         .article-frame {
             border: 1px solid #c8bda9;
             padding: 1.5rem 2rem;
-            background-color: #fcf8f0; /* Warna latar belakang teks yang lebih hangat */
+            background-color: #fcf8f0;
             box-shadow: 0 0 0 5px #fcf8f0, 0 0 0 6px #c8bda9;
             margin-bottom: 2rem;
             transition: all 0.3s ease-in-out;
@@ -142,7 +140,7 @@
             margin: 2rem 0;
         }
         .fancy-divider::before {
-            content: '☙ ❧'; /* Simbol kumis antik */
+            content: '☙ ❧';
             font-size: 28px;
             color: #967259;
             letter-spacing: 0.5em;
@@ -167,12 +165,12 @@
             transform: translate(2px, 2px);
         }
         
-        /* Animasi Scroll */
+        /* Scroll Animation */
         .fade-in-on-scroll {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: opacity, transform; /* Performance hint */
+            will-change: opacity, transform;
         }
         .fade-in-on-scroll.is-visible {
             opacity: 1;
@@ -182,14 +180,14 @@
         .newspaper-columns {
             column-count: 1;
         }
-        @media (min-width: 992px) { /* Disesuaikan agar kolom aktif di layar yang lebih lebar */
+        @media (min-width: 992px) {
             .newspaper-columns {
                 column-count: 2;
                 column-gap: 2.5rem;
             }
         }
         
-        /* CSS Modal Pop-up dengan Transisi Halus */
+        /* Modal Styling */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -262,7 +260,7 @@
             border: none;
         }
 
-        /* Tombol Kembali ke Atas */
+        /* Back to Top Button */
         #back-to-top {
             position: fixed;
             bottom: 30px;
@@ -283,7 +281,6 @@
             z-index: 1000;
             transform: translateY(20px);
         }
-
         #back-to-top.show {
             opacity: 1;
             visibility: visible;
@@ -322,16 +319,16 @@
             r: 65;
             cx: 75;
             cy: 75;
-            animation: modal-progress-animation 3s linear forwards;
+            animation: modal-progress-animation 1.5s linear infinite;
         }
         @keyframes modal-progress-animation {
-            from { stroke-dashoffset: 408; }
+            from { stroke-dashoffset: 816; }
             to { stroke-dashoffset: 0; }
         }
         .modal-loader .loader-text-modal {
             position: absolute;
             text-align: center;
-            width: 90%;
+            width: 100%;
         }
         .modal-loader .loader-text-modal h2 {
             font-family: 'Cinzel Decorative', cursive;
@@ -339,7 +336,6 @@
             line-height: 1.1;
             color: #4a2c2a;
         }
-
         .content-hidden {
             visibility: hidden !important;
             opacity: 0 !important;
@@ -370,9 +366,9 @@
     <!-- Header / Masthead -->
     <header class="text-center py-8">
         <div class="container mx-auto px-6">
-            <div class="border-y-4 border-double border-[#967259] py-6">
+            <div class="border-y-4 border-double border-[#967259] pt-10 pb-2">
                  <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider">The Engineering Times</h1>
-                 <div class="text-sm mt-3 tracking-widest flex flex-col md:flex-row justify-center md:justify-between items-center">
+                 <div class="text-sm mt-4 tracking-widest flex flex-col md:flex-row justify-center md:justify-between items-center">
                     <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
                     <span id="live-datetime" class="mt-2 md:mt-0"></span>
                  </div>
@@ -389,10 +385,10 @@
         </ul>
     </nav>
 
-    <!-- Konten Utama -->
+    <!-- Main Content -->
     <main class="container mx-auto px-6 py-12">
 
-        <!-- Artikel Utama -->
+        <!-- Main Article -->
         <section id="home" class="fade-in-on-scroll">
             <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight text-center">Membangun Fondasi Digital: Peran Insinyur di Era Jaringan, IoT, AI, dan Pemrograman Web</h2>
             <p id="current-date" class="text-base text-black/60 mb-6 text-center">Oleh: Gatot Sasangka | Diterbitkan: Sabtu, 13 September 2025</p>
@@ -403,7 +399,7 @@
 
         <div class="fancy-divider fade-in-on-scroll"></div>
 
-        <!-- Artikel Tentang Saya -->
+        <!-- About Me Article -->
         <section id="about" class="article-frame fade-in-on-scroll">
             <h3 class="text-3xl font-bold mb-6">Profil Profesional</h3>
             <div class="newspaper-columns">
@@ -427,14 +423,14 @@
 
         <div class="fancy-divider fade-in-on-scroll"></div>
 
-        <!-- Artikel Projek Unggulan -->
+        <!-- Featured Projects Article -->
         <section id="projects">
             <h3 class="text-3xl font-bold text-center mb-10 fade-in-on-scroll">Laporan Utama: Proyek Unggulan</h3>
             
             <div class="space-y-12">
                 <article class="article-frame fade-in-on-scroll">
                     <h4 class="text-2xl font-bold mb-2">ALAT PENERJEMAH SANDI MORSE BERBASIS MIKROKONTROLLER MENGGUNAKAN ALGORITMA BRUTE FORCE</h4>
-                    <p class="text-sm text-black/50 mb-4">Kategori: Mikrokontroller, Algoritma</p>
+                    <p class="text-sm text-black/50 mb-4">Kategori: Mikrokontroller, Arduino (C++), Algoritma Brute Force</p>
                     <p class="text-justify">
                         Sandi morse merupakan salah satu bentuk komunikasi yang digunakan di dalam bidang kepramukaan sebagai sarana komunikasi secara rahasia, maupun dalam keadaan darurat dan juga informasi rahasia. Cara menerjemahkan sandi morse dapat dilakukan dengan melakukan pencocokan text dengan notasi sandi yang didapatkan... Pada penelitian ini, akan dibangun alat penerjemah sandi morse ke teks berbasis mikrokontroller dengan algoritma brute force... Hasil yang didapatkan pencocokan text dapat dilakukan 100%... Hal ini menunjukkan semakin tinggi index N karakter pada data berbanding lurus dengan persentase string pattern.
                     </p>
@@ -445,23 +441,23 @@
 
                 <article class="article-frame fade-in-on-scroll">
                     <h4 class="text-2xl font-bold mb-2">Toko Online Barang Bekas – SECONDHAND</h4>
-                    <p class="text-sm text-black/50 mb-4">Kategori: Pengembangan Web, E-Commerce, PHP</p>
+                    <p class="text-sm text-black/50 mb-4">Kategori: Pengembangan Web, E-Commerce, PHP, MySQL, HTML, CSS, JavaScript</p>
                     <p class="text-justify">
                         Tiga mahasiswa duduk bersama di depan layar komputer, merajut baris demi baris kode. Dari sebuah tugas kuliah lahirlah ProjectNoWhere, website e-commerce yang khusus dibuat untuk jual-beli barang bekas. Dengan saya sebagai ketua tim, dua rekan lainnya bahu-membahu dalam membangun platform yang tak sekadar tugas, melainkan simulasi nyata dunia kerja. Website ini dirancang layaknya toko online profesional... Di balik layar, halaman admin menjadi pusat kendali... Lebih dari sekadar kumpulan kode, ProjectNoWhere adalah cerita tentang kerja sama, kepemimpinan, dan pembuktian bahwa ide sederhana—jual beli barang bekas—bisa dihidupkan menjadi sebuah platform digital yang nyata.
                     </p>
                     <div class="text-right mt-6">
-                        <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</a>
+                        <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat di GitHub</a>
                     </div>
                 </article>
 
                 <article class="article-frame fade-in-on-scroll">
                     <h4 class="text-2xl font-bold mb-2">Software Requirement Specification untuk Greenhouse Otomatisasi Hidroponik</h4>
-                    <p class="text-sm text-black/50 mb-4">Kategori: IoT, Perancangan Perangkat Lunak, Pertanian Cerdas</p>
+                    <p class="text-sm text-black/50 mb-4">Kategori: IoT, Perancangan Perangkat Lunak, Pertanian Cerdas, Perancangan Sistem, Client-Server, Mobile App Design</p>
                     <p class="text-justify">
                         Dari ruang kuliah lahir sebuah gagasan besar: membangun aplikasi smartphone yang mampu mengendalikan seratus rumah kaca yang tersebar di seluruh Indonesia. Inilah isi dokumen Software Requirement Specification (SRS) yang disusun untuk proyek otomasi pertanian modern berbasis teknologi client-server-middleware. Setiap rumah kaca berukuran 3 hingga 5 hektar, dilengkapi 150 jalur pipa hidroponik, dan mampu menghasilkan hingga 20 ton sayuran setiap enam bulan... Teknologi yang dirancang tidak berdiri sendiri. Satu modul utama otomasi dipasang di tiap greenhouse, sementara setiap 15 jalur pipa dikontrol oleh satu sub modul. Melalui aplikasi di smartphone, petugas dapat memantau riwayat nutrisi, kondisi air terkini, hingga melakukan konfigurasi ulang... Dokumen SRS ini bukan hanya pedoman teknis, melainkan fondasi arah pembangunan perangkat lunak yang memastikan aplikasi menjawab kebutuhan lapangan.
                     </p>
                     <div class="text-right mt-6">
-                        <button data-modal-target="#greenhouse-options-modal" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</button>
+                        <button data-modal-target="#greenhouse-options-modal" class="classic-button text-sm py-2 px-4">Lihat Detail Proyek</button>
                     </div>
                 </article>
             </div>
@@ -469,7 +465,7 @@
 
         <div class="fancy-divider fade-in-on-scroll"></div>
 
-        <!-- Sertifikasi Section -->
+        <!-- Certifications Section -->
         <section id="sertifikasi" class="article-frame fade-in-on-scroll text-center">
             <h3 class="text-3xl font-bold mb-4">Sertifikasi & Pencapaian</h3>
             <p class="max-w-xl mx-auto mb-6">
@@ -482,7 +478,7 @@
 
         <div class="fancy-divider fade-in-on-scroll"></div>
 
-        <!-- Kontak Section -->
+        <!-- Contact Section -->
         <section id="contact" class="text-center article-frame fade-in-on-scroll">
             <h3 class="text-3xl font-bold mb-4">Hubungi Redaksi</h3>
             <p class="max-w-xl mx-auto mb-6">
@@ -522,10 +518,11 @@
         </div>
     </footer>
 
-    <!-- Tombol Kembali ke Atas -->
+    <!-- Back to Top Button -->
     <a id="back-to-top" href="#home" title="Kembali ke atas">↑</a>
 
-    <!-- Modal Keahlian -->
+    <!-- Modals -->
+    <!-- Expertise Modal -->
     <div id="keahlian-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="keahlian-modal-title">
         <div class="modal-content" style="height: auto; max-width: 900px;">
             <div class="modal-header">
@@ -541,7 +538,7 @@
                         <h2>THE<br>ENGINEERING<br>TIMES</h2>
                     </div>
                 </div>
-                <div class="modal-main-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-8">
+                <div class="modal-main-content content-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-8">
                     <div>
                         <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2">Jaringan & Infrastruktur</h4>
                         <ul class="list-disc list-inside space-y-1">
@@ -582,7 +579,7 @@
         </div>
     </div>
 
-    <!-- Modal Surel -->
+    <!-- Email Modal -->
     <div id="email-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="email-modal-title">
         <div class="modal-content" style="height: auto; max-width: 500px;">
             <div class="modal-header">
@@ -598,7 +595,7 @@
                         <h2>THE<br>ENGINEERING<br>TIMES</h2>
                     </div>
                 </div>
-                <div class="modal-main-content">
+                <div class="modal-main-content content-hidden">
                     <p class="mb-4 text-lg">Anda dapat menghubungi saya melalui alamat surel berikut:</p>
                     <p id="email-address" class="text-xl md:text-2xl font-bold bg-white/50 p-4 border border-[#c8bda9] mb-8 break-all">sasangkagatot@gmail.com</p>
                     <button id="copy-email-btn" class="classic-button w-full text-base py-3">Salin Alamat Surel</button>
@@ -607,7 +604,7 @@
         </div>
     </div>
 
-    <!-- Modal Pilihan Greenhouse -->
+    <!-- Greenhouse Options Modal -->
     <div id="greenhouse-options-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="greenhouse-modal-title">
         <div class="modal-content" style="height: auto; max-width: 500px;">
             <div class="modal-header">
@@ -615,7 +612,7 @@
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
             <div class="modal-body text-center py-8">
-                 <div class="modal-loader">
+                <div class="modal-loader">
                     <svg class="loader-svg" viewBox="0 0 150 150">
                         <circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/>
                     </svg>
@@ -623,18 +620,18 @@
                         <h2>THE<br>ENGINEERING<br>TIMES</h2>
                     </div>
                 </div>
-                <div class="modal-main-content">
+                <div class="modal-main-content content-hidden">
                     <p class="mb-8 text-lg">Pilih detail proyek yang ingin Anda lihat:</p>
                     <div class="space-y-4">
-                        <button data-modal-target="#srs-modal" data-src="https://docs.google.com/document/d/1k-1eR1BLNI2a9yP-EyyvkzlmljOK8GIsx2nmV3pNGQ4/preview" class="classic-button w-full text-base py-3">Buka Dokumen SRS</button>
-                        <button data-modal-target="#prototype-modal" data-src="https://affinecipher-0.github.io/prototype-greenhouse/" class="classic-button w-full text-base py-3">Lihat Prototipe Interaktif</button>
+                        <a href="https://docs.google.com/document/d/1k-1eR1BLNI2a9yP-EyyvkzlmljOK8GIsx2nmV3pNGQ4/edit?tab=t.0" target="_blank" rel="noopener noreferrer" class="classic-button w-full text-base py-3 inline-block text-center box-border">Buka Dokumen SRS</a>
+                        <a href="https://affinecipher-0.github.io/prototype-greenhouse/" target="_blank" rel="noopener noreferrer" class="classic-button w-full text-base py-3 inline-block text-center box-border">Lihat Prototipe Interaktif</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Modal Sertifikat -->
+    <!-- Certificate Gallery Modal -->
     <div id="sertifikat-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="sertifikat-modal-title">
         <div class="modal-content">
             <div class="modal-header">
@@ -650,58 +647,14 @@
                         <h2>THE<br>ENGINEERING<br>TIMES</h2>
                     </div>
                 </div>
-                <div class="modal-main-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-                    <button data-modal-target="#image-viewer-modal" data-src="https://i.imgur.com/wZ7owwo.png" class="block border-2 border-[#c8bda9] hover:border-[#634832] transition-all duration-300 p-2 group">
-                        <img src="https://i.imgur.com/wZ7owwo.png" alt="Sertifikat Magang DLHK DIY" class="w-full h-auto transition-transform duration-300 group-hover:scale-105">
-                        <p class="text-center text-sm mt-2 font-semibold">Magang DLHK DIY</p>
-                        <p class="text-center text-xs text-black/60">Dinas Lingkungan Hidup & Kehutanan DIY - 2024</p>
-                    </button>
-                    <button data-modal-target="#image-viewer-modal" data-src="https://i.imgur.com/fgV6iQP.png" class="block border-2 border-[#c8bda9] hover:border-[#634832] transition-all duration-300 p-2 group">
-                        <img src="https://i.imgur.com/fgV6iQP.png" alt="Sertifikat Literasi Digital" class="w-full h-auto transition-transform duration-300 group-hover:scale-105">
-                        <p class="text-center text-sm mt-2 font-semibold">Literasi Digital</p>
-                        <p class="text-center text-xs text-black/60">Kemkominfo - 2023</p>
-                    </button>
-                    <button data-modal-target="#image-viewer-modal" data-src="https://i.imgur.com/eyW5LUw.png" class="block border-2 border-[#c8bda9] hover:border-[#634832] transition-all duration-300 p-2 group">
-                        <img src="https://i.imgur.com/eyW5LUw.png" alt="Sertifikat Seminar Cyber Security" class="w-full h-auto transition-transform duration-300 group-hover:scale-105">
-                        <p class="text-center text-sm mt-2 font-semibold">Seminar Cyber Security</p>
-                        <p class="text-center text-xs text-black/60">HIMATEKNO FTTI UNJAYA - 2023</p>
-                    </button>
-                     <button data-modal-target="#image-viewer-modal" data-src="https://i.imgur.com/fRg3hmp.png" class="block border-2 border-[#c8bda9] hover:border-[#634832] transition-all duration-300 p-2 group">
-                        <img src="https://i.imgur.com/fRg3hmp.png" alt="Sertifikat Webinar Pengolahan Data" class="w-full h-auto transition-transform duration-300 group-hover:scale-105">
-                        <p class="text-center text-sm mt-2 font-semibold">Webinar Pengolahan Data</p>
-                        <p class="text-center text-xs text-black/60">XREI Institute - 2023</p>
-                    </button>
-                    <button data-modal-target="#image-viewer-modal" data-src="https://i.imgur.com/ltwjESR.png" class="block border-2 border-[#c8bda9] hover:border-[#634832] transition-all duration-300 p-2 group">
-                        <img src="https://i.imgur.com/ltwjESR.png" alt="Sertifikat CCNA Security" class="w-full h-auto transition-transform duration-300 group-hover:scale-105">
-                        <p class="text-center text-sm mt-2 font-semibold">CCNA Security</p>
-                        <p class="text-center text-xs text-black/60">Cisco Networking Academy - 2022</p>
-                    </button>
-                    <button data-modal-target="#image-viewer-modal" data-src="https://i.imgur.com/iCRbLK8.png" class="block border-2 border-[#c8bda9] hover:border-[#634832] transition-all duration-300 p-2 group">
-                        <img src="https://i.imgur.com/iCRbLK8.png" alt="Sertifikat Switching, Routing, & Wireless" class="w-full h-auto transition-transform duration-300 group-hover:scale-105">
-                        <p class="text-center text-sm mt-2 font-semibold">Switching, Routing, & Wireless</p>
-                        <p class="text-center text-xs text-black/60">Cisco Networking Academy - 2021</p>
-                    </button>
-                     <button data-modal-target="#image-viewer-modal" data-src="https://i.imgur.com/5frcsDW.png" class="block border-2 border-[#c8bda9] hover:border-[#634832] transition-all duration-300 p-2 group">
-                        <img src="https://i.imgur.com/5frcsDW.png" alt="Sertifikat Introduction to Networks" class="w-full h-auto transition-transform duration-300 group-hover:scale-105">
-                        <p class="text-center text-sm mt-2 font-semibold">Introduction to Networks</p>
-                        <p class="text-center text-xs text-black/60">Cisco Networking Academy - 2021</p>
-                    </button>
-                    <button data-modal-target="#image-viewer-modal" data-src="https://i.imgur.com/zruR3Gv.png" class="block border-2 border-[#c8bda9] hover:border-[#634832] transition-all duration-300 p-2 group">
-                        <img src="https://i.imgur.com/zruR3Gv.png" alt="Sertifikat Fundamental Python" class="w-full h-auto transition-transform duration-300 group-hover:scale-105">
-                        <p class="text-center text-sm mt-2 font-semibold">Fundamental Python</p>
-                        <p class="text-center text-xs text-black/60">Progate - 2021</p>
-                    </button>
-                    <button data-modal-target="#image-viewer-modal" data-src="https://i.imgur.com/Pqwf8N1.png" class="block border-2 border-[#c8bda9] hover:border-[#634832] transition-all duration-300 p-2 group">
-                        <img src="https://i.imgur.com/Pqwf8N1.png" alt="Sertifikat IT Essentials" class="w-full h-auto transition-transform duration-300 group-hover:scale-105">
-                        <p class="text-center text-sm mt-2 font-semibold">IT Essentials</p>
-                        <p class="text-center text-xs text-black/60">Cisco Networking Academy - 2020</p>
-                    </button>
+                <div class="modal-main-content content-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+                    <!-- Certificate items will be injected here by JS -->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal Image Viewer -->
+    <!-- Image Viewer Modal -->
     <div id="image-viewer-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="image-viewer-title">
         <div class="modal-content h-auto max-h-full w-auto max-w-full bg-transparent border-none shadow-none p-4">
              <div class="modal-loader">
@@ -712,90 +665,56 @@
                     <h2>THE<br>ENGINEERING<br>TIMES</h2>
                 </div>
             </div>
-            <div class="relative modal-main-content">
+            <div class="relative modal-main-content content-hidden">
                 <button class="modal-close-btn absolute -top-10 right-0 text-white text-5xl">&times;</button>
-                <img class="modal-image max-h-[85vh] max-w-[90vw] h-auto w-auto" src="" alt="Tampilan Penuh Sertifikat">
-            </div>
-        </div>
-    </div>
-
-
-    <!-- Modal SRS -->
-    <div id="srs-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="srs-modal-title">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 id="srs-modal-title" class="modal-title">Dokumen Software Requirement Specification</h5>
-                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-loader">
-                    <svg class="loader-svg" viewBox="0 0 150 150">
-                        <circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/>
-                    </svg>
-                    <div class="loader-text-modal">
-                        <h2>THE<br>ENGINEERING<br>TIMES</h2>
-                    </div>
-                </div>
-                <iframe class="modal-iframe modal-main-content" src="" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Prototipe -->
-    <div id="prototype-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="prototype-modal-title">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 id="prototype-modal-title" class="modal-title">Prototipe Greenhouse Automation</h5>
-                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-loader">
-                    <svg class="loader-svg" viewBox="0 0 150 150">
-                        <circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/>
-                    </svg>
-                    <div class="loader-text-modal">
-                        <h2>THE<br>ENGINEERING<br>TIMES</h2>
-                    </div>
-                </div>
-                <iframe class="modal-iframe modal-main-content" src="" allowfullscreen></iframe>
+                <img class="modal-image max-h-[85vh] max-w-[90vw] h-auto w-auto" src="" alt="Tampilan Penuh Sertifikat" onerror="this.onerror=null;this.src='https://placehold.co/800x600/fdf6e3/4a2c2a?text=Image+Not+Found';">
             </div>
         </div>
     </div>
 
     <script>
-        // --- Loading Screen Logic ---
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            // Durasi diubah menjadi 7 detik (7000 ms)
-            setTimeout(() => {
-                loader.classList.add('hidden');
-            }, 7000);
-        });
-
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- Dynamic Date Logic ---
-            function setDynamicDate() {
-                const dateElement = document.getElementById('current-date');
+            // --- Initial Loading Screen ---
+            window.addEventListener('load', () => {
+                const loader = document.getElementById('loader');
+                setTimeout(() => {
+                    if(loader) loader.classList.add('hidden');
+                }, 7000); // Corresponds to the 7s animation
+            });
+
+            // --- Dynamic Year and Live Clock ---
+            function initializeDateTime() {
                 const yearElement = document.getElementById('current-year');
-                if (!dateElement || !yearElement) return;
+                if (yearElement) {
+                    yearElement.textContent = new Date().getFullYear();
+                }
 
-                const now = new Date();
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                const locale = 'id-ID';
-                
-                const formattedDate = now.toLocaleDateString(locale, options);
-                const currentYear = now.getFullYear();
+                const liveTimeElement = document.getElementById('live-datetime');
+                function updateLiveTime() {
+                    if (!liveTimeElement) return;
 
-                const authorPart = "Oleh: Gatot Sasangka";
+                    const now = new Date();
+                    const timeZone = 'Asia/Makassar'; // WITA
+                    const dateOptions = {
+                        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: timeZone
+                    };
+                    const timeOptions = {
+                        hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: timeZone
+                    };
+
+                    const formattedDate = new Intl.DateTimeFormat('id-ID', dateOptions).format(now);
+                    const formattedTime = new Intl.DateTimeFormat('id-ID', timeOptions).format(now).replace(/\./g, ':');
+                    
+                    liveTimeElement.textContent = `${formattedDate} | ${formattedTime} WITA`;
+                }
                 
-                dateElement.textContent = `${authorPart} | Diterbitkan: ${formattedDate}`;
-                yearElement.textContent = currentYear;
+                updateLiveTime();
+                setInterval(updateLiveTime, 1000);
             }
-            setDynamicDate();
+            initializeDateTime();
 
-
-            // --- Scroll Animation Logic ---
+            // --- Scroll-triggered Fade-in Animation ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -803,141 +722,135 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, {
-                threshold: 0.1
-            });
+            }, { threshold: 0.1 });
 
-            const elementsToAnimate = document.querySelectorAll('.fade-in-on-scroll');
-            elementsToAnimate.forEach(el => {
-                observer.observe(el);
-            });
+            document.querySelectorAll('.fade-in-on-scroll').forEach(el => observer.observe(el));
 
-            // --- Modal Logic ---
+            // --- Modal Management ---
+            const openModal = (modal, sourceUrl = null) => {
+                if (!modal) return;
+                modal.classList.add('active');
+                
+                const loader = modal.querySelector('.modal-loader');
+                const mainContent = modal.querySelector('.modal-main-content');
+                const dynamicElement = mainContent?.querySelector('iframe, .modal-image');
+
+                const showContent = () => {
+                    if(loader) loader.classList.remove('show');
+                    if(mainContent) mainContent.classList.remove('content-hidden');
+                };
+                
+                if (loader) loader.classList.add('show');
+                if (mainContent) mainContent.classList.add('content-hidden');
+
+                if (dynamicElement && sourceUrl) {
+                    dynamicElement.onload = showContent;
+                    dynamicElement.src = sourceUrl;
+                } else {
+                    // For modals without dynamic content, just simulate a brief load
+                    setTimeout(showContent, 500);
+                }
+            };
+
             const closeModal = (modal) => {
                 if (!modal) return;
                 modal.classList.remove('active');
-
+                
+                // Reset content after transition
                 setTimeout(() => {
-                    const content = modal.querySelector('.modal-main-content');
-                    if(content) content.classList.add('content-hidden');
-
                     const iframe = modal.querySelector('.modal-iframe');
-                    if (iframe) iframe.src = '';
+                    if (iframe) iframe.src = 'about:blank';
                     
                     const img = modal.querySelector('.modal-image');
                     if (img) img.src = '';
 
                     const loader = modal.querySelector('.modal-loader');
                     if (loader) loader.classList.remove('show');
-                }, 400); // Match CSS transition
+                }, 400); 
             };
             
-            const openModalButtons = document.querySelectorAll('[data-modal-target]');
-            
-            openModalButtons.forEach(button => {
+            document.querySelectorAll('[data-modal-target]').forEach(button => {
                 button.addEventListener('click', () => {
                     const modalId = button.dataset.modalTarget;
                     const modal = document.querySelector(modalId);
-                    if (!modal) return;
+                    const sourceUrl = button.dataset.src || null;
 
+                    // Close parent modal if opening a new one from within another
                     const parentModal = button.closest('.modal-overlay');
                     if (parentModal) closeModal(parentModal);
-                    
-                    modal.classList.add('active');
-                    
-                    const loader = modal.querySelector('.modal-loader');
-                    const mainContent = modal.querySelector('.modal-main-content');
 
-                    if (loader && mainContent) {
-                        loader.classList.add('show');
-                        mainContent.classList.add('content-hidden');
-
-                        setTimeout(() => {
-                            const dynamicContent = mainContent.querySelector('iframe, img');
-                            if (dynamicContent && button.dataset.src) {
-                                dynamicContent.src = button.dataset.src;
-                            }
-                            loader.classList.remove('show');
-                            mainContent.classList.remove('content-hidden');
-                        }, 3000);
-                    } else if (mainContent) {
-                        const dynamicContent = mainContent.querySelector('iframe, img');
-                         if (dynamicContent && button.dataset.src) {
-                            dynamicContent.src = button.dataset.src;
-                        }
-                    }
+                    openModal(modal, sourceUrl);
                 });
             });
 
-
-            const closeModalButtons = document.querySelectorAll('.modal-close-btn');
-            closeModalButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const modal = button.closest('.modal-overlay');
-                    closeModal(modal);
-                });
-            });
-
-            const modalOverlays = document.querySelectorAll('.modal-overlay');
-            modalOverlays.forEach(overlay => {
+            document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                // Close by clicking overlay
                 overlay.addEventListener('click', (e) => {
-                    if (e.target === overlay) {
-                       closeModal(overlay);
-                    }
+                    if (e.target === overlay) closeModal(overlay);
                 });
+                // Close by clicking a close button
+                overlay.querySelector('.modal-close-btn')?.addEventListener('click', () => closeModal(overlay));
             });
-            
+
+            // --- Certificate Gallery Logic ---
+            const certificates = [
+                { src: "https://i.imgur.com/wZ7owwo.png", alt: "Sertifikat Magang DLHK DIY", title: "Magang DLHK DIY", desc: "Dinas Lingkungan Hidup & Kehutanan DIY - 2024" },
+                { src: "https://i.imgur.com/fgV6iQP.png", alt: "Sertifikat Literasi Digital", title: "Literasi Digital", desc: "Kemkominfo - 2023" },
+                { src: "https://i.imgur.com/eyW5LUw.png", alt: "Sertifikat Seminar Cyber Security", title: "Seminar Cyber Security", desc: "HIMATEKNO FTTI UNJAYA - 2023" },
+                { src: "https://i.imgur.com/fRg3hmp.png", alt: "Sertifikat Webinar Pengolahan Data", title: "Webinar Pengolahan Data", desc: "XREI Institute - 2023" },
+                { src: "https://i.imgur.com/ltwjESR.png", alt: "Sertifikat CCNA Security", title: "CCNA Security", desc: "Cisco Networking Academy - 2022" },
+                { src: "https://i.imgur.com/iCRbLK8.png", alt: "Sertifikat Switching, Routing, & Wireless", title: "Switching, Routing, & Wireless", desc: "Cisco Networking Academy - 2021" },
+                { src: "https://i.imgur.com/5frcsDW.png", alt: "Sertifikat Introduction to Networks", title: "Introduction to Networks", desc: "Cisco Networking Academy - 2021" },
+                { src: "https://i.imgur.com/zruR3Gv.png", alt: "Sertifikat Fundamental Python", title: "Fundamental Python", desc: "Progate - 2021" },
+                { src: "https://i.imgur.com/Pqwf8N1.png", alt: "Sertifikat IT Essentials", title: "IT Essentials", desc: "Cisco Networking Academy - 2020" }
+            ];
+
+            const galleryContainer = document.querySelector('#sertifikat-modal .modal-main-content');
+            if(galleryContainer) {
+                galleryContainer.innerHTML = certificates.map(cert => `
+                    <button data-modal-target="#image-viewer-modal" data-src="${cert.src}" class="block border-2 border-[#c8bda9] hover:border-[#634832] transition-all duration-300 p-2 group text-left">
+                        <img src="${cert.src}" alt="${cert.alt}" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/fcf8f0/4a2c2a?text=Error';">
+                        <p class="text-center text-sm mt-2 font-semibold">${cert.title}</p>
+                        <p class="text-center text-xs text-black/60">${cert.desc}</p>
+                    </button>
+                `).join('');
+                 // Re-attach event listeners for newly created buttons
+                 galleryContainer.querySelectorAll('[data-modal-target]').forEach(button => {
+                    button.addEventListener('click', () => {
+                         const modalId = button.dataset.modalTarget;
+                         const modal = document.querySelector(modalId);
+                         const sourceUrl = button.dataset.src || null;
+                         const parentModal = button.closest('.modal-overlay');
+                         if (parentModal) closeModal(parentModal);
+                         openModal(modal, sourceUrl);
+                    });
+                });
+            }
+
+
             // --- Copy Email Logic ---
             const copyEmailBtn = document.getElementById('copy-email-btn');
             if (copyEmailBtn) {
                 copyEmailBtn.addEventListener('click', () => {
                     const emailAddress = document.getElementById('email-address').textContent;
-                    const tempTextArea = document.createElement('textarea');
-                    tempTextArea.value = emailAddress;
-                    document.body.appendChild(tempTextArea);
-                    tempTextArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(tempTextArea);
-
-                    // Feedback for the user
-                    const originalText = copyEmailBtn.textContent;
-                    copyEmailBtn.textContent = 'Alamat Surel Tersalin!';
-                    setTimeout(() => {
-                        copyEmailBtn.textContent = originalText;
-                    }, 2000); // Change back after 2 seconds
+                    navigator.clipboard.writeText(emailAddress).then(() => {
+                        const originalText = copyEmailBtn.textContent;
+                        copyEmailBtn.textContent = 'Alamat Surel Tersalin!';
+                        setTimeout(() => {
+                            copyEmailBtn.textContent = originalText;
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                        // Fallback for older browsers
+                        const tempTextArea = document.createElement('textarea');
+                        tempTextArea.value = emailAddress;
+                        document.body.appendChild(tempTextArea);
+                        tempTextArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(tempTextArea);
+                    });
                 });
             }
-
-            // --- Live Date & Time Logic ---
-            function updateLiveTime() {
-                const liveTimeElement = document.getElementById('live-datetime');
-                if (!liveTimeElement) return;
-
-                const now = new Date();
-                const dateOptions = {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                };
-                const timeOptions = {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                    hour12: false,
-                };
-
-                const dateFormatter = new Intl.DateTimeFormat('id-ID', dateOptions);
-                const timeFormatter = new Intl.DateTimeFormat('id-ID', timeOptions);
-                
-                const formattedTime = timeFormatter.format(now).replace(/\./g, ':');
-                const timeZoneName = new Intl.DateTimeFormat('en-US', {timeZoneName:'short'}).formatToParts(now).find(part => part.type === 'timeZoneName').value;
-
-                liveTimeElement.textContent = `${dateFormatter.format(now)} | ${formattedTime} ${timeZoneName}`;
-            }
-            
-            updateLiveTime(); // Panggilan awal
-            setInterval(updateLiveTime, 1000); // Perbarui setiap detik
 
             // --- Back to Top Button Logic ---
             const backToTopButton = document.getElementById('back-to-top');
@@ -955,3 +868,5 @@
 
 </body>
 </html>
+
+
