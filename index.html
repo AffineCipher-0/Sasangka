@@ -9,7 +9,7 @@
     <meta name="keywords" content="Gatot Sasangka, portofolio, insinyur jaringan, IoT, AI, pengembangan web, mikrokontroller, e-commerce, sasangkagatot@gmail.com, CV">
     <meta property="og:title" content="The Engineering Times | Portofolio Gatot Sasangka">
     <meta property="og:description" content="Menjelajahi proyek-proyek inovatif di bidang teknologi jaringan, IoT, dan pengembangan web.">
-    <meta property="og:image" content="https://placehold.co/1200x630/fdf6e3/4a2c2a?text=The+Engineering+Times">
+    <meta property="og:image" content="https://placehold.co/1200x630/2C2720/D4C8B5?text=The+Engineering+Times">
     <meta property="og:url" content="https://affinecipher-0.github.io/portfolio/">
     <meta property="og:type" content="website">
 
@@ -31,7 +31,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: #fdf6e3;
+            background-color: #2C2720; /* Dark BG */
             z-index: 9999;
             display: flex;
             justify-content: center;
@@ -63,11 +63,10 @@
         }
 
         .progress-ring__circle {
-            stroke-dasharray: 817; /* keliling lingkaran (2 * pi * 130) */
+            stroke-dasharray: 817;
             stroke-dashoffset: 817;
             stroke-linecap: round;
-            stroke: #634832;
-            /* PERBAIKAN: Durasi animasi dipercepat */
+            stroke: #D4C8B5; /* Light Text */
             animation: progress-animation 3s linear forwards;
         }
 
@@ -76,14 +75,10 @@
             to { stroke-dashoffset: 0; }
         }
 
-        .loader-text {
-            text-align: center;
-        }
-
         .loader-text h2 {
             font-family: 'Cinzel Decorative', cursive;
             font-size: 2rem;
-            color: #4a2c2a;
+            color: #D4C8B5; /* Light Text */
             margin: 0;
             line-height: 1.2;
         }
@@ -91,26 +86,24 @@
         .loader-text p {
             font-family: 'Amiri', serif;
             font-size: 0.9rem;
-            color: #634832;
+            color: #967259; /* Accent */
             margin-top: 0.5rem;
         }
 
         /* General Theme Styling */
         body {
             font-family: 'Amiri', serif;
-            background-color: #fdf6e3;
-            background-image: linear-gradient(45deg, rgba(199, 189, 169, 0.05) 25%, transparent 25%),
-                              linear-gradient(-45deg, rgba(199, 189, 169, 0.05) 25%, transparent 25%),
-                              linear-gradient(45deg, transparent 75%, rgba(199, 189, 169, 0.05) 75%),
-                              linear-gradient(-45deg, transparent 75%, rgba(199, 189, 169, 0.05) 75%);
+            background-color: #2C2720; /* Dark BG */
+            background-image: linear-gradient(45deg, rgba(212, 200, 181, 0.03) 25%, transparent 25%),
+                              linear-gradient(-45deg, rgba(212, 200, 181, 0.03) 25%, transparent 25%),
+                              linear-gradient(45deg, transparent 75%, rgba(212, 200, 181, 0.03) 75%),
+                              linear-gradient(-45deg, transparent 75%, rgba(212, 200, 181, 0.03) 75%);
             background-size: 20px 20px;
-            color: #4a2c2a;
+            color: #D4C8B5; /* Light Text */
             font-size: 18px;
             line-height: 1.8;
-            /* PERBAIKAN: Hapus overflow:hidden dan height:100vh agar scroll berfungsi */
         }
         
-        /* PERBAIKAN: Class untuk menonaktifkan scroll saat modal aktif */
         .body-no-scroll {
             overflow: hidden;
         }
@@ -124,23 +117,22 @@
             font-weight: 700;
         }
 
-        /* PERBAIKAN: Styling untuk link navigasi yang aktif */
         .nav-link.active-page {
             font-weight: 700;
-            color: #634832;
+            color: #E0D8C8; /* Brighter Text */
         }
 
         .article-frame {
-            border: 1px solid #c8bda9;
+            border: 1px solid #967259; /* Accent */
             padding: 1.5rem 2rem;
-            background-color: #fcf8f0;
-            box-shadow: 0 0 0 5px #fcf8f0, 0 0 0 6px #c8bda9;
+            background-color: #3A352F; /* Lighter Dark BG */
+            box-shadow: 0 0 0 5px #3A352F, 0 0 0 6px #967259;
             margin-bottom: 2rem;
             transition: all 0.3s ease-in-out;
         }
         .article-frame:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1), 0 0 0 5px #fcf8f0, 0 0 0 6px #c8bda9;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 0 5px #3A352F, 0 0 0 6px #967259;
         }
         
         .fancy-divider {
@@ -148,35 +140,59 @@
             text-align: center;
             overflow: visible;
             height: 40px;
-            margin: 2rem 0;
+            margin: 2rem auto;
         }
+
         .fancy-divider::before {
             content: '☙ ❧';
             font-size: 28px;
-            color: #967259;
+            color: #967259; /* Accent */
             letter-spacing: 0.5em;
+            animation: candle-flicker 5s linear infinite;
+        }
+
+        @keyframes candle-flicker {
+            0%, 100% {
+                opacity: 1;
+                text-shadow: 0 0 8px rgba(212, 200, 181, 0.4);
+            }
+            20% {
+                opacity: 0.8;
+                text-shadow: 0 0 10px rgba(212, 200, 181, 0.5);
+            }
+            40% {
+                opacity: 1;
+                text-shadow: 0 0 8px rgba(212, 200, 181, 0.4);
+            }
+            60% {
+                opacity: 0.7;
+                text-shadow: 0 0 12px rgba(212, 200, 181, 0.6);
+            }
+            80% {
+                opacity: 1;
+                text-shadow: 0 0 8px rgba(212, 200, 181, 0.4);
+            }
         }
 
         .classic-button {
             display: inline-block;
             background-color: transparent;
-            border: 2px solid #634832;
+            border: 2px solid #967259; /* Accent */
             padding: 10px 20px;
-            color: #634832;
+            color: #D4C8B5; /* Light Text */
             text-decoration: none;
             font-weight: 700;
             transition: all 0.3s;
-            box-shadow: 3px 3px 0 #c8bda9;
+            box-shadow: 3px 3px 0 #5A5245; /* Shadow */
             cursor: pointer;
         }
         .classic-button:hover {
-            background-color: #634832;
-            color: #fdf6e3;
-            box-shadow: 1px 1px 0 #c8bda9;
+            background-color: #967259; /* Accent */
+            color: #2C2720; /* Dark BG */
+            box-shadow: 1px 1px 0 #5A5245; /* Shadow */
             transform: translate(2px, 2px);
         }
         
-        /* Scroll Animation (untuk Timeline) */
         .fade-in-on-scroll {
             opacity: 0;
             transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -207,7 +223,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 10000;
             display: flex;
             justify-content: center;
@@ -222,11 +238,11 @@
             transition: opacity 0.4s ease, visibility 0s;
         }
         .modal-content {
-            background: #fdf6e3;
-            color: #4a2c2a;
+            background: #3A352F; /* Lighter Dark BG */
+            color: #D4C8B5; /* Light Text */
             padding: 20px;
-            border: 2px solid #967259;
-            box-shadow: 0 0 0 8px #fdf6e3, 0 0 25px rgba(0,0,0,0.5);
+            border: 2px solid #967259; /* Accent */
+            box-shadow: 0 0 0 8px #3A352F, 0 0 25px rgba(0,0,0,0.5);
             width: 90%;
             height: 85%;
             max-width: 1200px;
@@ -246,19 +262,19 @@
             justify-content: space-between;
             align-items: center;
             padding-bottom: 10px;
-            border-bottom: 1px solid #c8bda9;
+            border-bottom: 1px solid #967259; /* Accent */
             flex-shrink: 0;
         }
         .modal-title {
             font-family: 'Amiri', serif;
             font-weight: 700;
             font-size: 1.5rem;
-            color: #4a2c2a;
+            color: #E0D8C8; /* Brighter Text */
         }
         .modal-close-btn {
             font-size: 2rem;
             font-weight: bold;
-            color: #967259;
+            color: #C8BDA9; /* Secondary Accent */
             cursor: pointer;
             background: none;
             border: none;
@@ -266,7 +282,7 @@
         .modal-body {
             flex-grow: 1;
             padding-top: 15px;
-            overflow-y: auto; /* PERBAIKAN: Memastikan modal body bisa di-scroll */
+            overflow-y: auto;
             position: relative;
         }
         .modal-iframe {
@@ -282,9 +298,9 @@
             right: 30px;
             width: 50px;
             height: 50px;
-            background-color: #634832;
-            color: #fdf6e3;
-            border: 2px solid #fdf6e3;
+            background-color: #967259; /* Accent */
+            color: #2C2720; /* Dark BG */
+            border: 2px solid #3A352F; /* Lighter Dark BG */
             border-radius: 50%;
             text-align: center;
             font-size: 24px;
@@ -302,44 +318,16 @@
             transform: translateY(0);
         }
         #back-to-top:hover {
-            background-color: #4a2c2a;
+            background-color: #C8BDA9; /* Secondary Accent */
             transform: scale(1.1);
         }
         
         /* Modal Loader */
-        .modal-loader {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 150px;
-            height: 150px;
-            display: none;
-            z-index: 10;
-        }
-        .modal-loader.show {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-loader .loader-svg { width: 150px; height: 150px; }
         .modal-loader .modal-progress-ring__circle {
-            stroke-dasharray: 408; /* 2 * pi * 65 */
-            stroke-dashoffset: 408;
-            stroke-width: 8;
-            stroke: #634832;
-            r: 65; cx: 75; cy: 75;
-            animation: modal-progress-animation 1.5s linear infinite;
-        }
-        @keyframes modal-progress-animation {
-            from { stroke-dashoffset: 816; }
-            to { stroke-dashoffset: 0; }
-        }
-        .modal-loader .loader-text-modal {
-            position: absolute; text-align: center; width: 100%;
+            stroke: #D4C8B5; /* Light Text */
         }
         .modal-loader .loader-text-modal h2 {
-            font-family: 'Cinzel Decorative', cursive; font-size: 1rem; line-height: 1.1; color: #4a2c2a;
+            color: #D4C8B5; /* Light Text */
         }
         .content-hidden {
             visibility: hidden !important;
@@ -354,8 +342,8 @@
         .certificate-overlay {
             position: absolute; top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(74, 44, 42, 0.8);
-            color: #fdf6e3;
+            background: rgba(44, 39, 32, 0.85); /* Darker Overlay */
+            color: #E0D8C8; /* Brighter Text */
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
             opacity: 0;
@@ -365,39 +353,23 @@
         .certificate-item:hover .certificate-overlay { opacity: 1; pointer-events: auto; }
         
         /* Timeline Styling */
-        .timeline { position: relative; max-width: 800px; margin: 0 auto; }
         .timeline::after {
-            content: ''; position: absolute;
-            width: 2px; background-color: #c8bda9;
-            top: 0; bottom: 0; left: 50%;
-            margin-left: -1px;
+            background-color: #967259; /* Accent */
         }
-        .timeline-container { padding: 10px 40px; position: relative; background-color: inherit; width: 50%; }
-        .timeline-container.left { left: 0; }
-        .timeline-container.right { left: 50%; }
         .timeline-container::after {
-            content: ''; position: absolute;
-            width: 16px; height: 16px;
-            right: -8px; background-color: #fdf6e3;
-            border: 2px solid #634832; top: 28px;
-            border-radius: 50%; z-index: 1;
+            background-color: #3A352F; /* Lighter Dark BG */
+            border: 2px solid #967259; /* Accent */
         }
-        .right::after { left: -8px; }
-        .timeline-content { padding: 20px 30px; background-color: #fdf6e3; position: relative; border: 1px solid #c8bda9; }
-        @media (max-width: 768px) {
-            .timeline::after { left: 20px; }
-            .timeline-container { width: 100%; padding-left: 60px; padding-right: 15px; }
-            .timeline-container.left, .timeline-container.right { left: 0%; }
-            .timeline-container::after { left: 12px; }
-            .right::after, .left::after { left: 12px; }
+        .timeline-content { 
+            background-color: #3A352F; /* Lighter Dark BG */
+            border: 1px solid #967259; /* Accent */
         }
 
-        /* PERBAIKAN: Layout utama diubah untuk menangani tinggi dan scroll */
         #book-container {
             display: flex;
             width: 100%;
             height: 100vh;
-            overflow: hidden; /* Mencegah cover page membuat scroll */
+            overflow: hidden;
         }
         #cover-page {
             transition: transform 0.7s ease-in-out;
@@ -406,7 +378,7 @@
         #cover-page.cover-hidden {
             transform: translateX(-100%);
         }
-        /* PERBAIKAN: Layout grid untuk sidebar dan konten agar adaptif */
+
         #content-pages {
             display: grid;
             grid-template-columns: 1fr 250px;
@@ -427,7 +399,7 @@
             position: relative;
         }
         .sidebar {
-            width: 100%; /* Lebar diatur oleh grid-template-columns */
+            width: 100%;
             transition: all 0.5s ease-in-out;
             overflow-y: auto;
         }
@@ -435,7 +407,6 @@
             grid-template-columns: 1fr 80px;
         }
 
-        /* Sidebar Minimization */
         .sidebar .nav-text {
             transition: opacity 0.2s ease-in-out, max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: inline-block;
@@ -469,7 +440,6 @@
             margin-right: 0;
         }
 
-        /* General Entrance Animation */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -493,7 +463,6 @@
         .animation-delay-400 { animation-delay: 0.4s; }
         .animation-delay-600 { animation-delay: 0.6s; }
 
-        /* Navigation Link Hover Enhancement */
         .nav-link .nav-text {
             transition: transform 0.3s ease;
         }
@@ -505,7 +474,7 @@
         }
     </style>
 </head>
-<body class="bg-[#fdf6e3] text-[#4a2c2a]">
+<body class="bg-[#2C2720] text-[#D4C8B5]">
 
     <div id="loader" class="loader">
         <div class="loader-content">
@@ -526,10 +495,10 @@
 
     <div id="book-container">
 
-        <section id="cover-page" class="w-full flex-shrink-0 flex flex-col justify-center items-center text-center p-8 bg-[#fdf6e3]">
+        <section id="cover-page" class="w-full flex-shrink-0 flex flex-col justify-center items-center text-center p-8 bg-[#2C2720]">
             <div class="p-8 rounded-lg">
-                <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider text-[#4a2c2a] mb-2">The Engineering Times</h1>
-                <p class="text-xl md:text-2xl mt-4 font-amiri text-[#4a2c2a] mb-8">Portofolio Gatot Sasangka</p>
+                <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider text-[#D4C8B5] mb-2">The Engineering Times</h1>
+                <p class="text-xl md:text-2xl mt-4 font-amiri text-[#D4C8B5] mb-8">Portofolio Gatot Sasangka</p>
                 <div class="border-y-2 border-[#967259] py-2">
                     <p class="text-sm tracking-widest text-center">
                         EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB
@@ -559,7 +528,7 @@
                     </header>
                     <div class="fancy-divider animate-on-scroll animation-delay-200"></div>
                     <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight text-center animate-on-scroll animation-delay-200">Jejak Inovasi: Dari Algoritma Al-Khwarizmi hingga Kecerdasan Buatan</h2>
-                    <p id="current-date" class="text-base text-black/60 mb-6 text-center animate-on-scroll animation-delay-400"></p>
+                    <p id="current-date" class="text-base text-white/60 mb-6 text-center animate-on-scroll animation-delay-400"></p>
                     <p class="text-lg leading-relaxed mb-8 text-justify animate-on-scroll animation-delay-400">
                         Sejarah teknologi adalah perjalanan panjang tentang bagaimana ide-ide besar lahir dari fondasi yang diletakkan oleh para pemikir terdahulu. Perjalanan ini dimulai pada abad ke-9, ketika seorang ilmuwan Muslim bernama Al-Khwarizmi memperkenalkan konsep algoritma, dasar dari semua komputasi modern. Pemikirannya menjadi pondasi logika yang memungkinkan manusia merancang mesin yang dapat menghitung, memproses data, dan menyelesaikan masalah secara sistematis. “Algoritma bukan sekadar perhitungan, tetapi cara berpikir yang membentuk masa depan teknologi.”
 Berabad-abad kemudian, pada abad ke-15, Johannes Gutenberg menemukan mesin cetak, sebuah inovasi yang merevolusi penyebaran informasi. Sebelum itu, pengetahuan hanya dikuasai segelintir orang, namun mesin cetak membuat buku dan ilmu pengetahuan menyebar ke seluruh dunia, dengan dampak yang setara dengan internet di era modern: mempercepat kolaborasi dan memperluas wawasan umat manusia.
@@ -628,7 +597,7 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                             <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" rel="noopener noreferrer">
                                 <h4 class="text-2xl font-bold mb-2 hover:underline">ALAT PENERJEMAH SANDI MORSE BERBASIS MIKROKONTROLLER</h4>
                             </a>
-                            <p class="text-sm text-black/50 mb-4">Kategori: Mikrokontroller, Arduino (C++), Algoritma Brute Force</p>
+                            <p class="text-sm text-white/50 mb-4">Kategori: Mikrokontroller, Arduino (C++), Algoritma Brute Force</p>
                             <p class="text-justify">
                                 Di era ketika informasi melintasi dunia melalui ketukan telegraf, sandi morse adalah bahasa universal pertama. Proyek ini adalah sebuah penghormatan modern terhadap teknologi fundamental tersebut, dengan membangun alat penerjemah berbasis mikrokontroler yang mengurai sandi morse secara akurat menggunakan algoritma <i>brute force</i>.
                             </p>
@@ -640,7 +609,7 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                             <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer">
                                 <h4 class="text-2xl font-bold mb-2 hover:underline">Toko Online Barang Bekas – SECONDHAND</h4>
                             </a>
-                            <p class="text-sm text-black/50 mb-4">Kategori: Pengembangan Web, E-Commerce, PHP, MySQL, HTML, CSS, JavaScript</p>
+                            <p class="text-sm text-white/50 mb-4">Kategori: Pengembangan Web, E-Commerce, PHP, MySQL, HTML, CSS, JavaScript</p>
                             <p class="text-justify">
                                 Melompat ke era '90-an, saat World Wide Web mulai membuka gerbang perdagangan global. Proyek ini mereplikasi semangat awal e-commerce dengan membangun 'Secondhand', sebuah platform fungsional untuk jual-beli barang bekas, lengkap dengan sistem manajemen admin yang komprehensif.
                             </p>
@@ -650,7 +619,7 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                         </article>
                         <article class="article-frame animate-on-scroll animation-delay-600">
                             <h4 class="text-2xl font-bold mb-2">Software Requirement Specification untuk Greenhouse Otomatisasi Hidroponik</h4>
-                            <p class="text-sm text-black/50 mb-4">Kategori: IoT, Perancangan Perangkat Lunak, Pertanian Cerdas, Perancangan Sistem, Client-Server</p>
+                            <p class="text-sm text-white/50 mb-4">Kategori: IoT, Perancangan Perangkat Lunak, Pertanian Cerdas, Perancangan Sistem, Client-Server</p>
                             <p class="text-justify">
                                 Kini, kita berada di ambang revolusi industri keempat, di mana dunia fisik dan digital menyatu. Dokumen SRS ini adalah cetak biru untuk masa depan pertanian cerdas, merancang arsitektur sistem IoT berskala besar untuk mengelola ratusan <i>greenhouse</i> hidroponik secara efisien melalui aplikasi mobile.
                             </p>
@@ -713,9 +682,6 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                             <button data-modal-target="#email-modal" class="classic-button">
                                 <i class="fa-regular fa-envelope mr-2"></i> Kirim Surel
                             </button>
-                            <a href="https://github.com/AffineCipher-0" target="_blank" rel="noopener noreferrer" class="classic-button">
-                                <i class="fa-brands fa-github mr-2"></i> GitHub
-                            </a>
                             <a href="https://wa.me/6287832165306" target="_blank" rel="noopener noreferrer" class="classic-button">
                                 <i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp
                             </a>
@@ -743,7 +709,7 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
 
             </div>
 
-            <nav id="sidebar" class="sidebar bg-[#fcf8f0] border-l-2 border-[#c8bda9] p-8">
+            <nav id="sidebar" class="sidebar bg-[#3A352F] border-l-2 border-[#967259] p-8">
                 <div class="sticky top-0">
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-2xl font-bold nav-text">Daftar Isi</h2>
@@ -790,12 +756,8 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
             </div>
             <div class="modal-body p-8">
                 <div class="modal-loader">
-                    <svg class="loader-svg" viewBox="0 0 150 150">
-                        <circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/>
-                    </svg>
-                    <div class="loader-text-modal">
-                        <h2>THE<br>ENGINEERING</h2>
-                    </div>
+                    <svg class="loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/></svg>
+                    <div class="loader-text-modal"><h2>THE<br>ENGINEERING</h2></div>
                 </div>
                 <div class="modal-main-content content-hidden">
                     <h4 class="text-xl font-bold mb-2">Tentang Proyek</h4>
@@ -822,12 +784,8 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
             </div>
             <div class="modal-body p-8">
                 <div class="modal-loader">
-                    <svg class="loader-svg" viewBox="0 0 150 150">
-                        <circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/>
-                    </svg>
-                    <div class="loader-text-modal">
-                        <h2>THE<br>ENGINEERING</h2>
-                    </div>
+                    <svg class="loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/></svg>
+                    <div class="loader-text-modal"><h2>THE<br>ENGINEERING</h2></div>
                 </div>
                 <div class="modal-main-content content-hidden">
                     <h4 class="text-xl font-bold mb-2">Tentang Proyek</h4>
@@ -856,25 +814,25 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                 <div class="modal-loader"><svg class="loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="loader-text-modal"><h2>THE<br>ENGINEERING</h2></div></div>
                 <div class="modal-main-content content-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-8">
                     <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2"><i class="fas fa-network-wired text-[#967259] mr-2"></i>Jaringan & Infrastruktur</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-network-wired text-[#967259] mr-2"></i>Jaringan & Infrastruktur</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Administrasi Jaringan</li><li>Cisco Packet Tracer</li><li>Keamanan Jaringan</li><li>TCP/IP & Model OSI</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2"><i class="fas fa-code text-[#967259] mr-2"></i>Pengembangan Perangkat Lunak</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-code text-[#967259] mr-2"></i>Pengembangan Perangkat Lunak</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>PHP (Natif)</li><li>HTML, CSS, JavaScript</li><li>MySQL / SQL</li><li>Python (Dasar)</li><li>Git & GitHub</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2"><i class="fas fa-microchip text-[#967259] mr-2"></i>IoT & Mikrokontroller</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-microchip text-[#967259] mr-2"></i>IoT & Mikrokontroller</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Arduino IDE (C++)</li><li>ESP8266/ESP32</li><li>Sensor & Aktuator</li><li>Perancangan Sistem Tertanam</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#c8bda9] pb-2"><i class="fas fa-file-alt text-[#967259] mr-2"></i>Produktifitas & Perkantoran</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-file-alt text-[#967259] mr-2"></i>Produktifitas & Perkantoran</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Microsoft Office</li><li>Google Workspace</li>
                         </ul>
@@ -894,7 +852,7 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                 <div class="modal-loader"><svg class="loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="loader-text-modal"><h2>THE<br>ENGINEERING</h2></div></div>
                 <div class="modal-main-content content-hidden">
                     <p class="mb-4 text-lg">Anda dapat menghubungi saya melalui alamat surel berikut:</p>
-                    <p id="email-address" class="text-xl md:text-2xl font-bold bg-white/50 p-4 border border-[#c8bda9] mb-8 break-all">sasangkagatot@gmail.com</p>
+                    <p id="email-address" class="text-xl md:text-2xl font-bold bg-[#2C2720] p-4 border border-[#967259] mb-8 break-all">sasangkagatot@gmail.com</p>
                     <button id="copy-email-btn" class="classic-button w-full text-base py-3">Salin Alamat Surel</button>
                 </div>
             </div>
@@ -930,14 +888,14 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                 <div class="modal-loader"><svg class="loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="loader-text-modal"><h2>THE<br>ENGINEERING</h2></div></div>
                 <div class="modal-main-content content-hidden p-4">
                     <div class="timeline">
-                        <div class="timeline-container left fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-9 – Awal Perjalanan: Fondasi Algoritma</h4><p class="text-sm text-black/60 mb-2">Pada abad ke-9, seorang ilmuwan Muslim bernama Al-Khwarizmi memperkenalkan konsep algoritma, yang menjadi dasar dari semua komputasi modern.</p><p>Pemikirannya adalah pondasi logika yang memungkinkan manusia untuk merancang mesin yang bisa menghitung, memproses data, dan menyelesaikan masalah dengan cara yang sistematis. Tanpa warisan ini, komputer dan teknologi digital mungkin takkan pernah ada.</p><p>“Algoritma bukan sekadar perhitungan, tapi cara berpikir yang membentuk masa depan teknologi.”</p></div></div>
-                        <div class="timeline-container right fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-15 – Penyebaran Ilmu Pengetahuan: Mesin Cetak Gutenberg</h4><p class="text-sm text-black/60 mb-2">Berabad-abad kemudian, Johannes Gutenberg menemukan mesin cetak, sebuah inovasi yang merevolusi penyebaran informasi.</p><p>Sebelumnya, pengetahuan hanya dimiliki segelintir orang, namun mesin cetak membuat buku dan ide-ide ilmiah dapat menyebar ke seluruh dunia.</p><p>Dampaknya sama seperti internet di era kita sekarang: mempercepat kolaborasi, memperluas wawasan, dan memperkuat fondasi peradaban.</p></div></div>
-                        <div class="timeline-container left fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-18 – Revolusi Industri</h4><p class="text-sm text-black/60 mb-2">Revolusi Industri mengubah dunia secara drastis.</p><p>Mesin uap memicu mekanisasi di bidang produksi, transportasi, dan pertanian.</p><p>Manusia untuk pertama kalinya memiliki tenaga mekanis yang dapat menggantikan kerja fisik, membawa perubahan sosial besar dan menciptakan era industri modern. Era ini juga menanam benih bagi lahirnya teknologi komunikasi instan, yang akan meledak di abad berikutnya.</p></div></div>
-                        <div class="timeline-container right fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-19 – Era Komunikasi Instan</h4><p class="text-sm text-black/60 mb-2">Di abad ke-19, Samuel Morse memperkenalkan telegraf, teknologi yang memungkinkan komunikasi jarak jauh dalam hitungan detik.</p><p>Untuk pertama kalinya dalam sejarah, informasi dapat bergerak lebih cepat daripada manusia itu sendiri. Sandi Morse menjadi bahasa universal pertama dalam komunikasi digital, membuka jalan bagi telepon, radio, dan internet.</p></div></div>
-                        <div class="timeline-container left fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-20 – Lahirnya Komputer Digital</h4><p class="text-sm text-black/60 mb-2">Abad ke-20 menandai lahirnya komputer digital.</p><p>Generasi pertama komputer begitu besar hingga memenuhi satu ruangan, namun kekuatannya sangat terbatas. Dalam beberapa dekade, inovasi mikroprosesor dan sirkuit terintegrasi membuat komputer semakin kecil, cepat, dan terjangkau. Komputer tidak lagi sekadar alat perhitungan, tetapi menjadi otak digital yang menopang semua aspek kehidupan manusia modern.</p></div></div>
-                        <div class="timeline-container right fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Akhir Abad ke-20 – Era Internet dan Jaringan Global</h4><p class="text-sm text-black/60 mb-2">Internet muncul sebagai jaringan global yang menghubungkan miliaran orang dan perangkat.</p><p>Batasan geografis menghilang, informasi bergerak bebas, dan dunia menjadi lebih terhubung dari sebelumnya. Jika mesin cetak Gutenberg adalah revolusi pertama dalam penyebaran informasi, maka internet adalah revolusi keduanya.</p></div></div>
-                        <div class="timeline-container left fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-21 – AI dan IoT: Teknologi yang Berpikir</h4><p class="text-sm text-black/60 mb-2">Kini, kita memasuki era di mana teknologi tidak hanya diprogram, tetapi mampu berpikir dan belajar sendiri.</p><p>Kecerdasan buatan (Artificial Intelligence) dan Internet of Things (IoT) memungkinkan perangkat untuk saling berkomunikasi, menganalisis data, dan mengambil keputusan. Mobil bisa mengemudi sendiri, rumah menjadi pintar, dan sistem industri dapat bekerja tanpa campur tangan manusia. Namun, kemajuan ini juga menghadirkan tantangan etika dan tanggung jawab. Kita harus memastikan bahwa teknologi ini digunakan untuk kebaikan, bukan merusak dunia yang telah kita bangun bersama.</p></div></div>
-                        <div class="timeline-container right fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Masa Depan: Membangun di Atas Bahu Para Raksasa</h4><p class="text-sm text-black/60 mb-2">Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa sejarah, menggabungkan warisan klasik dengan inovasi modern.</p><p>Setiap karya adalah bukti bahwa perjalanan teknologi adalah kisah yang belum berakhir—sebuah narasi yang terus ditulis setiap hari oleh para insinyur, pemikir, dan pencipta.</p></div></div>
+                        <div class="timeline-container left fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-9 – Awal Perjalanan: Fondasi Algoritma</h4><p class="text-sm text-white/60 mb-2">Pada abad ke-9, seorang ilmuwan Muslim bernama Al-Khwarizmi memperkenalkan konsep algoritma, yang menjadi dasar dari semua komputasi modern.</p><p>Pemikirannya adalah pondasi logika yang memungkinkan manusia untuk merancang mesin yang bisa menghitung, memproses data, dan menyelesaikan masalah dengan cara yang sistematis. Tanpa warisan ini, komputer dan teknologi digital mungkin takkan pernah ada.</p><p>“Algoritma bukan sekadar perhitungan, tapi cara berpikir yang membentuk masa depan teknologi.”</p></div></div>
+                        <div class="timeline-container right fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-15 – Penyebaran Ilmu Pengetahuan: Mesin Cetak Gutenberg</h4><p class="text-sm text-white/60 mb-2">Berabad-abad kemudian, Johannes Gutenberg menemukan mesin cetak, sebuah inovasi yang merevolusi penyebaran informasi.</p><p>Sebelumnya, pengetahuan hanya dimiliki segelintir orang, namun mesin cetak membuat buku dan ide-ide ilmiah dapat menyebar ke seluruh dunia.</p><p>Dampaknya sama seperti internet di era kita sekarang: mempercepat kolaborasi, memperluas wawasan, dan memperkuat fondasi peradaban.</p></div></div>
+                        <div class="timeline-container left fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-18 – Revolusi Industri</h4><p class="text-sm text-white/60 mb-2">Revolusi Industri mengubah dunia secara drastis.</p><p>Mesin uap memicu mekanisasi di bidang produksi, transportasi, dan pertanian.</p><p>Manusia untuk pertama kalinya memiliki tenaga mekanis yang dapat menggantikan kerja fisik, membawa perubahan sosial besar dan menciptakan era industri modern. Era ini juga menanam benih bagi lahirnya teknologi komunikasi instan, yang akan meledak di abad berikutnya.</p></div></div>
+                        <div class="timeline-container right fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-19 – Era Komunikasi Instan</h4><p class="text-sm text-white/60 mb-2">Di abad ke-19, Samuel Morse memperkenalkan telegraf, teknologi yang memungkinkan komunikasi jarak jauh dalam hitungan detik.</p><p>Untuk pertama kalinya dalam sejarah, informasi dapat bergerak lebih cepat daripada manusia itu sendiri. Sandi Morse menjadi bahasa universal pertama dalam komunikasi digital, membuka jalan bagi telepon, radio, dan internet.</p></div></div>
+                        <div class="timeline-container left fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-20 – Lahirnya Komputer Digital</h4><p class="text-sm text-white/60 mb-2">Abad ke-20 menandai lahirnya komputer digital.</p><p>Generasi pertama komputer begitu besar hingga memenuhi satu ruangan, namun kekuatannya sangat terbatas. Dalam beberapa dekade, inovasi mikroprosesor dan sirkuit terintegrasi membuat komputer semakin kecil, cepat, dan terjangkau. Komputer tidak lagi sekadar alat perhitungan, tetapi menjadi otak digital yang menopang semua aspek kehidupan manusia modern.</p></div></div>
+                        <div class="timeline-container right fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Akhir Abad ke-20 – Era Internet dan Jaringan Global</h4><p class="text-sm text-white/60 mb-2">Internet muncul sebagai jaringan global yang menghubungkan miliaran orang dan perangkat.</p><p>Batasan geografis menghilang, informasi bergerak bebas, dan dunia menjadi lebih terhubung dari sebelumnya. Jika mesin cetak Gutenberg adalah revolusi pertama dalam penyebaran informasi, maka internet adalah revolusi keduanya.</p></div></div>
+                        <div class="timeline-container left fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-21 – AI dan IoT: Teknologi yang Berpikir</h4><p class="text-sm text-white/60 mb-2">Kini, kita memasuki era di mana teknologi tidak hanya diprogram, tetapi mampu berpikir dan belajar sendiri.</p><p>Kecerdasan buatan (Artificial Intelligence) dan Internet of Things (IoT) memungkinkan perangkat untuk saling berkomunikasi, menganalisis data, dan mengambil keputusan. Mobil bisa mengemudi sendiri, rumah menjadi pintar, dan sistem industri dapat bekerja tanpa campur tangan manusia. Namun, kemajuan ini juga menghadirkan tantangan etika dan tanggung jawab. Kita harus memastikan bahwa teknologi ini digunakan untuk kebaikan, bukan merusak dunia yang telah kita bangun bersama.</p></div></div>
+                        <div class="timeline-container right fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Masa Depan: Membangun di Atas Bahu Para Raksasa</h4><p class="text-sm text-white/60 mb-2">Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa sejarah, menggabungkan warisan klasik dengan inovasi modern.</p><p>Setiap karya adalah bukti bahwa perjalanan teknologi adalah kisah yang belum berakhir—sebuah narasi yang terus ditulis setiap hari oleh para insinyur, pemikir, dan pencipta.</p></div></div>
                     </div>
                 </div>
             </div>
@@ -953,17 +911,17 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
             <div class="modal-body">
                  <div class="modal-loader"><svg class="loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="loader-text-modal"><h2>THE<br>ENGINEERING</h2></div></div>
                 <div id="sertifikat-modal-content" class="modal-main-content content-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
-                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <div id="image-viewer-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="image-viewer-title">
         <div class="modal-content h-auto max-h-full w-auto max-w-full bg-transparent border-none shadow-none p-4">
-              <div class="modal-loader"><svg class="loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="loader-text-modal"><h2>THE<br>ENGINEERING</h2></div></div>
+            <div class="modal-loader"><svg class="loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="loader-text-modal"><h2>THE<br>ENGINEERING</h2></div></div>
             <div class="relative modal-main-content content-hidden">
                 <button class="modal-close-btn absolute -top-10 right-0 text-[#fdf6e3] text-5xl">&times;</button>
-                <img class="modal-image max-h-[85vh] max-w-[90vw] h-auto w-auto" src="" alt="Tampilan Penuh Sertifikat" onerror="this.onerror=null;this.src='https://placehold.co/800x600/fdf6e3/4a2c2a?text=Image+Not+Found';">
+                <img class="modal-image max-h-[85vh] max-w-[90vw] h-auto w-auto" src="" alt="Tampilan Penuh Sertifikat" onerror="this.onerror=null;this.src='https://placehold.co/800x600/3A352F/D4C8B5?text=Image+Not+Found';">
             </div>
         </div>
     </div>
@@ -1016,7 +974,6 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                     navLinks.forEach(navLink => {
                         const isActive = navLink === link;
                         navLink.classList.toggle('active-page', isActive);
-                        // PERBAIKAN: Menambahkan aria-current untuk aksesibilitas
                         if (isActive) {
                             navLink.setAttribute('aria-current', 'page');
                         } else {
@@ -1024,7 +981,6 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                         }
                     });
 
-                    // PERBAIKAN: Reset scroll ke atas saat ganti halaman
                     if(pageContentContainer) pageContentContainer.scrollTop = 0;
                 });
             });
@@ -1054,7 +1010,7 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                     }
                 });
             }, { 
-                root: pageContentContainer, // Use the scrolling container
+                root: pageContentContainer,
                 threshold: 0.1 
             });
 
@@ -1079,9 +1035,7 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                 }
 
                 if (articleDateElement) {
-                    // PERBAIKAN: Menggunakan tanggal publikasi statis untuk nuansa koran.
-                    // Tanggal ini disetel ke '14 September 2025' untuk memberikan kesan edisi khusus.
-                    const publicationDate = new Date(2025, 8, 14); // Bulan di JS adalah 0-indexed (0=Jan, 8=Sep)
+                    const publicationDate = new Date(2025, 8, 14);
                     const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
                     articleDateElement.textContent = new Intl.DateTimeFormat('id-ID', dateOptions).format(publicationDate);
                 }
@@ -1112,7 +1066,7 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                 modalTriggerElement = document.activeElement;
                 currentActiveModal = modal;
                 modal.classList.add('active');
-                document.body.classList.add('body-no-scroll'); // PERBAIKAN: Gunakan class untuk menonaktifkan scroll
+                document.body.classList.add('body-no-scroll');
 
                 const loader = modal.querySelector('.modal-loader');
                 const mainContent = modal.querySelector('.modal-main-content');
@@ -1139,7 +1093,6 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                     setTimeout(showContent, 500);
                 }
 
-                // PERBAIKAN: Inisialisasi IntersectionObserver khusus untuk modal timeline
                 if (modal.id === 'timeline-modal') {
                     const scrollContainer = modal.querySelector('.modal-body');
                     if (scrollContainer) {
@@ -1162,7 +1115,6 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
                 modal.classList.remove('active');
                 document.body.classList.remove('body-no-scroll');
 
-                // PERBAIKAN: Hentikan observer saat modal ditutup
                 if (timelineObserver) {
                     timelineObserver.disconnect();
                     timelineObserver = null;
@@ -1223,16 +1175,16 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
             const galleryContainer = document.querySelector('#sertifikat-modal-content');
             if(galleryContainer) {
                 galleryContainer.innerHTML = certificates.map(cert => `
-                    <button data-modal-target="#image-viewer-modal" data-src="${cert.src}" class="block border-2 border-[#c8bda9] hover:border-[#634832] transition-all duration-300 p-2 group text-left certificate-item">
+                    <button data-modal-target="#image-viewer-modal" data-src="${cert.src}" class="block border-2 border-[#967259] hover:border-[#C8BDA9] transition-all duration-300 p-2 group text-left certificate-item">
                         <div class="relative">
-                            <img src="${cert.src}" alt="${cert.alt}" class="w-full h-auto object-cover certificate-image" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/fcf8f0/4a2c2a?text=Error';">
+                            <img src="${cert.src}" alt="${cert.alt}" class="w-full h-auto object-cover certificate-image" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/3A352F/D4C8B5?text=Error';">
                            <div class="certificate-overlay">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="mb-2" viewBox="0 0 16 16"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
                                 <span class="text-sm font-semibold">Lihat Detail</span>
                            </div>
                         </div>
                         <p class="text-center text-sm mt-2 font-semibold">${cert.title}</p>
-                        <p class="text-center text-xs text-black/60">${cert.desc}</p>
+                        <p class="text-center text-xs text-white/60">${cert.desc}</p>
                     </button>
                 `).join('');
                 
@@ -1291,6 +1243,4 @@ Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa s
 
 </body>
 </html>
-
-
 
