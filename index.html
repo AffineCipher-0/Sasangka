@@ -555,7 +555,7 @@
                         Di era ketika informasi melintasi dunia melalui ketukan telegraf, sandi morse adalah bahasa universal pertama. Proyek ini adalah sebuah penghormatan modern terhadap teknologi fundamental tersebut, dengan membangun alat penerjemah berbasis mikrokontroler yang mengurai sandi morse secara akurat menggunakan algoritma <i>brute force</i>.
                     </p>
                     <div class="text-right mt-6">
-                        <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</a>
+                        <button data-modal-target="#morse-modal" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</button>
                     </div>
                 </article>
 
@@ -566,7 +566,7 @@
                         Melompat ke era '90-an, saat World Wide Web mulai membuka gerbang perdagangan global. Proyek ini mereplikasi semangat awal e-commerce dengan membangun 'Secondhand', sebuah platform fungsional untuk jual-beli barang bekas, lengkap dengan sistem manajemen admin yang komprehensif.
                     </p>
                     <div class="text-right mt-6">
-                        <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat di GitHub</a>
+                        <button data-modal-target="#secondhand-modal" class="classic-button text-sm py-2 px-4">Lihat Detail Proyek</button>
                     </div>
                 </article>
 
@@ -653,6 +653,74 @@
     <a id="back-to-top" href="#home" title="Kembali ke atas">↑</a>
 
     <!-- Modals -->
+    <!-- Morse Project Modal -->
+    <div id="morse-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="morse-modal-title">
+        <div class="modal-content" style="height: auto; max-width: 700px;">
+            <div class="modal-header">
+                <h5 id="morse-modal-title" class="modal-title">ALAT PENERJEMAH SANDI MORSE</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-8" style="overflow-y: auto;">
+                <div class="modal-loader">
+                    <svg class="loader-svg" viewBox="0 0 150 150">
+                        <circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/>
+                    </svg>
+                    <div class="loader-text-modal">
+                        <h2>THE<br>ENGINEERING</h2>
+                    </div>
+                </div>
+                <div class="modal-main-content content-hidden">
+                    <img src="https://placehold.co/600x400/fcf8f0/4a2c2a?text=Morse+Code+Translator+Project" alt="Gambar Proyek Alat Penerjemah Sandi Morse" class="w-full mb-6 rounded-lg">
+                    <h4 class="text-xl font-bold mb-2">Tentang Proyek</h4>
+                    <p class="text-justify mb-4">
+                        Proyek ini adalah sebuah penghormatan modern terhadap teknologi fundamental komunikasi, yaitu Sandi Morse. Dengan menggunakan mikrokontroler, proyek ini membangun alat penerjemah yang mampu mengurai sandi morse secara akurat menggunakan algoritma brute force. Ini adalah contoh nyata dari aplikasi mikrokontroler dalam memecahkan masalah komunikasi klasik dengan pendekatan modern.
+                    </p>
+                    <h4 class="text-xl font-bold mb-2">Detail Teknis</h4>
+                    <p class="text-justify mb-4">
+                        Menggunakan platform **Arduino** dan bahasa pemrograman **C++**, sistem ini memproses input dari sensor (misalnya, tombol) untuk mendeteksi sinyal panjang dan pendek (dash-dot) dari sandi morse. Algoritma brute force yang sederhana namun efektif digunakan untuk mencocokkan pola sinyal dengan karakter alfabet dan angka yang sesuai.
+                    </p>
+                    <div class="text-right mt-6">
+                        <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Baca Dokumen Penelitian</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Secondhand Project Modal -->
+    <div id="secondhand-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="secondhand-modal-title">
+        <div class="modal-content" style="height: auto; max-width: 700px;">
+            <div class="modal-header">
+                <h5 id="secondhand-modal-title" class="modal-title">SECONDHAND E-Commerce</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-8" style="overflow-y: auto;">
+                <div class="modal-loader">
+                    <svg class="loader-svg" viewBox="0 0 150 150">
+                        <circle class="modal-progress-ring__circle" stroke-width="6" fill="transparent" r="65" cx="75" cy="75"/>
+                    </svg>
+                    <div class="loader-text-modal">
+                        <h2>THE<br>ENGINEERING</h2>
+                    </div>
+                </div>
+                <div class="modal-main-content content-hidden">
+                    <img src="https://placehold.co/600x400/fcf8f0/4a2c2a?text=Secondhand+Project+Mockup" alt="Gambar Proyek E-Commerce Secondhand" class="w-full mb-6 rounded-lg">
+                    <h4 class="text-xl font-bold mb-2">Tentang Proyek</h4>
+                    <p class="text-justify mb-4">
+                        'SECONDHAND' adalah platform e-commerce fungsional yang dibuat dari awal. Proyek ini dibangun untuk mendemonstrasikan pemahaman mendalam tentang pengembangan web, mulai dari frontend hingga backend. Sistem ini mencakup fitur-fitur penting seperti manajemen produk, keranjang belanja, proses checkout, dan panel admin yang komprehensif.
+                    </p>
+                    <h4 class="text-xl font-bold mb-2">Detail Teknis</h4>
+                    <p class="text-justify mb-4">
+                        Proyek ini dikembangkan menggunakan **PHP (Native)** untuk logika backend, **MySQL** untuk basis data, dan kombinasi **HTML, CSS, dan JavaScript** untuk antarmuka pengguna. Ini menampilkan pemahaman kuat tentang arsitektur e-commerce dan praktik terbaik dalam pengembangan web.
+                    </p>
+                    <div class="text-right mt-6">
+                        <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat di GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Expertise Modal -->
     <div id="keahlian-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="keahlian-modal-title">
         <div class="modal-content" style="height: auto; max-width: 900px;">
@@ -896,7 +964,7 @@
             const articleDateElement = document.getElementById('current-date');
             const backToTopButton = document.getElementById('back-to-top');
             const copyEmailBtn = document.getElementById('copy-email-btn');
-            const galleryContainer = document.querySelector('#sertifikasi .modal-main-content');
+            const galleryContainer = document.querySelector('#sertifikat-modal .modal-main-content');
             
             // --- Initial Loading Screen ---
             window.addEventListener('load', () => {
