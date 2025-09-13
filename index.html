@@ -620,9 +620,6 @@
                 <a href="https://wa.me/6287832165306" target="_blank" rel="noopener noreferrer" class="classic-button">
                     <i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp
                 </a>
-                <button data-modal-target="#ai-assistant-modal" class="classic-button">
-                    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> ✨ Tanya AI
-                </button>
             </div>
             
             <div>
@@ -876,25 +873,6 @@
             <div class="relative modal-main-content content-hidden">
                 <button class="modal-close-btn absolute -top-10 right-0 text-white text-5xl">&times;</button>
                 <img class="modal-image max-h-[85vh] max-w-[90vw] h-auto w-auto" src="" alt="Tampilan Penuh Sertifikat" onerror="this.onerror=null;this.src='https://placehold.co/800x600/fdf6e3/4a2c2a?text=Image+Not+Found';">
-            </div>
-        </div>
-    </div>
-
-    <!-- AI Assistant Modal -->
-    <div id="ai-assistant-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="ai-assistant-modal-title">
-        <div class="modal-content" style="height: auto; max-width: 600px;">
-            <div class="modal-header">
-                <h5 id="ai-assistant-modal-title" class="modal-title">Asisten AI ✨</h5>
-                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
-            </div>
-            <div class="modal-body p-6 flex flex-col h-96">
-                <div id="chat-container" class="flex-1 overflow-y-auto mb-4 border border-[#c8bda9] p-4 rounded-md bg-white/50 space-y-4">
-                    <!-- Chat messages will appear here -->
-                </div>
-                <div class="flex">
-                    <input type="text" id="user-input" placeholder="Tanya tentang keahlian Gatot..." class="flex-1 p-3 rounded-l-md border border-[#c8bda9] focus:outline-none focus:border-[#634832] bg-white/70 text-[#4a2c2a]">
-                    <button id="send-btn" class="classic-button rounded-r-md">Kirim</button>
-                </div>
             </div>
         </div>
     </div>
@@ -1163,125 +1141,6 @@
                     }
                 });
             }
-
-            // --- Gemini API Integration ---
-            const aiAssistantModal = document.getElementById('ai-assistant-modal');
-            const chatContainer = document.getElementById('chat-container');
-            const userInput = document.getElementById('user-input');
-            const sendBtn = document.getElementById('send-btn');
-            const apiKey = ""; 
-
-            // Function to add a message to the chat
-            function addMessage(text, isUser = false) {
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('p-3', 'rounded-lg', 'max-w-[85%]');
-                if (isUser) {
-                    messageElement.classList.add('bg-[#634832]', 'text-[#fdf6e3]', 'ml-auto', 'text-right');
-                } else {
-                    messageElement.classList.add('bg-[#c8bda9]', 'text-[#4a2c2a]', 'mr-auto');
-                }
-                messageElement.textContent = text;
-                chatContainer.appendChild(messageElement);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-            }
-
-            // Context for the AI Assistant
-            const context = `Anda adalah asisten AI yang cerdas dan informatif. Tanggung jawab Anda adalah memberikan informasi tentang portofolio dan keahlian Gatot Sasangka, seorang insinyur jaringan, IoT, dan pengembangan web. Berikut adalah detail profil dan keahliannya:
-
-PROFIL PROFESIONAL:
-Gatot Sasangka adalah pribadi yang tenang, tegas, terstruktur, dan rapi. Dia menjunjung tinggi keteraturan dan kehati-hatian dalam setiap pekerjaan. Dia dikenal rajin, gigih, dan memiliki semangat belajar yang tinggi. Ia memiliki pemahaman mendalam tentang pengembangan perangkat lunak, sistem jaringan komputer, kecerdasan buatan, dan sistem berbasis perangkat keras.
-
-KEAHLIAN UTAMA:
-- Jaringan & Infrastruktur: Administrasi Jaringan, Cisco Packet Tracer, Keamanan Jaringan, TCP/IP & Model OSI.
-- Pengembangan Perangkat Lunak: PHP (Natif), HTML, CSS, JavaScript, MySQL / SQL, Python (Dasar), Git & GitHub.
-- IoT & Mikrokontroller: Arduino IDE (C++), ESP8266/ESP32, Sensor & Aktuator, Perancangan Sistem Tertanam.
-- Produktifitas & Perkantoran: Microsoft Office, Google Workspace.
-
-SERTIFIKASI:
-- Magang DLHK DIY - 2024
-- Literasi Digital - Kemkominfo - 2023
-- Seminar Cyber Security - HIMATEKNO FTTI UNJAYA - 2023
-- Webinar Pengolahan Data - XREI Institute - 2023
-- CCNA Security - Cisco Networking Academy - 2022
-- Switching, Routing, & Wireless - Cisco Networking Academy - 2021
-- Introduction to Networks - Cisco Networking Academy - 2021
-- Fundamental Python - Progate - 2021
-- IT Essentials - Cisco Networking Academy - 2020
-
-Jawablah pertanyaan hanya berdasarkan informasi yang diberikan di atas. Jika pertanyaan tidak relevan atau tidak dapat dijawab dengan informasi ini, berikan respons yang sopan dan relevan. Jangan berimajinasi atau mengarang informasi di luar konteks yang diberikan.`;
-
-            // Call the Gemini API
-            async function getGeminiResponse(query) {
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                const payload = {
-                    contents: [{
-                        parts: [
-                            { text: context + "\n\nUser: " + query }
-                        ]
-                    }],
-                };
-
-                // Exponential backoff for retries
-                for (let i = 0; i < 3; i++) {
-                    try {
-                        const response = await fetch(apiUrl, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(payload)
-                        });
-
-                        if (!response.ok) {
-                            if (response.status === 429 && i < 2) {
-                                const delay = Math.pow(2, i) * 1000 + Math.random() * 1000;
-                                await new Promise(res => setTimeout(res, delay));
-                                continue;
-                            }
-                            throw new Error(`HTTP error! status: ${response.status}`);
-                        }
-
-                        const result = await response.json();
-                        const text = result?.candidates?.[0]?.content?.parts?.[0]?.text;
-                        if (text) {
-                            return text;
-                        } else {
-                            return "Maaf, saya tidak dapat memproses permintaan ini. Silakan coba lagi.";
-                        }
-                    } catch (error) {
-                        console.error('Error calling Gemini API:', error);
-                        if (i === 2) {
-                            return "Maaf, terjadi kesalahan. Silakan coba lagi nanti.";
-                        }
-                    }
-                }
-            }
-
-            // Handle user input and AI response
-            async function handleUserQuery() {
-                const query = userInput.value.trim();
-                if (query === '') return;
-
-                addMessage(query, true);
-                userInput.value = '';
-                sendBtn.disabled = true;
-                const loadingMessage = document.createElement('div');
-                loadingMessage.classList.add('loading-dots');
-                loadingMessage.textContent = '...';
-                chatContainer.appendChild(loadingMessage);
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-
-                const aiResponse = await getGeminiResponse(query);
-                
-                chatContainer.removeChild(loadingMessage);
-                addMessage(aiResponse, false);
-                sendBtn.disabled = false;
-            }
-
-            sendBtn.addEventListener('click', handleUserQuery);
-            userInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    handleUserQuery();
-                }
-            });
         });
     </script>
 
