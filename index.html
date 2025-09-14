@@ -710,7 +710,7 @@
     Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa sejarah, menggabungkan warisan klasik dengan inovasi modern. Setiap karya menjadi bukti bahwa perjalanan teknologi adalah kisah yang belum berakhir—narasi yang terus ditulis setiap hari oleh para insinyur, pemikir, dan pencipta di seluruh dunia.
                         </p>
                          <div class="text-right animate-on-scroll animation-delay-600">
-                              <button data-modal-target="#timeline-modal" class="classic-button">Lihat Garis Waktu</button>
+                             <button data-modal-target="#timeline-modal" class="classic-button">Lihat Garis Waktu</button>
                          </div>
                     </section>
         
@@ -728,7 +728,7 @@
                         </header>
                         <div class="fancy-divider"></div>
                         <div class="article-frame animate-on-scroll">
-                            <h3 class="text-3xl font-bold mb-6">Profil Profesional</h3>
+                            <h3 class="text-3xl font-bold mb-6 text-center">Potret Sang Inisiat</h3>
                             <div class="newspaper-columns">
                                 <p class="mb-4 text-justify">
                                     Dalam dirinya tersimpan jiwa yang tenang namun tegas. Ia adalah pribadi yang menjunjung tinggi keteraturan dan kerapian dalam setiap langkah hidupnya. Sifatnya yang terstruktur dan sistematis membuatnya terbiasa bekerja dengan aturan yang jelas, di mana setiap hal diperhatikan dengan penuh pertimbangan. Dalam kesehariannya, ia selalu merencanakan setiap tindakan dengan hati-hati, memastikan semua berjalan terarah dan tidak meninggalkan ruang untuk kesalahan.
@@ -960,7 +960,7 @@
                             <i class="fas fa-home mr-4 w-6 text-center"></i><span class="nav-text">Beranda</span>
                         </a></li>
                         <li><a href="#about-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
-                            <i class="fas fa-user mr-4 w-6 text-center"></i><span class="nav-text">Profil Profesional</span>
+                            <i class="fas fa-user mr-4 w-6 text-center"></i><span class="nav-text">Profil</span>
                         </a></li>
                         <li><a href="#projects-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
                             <i class="fas fa-laptop-code mr-4 w-6 text-center"></i><span class="nav-text">Laporan Utama</span>
@@ -1191,7 +1191,7 @@
                      <h4 class="text-xl font-bold mb-3 mt-6 border-b border-[#967259] pb-2">Hasil Akhir</h4>
                      <p class="text-justify">Proyek ini berhasil diselesaikan dengan sukses. Hasil pengujian akhir menunjukkan bahwa semua komponen jaringan berfungsi sesuai harapan. Konektivitas antar departemen, akses ke server internal dan eksternal, serta koneksi melalui WiFi dan VPN semuanya berjalan lancar tanpa masalah.</p>
                      <div class="text-right mt-6">
-                        <a href="https://affinecipher-0.github.io/Infrastruktur-Jaringan/" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat Detail Proyek</a>
+                         <a href="https://affinecipher-0.github.io/Infrastruktur-Jaringan/" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat Detail Proyek</a>
                      </div>
                 </div>
             </div>
@@ -1315,30 +1315,25 @@
                 const liveTimeElements = document.querySelectorAll('.live-datetime');
                 const articleDateElement = document.getElementById('current-date');
                 
-                const customDate = new Date(); 
+                // Set the specific date and time from the prompt
+                const customDate = new Date('2025-09-15T03:59:00'); 
 
                 const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
                 const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Makassar' };
 
-                function updateLiveTime() {
-                    if (liveTimeElements.length === 0) return;
-                    
-                    const now = new Date();
-                    const formattedDate = new Intl.DateTimeFormat('id-ID', dateOptions).format(now);
-                    const formattedTime = new Intl.DateTimeFormat('id-ID', timeOptions).format(now).replace(/\./g, ':');
+                // Set the live date and time elements once
+                if (liveTimeElements.length > 0) {
+                    const formattedDate = new Intl.DateTimeFormat('id-ID', dateOptions).format(customDate);
+                    const formattedTime = new Intl.DateTimeFormat('id-ID', timeOptions).format(customDate).replace(/\./g, ':');
                     const dateTimeString = `${formattedDate} | ${formattedTime}`;
                     liveTimeElements.forEach(el => el.textContent = dateTimeString);
                 }
 
+                // Set the article date element
                 if (articleDateElement) {
-                    const publicationDate = new Date(Date.UTC(2025, 8, 15)); // Month is 0-indexed, so 8 is September
-                    const articleDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
-                    articleDateElement.textContent = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(publicationDate);
+                     const articleDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
+                     articleDateElement.textContent = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(customDate);
                 }
-                
-                // Update the time immediately and then every second
-                updateLiveTime();
-                setInterval(updateLiveTime, 1000);
             }
             initializeDateTime();
 
@@ -1540,3 +1535,4 @@
 
 </body>
 </html>
+
