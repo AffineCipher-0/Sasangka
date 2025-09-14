@@ -19,7 +19,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -112,6 +112,29 @@
             font-family: 'Cinzel Decorative', cursive;
         }
         
+        .animated-gradient-text {
+            background: linear-gradient(45deg, #F0EAD6, #C8BDA9, #F0EAD6);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-animation 5s ease infinite, dust-flicker 4s linear infinite;
+        }
+
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes dust-flicker {
+            0% { text-shadow: 0.5px 0.5px 1px rgba(240, 234, 214, 0.15), -0.5px -0.5px 1px rgba(240, 234, 214, 0.1); }
+            25% { text-shadow: -0.5px 0.5px 1px rgba(240, 234, 214, 0.1), 0.5px -0.5px 1px rgba(240, 234, 214, 0.15); }
+            50% { text-shadow: 0.5px -0.5px 1px rgba(240, 234, 214, 0.15), -0.5px 0.5px 1px rgba(240, 234, 214, 0.12); }
+            75% { text-shadow: -0.5px -0.5px 1px rgba(240, 234, 214, 0.12), 0.5px 0.5px 1px rgba(240, 234, 214, 0.15); }
+            100% { text-shadow: 0.5px 0.5px 1px rgba(240, 234, 214, 0.15), -0.5px -0.5px 1px rgba(240, 234, 214, 0.1); }
+        }
+
         h2, h3, h4 {
             font-family: 'Amiri', serif;
             font-weight: 700;
@@ -566,74 +589,104 @@
             animation: page-fade-in 0.4s ease-in forwards;
         }
 
-        /* Candle Smoke Effect */
-        #smoke-container {
+        /* --- NEW CLOCK STYLES --- */
+        #cover-page-clock-wrapper {
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100%;
-            height: 50%;
-            pointer-events: none;
-            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1;
         }
 
-        .smoke {
+        /* Animasi untuk roda gigi berputar */
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes spin-reverse {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
+        }
+
+        .gear {
             position: absolute;
-            bottom: -50px;
+            fill: #6B4F3A; /* Warna perunggu/karat */
+            opacity: 0.25;
+            z-index: 0;
+        }
+        #gear1 { animation: spin 30s linear infinite; }
+        #gear2 { animation: spin-reverse 20s linear infinite; }
+        #gear3 { animation: spin 45s linear infinite; }
+        #gear4 { animation: spin 15s linear infinite; }
+        #gear5 {
+            opacity: 0.1;
+            fill: #5A4A3A;
+            animation: spin 60s linear infinite;
+        }
+
+        .hand {
+            position: absolute;
+            bottom: 50%;
             left: 50%;
-            width: 60px;
-            height: 60px;
-            background: rgba(212, 200, 181, 0.08);
+            transform-origin: bottom;
+            background-color: #1a1a1a;
+            z-index: 10;
+        }
+        .hour-hand { width: 8px; height: 25%; border-radius: 4px 4px 0 0; }
+        .minute-hand { width: 6px; height: 35%; border-radius: 3px 3px 0 0; }
+        .second-hand { width: 2px; height: 40%; background-color: #A67B5B; }
+        .clock-center {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 16px; height: 16px;
+            background: #1a1a1a;
             border-radius: 50%;
-            filter: blur(25px);
-            opacity: 0;
-            animation: rise 10s infinite;
+            border: 2px solid #D4BDA5;
+            transform: translate(-50%, -50%);
+            z-index: 20;
         }
+        
+        .number {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-size: 2.25rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            z-index: 5;
+            font-family: 'Playfair Display', serif;
+        }
+        .number-1 { transform: rotate(30deg); } .number-1 span { display: inline-block; transform: rotate(-30deg); padding-top: 5px;}
+        .number-2 { transform: rotate(60deg); } .number-2 span { display: inline-block; transform: rotate(-60deg); padding-top: 5px;}
+        .number-3 { transform: rotate(90deg); } .number-3 span { display: inline-block; transform: rotate(-90deg); padding-top: 5px;}
+        .number-4 { transform: rotate(120deg); } .number-4 span { display: inline-block; transform: rotate(-120deg); padding-top: 5px;}
+        .number-5 { transform: rotate(150deg); } .number-5 span { display: inline-block; transform: rotate(-150deg); padding-top: 5px;}
+        .number-6 { transform: rotate(180deg); } .number-6 span { display: inline-block; transform: rotate(-180deg); padding-top: 5px;}
+        .number-7 { transform: rotate(210deg); } .number-7 span { display: inline-block; transform: rotate(-210deg); padding-top: 5px;}
+        .number-8 { transform: rotate(240deg); } .number-8 span { display: inline-block; transform: rotate(-240deg); padding-top: 5px;}
+        .number-9 { transform: rotate(270deg); } .number-9 span { display: inline-block; transform: rotate(-270deg); padding-top: 5px;}
+        .number-10 { transform: rotate(300deg); } .number-10 span { display: inline-block; transform: rotate(-300deg); padding-top: 5px;}
+        .number-11 { transform: rotate(330deg); } .number-11 span { display: inline-block; transform: rotate(-330deg); padding-top: 5px;}
+        .number-12 { transform: rotate(360deg); } .number-12 span { display: inline-block; transform: rotate(-360deg); padding-top: 5px;}
 
-        @keyframes rise {
-            0% {
-                transform: translateY(0) scale(1) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-300px) scale(2.5) translateX(calc(var(--x-offset, 0) * 1px));
-                opacity: 0;
-                filter: blur(40px);
-            }
+        #sound-toggle {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 100;
+            color: #D4BDA5;
+            transition: color 0.2s ease-in-out;
         }
+        #sound-toggle:hover { color: #f5eeda; }
 
-        .smoke:nth-child(1) {
-            animation-duration: 8s;
-            animation-delay: 0s;
-            left: 45%;
-            --x-offset: -20;
-        }
-        .smoke:nth-child(2) {
-            animation-duration: 10s;
-            animation-delay: 2s;
-            left: 55%;
-            width: 80px;
-            height: 80px;
-            --x-offset: 30;
-        }
-        .smoke:nth-child(3) {
-            animation-duration: 9s;
-            animation-delay: 4s;
-            left: 40%;
-            --x-offset: 50;
-        }
-        .smoke:nth-child(4) {
-            animation-duration: 12s;
-            animation-delay: 6s;
-            left: 60%;
-            width: 50px;
-            height: 50px;
-            --x-offset: -40;
-        }
 
     </style>
 </head>
@@ -658,11 +711,36 @@
 
     <div id="book-container">
 
-        <section id="cover-page" class="relative w-full flex flex-col justify-center items-center text-center p-8 bg-[#2C2720]">
-            <div class="p-8 rounded-lg relative z-[2]">
-                <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider text-[#F0EAD6] mb-2">The Engineering Times</h1>
+        <section id="cover-page" class="relative w-full h-screen flex flex-col justify-center items-center text-center p-8 bg-[#383226] overflow-hidden">
+            
+            <!-- NEW CLOCK -->
+            <div id="cover-page-clock-wrapper">
+                 <div id="clock-container" class="w-[480px] h-[480px] md:w-[620px] md:h-[620px] bg-black rounded-full border-8 border-black shadow-2xl relative flex items-center justify-center flex-shrink-0">
+                    <div class="absolute w-full h-full rounded-full" style="background: radial-gradient(circle, #f5eeda 60%, #d4bda5 100%);"></div>
+                    <svg id="gear5" class="gear" style="width: 80%; height: 80%;" viewBox="0 0 100 100"><path d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0 M 50,50 m -28,0 a 28,28 0 1,0 56,0 a 28,28 0 1,0 -56,0 M 50,50 m 0,-48 L 45,32 55,32 Z M 50,50 m 41.569,-24 L 37.5,41.569 37.5,58.431 Z M 50,50 m 24,-41.569 L 41.569,62.5 58.431,62.5 Z M 50,50 m 0,48 L 45,68 55,68 Z M 50,50 m -41.569,24 L 62.5,41.569 62.5,58.431 Z M 50,50 m -24,41.569 L 58.431,37.5 41.569,37.5 Z M 50,50 m -48,0 L 68,45 68,55 Z M 50,50 m -41.569,-24 L 62.5,58.431 62.5,41.569 Z M 50,50 m -24,-41.569 L 58.431,62.5 41.569,62.5 Z M 50,50 m 48,0 L 32,45 32,55 Z M 50,50 m 41.569,24 L 37.5,58.431 37.5,41.569 Z M 50,50 m 24,41.569 L 41.569,37.5 58.431,37.5 Z"></path></svg>
+                    <svg id="gear1" class="gear" style="width: 70%; height: 70%; top: -10%; left: -15%;" viewBox="0 0 100 100"><path d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0 M 50,50 m -28,0 a 28,28 0 1,0 56,0 a 28,28 0 1,0 -56,0 M 50,50 m 0,-48 L 45,32 55,32 Z M 50,50 m 41.569,-24 L 37.5,41.569 37.5,58.431 Z M 50,50 m 24,-41.569 L 41.569,62.5 58.431,62.5 Z M 50,50 m 0,48 L 45,68 55,68 Z M 50,50 m -41.569,24 L 62.5,41.569 62.5,58.431 Z M 50,50 m -24,41.569 L 58.431,37.5 41.569,37.5 Z M 50,50 m -48,0 L 68,45 68,55 Z M 50,50 m -41.569,-24 L 62.5,58.431 62.5,41.569 Z M 50,50 m -24,-41.569 L 58.431,62.5 41.569,62.5 Z M 50,50 m 48,0 L 32,45 32,55 Z M 50,50 m 41.569,24 L 37.5,58.431 37.5,41.569 Z M 50,50 m 24,41.569 L 41.569,37.5 58.431,37.5 Z"></path></svg>
+                    <svg id="gear2" class="gear" style="width: 50%; height: 50%; top: 45%; left: 55%;" viewBox="0 0 100 100"><path d="M 50,50 m -35,0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0 M 50,50 m -20,0 a 20,20 0 1,0 40,0 a 20,20 0 1,0 -40,0 M 50,50 m 0,-42 L 46,38 54,38 Z M 50,50 m 36.374,-21 L 41.313,43.626 41.313,56.374 Z M 50,50 m 21,-36.374 L 43.626,58.687 56.374,58.687 Z M 50,50 m 0,42 L 46,62 54,62 Z M 50,50 m -36.374,21 L 58.687,43.626 58.687,56.374 Z M 50,50 m -21,36.374 L 56.374,41.313 43.626,41.313 Z M 50,50 m -42,0 L 62,46 62,54 Z M 50,50 m -36.374,-21 L 58.687,56.374 58.687,43.626 Z M 50,50 m 42,0 L 38,46 38,54 Z M 50,50 m 36.374,21 L 41.313,56.374 41.313,43.626 Z M 50,50 m 21,36.374 L 43.626,41.313 56.374,41.313 Z"></path></svg>
+                    <svg id="gear3" class="gear" style="width: 40%; height: 40%; top: 60%; left: 5%;" viewBox="0 0 100 100"><path d="M 50,50 m -30,0 a 30,30 0 1,1 60,0 a 30,30 0 1,1 -60,0 M 50,50 m -18,0 a 18,18 0 1,0 36,0 a 18,18 0 1,0 -36,0 M 50,50 m 0,-35 L 47,40 53,40 Z M 50,50 m 30.31, -17.5 L 43.345,46.19 43.345,53.81 Z M 50,50 m 17.5,-30.31 L 46.19,56.655 53.81,56.655 Z M 50,50 m 0,35 L 47,60 53,60 Z M 50,50 m -30.31,17.5 L 56.655,46.19 56.655,53.81 Z M 50,50 m -17.5,30.31 L 53.81,43.345 46.19,43.345 Z M 50,50 m -35,0 L 60,47 60,53 Z M 50,50 m 35,0 L 40,47 40,53 Z"></path></svg>
+                    <svg id="gear4" class="gear" style="width: 25%; height: 25%; top: 15%; left: 65%;" viewBox="0 0 100 100"><path d="M 50,50 m -25,0 a 25,25 0 1,1 50,0 a 25,25 0 1,1 -50,0 M 50,50 m -15,0 a 15,15 0 1,0 30,0 a 15,15 0 1,0 -30,0 M 50,50 m 0,-30 L 48,42 52,42 Z M 50,50 m 25.98,-15 L 44,47 44,53 Z M 50,50 m 15,-25.98 L 47,56 53,56 Z M 50,50 m 0,30 L 48,58 52,58 Z M 50,50 m -25.98,15 L 56,47 56,53 Z M 50,50 m -15,25.98 L 53,44 47,44 Z M 50,50 m -30,0 L 58,48 58,52 Z M 50,50 m 30,0 L 42,48 42,52 Z"></path></svg>
+                    <div class="absolute w-full h-full rounded-full z-1" style="box-shadow: inset 0 0 25px rgba(0,0,0,0.5);"></div>
+                    <div class="number number-1"><span>I</span></div><div class="number number-2"><span>II</span></div><div class="number number-3"><span>III</span></div><div class="number number-4"><span>IV</span></div><div class="number number-5"><span>V</span></div><div class="number number-6"><span>VI</span></div><div class="number number-7"><span>VII</span></div><div class="number number-8"><span>VIII</span></div><div class="number number-9"><span>IX</span></div><div class="number number-10"><span>X</span></div><div class="number number-11"><span>XI</span></div><div class="number number-12"><span>XII</span></div>
+                    <div class="hand hour-hand" data-hour-hand></div>
+                    <div class="hand minute-hand" data-minute-hand></div>
+                    <div class="hand second-hand" data-second-hand></div>
+                    <div class="clock-center"></div>
+                    <div id="sound-toggle">
+                        <svg id="sound-on-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+                        <svg id="sound-off-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
+                    </div>
+                </div>
+            </div>
+            <!-- END NEW CLOCK -->
+
+            <div class="p-8 rounded-lg relative z-30 bg-[#383226]/70 backdrop-blur-sm border border-white/10">
+                <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-2 animated-gradient-text">The Engineering Times</h1>
                 <p class="text-xl md:text-2xl mt-4 font-amiri text-[#F0EAD6] mb-8">Portofolio Gatot Sasangka</p>
-                <div class="border-y-2 border-[#967259] py-2">
+                
+                <div class="border-y-2 border-[#967259] py-2 mt-8">
                     <p class="text-sm tracking-widest text-center">
                         EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB
                     </p>
@@ -670,13 +748,6 @@
                 <div class="mt-8">
                     <button id="open-book-btn" class="classic-button text-xl">Baca Edisi Lengkap</button>
                 </div>
-            </div>
-            <!-- Smoke Effect Container -->
-            <div id="smoke-container" class="z-[1]">
-                <span class="smoke"></span>
-                <span class="smoke"></span>
-                <span class="smoke"></span>
-                <span class="smoke"></span>
             </div>
         </section>
 
@@ -689,7 +760,7 @@
                         <header class="text-center pb-8">
                             <div class="container mx-auto px-6">
                                 <div class="border-y-4 border-double border-[#967259] py-2">
-                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4">The Engineering Times</h1>
+                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">The Engineering Times</h1>
                                      <div class="text-sm tracking-widest flex flex-col md:flex-row justify-center md:justify-between items-center">
                                          <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
                                          <span class="live-datetime mt-2 md:mt-0"></span>
@@ -697,7 +768,9 @@
                                 </div>
                             </div>
                         </header>
+                        
                         <div class="fancy-divider animate-on-scroll animation-delay-200"></div>
+
                         <h2 class="text-4xl md:text-5xl font-bold mb-4 leading-tight text-center animate-on-scroll animation-delay-200">Jejak Inovasi: Dari Algoritma Al-Khwarizmi hingga Kecerdasan Buatan</h2>
                         <p id="current-date" class="text-base text-center animate-on-scroll animation-delay-400"></p>
                         <p class="text-lg leading-relaxed mb-8 text-justify animate-on-scroll animation-delay-400">
@@ -718,7 +791,7 @@
                         <header class="text-center pb-8">
                             <div class="container mx-auto px-6">
                                 <div class="border-y-4 border-double border-[#967259] py-2">
-                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4">The Engineering Times</h1>
+                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">The Engineering Times</h1>
                                      <div class="text-sm tracking-widest flex flex-col md:flex-row justify-center md:justify-between items-center">
                                          <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
                                          <span class="live-datetime mt-2 md:mt-0"></span>
@@ -753,7 +826,7 @@
                         <header class="text-center pb-8">
                             <div class="container mx-auto px-6">
                                 <div class="border-y-4 border-double border-[#967259] py-2">
-                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4">The Engineering Times</h1>
+                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">The Engineering Times</h1>
                                      <div class="text-sm tracking-widest flex flex-col md:flex-row justify-center md:justify-between items-center">
                                          <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
                                          <span class="live-datetime mt-2 md:mt-0"></span>
@@ -827,7 +900,7 @@
                         <header class="text-center pb-8">
                             <div class="container mx-auto px-6">
                                 <div class="border-y-4 border-double border-[#967259] py-2">
-                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4">The Engineering Times</h1>
+                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">The Engineering Times</h1>
                                      <div class="text-sm tracking-widest flex flex-col md:flex-row justify-center md:justify-between items-center">
                                          <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
                                          <span class="live-datetime mt-2 md:mt-0"></span>
@@ -871,7 +944,7 @@
                         <header class="text-center pb-8">
                             <div class="container mx-auto px-6">
                                 <div class="border-y-4 border-double border-[#967259] py-2">
-                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4">The Engineering Times</h1>
+                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">The Engineering Times</h1>
                                      <div class="text-sm tracking-widest flex flex-col md:flex-row justify-center md:justify-between items-center">
                                          <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
                                          <span class="live-datetime mt-2 md:mt-0"></span>
@@ -901,7 +974,7 @@
                         <header class="text-center pb-8">
                             <div class="container mx-auto px-6">
                                 <div class="border-y-4 border-double border-[#967259] py-2">
-                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4">The Engineering Times</h1>
+                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">The Engineering Times</h1>
                                      <div class="text-sm tracking-widest flex flex-col md:flex-row justify-center md:justify-between items-center">
                                          <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
                                          <span class="live-datetime mt-2 md:mt-0"></span>
@@ -963,7 +1036,7 @@
                             <i class="fas fa-user mr-4 w-6 text-center"></i><span class="nav-text">Profil</span>
                         </a></li>
                         <li><a href="#projects-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
-                            <i class="fas fa-laptop-code mr-4 w-6 text-center"></i><span class="nav-text">Laporan Utama</span>
+                            <i class="fas fa-newspaper mr-4 w-6 text-center"></i><span class="nav-text">Laporan Utama</span>
                         </a></li>
                         <li><a href="#pendidikan-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
                             <i class="fas fa-graduation-cap mr-4 w-6 text-center"></i><span class="nav-text">Latar Pendidikan</span>
@@ -1530,9 +1603,111 @@
                 }
                 document.body.removeChild(tempInput);
             }
+
+            // --- NEW CLOCK SCRIPT ---
+            const hourHand = document.querySelector('#cover-page [data-hour-hand]');
+            const minuteHand = document.querySelector('#cover-page [data-minute-hand]');
+            const secondHand = document.querySelector('#cover-page [data-second-hand]');
+            const soundToggle = document.getElementById('sound-toggle');
+            const soundOnIcon = document.getElementById('sound-on-icon');
+            const soundOffIcon = document.getElementById('sound-off-icon');
+            const clockContainer = document.getElementById('clock-container');
+
+            let audioCtx;
+            let isMuted = true; // Start muted
+            let soundInitialized = false;
+            let noteIndex = 0;
+
+             const melody = [ 523.25, 392.00, 440.00, 392.00, 349.23, 329.63, 293.66, 261.63, ]; 
+
+            function playTick() {
+                if (isMuted || !audioCtx) return;
+                if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+
+                const now = audioCtx.currentTime;
+                const fundamentalFreq = melody[noteIndex];
+
+                const osc1 = audioCtx.createOscillator();
+                const gain1 = audioCtx.createGain();
+                osc1.type = 'sine'; 
+                osc1.frequency.setValueAtTime(fundamentalFreq, now);
+                osc1.connect(gain1);
+                gain1.connect(audioCtx.destination);
+
+                const osc2 = audioCtx.createOscillator();
+                const gain2 = audioCtx.createGain();
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(fundamentalFreq * 2, now); 
+                osc2.connect(gain2);
+                gain2.connect(audioCtx.destination);
+
+                const osc3 = audioCtx.createOscillator();
+                const gain3 = audioCtx.createGain();
+                osc3.type = 'sine';
+                osc3.frequency.setValueAtTime(fundamentalFreq * 1.5, now);
+                osc3.connect(gain3);
+                gain3.connect(audioCtx.destination);
+                
+                const masterVolume = 0.15;
+                gain1.gain.setValueAtTime(0, now);
+                gain1.gain.linearRampToValueAtTime(masterVolume, now + 0.02);
+                gain1.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+                gain2.gain.setValueAtTime(0, now);
+                gain2.gain.linearRampToValueAtTime(masterVolume / 2, now + 0.02); 
+                gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.5); 
+                gain3.gain.setValueAtTime(0, now);
+                gain3.gain.linearRampToValueAtTime(masterVolume / 3, now + 0.02); 
+                gain3.gain.exponentialRampToValueAtTime(0.001, now + 1.5); 
+
+                const stopTime = now + 1.8;
+                [osc1, osc2, osc3].forEach(osc => { osc.start(now); osc.stop(stopTime); });
+
+                noteIndex = (noteIndex + 1) % melody.length;
+            }
+
+            function initSound() {
+                if (!soundInitialized) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    soundInitialized = true;
+                }
+            }
+            
+            if(soundToggle) {
+                 soundOnIcon.classList.toggle('hidden', isMuted);
+                 soundOffIcon.classList.toggle('hidden', !isMuted);
+                 soundToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    initSound();
+                    isMuted = !isMuted;
+                    soundOnIcon.classList.toggle('hidden', isMuted);
+                    soundOffIcon.classList.toggle('hidden', !isMuted);
+                });
+            }
+
+            function setClock() {
+                if (!hourHand || !minuteHand || !secondHand) return;
+                const currentDate = new Date();
+                
+                const secondsRatio = currentDate.getSeconds() / 60;
+                const minutesRatio = (secondsRatio + currentDate.getMinutes()) / 60;
+                const hoursRatio = (minutesRatio + currentDate.getHours()) / 12;
+                
+                setRotation(secondHand, secondsRatio);
+                setRotation(minuteHand, minutesRatio);
+                setRotation(hourHand, hoursRatio);
+                playTick();
+            }
+
+            function setRotation(element, rotationRatio) {
+                 element.style.transform = `translateX(-50%) rotate(${rotationRatio * 360}deg)`;
+            }
+            setInterval(setClock, 1000);
+            setClock(); // Initial call
         });
     </script>
 
 </body>
 </html>
+
+
 
