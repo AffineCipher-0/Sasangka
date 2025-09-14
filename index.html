@@ -10,7 +10,7 @@
     <meta property="og:title" content="The Engineering Times | Portofolio Gatot Sasangka">
     <meta property="og:description" content="Menjelajahi proyek-proyek inovatif di bidang teknologi jaringan, IoT, dan pengembangan web.">
     <meta property="og:image" content="https://placehold.co/1200x630/2C2720/D4C8B5?text=The+Engineering+Times">
-    <meta property="og:url" content="https://affinecipher-0.github.io/portfolio/">
+    <meta property="og:url" content="https://affinecipher-0.github.io/Sasangka/">
     <meta property="og:type" content="website">
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>۞</text></svg>">
@@ -566,6 +566,75 @@
             animation: page-fade-in 0.4s ease-in forwards;
         }
 
+        /* Candle Smoke Effect */
+        #smoke-container {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 50%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .smoke {
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 200, 181, 0.08);
+            border-radius: 50%;
+            filter: blur(25px);
+            opacity: 0;
+            animation: rise 10s infinite;
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(1) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-300px) scale(2.5) translateX(calc(var(--x-offset, 0) * 1px));
+                opacity: 0;
+                filter: blur(40px);
+            }
+        }
+
+        .smoke:nth-child(1) {
+            animation-duration: 8s;
+            animation-delay: 0s;
+            left: 45%;
+            --x-offset: -20;
+        }
+        .smoke:nth-child(2) {
+            animation-duration: 10s;
+            animation-delay: 2s;
+            left: 55%;
+            width: 80px;
+            height: 80px;
+            --x-offset: 30;
+        }
+        .smoke:nth-child(3) {
+            animation-duration: 9s;
+            animation-delay: 4s;
+            left: 40%;
+            --x-offset: 50;
+        }
+        .smoke:nth-child(4) {
+            animation-duration: 12s;
+            animation-delay: 6s;
+            left: 60%;
+            width: 50px;
+            height: 50px;
+            --x-offset: -40;
+        }
+
     </style>
 </head>
 <body class="bg-[#2C2720]">
@@ -589,8 +658,8 @@
 
     <div id="book-container">
 
-        <section id="cover-page" class="w-full flex flex-col justify-center items-center text-center p-8 bg-[#2C2720]">
-            <div class="p-8 rounded-lg">
+        <section id="cover-page" class="relative w-full flex flex-col justify-center items-center text-center p-8 bg-[#2C2720]">
+            <div class="p-8 rounded-lg relative z-[2]">
                 <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider text-[#F0EAD6] mb-2">The Engineering Times</h1>
                 <p class="text-xl md:text-2xl mt-4 font-amiri text-[#F0EAD6] mb-8">Portofolio Gatot Sasangka</p>
                 <div class="border-y-2 border-[#967259] py-2">
@@ -601,6 +670,13 @@
                 <div class="mt-8">
                     <button id="open-book-btn" class="classic-button text-xl">Baca Edisi Lengkap</button>
                 </div>
+            </div>
+            <!-- Smoke Effect Container -->
+            <div id="smoke-container" class="z-[1]">
+                <span class="smoke"></span>
+                <span class="smoke"></span>
+                <span class="smoke"></span>
+                <span class="smoke"></span>
             </div>
         </section>
 
@@ -634,7 +710,7 @@
     Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa sejarah, menggabungkan warisan klasik dengan inovasi modern. Setiap karya menjadi bukti bahwa perjalanan teknologi adalah kisah yang belum berakhir—narasi yang terus ditulis setiap hari oleh para insinyur, pemikir, dan pencipta di seluruh dunia.
                         </p>
                          <div class="text-right animate-on-scroll animation-delay-600">
-                             <button data-modal-target="#timeline-modal" class="classic-button">Lihat Garis Waktu</button>
+                              <button data-modal-target="#timeline-modal" class="classic-button">Lihat Garis Waktu</button>
                          </div>
                     </section>
         
@@ -1107,9 +1183,9 @@
                     <h4 class="text-xl font-bold mb-3 mt-6 border-b border-[#967259] pb-2">Proses Pelaksanaan</h4>
                     <p class="text-justify mb-4">Proyek ini dijalankan dengan metodologi terstruktur yang mencakup tiga tahap utama:</p>
                     <ul class="list-disc list-outside ml-5 space-y-2 text-justify mb-4">
-                       <li><strong>Perencanaan (Plan):</strong> Menganalisis kebutuhan, mendesain topologi jaringan, dan memilih perangkat yang tepat.</li>
-                       <li><strong>Pembangunan (Build):</strong> Melakukan instalasi perangkat, konfigurasi sistem, dan implementasi desain jaringan.</li>
-                       <li><strong>Pengelolaan (Manage):</strong> Melakukan pengujian menyeluruh, pemeliharaan, dan optimalisasi jaringan setelah diluncurkan.</li>
+                        <li><strong>Perencanaan (Plan):</strong> Menganalisis kebutuhan, mendesain topologi jaringan, dan memilih perangkat yang tepat.</li>
+                        <li><strong>Pembangunan (Build):</strong> Melakukan instalasi perangkat, konfigurasi sistem, dan implementasi desain jaringan.</li>
+                        <li><strong>Pengelolaan (Manage):</strong> Melakukan pengujian menyeluruh, pemeliharaan, dan optimalisasi jaringan setelah diluncurkan.</li>
                     </ul>
                     
                      <h4 class="text-xl font-bold mb-3 mt-6 border-b border-[#967259] pb-2">Hasil Akhir</h4>
@@ -1255,7 +1331,7 @@
                 }
 
                 if (articleDateElement) {
-                    const publicationDate = new Date(Date.UTC(2025, 8, 14)); // Month is 0-indexed, so 8 is September
+                    const publicationDate = new Date(Date.UTC(2025, 8, 15)); // Month is 0-indexed, so 8 is September
                     const articleDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
                     articleDateElement.textContent = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(publicationDate);
                 }
@@ -1464,4 +1540,3 @@
 
 </body>
 </html>
-
