@@ -1687,6 +1687,9 @@
 
             function startClock() {
                 if (clockIntervalId !== null) return;
+                if (audioCtx && audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
                 setClock();
                 clockIntervalId = setInterval(setClock, 1000);
             }
@@ -1694,6 +1697,9 @@
             function stopClock() {
                 clearInterval(clockIntervalId);
                 clockIntervalId = null;
+                if (audioCtx && audioCtx.state === 'running') {
+                    audioCtx.suspend();
+                }
             }
 
             startClock(); // Initial call
@@ -1702,7 +1708,4 @@
 
 </body>
 </html>
-" in the canvas.
-My query is: "coba perbaiki dibagian sampul"
-
 
