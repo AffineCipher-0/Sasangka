@@ -675,19 +675,6 @@
         .number-10 { transform: rotate(300deg); } .number-10 span { display: inline-block; transform: rotate(-300deg); padding-top: 5px;}
         .number-11 { transform: rotate(330deg); } .number-11 span { display: inline-block; transform: rotate(-330deg); padding-top: 5px;}
         .number-12 { transform: rotate(360deg); } .number-12 span { display: inline-block; transform: rotate(-360deg); padding-top: 5px;}
-
-        #sound-toggle {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            cursor: pointer;
-            z-index: 100;
-            color: #D4BDA5;
-            transition: color 0.2s ease-in-out;
-        }
-        #sound-toggle:hover { color: #f5eeda; }
-
-
     </style>
 </head>
 <body class="bg-[#2C2720]">
@@ -711,11 +698,16 @@
 
     <div id="book-container">
 
-        <section id="cover-page" class="relative w-full h-screen flex flex-col justify-center items-center text-center p-8 bg-[#383226] overflow-hidden">
+        <section id="cover-page" class="relative w-full h-screen flex flex-col justify-center items-center text-center p-8 bg-[#2C2720] overflow-hidden">
             
-            <!-- NEW CLOCK -->
-            <div id="cover-page-clock-wrapper">
-                 <div id="clock-container" class="w-[480px] h-[480px] md:w-[620px] md:h-[620px] bg-black rounded-full border-8 border-black shadow-2xl relative flex items-center justify-center flex-shrink-0">
+            <button id="sound-toggle" class="absolute top-8 right-8 z-50 text-[#F0EAD6] border border-[#F0EAD6]/50 px-4 py-2 text-sm font-bold tracking-widest hover:bg-[#F0EAD6] hover:text-[#2C2720] transition-colors">
+                <span id="sound-on-text" class="hidden">SOUND ON</span>
+                <span id="sound-off-text">SOUND OFF</span>
+            </button>
+            
+            <!-- CLOCK AS BACKGROUND -->
+            <div id="cover-page-clock-wrapper" class="absolute inset-0 flex items-center justify-center opacity-40">
+                 <div id="clock-container" class="w-[640px] h-[640px] md:w-[800px] md:h-[800px] bg-black rounded-full border-8 border-black shadow-2xl relative flex items-center justify-center flex-shrink-0">
                     <div class="absolute w-full h-full rounded-full" style="background: radial-gradient(circle, #f5eeda 60%, #d4bda5 100%);"></div>
                     <svg id="gear5" class="gear" style="width: 80%; height: 80%;" viewBox="0 0 100 100"><path d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0 M 50,50 m -28,0 a 28,28 0 1,0 56,0 a 28,28 0 1,0 -56,0 M 50,50 m 0,-48 L 45,32 55,32 Z M 50,50 m 41.569,-24 L 37.5,41.569 37.5,58.431 Z M 50,50 m 24,-41.569 L 41.569,62.5 58.431,62.5 Z M 50,50 m 0,48 L 45,68 55,68 Z M 50,50 m -41.569,24 L 62.5,41.569 62.5,58.431 Z M 50,50 m -24,41.569 L 58.431,37.5 41.569,37.5 Z M 50,50 m -48,0 L 68,45 68,55 Z M 50,50 m -41.569,-24 L 62.5,58.431 62.5,41.569 Z M 50,50 m -24,-41.569 L 58.431,62.5 41.569,62.5 Z M 50,50 m 48,0 L 32,45 32,55 Z M 50,50 m 41.569,24 L 37.5,58.431 37.5,41.569 Z M 50,50 m 24,41.569 L 41.569,37.5 58.431,37.5 Z"></path></svg>
                     <svg id="gear1" class="gear" style="width: 70%; height: 70%; top: -10%; left: -15%;" viewBox="0 0 100 100"><path d="M 50,50 m -40,0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0 M 50,50 m -28,0 a 28,28 0 1,0 56,0 a 28,28 0 1,0 -56,0 M 50,50 m 0,-48 L 45,32 55,32 Z M 50,50 m 41.569,-24 L 37.5,41.569 37.5,58.431 Z M 50,50 m 24,-41.569 L 41.569,62.5 58.431,62.5 Z M 50,50 m 0,48 L 45,68 55,68 Z M 50,50 m -41.569,24 L 62.5,41.569 62.5,58.431 Z M 50,50 m -24,41.569 L 58.431,37.5 41.569,37.5 Z M 50,50 m -48,0 L 68,45 68,55 Z M 50,50 m -41.569,-24 L 62.5,58.431 62.5,41.569 Z M 50,50 m -24,-41.569 L 58.431,62.5 41.569,62.5 Z M 50,50 m 48,0 L 32,45 32,55 Z M 50,50 m 41.569,24 L 37.5,58.431 37.5,41.569 Z M 50,50 m 24,41.569 L 41.569,37.5 58.431,37.5 Z"></path></svg>
@@ -728,16 +720,13 @@
                     <div class="hand minute-hand" data-minute-hand></div>
                     <div class="hand second-hand" data-second-hand></div>
                     <div class="clock-center"></div>
-                    <div id="sound-toggle">
-                        <svg id="sound-on-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
-                        <svg id="sound-off-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>
-                    </div>
+                    
                 </div>
             </div>
-            <!-- END NEW CLOCK -->
+            <!-- END CLOCK -->
 
-            <div class="p-8 rounded-lg relative z-30 bg-[#383226]/70 backdrop-blur-sm border border-white/10">
-                <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-2 animated-gradient-text">The Engineering Times</h1>
+            <div class="p-8 rounded-lg relative z-30 bg-[#2C2720]/30 backdrop-blur-sm border border-white/10">
+                <h1 class="text-6xl md:text-8xl mb-2 text-[#F0EAD6]" style="font-family: 'Cormorant Garamond', serif; font-weight: 700;">The Engineering Times</h1>
                 <p class="text-xl md:text-2xl mt-4 font-amiri text-[#F0EAD6] mb-8">Portofolio Gatot Sasangka</p>
                 
                 <div class="border-y-2 border-[#967259] py-2 mt-8">
@@ -1299,11 +1288,13 @@
             openBookBtn.addEventListener('click', () => {
                 coverPage.classList.add('cover-hidden');
                 contentPages.classList.add('content-visible');
+                stopClock(); // Stop clock when opening book
             });
 
             closeBookBtn.addEventListener('click', () => {
                 coverPage.classList.remove('cover-hidden');
                 contentPages.classList.remove('content-visible');
+                startClock(); // Restart clock when closing book
             });
 
             // --- Page Navigation Logic ---
@@ -1384,31 +1375,35 @@
             });
 
             // --- Dynamic Year and Live Clock ---
-            function initializeDateTime() {
-                const liveTimeElements = document.querySelectorAll('.live-datetime');
+            function setupDateTime() {
                 const articleDateElement = document.getElementById('current-date');
-                
-                // Set the specific date and time from the prompt
-                const customDate = new Date('2025-09-15T03:59:00'); 
+                const staticDate = new Date('2025-09-15T00:00:00'); 
 
-                const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
-                const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Makassar' };
-
-                // Set the live date and time elements once
-                if (liveTimeElements.length > 0) {
-                    const formattedDate = new Intl.DateTimeFormat('id-ID', dateOptions).format(customDate);
-                    const formattedTime = new Intl.DateTimeFormat('id-ID', timeOptions).format(customDate).replace(/\./g, ':');
-                    const dateTimeString = `${formattedDate} | ${formattedTime}`;
-                    liveTimeElements.forEach(el => el.textContent = dateTimeString);
-                }
-
-                // Set the article date element
+                // Set the static article date once
                 if (articleDateElement) {
                      const articleDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
-                     articleDateElement.textContent = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(customDate);
+                     articleDateElement.textContent = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(staticDate);
+                }
+                
+                const liveTimeElements = document.querySelectorAll('.live-datetime');
+                if (liveTimeElements.length > 0) {
+                    const formattedDate = new Intl.DateTimeFormat('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' }).format(staticDate);
+
+                    const updateLiveTime = () => {
+                        const now = new Date(); // Use current time for the clock
+                        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Makassar' };
+                        
+                        const formattedTime = new Intl.DateTimeFormat('id-ID', timeOptions).format(now).replace(/\./g, ':');
+                        const dateTimeString = `${formattedDate} | ${formattedTime}`;
+                        
+                        liveTimeElements.forEach(el => el.textContent = dateTimeString);
+                    };
+                    
+                    updateLiveTime(); // Initial call
+                    setInterval(updateLiveTime, 1000); // Update every second
                 }
             }
-            initializeDateTime();
+            setupDateTime();
 
             // --- Back to Top Button Logic ---
             if (pageContentContainer && backToTopBtn) {
@@ -1604,64 +1599,52 @@
                 document.body.removeChild(tempInput);
             }
 
-            // --- NEW CLOCK SCRIPT ---
+            // --- Clock Script ---
+            let clockIntervalId = null;
             const hourHand = document.querySelector('#cover-page [data-hour-hand]');
             const minuteHand = document.querySelector('#cover-page [data-minute-hand]');
             const secondHand = document.querySelector('#cover-page [data-second-hand]');
             const soundToggle = document.getElementById('sound-toggle');
-            const soundOnIcon = document.getElementById('sound-on-icon');
-            const soundOffIcon = document.getElementById('sound-off-icon');
-            const clockContainer = document.getElementById('clock-container');
+            const soundOnText = document.getElementById('sound-on-text');
+            const soundOffText = document.getElementById('sound-off-text');
 
             let audioCtx;
-            let isMuted = true; // Start muted
+            let isMuted = true;
             let soundInitialized = false;
             let noteIndex = 0;
-
-             const melody = [ 523.25, 392.00, 440.00, 392.00, 349.23, 329.63, 293.66, 261.63, ]; 
+            const melody = [ 523.25, 392.00, 440.00, 392.00, 349.23, 329.63, 293.66, 261.63 ];
 
             function playTick() {
-                if (isMuted || !audioCtx) return;
-                if (audioCtx.state === 'suspended') { audioCtx.resume(); }
+                if (isMuted || !audioCtx || audioCtx.state !== 'running') return;
 
                 const now = audioCtx.currentTime;
                 const fundamentalFreq = melody[noteIndex];
 
-                const osc1 = audioCtx.createOscillator();
-                const gain1 = audioCtx.createGain();
-                osc1.type = 'sine'; 
-                osc1.frequency.setValueAtTime(fundamentalFreq, now);
-                osc1.connect(gain1);
-                gain1.connect(audioCtx.destination);
+                const osc1 = audioCtx.createOscillator(); const gain1 = audioCtx.createGain();
+                osc1.type = 'sine'; osc1.frequency.setValueAtTime(fundamentalFreq, now);
+                osc1.connect(gain1); gain1.connect(audioCtx.destination);
 
-                const osc2 = audioCtx.createOscillator();
-                const gain2 = audioCtx.createGain();
-                osc2.type = 'sine';
-                osc2.frequency.setValueAtTime(fundamentalFreq * 2, now); 
-                osc2.connect(gain2);
-                gain2.connect(audioCtx.destination);
+                const osc2 = audioCtx.createOscillator(); const gain2 = audioCtx.createGain();
+                osc2.type = 'sine'; osc2.frequency.setValueAtTime(fundamentalFreq * 2, now);
+                osc2.connect(gain2); gain2.connect(audioCtx.destination);
 
-                const osc3 = audioCtx.createOscillator();
-                const gain3 = audioCtx.createGain();
-                osc3.type = 'sine';
-                osc3.frequency.setValueAtTime(fundamentalFreq * 1.5, now);
-                osc3.connect(gain3);
-                gain3.connect(audioCtx.destination);
+                const osc3 = audioCtx.createOscillator(); const gain3 = audioCtx.createGain();
+                osc3.type = 'sine'; osc3.frequency.setValueAtTime(fundamentalFreq * 1.5, now);
+                osc3.connect(gain3); gain3.connect(audioCtx.destination);
                 
                 const masterVolume = 0.15;
                 gain1.gain.setValueAtTime(0, now);
                 gain1.gain.linearRampToValueAtTime(masterVolume, now + 0.02);
                 gain1.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
                 gain2.gain.setValueAtTime(0, now);
-                gain2.gain.linearRampToValueAtTime(masterVolume / 2, now + 0.02); 
-                gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.5); 
+                gain2.gain.linearRampToValueAtTime(masterVolume / 2, now + 0.02);
+                gain2.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
                 gain3.gain.setValueAtTime(0, now);
-                gain3.gain.linearRampToValueAtTime(masterVolume / 3, now + 0.02); 
-                gain3.gain.exponentialRampToValueAtTime(0.001, now + 1.5); 
+                gain3.gain.linearRampToValueAtTime(masterVolume / 3, now + 0.02);
+                gain3.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
 
                 const stopTime = now + 1.8;
                 [osc1, osc2, osc3].forEach(osc => { osc.start(now); osc.stop(stopTime); });
-
                 noteIndex = (noteIndex + 1) % melody.length;
             }
 
@@ -1670,24 +1653,24 @@
                     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                     soundInitialized = true;
                 }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
             }
             
-            if(soundToggle) {
-                 soundOnIcon.classList.toggle('hidden', isMuted);
-                 soundOffIcon.classList.toggle('hidden', !isMuted);
+            if(soundToggle && soundOnText && soundOffText) {
                  soundToggle.addEventListener('click', (e) => {
                     e.stopPropagation();
                     initSound();
                     isMuted = !isMuted;
-                    soundOnIcon.classList.toggle('hidden', isMuted);
-                    soundOffIcon.classList.toggle('hidden', !isMuted);
+                    soundOnText.classList.toggle('hidden', isMuted);
+                    soundOffText.classList.toggle('hidden', !isMuted);
                 });
             }
 
             function setClock() {
                 if (!hourHand || !minuteHand || !secondHand) return;
                 const currentDate = new Date();
-                
                 const secondsRatio = currentDate.getSeconds() / 60;
                 const minutesRatio = (secondsRatio + currentDate.getMinutes()) / 60;
                 const hoursRatio = (minutesRatio + currentDate.getHours()) / 12;
@@ -1701,13 +1684,25 @@
             function setRotation(element, rotationRatio) {
                  element.style.transform = `translateX(-50%) rotate(${rotationRatio * 360}deg)`;
             }
-            setInterval(setClock, 1000);
-            setClock(); // Initial call
+
+            function startClock() {
+                if (clockIntervalId !== null) return;
+                setClock();
+                clockIntervalId = setInterval(setClock, 1000);
+            }
+
+            function stopClock() {
+                clearInterval(clockIntervalId);
+                clockIntervalId = null;
+            }
+
+            startClock(); // Initial call
         });
     </script>
 
 </body>
 </html>
-
+" in the canvas.
+My query is: "coba perbaiki dibagian sampul"
 
 
