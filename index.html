@@ -1826,16 +1826,25 @@
             // --- News Modal Logic ---
             const showNewsBtn = document.getElementById('show-news-btn');
             let newsDataFetched = false;
+            let cachedNewsHtml = null;
 
-            async function fetchAndDisplayNews() {
-                if (newsDataFetched) return; // Fetch only once
-
+            function displayNewsInModal() {
                 const newsModal = document.getElementById('news-modal');
                 if (!newsModal) return;
 
                 const newsContainer = document.getElementById('news-modal-content');
                 const loader = newsModal.querySelector('.modal-loader');
-                
+
+                if (cachedNewsHtml) {
+                    if (newsContainer) newsContainer.innerHTML = cachedNewsHtml;
+                    if (loader) loader.classList.remove('show');
+                    if (newsContainer) newsContainer.classList.remove('content-hidden');
+                }
+            }
+
+            async function fetchNewsData() {
+                if (newsDataFetched) return; 
+
                 const rssUrl = 'https://news.google.com/rss/search?q=teknologi%20AI%20terbaru%20OR%20inovasi%20jaringan%20OR%20perkembangan%20IoT&hl=id&gl=ID&ceid=ID:id';
                 const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
                 
@@ -1877,16 +1886,17 @@
                         });
                         htmlContent += '</ul>';
                     }
-
-                    if (newsContainer) newsContainer.innerHTML = htmlContent;
+                    cachedNewsHtml = htmlContent;
 
                 } catch (error) {
                     console.error("Error fetching news:", error);
-                    if (newsContainer) newsContainer.innerHTML = '<p class="text-center text-red-700 p-8">Gagal memuat berita. Periksa koneksi internet Anda atau coba lagi nanti.</p>';
+                    cachedNewsHtml = '<p class="text-center text-red-700 p-8">Gagal memuat berita. Periksa koneksi internet Anda atau coba lagi nanti.</p>';
                 } finally {
-                    if (loader) loader.classList.remove('show');
-                    if (newsContainer) newsContainer.classList.remove('content-hidden');
                     newsDataFetched = true;
+                    const newsModal = document.getElementById('news-modal');
+                    if (newsModal && newsModal.classList.contains('active')) {
+                        displayNewsInModal();
+                    }
                 }
             }
 
@@ -1895,9 +1905,16 @@
                     e.preventDefault();
                     const modal = document.getElementById('news-modal');
                     openModal(modal);
-                    fetchAndDisplayNews();
+                    if (newsDataFetched) {
+                        displayNewsInModal();
+                    } else {
+                        fetchNewsData();
+                    }
                 });
             }
+
+            // Pre-fetch news after main loading screen is gone
+            setTimeout(fetchNewsData, 3000);
 
             // --- Certificate Gallery Logic ---
             const certificates = [
@@ -2244,5 +2261,4 @@
 
 </body>
 </html>
-
 
