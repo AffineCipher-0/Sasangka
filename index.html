@@ -660,6 +660,30 @@
         .number-10 { transform: rotate(300deg); } .number-10 span { display: inline-block; transform: rotate(-300deg); padding-top: 5px;}
         .number-11 { transform: rotate(330deg); } .number-11 span { display: inline-block; transform: rotate(-330deg); padding-top: 5px;}
         .number-12 { transform: rotate(360deg); } .number-12 span { display: inline-block; transform: rotate(-360deg); padding-top: 5px;}
+
+        .number.active-hour span {
+            color: #1a1a1a; /* Menjaga teks tetap hitam agar mudah dibaca */
+            text-shadow: 0 0 5px #ffffff,
+                         0 0 10px #ffffff,
+                         0 0 15px #87CEFA,
+                         0 0 20px #87CEFA;
+            transition: text-shadow 0.5s ease-in-out;
+        }
+
+        /* Style untuk Gear Tengah Baru */
+        .center-gear-style > circle:first-of-type,
+        .center-gear-style > polygon {
+            fill: #6B4F3A;
+            opacity: 0.5;
+        }
+        .center-gear-style > circle[fill="#FFFFFF"] {
+            fill: #6B4F3A;
+            opacity: 0.3;
+        }
+        .center-gear-style circle[stroke="#000000"] {
+            stroke: #6B4F3A;
+            opacity: 0.6;
+        }
     </style>
 </head>
 <body class="bg-[#2C2720]">
@@ -928,6 +952,24 @@
                         <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 230.003 381.364" to="360 230.003 381.364" dur="10s" repeatCount="indefinite"></animateTransform></g></g>
                     </svg>
                     <div class="absolute w-full h-full rounded-full z-1" style="box-shadow: inset 0 0 25px rgba(0,0,0,0.5);"></div>
+                    
+                    <!-- RODA GIGI TENGAH BARU -->
+                    <svg id="center-gear" class="absolute top-1/2 left-1/2 w-56 h-56 z-[9]" viewBox="335 832 223 223">
+                        <g class="center-gear-style">
+                            <circle cx="446.39" cy="943.119" r="111.367"></circle>
+                            <circle fill="#FFFFFF" cx="446.39" cy="943.12" r="78.062"></circle>
+                            <circle fill="none" stroke="#000000" stroke-width="25" stroke-miterlimit="10" cx="446.003" cy="943.364" r="30.407"></circle>
+                            <polygon points="395.559,862.793 450.224,848.169 422.359,801.246 396.271,808.225"></polygon>
+                            <polygon points="351.454,939.176 366.078,993.841 311.509,993.128 304.53,967.04"></polygon>
+                            <polygon points="497.173,1023.266 442.508,1037.89 470.372,1084.812 496.46,1077.834"></polygon>
+                            <polygon points="541.227,947.09 526.603,892.426 581.171,893.138 588.15,919.226"></polygon>
+                            <polygon points="353.681,922.188 381.993,873.194 329.11,859.718 315.599,883.099"></polygon>
+                            <polygon points="376.504,1007.387 425.498,1035.699 386.409,1073.781 363.027,1060.27"></polygon>
+                            <polygon points="539.003,963.808 510.69,1012.803 563.573,1026.279 577.085,1002.897"></polygon>
+                            <polygon points="516.29,878.792 467.296,850.479 506.386,812.397 529.767,825.909"></polygon>
+                        </g>
+                    </svg>
+                    
                     <div class="number number-1"><span>I</span></div><div class="number number-2"><span>II</span></div><div class="number number-3"><span>III</span></div><div class="number number-4"><span>IV</span></div><div class="number number-5"><span>V</span></div><div class="number number-6"><span>VI</span></div><div class="number number-7"><span>VII</span></div><div class="number number-8"><span>VIII</span></div><div class="number number-9"><span>IX</span></div><div class="number number-10"><span>X</span></div><div class="number number-11"><span>XI</span></div><div class="number number-12"><span>XII</span></div>
                     <div class="hand hour-hand" data-hour-hand></div>
                     <div class="hand minute-hand" data-minute-hand></div>
@@ -938,7 +980,7 @@
             </div>
             <!-- END CLOCK -->
 
-            <div class="p-8 rounded-lg relative z-30 bg-[#2C2720]/30 backdrop-blur-sm border border-white/10">
+            <div class="p-8 rounded-lg relative z-30 bg-[#2C2720]/40 backdrop-blur-xs border border-[#967259]/30 shadow-2xl max-w-5xl mx-auto">
                 <h1 class="text-6xl md:text-8xl mb-2 text-[#F0EAD6]" style="font-family: 'Cormorant Garamond', serif; font-weight: 700;">The Engineering Times</h1>
                 <p class="text-xl md:text-2xl mt-4 font-amiri text-[#F0EAD6] mb-8">Portofolio Gatot Sasangka</p>
                 
@@ -1817,6 +1859,7 @@
             const hourHand = document.querySelector('#cover-page [data-hour-hand]');
             const minuteHand = document.querySelector('#cover-page [data-minute-hand]');
             const secondHand = document.querySelector('#cover-page [data-second-hand]');
+            const centerGear = document.getElementById('center-gear');
             const soundToggle = document.getElementById('sound-toggle');
             const soundOnText = document.getElementById('sound-on-text');
             const soundOffText = document.getElementById('sound-off-text');
@@ -1884,6 +1927,21 @@
             function setClock() {
                 if (!hourHand || !minuteHand || !secondHand) return;
                 const currentDate = new Date();
+
+                // Logic to highlight the current hour numeral
+                let hourForClass = currentDate.getHours() % 12;
+                if (hourForClass === 0) hourForClass = 12; // Adjust for 12 o'clock (AM/PM)
+
+                // Remove active class from any currently active numeral
+                const activeElement = document.querySelector('.number.active-hour');
+                if(activeElement) activeElement.classList.remove('active-hour');
+
+                // Add active class to the current hour's numeral
+                const newActiveElement = document.querySelector(`.number.number-${hourForClass}`);
+                if (newActiveElement) {
+                    newActiveElement.classList.add('active-hour');
+                }
+
                 const secondsRatio = currentDate.getSeconds() / 60;
                 const minutesRatio = (secondsRatio + currentDate.getMinutes()) / 60;
                 const hoursRatio = (minutesRatio + currentDate.getHours()) / 12;
@@ -1891,6 +1949,12 @@
                 setRotation(secondHand, secondsRatio);
                 setRotation(minuteHand, minutesRatio);
                 setRotation(hourHand, hoursRatio);
+                
+                // Animate the center gear
+                if (centerGear) {
+                    centerGear.style.transform = `translate(-50%, -50%) rotate(${secondsRatio * 360}deg)`;
+                }
+
                 playTick();
             }
 
@@ -1921,3 +1985,11 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
