@@ -617,10 +617,14 @@
         .hour-hand { width: 8px; height: 25%; border-radius: 4px 4px 0 0; }
         .minute-hand { width: 6px; height: 35%; border-radius: 3px 3px 0 0; }
         .second-hand { 
-            width: 2px; 
+            width: 3px; /* Sedikit lebih tebal untuk inti gelap */
             height: 40%; 
-            background-color: #A67B5B; 
-            box-shadow: 0 0 8px rgba(240, 234, 214, 0.7), 0 0 12px rgba(166, 123, 91, 0.5);
+            background-color: #1a1a1a; /* Inti hitam seperti darksaber */
+            border-radius: 2px;
+            box-shadow: 0 0 5px #ffffff,   /* Cahaya putih bagian dalam */
+                        0 0 10px #ffffff,  /* Cahaya putih bagian tengah */
+                        0 0 15px #87CEFA,  /* Cahaya biru muda bagian luar */
+                        0 0 20px #87CEFA;  /* Cahaya biru muda terluar yang lebih redup */
         }
         .clock-center {
             position: absolute;
@@ -690,8 +694,9 @@
             <div id="cover-page-clock-wrapper" class="absolute inset-0 flex items-center justify-center opacity-40">
                  <div id="clock-container" class="w-[640px] h-[640px] md:w-[800px] md:h-[800px] bg-black rounded-full border-8 border-black shadow-2xl relative flex items-center justify-center flex-shrink-0">
                     <div class="absolute w-full h-full rounded-full" style="background: radial-gradient(circle, #f5eeda 60%, #d4bda5 100%);"></div>
-                    <svg class="clock-gears-svg absolute inset-0 w-full h-full" viewBox="0 0 1500 1500">
-                        <g transform="translate(-179.047 -97.481)"><g>
+                    <svg class="clock-gears-svg absolute inset-0 w-full h-full" viewBox="-270 -100 2000 1998">
+                        <!-- Roda Gigi 1 -->
+                        <g transform="translate(537.472 -217.871)"><g>
                             <circle cx="446.39" cy="943.119" r="111.367"></circle>
                             <circle fill="#FFFFFF" cx="446.39" cy="943.12" r="78.062"></circle>
                             <circle fill="none" stroke="#000000" stroke-width="25" stroke-miterlimit="10" cx="446.003" cy="943.364" r="30.407"></circle>
@@ -704,10 +709,11 @@
                             <polygon points="539.003,963.808 510.69,1012.803 563.573,1026.279 577.085,1002.897"></polygon>
                             <polygon points="516.29,878.792 467.296,850.479 506.386,812.397 529.767,825.909"></polygon>
                             <text x="446.39" y="943.119" class="gear-number">1</text>
-                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 446.39 943.119" to="360 446.39 943.119" dur="40s" repeatCount="indefinite"></animateTransform></g></g>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 446.39 943.119" to="360 446.39 943.119" dur="5s" repeatCount="indefinite"></animateTransform></g></g>
                         
-                        <g transform="translate(1.98941 131.301)"><g>
-                            <circle cx="637.25" cy="611.257" r="221.065"></circle>
+                        <!-- Roda Gigi 2 -->
+                        <g transform="translate(-18.8541 18.8541)"><g>
+                           <circle cx="637.25" cy="611.257" r="221.065"></circle>
                             <circle fill="#FFFFFF" cx="637.25" cy="611.258" r="170.05"></circle>
                             <circle fill="none" stroke="#000000" stroke-width="40" stroke-miterlimit="10" cx="640.003" cy="611.364" r="51.823"></circle>
                             <polygon points="520.69,453.546 583.968,422.525 535.886,366.294 505.688,381.098"></polygon>
@@ -727,9 +733,10 @@
                             <polygon points="827.652,562.665 832.553,632.966 901.806,609.675 899.468,576.125"></polygon>
                             <polygon points="658.959,415.956 588.658,420.855 602.117,349.041 635.667,346.702"></polygon>
                             <text x="637.25" y="611.257" class="gear-number">2</text>
-                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 637.25 611.257" to="0 637.25 611.257" dur="60s" repeatCount="indefinite"></animateTransform></g></g>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 637.25 611.257" to="0 637.25 611.257" dur="10s" repeatCount="indefinite"></animateTransform></g></g>
                         
-                        <g transform="translate(53.714 53.714)"><g>
+                        <!-- Roda Gigi 3 -->
+                        <g transform="translate(96.1311 -124.386)"><g>
                             <circle cx="230.003" cy="381.364" r="192.407"></circle>
                             <circle fill="#FFFFFF" cx="230.003" cy="381.364" r="148.005"></circle>
                             <polygon points="154.936,228.312 213.965,211.651 181.466,155.533 153.296,163.484"></polygon>
@@ -750,10 +757,11 @@
                             <polygon points="279.14,217.544 218.182,210.743 240.939,151.361 270.03,154.607"></polygon>
                             <circle fill="#FFFFFF" stroke="#000000" stroke-width="35" stroke-miterlimit="10" cx="230.003" cy="381.364" r="44.931"></circle>
                             <text x="230.003" y="381.364" class="gear-number">3</text>
-                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 230.003 381.364" to="360 230.003 381.364" dur="55s" repeatCount="indefinite"></animateTransform></g></g>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 230.003 381.364" to="360 230.003 381.364" dur="10s" repeatCount="indefinite"></animateTransform></g></g>
                         
-                        <g transform="translate(407.163 409.153)"><g>
-                            <circle cx="637.25" cy="611.257" r="221.065"></circle>
+                        <!-- Roda Gigi 4 (Sebelumnya #5) -->
+                        <g transform="translate(154.369 487.335)"><g>
+                           <circle cx="637.25" cy="611.257" r="221.065"></circle>
                             <circle fill="#FFFFFF" cx="637.25" cy="611.258" r="170.05"></circle>
                             <circle fill="none" stroke="#000000" stroke-width="40" stroke-miterlimit="10" cx="640.003" cy="611.364" r="51.823"></circle>
                             <polygon points="520.69,453.546 583.968,422.525 535.886,366.294 505.688,381.098"></polygon>
@@ -773,9 +781,10 @@
                             <polygon points="827.652,562.665 832.553,632.966 901.806,609.675 899.468,576.125"></polygon>
                             <polygon points="658.959,415.956 588.658,420.855 602.117,349.041 635.667,346.702"></polygon>
                             <text x="637.25" y="611.257" class="gear-number">4</text>
-                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 637.25 611.257" to="360 637.25 611.257" dur="65s" repeatCount="indefinite"></animateTransform></g></g>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 637.25 611.257" to="360 637.25 611.257" dur="10s" repeatCount="indefinite"></animateTransform></g></g>
 
-                        <g transform="translate(599.206 76.5277)"><g>
+                        <!-- Roda Gigi 5 (Duplikat #1) -->
+                        <g transform="translate(174.7 -310.789)"><g>
                             <circle cx="446.39" cy="943.119" r="111.367"></circle>
                             <circle fill="#FFFFFF" cx="446.39" cy="943.12" r="78.062"></circle>
                             <circle fill="none" stroke="#000000" stroke-width="25" stroke-miterlimit="10" cx="446.003" cy="943.364" r="30.407"></circle>
@@ -788,10 +797,11 @@
                             <polygon points="539.003,963.808 510.69,1012.803 563.573,1026.279 577.085,1002.897"></polygon>
                             <polygon points="516.29,878.792 467.296,850.479 506.386,812.397 529.767,825.909"></polygon>
                             <text x="446.39" y="943.119" class="gear-number">5</text>
-                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 446.39 943.119" to="0 446.39 943.119" dur="40s" repeatCount="indefinite"></animateTransform></g></g>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 446.39 943.119" to="0 446.39 943.119" dur="5s" repeatCount="indefinite"></animateTransform></g></g>
 
-                        <g transform="translate(287.67 -274.402)"><g>
-                            <circle cx="637.25" cy="611.257" r="221.065"></circle>
+                        <!-- Roda Gigi 6 (Duplikat #2) -->
+                        <g transform="translate(348.421 -326.612)"><g>
+                           <circle cx="637.25" cy="611.257" r="221.065"></circle>
                             <circle fill="#FFFFFF" cx="637.25" cy="611.258" r="170.05"></circle>
                             <circle fill="none" stroke="#000000" stroke-width="40" stroke-miterlimit="10" cx="640.003" cy="611.364" r="51.823"></circle>
                             <polygon points="520.69,453.546 583.968,422.525 535.886,366.294 505.688,381.098"></polygon>
@@ -811,9 +821,10 @@
                             <polygon points="827.652,562.665 832.553,632.966 901.806,609.675 899.468,576.125"></polygon>
                             <polygon points="658.959,415.956 588.658,420.855 602.117,349.041 635.667,346.702"></polygon>
                             <text x="637.25" y="611.257" class="gear-number">6</text>
-                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 637.25 611.257" to="360 637.25 611.257" dur="70s" repeatCount="indefinite"></animateTransform></g></g>
-                        
-                        <g transform="translate(304.379 -411.936)"><g>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 637.25 611.257" to="360 637.25 611.257" dur="10s" repeatCount="indefinite"></animateTransform></g></g>
+
+                        <!-- Roda Gigi 7 (Duplikat #1 Baru) -->
+                        <g transform="translate(349.682 151.449)"><g>
                             <circle cx="446.39" cy="943.119" r="111.367"></circle>
                             <circle fill="#FFFFFF" cx="446.39" cy="943.12" r="78.062"></circle>
                             <circle fill="none" stroke="#000000" stroke-width="25" stroke-miterlimit="10" cx="446.003" cy="943.364" r="30.407"></circle>
@@ -826,9 +837,10 @@
                             <polygon points="539.003,963.808 510.69,1012.803 563.573,1026.279 577.085,1002.897"></polygon>
                             <polygon points="516.29,878.792 467.296,850.479 506.386,812.397 529.767,825.909"></polygon>
                             <text x="446.39" y="943.119" class="gear-number">7</text>
-                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 446.39 943.119" to="360 446.39 943.119" dur="45s" repeatCount="indefinite"></animateTransform></g></g>
-                        
-                        <g transform="translate(481.566 -606.641)"><g>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 446.39 943.119" to="360 446.39 943.119" dur="5s" repeatCount="indefinite"></animateTransform></g></g>
+
+                        <!-- Roda Gigi 8 (Duplikat #1 Baru) -->
+                        <g transform="translate(9.0653 351.876)"><g>
                             <circle cx="446.39" cy="943.119" r="111.367"></circle>
                             <circle fill="#FFFFFF" cx="446.39" cy="943.12" r="78.062"></circle>
                             <circle fill="none" stroke="#000000" stroke-width="25" stroke-miterlimit="10" cx="446.003" cy="943.364" r="30.407"></circle>
@@ -841,10 +853,11 @@
                             <polygon points="539.003,963.808 510.69,1012.803 563.573,1026.279 577.085,1002.897"></polygon>
                             <polygon points="516.29,878.792 467.296,850.479 506.386,812.397 529.767,825.909"></polygon>
                             <text x="446.39" y="943.119" class="gear-number">8</text>
-                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 446.39 943.119" to="0 446.39 943.119" dur="45s" repeatCount="indefinite"></animateTransform></g></g>
-                        
-                        <g transform="translate(-114.455 617.776)"><g>
-                            <circle cx="637.25" cy="611.257" r="221.065"></circle>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 446.39 943.119" to="0 446.39 943.119" dur="5s" repeatCount="indefinite"></animateTransform></g></g>
+
+                        <!-- Roda Gigi 9 (Duplikat #2 Baru) -->
+                        <g transform="translate(-444.557 283.87)"><g>
+                           <circle cx="637.25" cy="611.257" r="221.065"></circle>
                             <circle fill="#FFFFFF" cx="637.25" cy="611.258" r="170.05"></circle>
                             <circle fill="none" stroke="#000000" stroke-width="40" stroke-miterlimit="10" cx="640.003" cy="611.364" r="51.823"></circle>
                             <polygon points="520.69,453.546 583.968,422.525 535.886,366.294 505.688,381.098"></polygon>
@@ -864,7 +877,55 @@
                             <polygon points="827.652,562.665 832.553,632.966 901.806,609.675 899.468,576.125"></polygon>
                             <polygon points="658.959,415.956 588.658,420.855 602.117,349.041 635.667,346.702"></polygon>
                             <text x="637.25" y="611.257" class="gear-number">9</text>
-                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 637.25 611.257" to="360 637.25 611.257" dur="75s" repeatCount="indefinite"></animateTransform></g></g>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 637.25 611.257" to="360 637.25 611.257" dur="10s" repeatCount="indefinite"></animateTransform></g></g>
+
+                        <!-- Roda Gigi 10 (Gear Besar Baru) -->
+                        <g transform="translate(642.943 597.84)"><g>
+                           <circle cx="637.25" cy="611.257" r="221.065"></circle>
+                            <circle fill="#FFFFFF" cx="637.25" cy="611.258" r="170.05"></circle>
+                            <circle fill="none" stroke="#000000" stroke-width="40" stroke-miterlimit="10" cx="640.003" cy="611.364" r="51.823"></circle>
+                            <polygon points="520.69,453.546 583.968,422.525 535.886,366.294 505.688,381.098"></polygon>
+                            <polygon points="448.518,664.54 479.539,727.817 407.091,742.819 392.287,712.622"></polygon>
+                            <polygon points="753.81,768.969 690.533,799.99 738.614,856.221 768.812,841.417"></polygon>
+                            <polygon points="825.982,557.975 794.962,494.698 867.409,479.696 882.214,509.893"></polygon>
+                            <polygon points="442.931,582.028 465.739,515.35 392.878,509.895 381.994,541.716"></polygon>
+                            <polygon points="541.343,782.769 608.021,805.577 567.709,866.515 535.888,855.63"></polygon>
+                            <polygon points="831.569,640.486 808.761,707.165 881.622,712.62 892.507,680.8"></polygon>
+                            <polygon points="733.158,439.747 666.479,416.938 706.792,356.001 738.612,366.886"></polygon>
+                            <polygon points="468.256,510.983 514.501,457.808 449.062,425.308 426.992,450.685"></polygon>
+                            <polygon points="483.8,734.007 536.976,780.252 476.678,821.516 451.301,799.446"></polygon>
+                            <polygon points="806.245,711.532 759.999,764.708 825.438,797.207 847.509,771.83"></polygon>
+                            <polygon points="790.7,488.508 737.525,442.263 797.823,401 823.2,423.069"></polygon>
+                            <polygon points="446.848,659.851 441.948,589.549 372.695,612.841 375.033,646.391"></polygon>
+                            <polygon points="615.542,806.56 685.843,801.66 672.383,873.475 638.834,875.813"></polygon>
+                            <polygon points="827.652,562.665 832.553,632.966 901.806,609.675 899.468,576.125"></polygon>
+                            <polygon points="658.959,415.956 588.658,420.855 602.117,349.041 635.667,346.702"></polygon>
+                            <text x="637.25" y="611.257" class="gear-number">10</text>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 637.25 611.257" to="0 637.25 611.257" dur="10s" repeatCount="indefinite"></animateTransform></g></g>
+
+                        <!-- Roda Gigi 11 (Gear Sedang Baru) -->
+                        <g transform="translate(739.465 1187.49)"><g>
+                            <circle cx="230.003" cy="381.364" r="192.407"></circle>
+                            <circle fill="#FFFFFF" cx="230.003" cy="381.364" r="148.005"></circle>
+                            <polygon points="154.936,228.312 213.965,211.651 181.466,155.533 153.296,163.484"></polygon>
+                            <polygon points="60.29,397.402 76.952,456.431 12.123,458.071 4.172,429.901"></polygon>
+                            <polygon points="305.002,534.175 245.973,550.837 278.472,606.954 306.642,599.003"></polygon>
+                            <polygon points="399.476,365.394 382.814,306.365 447.643,304.725 455.594,332.895"></polygon>
+                            <polygon points="68.201,325.942 98.159,272.42 36.63,256.353 22.333,281.895"></polygon>
+                            <polygon points="121.06,513.208 174.581,543.166 130.534,589.034 104.992,574.737"></polygon>
+                            <polygon points="391.805,436.786 361.847,490.308 423.376,506.375 437.673,480.833"></polygon>
+                            <polygon points="338.946,249.521 285.425,219.562 329.472,173.694 355.014,187.991"></polygon>
+                            <polygon points="100.997,269.075 148.91,230.781 97.965,192.719 75.1,210.994"></polygon>
+                            <polygon points="79.42,462.457 117.714,510.37 59.633,536.267 41.358,513.402"></polygon>
+                            <polygon points="359.009,493.653 311.096,531.947 362.041,570.009 384.906,551.734"></polygon>
+                            <polygon points="380.586,300.271 342.292,252.358 400.373,226.461 418.648,249.326"></polygon>
+                            <polygon points="59.382,393.185 66.183,332.228 3.246,341.337 0,370.427"></polygon>
+                            <polygon points="180.866,545.184 241.824,551.985 219.066,611.367 189.976,608.121"></polygon>
+                            <polygon points="400.625,369.543 393.823,430.5 456.761,421.391 460.006,392.301"></polygon>
+                            <polygon points="279.14,217.544 218.182,210.743 240.939,151.361 270.03,154.607"></polygon>
+                            <circle fill="#FFFFFF" stroke="#000000" stroke-width="35" stroke-miterlimit="10" cx="230.003" cy="381.364" r="44.931"></circle>
+                            <text x="230.003" y="381.364" class="gear-number">11</text>
+                        <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 230.003 381.364" to="360 230.003 381.364" dur="10s" repeatCount="indefinite"></animateTransform></g></g>
                     </svg>
                     <div class="absolute w-full h-full rounded-full z-1" style="box-shadow: inset 0 0 25px rgba(0,0,0,0.5);"></div>
                     <div class="number number-1"><span>I</span></div><div class="number number-2"><span>II</span></div><div class="number number-3"><span>III</span></div><div class="number number-4"><span>IV</span></div><div class="number number-5"><span>V</span></div><div class="number number-6"><span>VI</span></div><div class="number number-7"><span>VII</span></div><div class="number number-8"><span>VIII</span></div><div class="number number-9"><span>IX</span></div><div class="number number-10"><span>X</span></div><div class="number number-11"><span>XI</span></div><div class="number number-12"><span>XII</span></div>
@@ -1860,5 +1921,3 @@
 
 </body>
 </html>
-
-
