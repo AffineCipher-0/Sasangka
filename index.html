@@ -685,8 +685,8 @@
             opacity: 0.6;
         }
         
-        /* --- DUST PARTICLE CANVAS --- */
-        #dust-canvas {
+        /* --- PARTICLE CANVAS --- */
+        #particle-canvas {
             position: absolute;
             top: 0;
             left: 0;
@@ -1006,7 +1006,7 @@
             </div>
             <!-- END CLOCK -->
             
-            <canvas id="dust-canvas"></canvas>
+            <canvas id="particle-canvas"></canvas>
 
             <div class="p-8 rounded-lg relative z-30 bg-[#2C2720]/40 backdrop-blur-xs border border-[#967259]/30 shadow-2xl max-w-5xl mx-auto">
                 <h1 class="text-6xl md:text-8xl mb-2 text-[#F0EAD6]" style="font-family: 'Cormorant Garamond', serif; font-weight: 700;">The Engineering Times</h1>
@@ -1019,6 +1019,11 @@
                 </div>
                 <div class="mt-8">
                     <button id="open-book-btn" class="classic-button text-xl">Baca Edisi Lengkap</button>
+                </div>
+                <div class="mt-6 text-center">
+                    <button id="show-news-btn" class="text-[#D4C8B5] hover:text-white transition-colors text-sm underline decoration-dotted">
+                        <i class="fas fa-satellite-dish mr-1"></i> Lihat Laporan Terkini dari Kawat Berita
+                    </button>
                 </div>
             </div>
         </section>
@@ -1374,7 +1379,7 @@
                     </p>
                     <h4 class="text-xl font-bold mb-2">Detail Teknis</h4>
                     <p class="text-justify mb-4">
-                        Proyek ini dikembangkan menggunakan **PHP (Native)** untuk logika backend, **MySQL** untuk basis data, dan kombinasi **HTML, CSS, dan JavaScript** untuk antarmuka pengguna. Ini menampilkan pemahaman kuat tentang arsitektur e-commerce dan praktik terbaik dalam pengembangan web.
+                        Proyek ini dikembangkan menggunakan **PHP (Natif)** untuk logika backend, **MySQL** untuk basis data, dan kombinasi **HTML, CSS, dan JavaScript** untuk antarmuka pengguna. Ini menampilkan pemahaman kuat tentang arsitektur e-commerce dan praktik terbaik dalam pengembangan web.
                     </p>
                     <div class="text-right mt-6">
                         <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat di GitHub</a>
@@ -1538,6 +1543,21 @@
                      <div class="text-right mt-6">
                          <a href="https://affinecipher-0.github.io/Infrastruktur-Jaringan/" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat Detail Proyek</a>
                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="news-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="news-modal-title">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h5 id="news-modal-title" class="modal-title">Laporan Kawat Berita Teknologi</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-loader show"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">The Engineering</div></div></div>
+                <div id="news-modal-content" class="modal-main-content content-hidden p-4">
+                    <!-- Berita akan dimuat di sini oleh JavaScript -->
                 </div>
             </div>
         </div>
@@ -1732,7 +1752,7 @@
                     dynamicElement.onload = onLoaded;
                     dynamicElement.src = sourceUrl;
                     setTimeout(() => { if(!loaded) onLoaded(); }, 2000); // Fallback timer
-                } else {
+                } else if (modal.id !== 'news-modal') { // Don't use timer for news modal
                     setTimeout(showContent, 1200); 
                 }
 
@@ -1802,6 +1822,82 @@
                     closeModal(currentActiveModal);
                 }
             });
+
+            // --- News Modal Logic ---
+            const showNewsBtn = document.getElementById('show-news-btn');
+            let newsDataFetched = false;
+
+            async function fetchAndDisplayNews() {
+                if (newsDataFetched) return; // Fetch only once
+
+                const newsModal = document.getElementById('news-modal');
+                if (!newsModal) return;
+
+                const newsContainer = document.getElementById('news-modal-content');
+                const loader = newsModal.querySelector('.modal-loader');
+                
+                const rssUrl = 'https://news.google.com/rss/search?q=teknologi%20AI%20terbaru%20OR%20inovasi%20jaringan%20OR%20perkembangan%20IoT&hl=id&gl=ID&ceid=ID:id';
+                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
+                
+                try {
+                    const response = await fetch(proxyUrl);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const xmlText = await response.text();
+                    const parser = new DOMParser();
+                    const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
+                    
+                    const items = xmlDoc.querySelectorAll('item');
+                    let htmlContent = '';
+
+                    if (items.length === 0) {
+                        htmlContent = '<p class="text-center p-8">Tidak dapat mengambil berita saat ini. Silakan coba lagi nanti.</p>';
+                    } else {
+                        htmlContent += '<ul class="space-y-4">';
+                        Array.from(items).slice(0, 7).forEach(item => {
+                            const title = item.querySelector('title').textContent;
+                            const link = item.querySelector('link').textContent;
+                            const pubDate = new Date(item.querySelector('pubDate').textContent);
+                            const source = item.querySelector('source').textContent;
+                            
+                            const formattedDate = new Intl.DateTimeFormat('id-ID', {
+                                dateStyle: 'medium',
+                                timeStyle: 'short'
+                            }).format(pubDate);
+
+                            htmlContent += `
+                                <li class="border-b border-[#967259]/30 pb-4 last:border-b-0">
+                                    <a href="${link}" target="_blank" rel="noopener noreferrer" class="block group">
+                                        <h4 class="text-lg font-bold group-hover:text-[#967259] transition-colors">${title}</h4>
+                                        <p class="text-sm text-gray-600/70 mt-1">${source} - ${formattedDate}</p>
+                                    </a>
+                                </li>
+                            `;
+                        });
+                        htmlContent += '</ul>';
+                    }
+
+                    if (newsContainer) newsContainer.innerHTML = htmlContent;
+
+                } catch (error) {
+                    console.error("Error fetching news:", error);
+                    if (newsContainer) newsContainer.innerHTML = '<p class="text-center text-red-700 p-8">Gagal memuat berita. Periksa koneksi internet Anda atau coba lagi nanti.</p>';
+                } finally {
+                    if (loader) loader.classList.remove('show');
+                    if (newsContainer) newsContainer.classList.remove('content-hidden');
+                    newsDataFetched = true;
+                }
+            }
+
+            if (showNewsBtn) {
+                showNewsBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const modal = document.getElementById('news-modal');
+                    openModal(modal);
+                    fetchAndDisplayNews();
+                });
+            }
 
             // --- Certificate Gallery Logic ---
             const certificates = [
@@ -1897,6 +1993,8 @@
             let soundInitialized = false;
             let noteIndex = 0;
             const melody = [ 523.25, 392.00, 440.00, 392.00, 349.23, 329.63, 293.66, 261.63 ];
+            let gearSoundSource = null; // Untuk suara roda gigi
+            let gearGainNode = null;    // Untuk mengontrol volume suara roda gigi
 
             function playTick() {
                 if (isMuted || !audioCtx || audioCtx.state !== 'running') return;
@@ -1904,17 +2002,26 @@
                 const now = audioCtx.currentTime;
                 const fundamentalFreq = melody[noteIndex];
 
-                const osc1 = audioCtx.createOscillator(); const gain1 = audioCtx.createGain();
-                osc1.type = 'sine'; osc1.frequency.setValueAtTime(fundamentalFreq, now);
-                osc1.connect(gain1); gain1.connect(audioCtx.destination);
+                const osc1 = audioCtx.createOscillator();
+                const gain1 = audioCtx.createGain();
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(fundamentalFreq, now);
+                osc1.connect(gain1);
+                gain1.connect(audioCtx.destination);
 
-                const osc2 = audioCtx.createOscillator(); const gain2 = audioCtx.createGain();
-                osc2.type = 'sine'; osc2.frequency.setValueAtTime(fundamentalFreq * 2, now);
-                osc2.connect(gain2); gain2.connect(audioCtx.destination);
+                const osc2 = audioCtx.createOscillator();
+                const gain2 = audioCtx.createGain();
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(fundamentalFreq * 2, now);
+                osc2.connect(gain2);
+                gain2.connect(audioCtx.destination);
 
-                const osc3 = audioCtx.createOscillator(); const gain3 = audioCtx.createGain();
-                osc3.type = 'sine'; osc3.frequency.setValueAtTime(fundamentalFreq * 1.5, now);
-                osc3.connect(gain3); gain3.connect(audioCtx.destination);
+                const osc3 = audioCtx.createOscillator();
+                const gain3 = audioCtx.createGain();
+                osc3.type = 'sine';
+                osc3.frequency.setValueAtTime(fundamentalFreq * 1.5, now);
+                osc3.connect(gain3);
+                gain3.connect(audioCtx.destination);
                 
                 const masterVolume = 0.15;
                 gain1.gain.setValueAtTime(0, now);
@@ -1932,9 +2039,38 @@
                 noteIndex = (noteIndex + 1) % melody.length;
             }
 
+            function createAndPlayGearSound() {
+                if (gearSoundSource) gearSoundSource.stop();
+                
+                const bufferSize = audioCtx.sampleRate * 2; // 2 detik audio
+                const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+                const output = buffer.getChannelData(0);
+                for (let i = 0; i < bufferSize; i++) {
+                    output[i] = Math.random() * 2 - 1; // Suara bising (white noise)
+                }
+
+                gearSoundSource = audioCtx.createBufferSource();
+                gearSoundSource.buffer = buffer;
+                gearSoundSource.loop = true;
+
+                const biquadFilter = audioCtx.createBiquadFilter();
+                biquadFilter.type = "lowpass";
+                biquadFilter.frequency.setValueAtTime(80, audioCtx.currentTime); // Menyaring frekuensi tinggi agar terdengar seperti gemuruh
+
+                gearGainNode = audioCtx.createGain();
+                gearGainNode.gain.setValueAtTime(0, audioCtx.currentTime); // Mulai dalam keadaan senyap
+
+                gearSoundSource.connect(biquadFilter);
+                biquadFilter.connect(gearGainNode);
+                gearGainNode.connect(audioCtx.destination);
+
+                gearSoundSource.start();
+            }
+
             function initSound() {
                 if (!soundInitialized) {
                     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    createAndPlayGearSound(); // Membuat dan memulai sumber suara roda gigi
                     soundInitialized = true;
                 }
                 if (audioCtx.state === 'suspended') {
@@ -1947,6 +2083,15 @@
                     e.stopPropagation();
                     initSound();
                     isMuted = !isMuted;
+
+                    if (!isMuted && gearGainNode) {
+                        // Menaikkan volume suara roda gigi secara perlahan (nilai dikecilkan)
+                        gearGainNode.gain.linearRampToValueAtTime(0.005, audioCtx.currentTime + 1);
+                    } else if (gearGainNode) {
+                        // Menurunkan volume suara roda gigi secara perlahan
+                        gearGainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
+                    }
+
                     soundOnText.classList.toggle('hidden', isMuted);
                     soundOffText.classList.toggle('hidden', !isMuted);
                 });
@@ -2030,59 +2175,59 @@
                 });
             }
 
-            // --- Floating Dust Particles ---
-            const dustCanvas = document.getElementById('dust-canvas');
-            if (dustCanvas) {
-                const ctx = dustCanvas.getContext('2d');
+            // --- Floating Particles (Embers/Sparks) ---
+            const particleCanvas = document.getElementById('particle-canvas');
+            if (particleCanvas) {
+                const ctx = particleCanvas.getContext('2d');
                 let particles = [];
                 const particleCount = 70;
 
                 const resizeCanvas = () => {
-                    dustCanvas.width = window.innerWidth;
-                    dustCanvas.height = window.innerHeight;
+                    particleCanvas.width = window.innerWidth;
+                    particleCanvas.height = window.innerHeight;
                 };
 
                 const createParticles = () => {
                     particles = [];
                     for (let i = 0; i < particleCount; i++) {
                         particles.push({
-                            x: Math.random() * dustCanvas.width,
-                            y: Math.random() * dustCanvas.height,
+                            x: Math.random() * particleCanvas.width,
+                            y: Math.random() * particleCanvas.height,
                             radius: Math.random() * 1.5 + 0.5,
                             vx: (Math.random() - 0.5) * 0.3,
                             vy: (Math.random() - 0.5) * 0.3,
-                            opacity: Math.random() * 0.5 + 0.2,
-                            fade: 0.005,
+                            opacity: Math.random() * 0.5 + 0.1,
+                            fade: Math.random() * 0.01 + 0.005,
                             fadingOut: true
                         });
                     }
                 };
 
-                const animateDust = () => {
-                    ctx.clearRect(0, 0, dustCanvas.width, dustCanvas.height);
+                const animateParticles = () => {
+                    ctx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
                     particles.forEach(p => {
                         p.x += p.vx;
                         p.y += p.vy;
 
-                        if (p.x < -p.radius) p.x = dustCanvas.width + p.radius;
-                        if (p.x > dustCanvas.width + p.radius) p.x = -p.radius;
-                        if (p.y < -p.radius) p.y = dustCanvas.height + p.radius;
-                        if (p.y > dustCanvas.height + p.radius) p.y = -p.radius;
+                        if (p.x < -p.radius) p.x = particleCanvas.width + p.radius;
+                        if (p.x > particleCanvas.width + p.radius) p.x = -p.radius;
+                        if (p.y < -p.radius) p.y = particleCanvas.height + p.radius;
+                        if (p.y > particleCanvas.height + p.radius) p.y = -p.radius;
                         
                         if (p.fadingOut) {
                             p.opacity -= p.fade;
-                            if (p.opacity <= 0.1) p.fadingOut = false;
+                            if (p.opacity <= 0.05) p.fadingOut = false;
                         } else {
                              p.opacity += p.fade;
-                             if (p.opacity >= (Math.random() * 0.5 + 0.2)) p.fadingOut = true;
+                             if (p.opacity >= (Math.random() * 0.4 + 0.2)) p.fadingOut = true;
                         }
                         
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(240, 234, 214, ${p.opacity})`;
+                        ctx.fillStyle = `rgba(214, 137, 83, ${p.opacity})`; // Warm ember/spark color
                         ctx.fill();
                     });
-                    requestAnimationFrame(animateDust);
+                    requestAnimationFrame(animateParticles);
                 };
 
                 window.addEventListener('resize', () => {
@@ -2092,11 +2237,12 @@
 
                 resizeCanvas();
                 createParticles();
-                animateDust();
+                animateParticles();
             }
         });
     </script>
 
 </body>
 </html>
+
 
