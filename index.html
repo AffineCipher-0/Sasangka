@@ -684,6 +684,32 @@
             stroke: #6B4F3A;
             opacity: 0.6;
         }
+        
+        /* --- DUST PARTICLE CANVAS --- */
+        #dust-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* --- HOVER GLOW EFFECT --- */
+        #cover-page .z-30 {
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        #cover-page .z-30:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 0 0 1px rgba(150, 114, 89, 0.4);
+            border-color: rgba(150, 114, 89, 0.6);
+        }
+
+        /* --- PARALLAX TRANSITION --- */
+        .clock-gears-svg {
+            transition: transform 0.2s ease-out;
+        }
     </style>
 </head>
 <body class="bg-[#2C2720]">
@@ -979,6 +1005,8 @@
                 </div>
             </div>
             <!-- END CLOCK -->
+            
+            <canvas id="dust-canvas"></canvas>
 
             <div class="p-8 rounded-lg relative z-30 bg-[#2C2720]/40 backdrop-blur-xs border border-[#967259]/30 shadow-2xl max-w-5xl mx-auto">
                 <h1 class="text-6xl md:text-8xl mb-2 text-[#F0EAD6]" style="font-family: 'Cormorant Garamond', serif; font-weight: 700;">The Engineering Times</h1>
@@ -1980,16 +2008,95 @@
             }
 
             startClock(); // Initial call
+            
+            // --- Parallax Effect on Cover Page Gears ---
+            const cover = document.getElementById('cover-page');
+            const gearsSvg = document.querySelector('.clock-gears-svg');
+            if (cover && gearsSvg) {
+                cover.addEventListener('mousemove', (e) => {
+                    const { clientX, clientY, currentTarget } = e;
+                    const { clientWidth, clientHeight } = currentTarget;
+
+                    const x = (clientX / clientWidth - 0.5) * 2; // range -1 to 1
+                    const y = (clientY / clientHeight - 0.5) * 2; // range -1 to 1
+
+                    const maxShift = 10; // Max pixels to shift
+                    
+                    gearsSvg.style.transform = `translate(${x * maxShift * -1}px, ${y * maxShift * -1}px)`;
+                });
+
+                cover.addEventListener('mouseleave', () => {
+                    gearsSvg.style.transform = 'translate(0, 0)';
+                });
+            }
+
+            // --- Floating Dust Particles ---
+            const dustCanvas = document.getElementById('dust-canvas');
+            if (dustCanvas) {
+                const ctx = dustCanvas.getContext('2d');
+                let particles = [];
+                const particleCount = 70;
+
+                const resizeCanvas = () => {
+                    dustCanvas.width = window.innerWidth;
+                    dustCanvas.height = window.innerHeight;
+                };
+
+                const createParticles = () => {
+                    particles = [];
+                    for (let i = 0; i < particleCount; i++) {
+                        particles.push({
+                            x: Math.random() * dustCanvas.width,
+                            y: Math.random() * dustCanvas.height,
+                            radius: Math.random() * 1.5 + 0.5,
+                            vx: (Math.random() - 0.5) * 0.3,
+                            vy: (Math.random() - 0.5) * 0.3,
+                            opacity: Math.random() * 0.5 + 0.2,
+                            fade: 0.005,
+                            fadingOut: true
+                        });
+                    }
+                };
+
+                const animateDust = () => {
+                    ctx.clearRect(0, 0, dustCanvas.width, dustCanvas.height);
+                    particles.forEach(p => {
+                        p.x += p.vx;
+                        p.y += p.vy;
+
+                        if (p.x < -p.radius) p.x = dustCanvas.width + p.radius;
+                        if (p.x > dustCanvas.width + p.radius) p.x = -p.radius;
+                        if (p.y < -p.radius) p.y = dustCanvas.height + p.radius;
+                        if (p.y > dustCanvas.height + p.radius) p.y = -p.radius;
+                        
+                        if (p.fadingOut) {
+                            p.opacity -= p.fade;
+                            if (p.opacity <= 0.1) p.fadingOut = false;
+                        } else {
+                             p.opacity += p.fade;
+                             if (p.opacity >= (Math.random() * 0.5 + 0.2)) p.fadingOut = true;
+                        }
+                        
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(240, 234, 214, ${p.opacity})`;
+                        ctx.fill();
+                    });
+                    requestAnimationFrame(animateDust);
+                };
+
+                window.addEventListener('resize', () => {
+                    resizeCanvas();
+                    createParticles();
+                });
+
+                resizeCanvas();
+                createParticles();
+                animateDust();
+            }
         });
     </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
 
