@@ -572,8 +572,15 @@
 
         /* Page Transition Animation */
         @keyframes page-fade-in {
-            animation: page-fade-in 0.4s ease-in forwards;
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
+        @keyframes page-fade-out {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        .page-fade-in { animation: page-fade-in 0.4s ease-in forwards; }
+        .page-fade-out { animation: page-fade-out 0.3s ease-out forwards; }
 
         /* --- NEW CLOCK STYLES --- */
         #cover-page-clock-wrapper {
@@ -1020,11 +1027,6 @@
                 <div class="mt-8">
                     <button id="open-book-btn" class="classic-button text-xl">Baca Edisi Lengkap</button>
                 </div>
-                <div class="mt-6 text-center">
-                    <button id="show-news-btn" class="text-[#D4C8B5] hover:text-white transition-colors text-sm underline decoration-dotted">
-                        <i class="fas fa-satellite-dish mr-1"></i> Lihat Laporan Terkini dari Kawat Berita
-                    </button>
-                </div>
             </div>
         </section>
 
@@ -1267,10 +1269,10 @@
                             </p>
                             <div class="flex justify-center items-center gap-4 flex-wrap mb-8">
                                 <button data-modal-target="#email-modal" class="classic-button">
-                                    <i class="fa-regular fa-envelope mr-2"></i> Kirim Surel
+                                    <i class="fa-regular fa-envelope mr-2" aria-hidden="true"></i> Kirim Surel
                                 </button>
                                 <a href="https://wa.me/6287832165306" target="_blank" rel="noopener noreferrer" class="classic-button">
-                                    <i class="fa-brands fa-whatsapp mr-2"></i> WhatsApp
+                                    <i class="fa-brands fa-whatsapp mr-2" aria-hidden="true"></i> WhatsApp
                                 </a>
                             </div>
                             
@@ -1279,7 +1281,7 @@
                                     Jika ingin melihat pengembangan atau proyek lanjutan ini, silakan kunjungi repositori GitHub saya.
                                 </p>
                                 <a href="https://github.com/AffineCipher-0?tab=repositories" target="_blank" rel="noopener noreferrer" class="classic-button">
-                                    <i class="fa-solid fa-code-branch mr-2"></i> Lihat Repositori
+                                    <i class="fa-solid fa-code-branch mr-2" aria-hidden="true"></i> Lihat Repositori
                                 </a>
                             </div>
         
@@ -1288,7 +1290,7 @@
                                     Seluruh catatan perjalanan akademik dan profesional tersaji dalam Daftar Riwayat Hidup yang dapat diunduh pada tautan berikut.
                                 </p>
                                 <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="classic-button">
-                                     <i class="fa-solid fa-download mr-2"></i> Unduh Biodata (CV)
+                                     <i class="fa-solid fa-download mr-2" aria-hidden="true"></i> Unduh Biodata (CV)
                                 </a>
                             </div>
                         </div>
@@ -1302,32 +1304,32 @@
                     <div class="flex justify-between items-center mb-6">
                         <h2 class="text-2xl font-bold nav-text">Daftar Isi</h2>
                         <button id="toggle-menu-btn" class="classic-button text-sm px-2 py-1" aria-label="Toggle Menu">
-                            <i class="fas fa-bars"></i>
+                            <i class="fas fa-bars" aria-hidden="true"></i>
                         </button>
                     </div>
                     <ul class="space-y-4">
                         <li><a href="#home-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300 active-page">
-                            <i class="fas fa-home mr-4 w-6 text-center"></i><span class="nav-text">Beranda</span>
+                            <i class="fas fa-home mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Beranda</span>
                         </a></li>
                         <li><a href="#about-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
-                            <i class="fas fa-user mr-4 w-6 text-center"></i><span class="nav-text">Profil</span>
+                            <i class="fas fa-user mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Profil</span>
                         </a></li>
                         <li><a href="#projects-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
-                            <i class="fas fa-newspaper mr-4 w-6 text-center"></i><span class="nav-text">Laporan Utama</span>
+                            <i class="fas fa-newspaper mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Laporan Utama</span>
                         </a></li>
                         <li><a href="#pendidikan-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
-                            <i class="fas fa-graduation-cap mr-4 w-6 text-center"></i><span class="nav-text">Latar Pendidikan</span>
+                            <i class="fas fa-graduation-cap mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Latar Pendidikan</span>
                         </a></li>
                         <li><a href="#sertifikasi-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
-                            <i class="fas fa-award mr-4 w-6 text-center"></i><span class="nav-text">Sertifikasi</span>
+                            <i class="fas fa-award mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Sertifikasi</span>
                         </a></li>
                         <li><a href="#contact-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
-                            <i class="fas fa-envelope mr-4 w-6 text-center"></i><span class="nav-text">Hubungi Redaksi</span>
+                            <i class="fas fa-envelope mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Hubungi Redaksi</span>
                         </a></li>
                     </ul>
                     <div class="mt-8">
                         <button id="close-book-btn" class="classic-button w-full text-sm py-2">
-                            <i class="fas fa-arrow-left mr-2"></i><span class="nav-text">Kembali ke Sampul</span>
+                            <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i><span class="nav-text">Kembali ke Sampul</span>
                         </button>
                     </div>
                 </div>
@@ -1337,7 +1339,7 @@
 
     </div>
     
-    <button id="back-to-top" title="Kembali ke atas" aria-label="Kembali ke atas"><i class="fas fa-arrow-up"></i></button>
+    <button id="back-to-top" title="Kembali ke atas" aria-label="Kembali ke atas"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
 
     <div id="morse-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="morse-modal-title">
         <div class="modal-content" style="height: auto; max-width: 700px;">
@@ -1346,7 +1348,7 @@
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
             <div class="modal-body p-8">
-                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">The Engineering</div></div></div>
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
                 <div class="modal-main-content content-hidden">
                     <h4 class="text-xl font-bold mb-2">Tentang Proyek</h4>
                     <p class="text-justify mb-4">
@@ -1371,7 +1373,7 @@
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
             <div class="modal-body p-8">
-                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">The Engineering</div></div></div>
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
                 <div class="modal-main-content content-hidden">
                     <h4 class="text-xl font-bold mb-2">Tentang Proyek</h4>
                     <p class="text-justify mb-4">
@@ -1396,28 +1398,28 @@
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
             <div class="modal-body p-8">
-                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">The Engineering</div></div></div>
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
                 <div class="modal-main-content content-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-8">
                     <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-network-wired text-[#967259] mr-2"></i>Jaringan & Infrastruktur</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-network-wired text-[#967259] mr-2" aria-hidden="true"></i>Jaringan & Infrastruktur</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Administrasi Jaringan</li><li>Cisco Packet Tracer</li><li>Keamanan Jaringan</li><li>TCP/IP & Model OSI</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-code text-[#967259] mr-2"></i>Pengembangan Perangkat Lunak</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-code text-[#967259] mr-2" aria-hidden="true"></i>Pengembangan Perangkat Lunak</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>PHP (Natif)</li><li>HTML, CSS, JavaScript</li><li>MySQL / SQL</li><li>Python (Dasar)</li><li>Git & GitHub</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-microchip text-[#967259] mr-2"></i>IoT & Mikrokontroller</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-microchip text-[#967259] mr-2" aria-hidden="true"></i>IoT & Mikrokontroller</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Arduino IDE (C++)</li><li>ESP8266/ESP32</li><li>Sensor & Aktuator</li><li>Perancangan Sistem Tertanam</li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-file-alt text-[#967259] mr-2"></i>Produktifitas & Perkantoran</h4>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[#967259] pb-2"><i class="fas fa-file-alt text-[#967259] mr-2" aria-hidden="true"></i>Produktifitas & Perkantoran</h4>
                         <ul class="list-disc list-inside space-y-1">
                             <li>Microsoft Office</li><li>Google Workspace</li>
                         </ul>
@@ -1434,10 +1436,10 @@
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
             <div class="modal-body text-center py-8">
-                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">The Engineering</div></div></div>
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
                 <div class="modal-main-content content-hidden">
                     <p class="mb-4 text-lg">Anda dapat menghubungi saya melalui alamat surel berikut:</p>
-                    <p id="email-address" class="text-xl md:text-2xl font-bold bg-[#2C2720] p-4 border border-[#967259] mb-8 break-all">sasangkagatot@gmail.com</p>
+                    <p id="email-address" class="text-xl md:text-2xl font-bold bg-[#2C2720] p-4 border border-[#967259] mb-8 break-all"></p>
                     <button id="copy-email-btn" class="classic-button w-full text-base py-3">Salin Alamat Surel</button>
                 </div>
             </div>
@@ -1451,7 +1453,7 @@
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
             <div class="modal-body text-center py-8">
-                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">The Engineering</div></div></div>
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
                 <div class="modal-main-content content-hidden">
                     <p class="mb-8 text-lg">Pilih detail proyek yang ingin Anda lihat:</p>
                     <div class="space-y-4">
@@ -1470,7 +1472,7 @@
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">The Engineering</div></div></div>
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
                 <div class="modal-main-content content-hidden p-4">
                     <div class="timeline">
                         <div class="timeline-container left fade-in-on-scroll"><div class="timeline-content"><h4 class="text-xl font-bold">Abad ke-9 – Awal Perjalanan: Fondasi Algoritma</h4><p class="text-sm mb-2">Pada abad ke-9, seorang ilmuwan Muslim bernama Al-Khwarizmi memperkenalkan konsep algoritma, yang menjadi dasar dari semua komputasi modern.</p><p>Pemikirannya adalah pondasi logika yang memungkinkan manusia untuk merancang mesin yang bisa menghitung, memproses data, dan menyelesaikan masalah dengan cara yang sistematis. Tanpa warisan ini, komputer dan teknologi digital mungkin takkan pernah ada.</p><p>“Algoritma bukan sekadar perhitungan, tapi cara berpikir yang membentuk masa depan teknologi.”</p></div></div>
@@ -1494,7 +1496,7 @@
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
             <div class="modal-body">
-                 <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">The Engineering</div></div></div>
+                 <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
                 <div id="sertifikat-modal-content" class="modal-main-content content-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
                 </div>
             </div>
@@ -1503,7 +1505,7 @@
 
     <div id="image-viewer-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="image-viewer-title">
         <div class="modal-content h-auto max-h-full w-auto max-w-full bg-transparent border-none shadow-none p-4">
-            <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">The Engineering</div></div></div>
+            <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
             <div class="relative modal-main-content content-hidden">
                 <button class="modal-close-btn absolute -top-10 right-0 text-[#fdf6e3] text-5xl">&times;</button>
                 <img class="modal-image max-h-[85vh] max-w-[90vw] h-auto w-auto" src="" alt="Tampilan Penuh Sertifikat" onerror="this.onerror=null;this.src='https://placehold.co/800x600/3A352F/D4C8B5?text=Image+Not+Found';">
@@ -1518,7 +1520,7 @@
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">The Engineering</div></div></div>
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
                 <div class="modal-main-content content-hidden p-4">
                     <p class="text-justify mb-4">Tujuan utamanya adalah untuk menciptakan sebuah jaringan yang kuat, aman, dan efisien untuk mendukung kebutuhan operasional dan produksi dari enam departemen yang berbeda.</p>
 
@@ -1543,21 +1545,6 @@
                      <div class="text-right mt-6">
                          <a href="https://affinecipher-0.github.io/Infrastruktur-Jaringan/" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat Detail Proyek</a>
                      </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="news-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="news-modal-title">
-        <div class="modal-content" style="max-width: 800px;">
-            <div class="modal-header">
-                <h5 id="news-modal-title" class="modal-title">Laporan Kawat Berita Teknologi</h5>
-                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-loader show"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">The Engineering</div></div></div>
-                <div id="news-modal-content" class="modal-main-content content-hidden p-4">
-                    <!-- Berita akan dimuat di sini oleh JavaScript -->
                 </div>
             </div>
         </div>
@@ -1631,13 +1618,11 @@
 
                             targetPage.classList.remove('hidden');
                             targetPage.classList.add('page-fade-in');
-                            setTimeout(() => targetPage.classList.remove('page-fade-in'), 400);
 
                         }, 300);
                     } else {
                         targetPage.classList.remove('hidden');
                         targetPage.classList.add('page-fade-in');
-                        setTimeout(() => targetPage.classList.remove('page-fade-in'), 400);
                     }
                     
                     if(pageContentContainer) pageContentContainer.scrollTop = 0;
@@ -1682,7 +1667,6 @@
                 const articleDateElement = document.getElementById('current-date');
                 const staticDate = new Date('2025-09-15T00:00:00'); 
 
-                // Set the static article date once
                 if (articleDateElement) {
                      const articleDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
                      articleDateElement.textContent = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(staticDate);
@@ -1693,7 +1677,7 @@
                     const formattedDate = new Intl.DateTimeFormat('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' }).format(staticDate);
 
                     const updateLiveTime = () => {
-                        const now = new Date(); // Use current time for the clock
+                        const now = new Date();
                         const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Makassar' };
                         
                         const formattedTime = new Intl.DateTimeFormat('id-ID', timeOptions).format(now).replace(/\./g, ':');
@@ -1702,11 +1686,19 @@
                         liveTimeElements.forEach(el => el.textContent = dateTimeString);
                     };
                     
-                    updateLiveTime(); // Initial call
-                    setInterval(updateLiveTime, 1000); // Update every second
+                    updateLiveTime();
+                    setInterval(updateLiveTime, 1000);
                 }
             }
             setupDateTime();
+
+            // --- Email Obfuscation ---
+            const emailElement = document.getElementById('email-address');
+            if (emailElement) {
+                const user = 'sasangkagatot';
+                const domain = 'gmail.com';
+                emailElement.textContent = `${user}@${domain}`;
+            }
 
             // --- Back to Top Button Logic ---
             if (pageContentContainer && backToTopBtn) {
@@ -1752,7 +1744,7 @@
                     dynamicElement.onload = onLoaded;
                     dynamicElement.src = sourceUrl;
                     setTimeout(() => { if(!loaded) onLoaded(); }, 2000); // Fallback timer
-                } else if (modal.id !== 'news-modal') { // Don't use timer for news modal
+                } else {
                     setTimeout(showContent, 1200); 
                 }
 
@@ -1823,99 +1815,6 @@
                 }
             });
 
-            // --- News Modal Logic ---
-            const showNewsBtn = document.getElementById('show-news-btn');
-            let newsDataFetched = false;
-            let cachedNewsHtml = null;
-
-            function displayNewsInModal() {
-                const newsModal = document.getElementById('news-modal');
-                if (!newsModal) return;
-
-                const newsContainer = document.getElementById('news-modal-content');
-                const loader = newsModal.querySelector('.modal-loader');
-
-                if (cachedNewsHtml) {
-                    if (newsContainer) newsContainer.innerHTML = cachedNewsHtml;
-                    if (loader) loader.classList.remove('show');
-                    if (newsContainer) newsContainer.classList.remove('content-hidden');
-                }
-            }
-
-            async function fetchNewsData() {
-                if (newsDataFetched) return; 
-
-                const rssUrl = 'https://news.google.com/rss/search?q=teknologi%20AI%20terbaru%20OR%20inovasi%20jaringan%20OR%20perkembangan%20IoT&hl=id&gl=ID&ceid=ID:id';
-                const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
-                
-                try {
-                    const response = await fetch(proxyUrl);
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    const xmlText = await response.text();
-                    const parser = new DOMParser();
-                    const xmlDoc = parser.parseFromString(xmlText, 'text/xml');
-                    
-                    const items = xmlDoc.querySelectorAll('item');
-                    let htmlContent = '';
-
-                    if (items.length === 0) {
-                        htmlContent = '<p class="text-center p-8">Tidak dapat mengambil berita saat ini. Silakan coba lagi nanti.</p>';
-                    } else {
-                        htmlContent += '<ul class="space-y-4">';
-                        Array.from(items).slice(0, 7).forEach(item => {
-                            const title = item.querySelector('title').textContent;
-                            const link = item.querySelector('link').textContent;
-                            const pubDate = new Date(item.querySelector('pubDate').textContent);
-                            const source = item.querySelector('source').textContent;
-                            
-                            const formattedDate = new Intl.DateTimeFormat('id-ID', {
-                                dateStyle: 'medium',
-                                timeStyle: 'short'
-                            }).format(pubDate);
-
-                            htmlContent += `
-                                <li class="border-b border-[#967259]/30 pb-4 last:border-b-0">
-                                    <a href="${link}" target="_blank" rel="noopener noreferrer" class="block group">
-                                        <h4 class="text-lg font-bold group-hover:text-[#967259] transition-colors">${title}</h4>
-                                        <p class="text-sm text-gray-600/70 mt-1">${source} - ${formattedDate}</p>
-                                    </a>
-                                </li>
-                            `;
-                        });
-                        htmlContent += '</ul>';
-                    }
-                    cachedNewsHtml = htmlContent;
-
-                } catch (error) {
-                    console.error("Error fetching news:", error);
-                    cachedNewsHtml = '<p class="text-center text-red-700 p-8">Gagal memuat berita. Periksa koneksi internet Anda atau coba lagi nanti.</p>';
-                } finally {
-                    newsDataFetched = true;
-                    const newsModal = document.getElementById('news-modal');
-                    if (newsModal && newsModal.classList.contains('active')) {
-                        displayNewsInModal();
-                    }
-                }
-            }
-
-            if (showNewsBtn) {
-                showNewsBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const modal = document.getElementById('news-modal');
-                    openModal(modal);
-                    if (newsDataFetched) {
-                        displayNewsInModal();
-                    } else {
-                        fetchNewsData();
-                    }
-                });
-            }
-
-            // Pre-fetch news after main loading screen is gone
-            setTimeout(fetchNewsData, 3000);
-
             // --- Certificate Gallery Logic ---
             const certificates = [
                 { src: "https://i.imgur.com/wZ7owwo.png", alt: "Sertifikat Magang DLHK DIY", title: "Magang DLHK DIY", desc: "Dinas Lingkungan Hidup & Kehutanan DIY - 2024" },
@@ -1935,7 +1834,7 @@
                         <div class="relative">
                             <img src="${cert.src}" alt="${cert.alt}" class="w-full h-auto object-cover certificate-image" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/3A352F/D4C8B5?text=Error';">
                            <div class="certificate-overlay">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="mb-2" viewBox="0 0 16 16"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="mb-2" viewBox="0 0 16 16" aria-hidden="true"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
                                 <span class="text-sm font-semibold">Lihat Detail</span>
                            </div>
                         </div>
@@ -1972,7 +1871,6 @@
 
                     if (navigator.clipboard && navigator.clipboard.writeText) {
                         navigator.clipboard.writeText(emailAddress).then(showSuccess).catch(err => {
-                            console.error('Fallback copy:', err);
                             copyTextToClipboardLegacy(emailAddress, showSuccess);
                         });
                     } else {
@@ -1990,7 +1888,7 @@
                     document.execCommand('copy');
                     successCallback();
                 } catch (err) {
-                    console.error('Failed to copy text with execCommand: ', err);
+                    console.error('Gagal menyalin teks: ', err);
                 }
                 document.body.removeChild(tempInput);
             }
@@ -2010,8 +1908,8 @@
             let soundInitialized = false;
             let noteIndex = 0;
             const melody = [ 523.25, 392.00, 440.00, 392.00, 349.23, 329.63, 293.66, 261.63 ];
-            let gearSoundSource = null; // Untuk suara roda gigi
-            let gearGainNode = null;    // Untuk mengontrol volume suara roda gigi
+            let gearSoundSource = null;
+            let gearGainNode = null;
 
             function playTick() {
                 if (isMuted || !audioCtx || audioCtx.state !== 'running') return;
@@ -2059,11 +1957,11 @@
             function createAndPlayGearSound() {
                 if (gearSoundSource) gearSoundSource.stop();
                 
-                const bufferSize = audioCtx.sampleRate * 2; // 2 detik audio
+                const bufferSize = audioCtx.sampleRate * 2;
                 const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
                 const output = buffer.getChannelData(0);
                 for (let i = 0; i < bufferSize; i++) {
-                    output[i] = Math.random() * 2 - 1; // Suara bising (white noise)
+                    output[i] = Math.random() * 2 - 1;
                 }
 
                 gearSoundSource = audioCtx.createBufferSource();
@@ -2072,10 +1970,10 @@
 
                 const biquadFilter = audioCtx.createBiquadFilter();
                 biquadFilter.type = "lowpass";
-                biquadFilter.frequency.setValueAtTime(80, audioCtx.currentTime); // Menyaring frekuensi tinggi agar terdengar seperti gemuruh
+                biquadFilter.frequency.setValueAtTime(80, audioCtx.currentTime);
 
                 gearGainNode = audioCtx.createGain();
-                gearGainNode.gain.setValueAtTime(0, audioCtx.currentTime); // Mulai dalam keadaan senyap
+                gearGainNode.gain.setValueAtTime(0, audioCtx.currentTime);
 
                 gearSoundSource.connect(biquadFilter);
                 biquadFilter.connect(gearGainNode);
@@ -2087,7 +1985,7 @@
             function initSound() {
                 if (!soundInitialized) {
                     audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                    createAndPlayGearSound(); // Membuat dan memulai sumber suara roda gigi
+                    createAndPlayGearSound();
                     soundInitialized = true;
                 }
                 if (audioCtx.state === 'suspended') {
@@ -2102,10 +2000,8 @@
                     isMuted = !isMuted;
 
                     if (!isMuted && gearGainNode) {
-                        // Menaikkan volume suara roda gigi secara perlahan (nilai dikecilkan)
                         gearGainNode.gain.linearRampToValueAtTime(0.005, audioCtx.currentTime + 1);
                     } else if (gearGainNode) {
-                        // Menurunkan volume suara roda gigi secara perlahan
                         gearGainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.5);
                     }
 
@@ -2118,15 +2014,12 @@
                 if (!hourHand || !minuteHand || !secondHand) return;
                 const currentDate = new Date();
 
-                // Logic to highlight the current hour numeral
                 let hourForClass = currentDate.getHours() % 12;
-                if (hourForClass === 0) hourForClass = 12; // Adjust for 12 o'clock (AM/PM)
+                if (hourForClass === 0) hourForClass = 12;
 
-                // Remove active class from any currently active numeral
                 const activeElement = document.querySelector('.number.active-hour');
                 if(activeElement) activeElement.classList.remove('active-hour');
 
-                // Add active class to the current hour's numeral
                 const newActiveElement = document.querySelector(`.number.number-${hourForClass}`);
                 if (newActiveElement) {
                     newActiveElement.classList.add('active-hour');
@@ -2140,7 +2033,6 @@
                 setRotation(minuteHand, minutesRatio);
                 setRotation(hourHand, hoursRatio);
                 
-                // Animate the center gear
                 if (centerGear) {
                     centerGear.style.transform = `translate(-50%, -50%) rotate(${secondsRatio * 360}deg)`;
                 }
@@ -2169,7 +2061,7 @@
                 }
             }
 
-            startClock(); // Initial call
+            startClock();
             
             // --- Parallax Effect on Cover Page Gears ---
             const cover = document.getElementById('cover-page');
@@ -2179,10 +2071,10 @@
                     const { clientX, clientY, currentTarget } = e;
                     const { clientWidth, clientHeight } = currentTarget;
 
-                    const x = (clientX / clientWidth - 0.5) * 2; // range -1 to 1
-                    const y = (clientY / clientHeight - 0.5) * 2; // range -1 to 1
+                    const x = (clientX / clientWidth - 0.5) * 2;
+                    const y = (clientY / clientHeight - 0.5) * 2;
 
-                    const maxShift = 10; // Max pixels to shift
+                    const maxShift = 10;
                     
                     gearsSvg.style.transform = `translate(${x * maxShift * -1}px, ${y * maxShift * -1}px)`;
                 });
@@ -2241,7 +2133,7 @@
                         
                         ctx.beginPath();
                         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(214, 137, 83, ${p.opacity})`; // Warm ember/spark color
+                        ctx.fillStyle = `rgba(214, 137, 83, ${p.opacity})`;
                         ctx.fill();
                     });
                     requestAnimationFrame(animateParticles);
