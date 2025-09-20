@@ -975,7 +975,7 @@
                                 </p>
                                 <div class="text-right mt-6 flex justify-end gap-4">
                                     <button data-modal-target="#srs-doc-modal" data-doc-id="18pBCviFKwYibi60U-z4pLEpcf1EJ8UX1" class="classic-button text-sm py-2 px-4">Buka Dokumen SRS</button>
-                                    <button data-modal-target="#greenhouse-prototype-modal" class="classic-button text-sm py-2 px-4">Lihat Prototipe</button>
+                                    <button data-modal-target="#greenhouse-prototype-modal" data-iframe-src="https://affinecipher-0.github.io/prototype-greenhouse/" class="classic-button text-sm py-2 px-4">Lihat Prototipe</button>
                                 </div>
                             </article>
                             <article class="article-frame animate-on-scroll animation-delay-800">
@@ -985,17 +985,27 @@
                                     Studi kasus ini menganalisis modernisasi proses jual beli mobil bekas, dari era klasik ke digital, dengan fokus pada pengembangan sistem informasi inovatif untuk menciptakan ekosistem yang transparan dan aman.
                                 </p>
                                 <div class="text-right mt-6">
-                                    <button data-modal-target="#digital-transformation-modal" class="classic-button text-sm py-2 px-4">Lihat Studi Kasus</button>
+                                    <button data-modal-target="#pieces-modal" data-iframe-src="https://affinecipher-0.github.io/PIECES/" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</button>
                                 </div>
                             </article>
                              <article class="article-frame animate-on-scroll" style="animation-delay: 1s;">
-                                    <h4 class="text-2xl font-bold mb-2">Membangun Infrastruktur Jaringan PT AMIKOM</h4>
+                                <h4 class="text-2xl font-bold mb-2">Membangun Infrastruktur Jaringan PT AMIKOM</h4>
                                 <p class="text-sm mb-4">Kategori: Desain Infrastruktur Jaringan, VLAN, VPN, Keamanan Jaringan</p>
                                 <p class="text-justify">
                                     Tujuan utamanya adalah untuk menciptakan sebuah jaringan yang kuat, aman, dan efisien untuk mendukung kebutuhan operasional dan produksi dari enam departemen yang berbeda.
                                 </p>
                                 <div class="text-right mt-6">
-                                    <button data-modal-target="#amikom-network-modal" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</button>
+                                    <button data-modal-target="#network-infra-modal" data-iframe-src="https://affinecipher-0.github.io/Infrastruktur-Jaringan/" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</button>
+                                </div>
+                            </article>
+                            <article class="article-frame animate-on-scroll" style="animation-delay: 1.2s;">
+                                <h4 class="text-2xl font-bold mb-2">Desain dan Optimasi Antena Yagi</h4>
+                                <p class="text-sm mb-4">Kategori: Rekayasa Antena, Simulasi Elektromagnetik, Desain Frekuensi Radio (RF)</p>
+                                <p class="text-justify">
+                                    Tujuan utama proyek ini adalah untuk mendemonstrasikan proses rekayasa antena secara menyeluruh, mulai dari perhitungan teoretis awal, modifikasi desain secara manual, hingga optimasi otomatis menggunakan perangkat lunak simulasi. Proyek ini menjembatani konsep teori elektromagnetik dengan aplikasi praktis untuk menghasilkan sebuah antena Yagi 6 elemen yang memiliki kinerja tinggi dan terukur pada frekuensi target 1200 MHz.
+                                </p>
+                                <div class="text-right mt-6">
+                                    <button data-modal-target="#yagi-antenna-modal" data-iframe-src="https://affinecipher-0.github.io/TeknologiJaringanNirkabel/" class="classic-button text-sm py-2 px-4">Lihat Selengkapnya</button>
                                 </div>
                             </article>
                         </div>
@@ -1457,143 +1467,28 @@
         </div>
     </div>
 
-    <div id="amikom-network-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="amikom-network-modal-title">
+    <div id="network-infra-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="network-infra-modal-title">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 id="amikom-network-modal-title" class="modal-title">Laporan Teknis: Infrastruktur Jaringan PT. AMIKOM</h5>
+                <h5 id="network-infra-modal-title" class="modal-title">Laporan Infrastruktur Jaringan</h5>
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body p-0">
                 <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
-                <div class="modal-main-content content-hidden p-4">
-                     <div class="space-y-12">
-                        <section>
-                             <h2 class="modal-section-header"><i class="fas fa-file-alt text-[var(--accent-teal)]"></i>Deskripsi Proyek</h2>
-                             <div class="space-y-4">
-                                 <p class="text-justify">Infrastruktur jaringan yang berfungsi dengan baik dan disesuaikan berdasarkan prioritas adalah bagian vital bagi perusahaan modern. Proyek ini bertujuan merancang dan membangun infrastruktur jaringan di PT. AMIKOM, sebuah perusahaan yang bergerak dalam pembuatan film animasi. Untuk mendukung operasional kantor dan produksi, diperlukan infrastruktur yang solid untuk departemen berikut:</p>
-                                 <div class="mt-4 flex flex-wrap gap-3">
-                                     <span class="bg-[#e9e2d3] text-[var(--text-ink)] text-sm font-medium px-4 py-2 rounded-full border border-[var(--border-gold)]">Manajemen Perkantoran</span>
-                                     <span class="bg-[#e9e2d3] text-[var(--text-ink)] text-sm font-medium px-4 py-2 rounded-full border border-[var(--border-gold)]">Pemasaran</span>
-                                     <span class="bg-[#e9e2d3] text-[var(--text-ink)] text-sm font-medium px-4 py-2 rounded-full border border-[var(--border-gold)]">Keuangan</span>
-                                     <span class="bg-[#e9e2d3] text-[var(--text-ink)] text-sm font-medium px-4 py-2 rounded-full border border-[var(--border-gold)]">Produksi</span>
-                                     <span class="bg-[#e9e2d3] text-[var(--text-ink)] text-sm font-medium px-4 py-2 rounded-full border border-[var(--border-gold)]">Elektrikal</span>
-                                     <span class="bg-[#e9e2d3] text-[var(--text-ink)] text-sm font-medium px-4 py-2 rounded-full border border-[var(--border-gold)]">Teknologi Informasi</span>
-                                 </div>
-                             </div>
-                         </section>
-                         <section>
-                             <h2 class="modal-section-header"><i class="fas fa-bullseye text-[var(--accent-teal)]"></i>Tujuan Proyek</h2>
-                              <div>
-                                 <p class="text-justify">
-                                     Tujuan utama proyek ini adalah merancang dan mengimplementasikan infrastruktur jaringan yang komprehensif untuk PT. Amikom. Proses ini mencakup analisis kebutuhan, perancangan, hingga pembangunan fasilitas fisik di laboratorium, ruang UPT, dan server, dengan menerapkan metodologi Plan, Build, Manage (PBM) untuk memastikan hasil yang terstruktur dan efisien.
-                                 </p>
-                             </div>
-                         </section>
-                         <section>
-                             <h2 class="modal-section-header"><i class="fas fa-users text-[var(--accent-teal)]"></i>Tim & Tanggung Jawab</h2>
-                             <div>
-                                 <div class="my-6 text-center">
-                                     <img src="https://i.imgur.com/b0m2OrQ.png" alt="Struktur organisasi tim proyek" class="w-full max-w-3xl mx-auto h-auto rounded-lg shadow-md border border-[var(--border-gold)] enlargeable-image">
-                                     <p class="text-sm opacity-70 mt-2">Struktur Organisasi Tim Proyek</p>
-                                 </div>
-                                 <div class="overflow-x-auto rounded-lg border border-[var(--border-gold)]">
-                                     <table class="min-w-full">
-                                         <thead class="bg-[#e9e2d3]"><tr ><th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Jabatan</th><th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Deskripsi Tugas</th></tr></thead>
-                                         <tbody class="bg-[var(--bg-parchment)]">
-                                             <tr><td class="px-6 py-4 border-b border-[var(--border-gold)] font-semibold whitespace-nowrap">Manajer Proyek</td><td class="px-6 py-4 border-b border-[var(--border-gold)] whitespace-normal">Bertanggung jawab atas keseluruhan perencanaan, pengorganisasian, penganggaran, dan pelaksanaan proyek. Mengkoordinasikan tim dan menjadi titik kontak utama.</td></tr>
-                                             <tr><td class="px-6 py-4 border-b border-[var(--border-gold)] font-semibold whitespace-nowrap">Arsitek Jaringan</td><td class="px-6 py-4 border-b border-[var(--border-gold)] whitespace-normal">Mendesain arsitektur jaringan tingkat tinggi, termasuk topologi, skema IP, dan strategi keamanan untuk memastikan desain selaras dengan tujuan proyek.</td></tr>
-                                             <tr><td class="px-6 py-4 border-b border-[var(--border-gold)] font-semibold whitespace-nowrap">Insinyur Jaringan</td><td class="px-6 py-4 border-b border-[var(--border-gold)] whitespace-normal">Mengimplementasikan, mengkonfigurasi, dan memelihara perangkat jaringan seperti router, switch, dan firewall. Mengelola VLAN, routing, dan VPN.</td></tr>
-                                             <tr><td class="px-6 py-4 font-semibold whitespace-nowrap">Teknisi Jaringan</td><td class="px-6 py-4 whitespace-normal">Melakukan instalasi fisik perangkat keras jaringan dan kabel, serta memberikan dukungan teknis di lapangan dan pemecahan masalah tingkat pertama.</td></tr>
-                                         </tbody>
-                                     </table>
-                                 </div>
-                             </div>
-                         </section>
-                        <section>
-                             <h2 class="modal-section-header"><i class="fas fa-tasks text-[var(--accent-teal)]"></i>Metodologi PBM</h2>
-                             <div class="space-y-8">
-                                 <div><h3 class="flex items-center gap-3 text-xl font-bold mb-4"><span class="flex items-center justify-center w-8 h-8 bg-[#e9e2d3] text-[var(--text-ink)] rounded-full font-bold">1</span> Tahap Perencanaan (Plan)</h3><div class="space-y-4 ml-4 border-l-2 border-[var(--border-gold)] pl-8"><div><h4 class="font-semibold">Strategi dan Analisis:</h4><p class="opacity-80 text-justify">Mendefinisikan hubungan antara pengguna, aplikasi, perangkat, dan jaringan. Memahami kebutuhan, masalah, dan solusi untuk sistem yang akan dibangun.</p></div><div><h4 class="font-semibold">Penilaian:</h4><p class="opacity-80 text-justify">Mengembangkan struktur konseptual jaringan. Menentukan set teknologi, topologi, dan peralatan yang dibutuhkan.</p></div><div><h4 class="font-semibold">Desain:</h4><p class="opacity-80 text-justify">Memberikan detail fisik untuk arsitektur, termasuk gambar jaringan, pilihan vendor, dan pemilihan peralatan spesifik.</p></div></div></div>
-                                 <div><h3 class="flex items-center gap-3 text-xl font-bold mb-4"><span class="flex items-center justify-center w-8 h-8 bg-[#e9e2d3] text-[var(--text-ink)] rounded-full font-bold">2</span> Tahap Pembangunan (Build)</h3><div class="space-y-4 ml-4 border-l-2 border-[var(--border-gold)] pl-8"><div><h4 class="font-semibold">Validation:</h4><p class="opacity-80 text-justify">Memvalidasi desain untuk memastikan semua rangkaian kebutuhan terpenuhi dan dapat mencapai keadaan yang diinginkan.</p></div><div><h4 class="font-semibold">Deployment:</h4><p class="opacity-80 text-justify">Merangkai jaringan, menggunakan perangkat yang sudah ada untuk meminimalisir biaya, dan memulai pembangunan infrastruktur di ruang-ruang yang ditentukan.</p></div><div><h4 class="font-semibold">Migration:</h4><p class="opacity-80 text-justify">Menyiapkan data yang akan dimigrasikan ke jaringan baru atau menggabungkan dua jaringan independen menjadi satu.</p></div></div></div>
-                                 <div><h3 class="flex items-center gap-3 text-xl font-bold mb-4"><span class="flex items-center justify-center w-8 h-8 bg-[#e9e2d3] text-[var(--text-ink)] rounded-full font-bold">3</span> Tahap Pengelolaan (Manage)</h3><div class="space-y-4 ml-4 border-l-2 border-[var(--border-gold)] pl-8"><div><h4 class="font-semibold">Product Support:</h4><p class="opacity-80 text-justify">Menawarkan peralatan jaringan dengan produk dan fitur terbaru.</p></div><div><h4 class="font-semibold">Solution Support:</h4><p class="opacity-80 text-justify">Menyediakan jaringan yang baik dan mengelola pemecahan masalah dalam jaringan.</p></div><div><h4 class="font-semibold">Optimization:</h4><p class="opacity-80 text-justify">Melakukan pengamatan dalam pemeliharaan jaringan dan sistem, serta memberikan pelatihan kepada operator.</p></div><div><h4 class="font-semibold">Operation Management:</h4><p class="opacity-80 text-justify">Memastikan personel memahami teknologi, mendokumentasikan kinerja, dan mengelola monitoring, performa, serta keamanan jaringan.</p></div></div></div>
-                             </div>
-                        </section>
-                         <section>
-                             <h2 class="modal-section-header"><i class="fas fa-cogs text-[var(--accent-teal)]"></i>Software & Perangkat</h2>
-                             <div class="grid md:grid-cols-2 gap-8">
-                                 <div><h3 class="text-xl font-semibold mb-4">Software</h3><ul class="list-none space-y-3"><li><i class="fas fa-box-open mr-2 text-[var(--accent-teal)]"></i>app.diagram.net (draw.io)</li><li><i class="fas fa-box-open mr-2 text-[var(--accent-teal)]"></i>Packet Tracer</li></ul></div>
-                                 <div><h3 class="text-xl font-semibold mb-4">Perangkat Keras</h3><ul class="list-none grid grid-cols-2 gap-3 opacity-80"><li><i class="fas fa-server mr-2"></i>Router</li><li><i class="fas fa-database mr-2"></i>Server</li><li><i class="fas fa-network-wired mr-2"></i>Switch</li><li><i class="fas fa-broadcast-tower mr-2"></i>DSL MODEM</li><li><i class="fas fa-desktop mr-2"></i>Komputer</li><li><i class="fas fa-video mr-2"></i>Webcam</li><li><i class="fas fa-fire-smoke mr-2"></i>Smoke Sensor</li><li><i class="fas fa-mobile-alt mr-2"></i>SmartPhone</li><li><i class="fas fa-laptop mr-2"></i>Laptop</li></ul></div>
-                             </div>
-                         </section>
-                         <section>
-                            <h2 class="modal-section-header"><i class="fas fa-drafting-compass text-[var(--accent-teal)]"></i>Desain Jaringan</h2>
-                             <div class="space-y-8 text-center">
-                                 <p class="text-justify max-w-3xl mx-auto">Berikut adalah desain topologi logis dan fisik jaringan yang telah diimplementasikan, menunjukkan arsitektur hierarkis dari Core hingga Access layer.</p>
-                                 <div class="bg-[#f7f1e4] p-4 rounded-xl border border-[var(--border-gold)]"><h3 class="font-semibold mb-3 text-lg">Desain Logis Jaringan</h3><img src="https://i.imgur.com/PY5vvuu.png" alt="Diagram topologi jaringan logis" class="w-full h-auto rounded-lg shadow-md enlargeable-image"></div>
-                                 <div class="bg-[#f7f1e4] p-4 rounded-xl border border-[var(--border-gold)]"><h3 class="font-semibold mb-3 text-lg">Implementasi di Packet Tracer</h3><img src="https://i.imgur.com/gGGYoOO.png" alt="Topologi jaringan di Packet Tracer" class="w-full h-auto rounded-lg shadow-md enlargeable-image"></div>
-                             </div>
-                         </section>
-                         <section>
-                            <h2 class="modal-section-header"><i class="fas fa-list-ol text-[var(--accent-teal)]"></i>Tabel Pengalamatan IP</h2>
-                             <div class="overflow-x-auto rounded-lg border border-[var(--border-gold)]">
-                                <table class="min-w-full">
-                                    <thead class="bg-[#e9e2d3]"><tr><th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Jenis</th><th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Nama Perangkat</th><th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">Interface</th><th class="px-6 py-3 text-left text-xs font-semibold uppercase tracking-wider">IP Address</th></tr></thead>
-                                    <tbody class="bg-[var(--bg-parchment)]">
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Server</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">www.pj.com</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">FastEthernet 0</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.128.2/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Router</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">ISP</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">GigabitEthernet 0/0</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.64.1/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">PC-PT</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">Teleworker VPN</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">Fast Ethernet 0</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.64.2/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Switch</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">Switch3 (WiFi)</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">Vlan 70</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.0.11/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Switch</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">Switch5 (ManPer)</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">Vlan 10</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.0.2/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Switch</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">Switch6 (Pemasaran)</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">Vlan 20</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.0.3/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Host</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">PC-Dept_ManPer</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">FastEthernet 0</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.0.10/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Host</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">PC-Dept_Pemasaran</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">FastEthernet 0</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.0.20/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Host</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">PC-Dept_Keuangan</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">FastEthernet 0</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.0.30/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Host</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">PC-Dept_Produksi</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">FastEthernet 0</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.0.40/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Host</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">PC-Dept_Elektrika</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">FastEthernet 0</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.0.50/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Host</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">PC_Dept_TI</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">FastEthernet 0</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.0.60/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Host</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">Server Apps</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">FastEthernet 0</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.0.70/24</td></tr>
-                                        <tr><td class="px-6 py-4 border-b border-[var(--border-gold)]">Host</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">Server Storage</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">FastEthernet 0</td><td class="px-6 py-4 border-b border-[var(--border-gold)]">10.0.0.80/24</td></tr>
-                                        <tr><td class="px-6 py-4">Host</td><td class="px-6 py-4">Renderfarm</td><td class="px-6 py-4">FastEthernet 0</td><td class="px-6 py-4">10.0.0.90/24</td></tr>
-                                    </tbody>
-                                </table>
-                             </div>
-                         </section>
-                         <section>
-                             <h2 class="modal-section-header"><i class="fas fa-terminal text-[var(--accent-teal)]"></i>Konfigurasi Dasar</h2>
-                             <div class="space-y-6">
-                                 <div class="code-block"><div class="code-header"><span>a. ISP Router</span><button type="button" class="copy-btn"><span class="btn-text">Salin</span> <i class="fas fa-copy"></i></button></div><code>Router(config)#interface GigabitEthernet0/0
-Router(config-if)#ip address 10.0.64.1 255.255.255.0
-Router(config-if)#interface GigabitEthernet0/1
-Router(config-if)#ip address 10.0.0.1 255.255.255.0
-...
-</code></div>
-                                 <div class="code-block"><div class="code-header"><span>b. Edge Core Switch (VLAN & Trunk)</span><button type="button" class="copy-btn"><span class="btn-text">Salin</span> <i class="fas fa-copy"></i></button></div><code>Switch(config)#vlan 10
-Switch(config-vlan)# name Dept_ManPer
-... (vlan 20, 30, ... 90) ...
-Switch(config)#interface GigabitEthernet1/0/2
-Switch(config-if)#switchport mode trunk
-...
-</code></div>
-                                 <div class="code-block"><div class="code-header"><span>c. Distribution Layer Switch (Trunk)</span><button type="button" class="copy-btn"><span class="btn-text">Salin</span> <i class="fas fa-copy"></i></button></div><code>Switch(config)#interface range Gi1/0/1-3
-Switch(config-if-range)#switchport mode trunk
-</code></div>
-                                 <div class="code-block"><div class="code-header"><span>d. Access Switch (VLAN Interface)</span><button type="button" class="copy-btn"><span class="btn-text">Salin</span> <i class="fas fa-copy"></i></button></div><code>Switch(config)#interface vlan 10
-Switch(config-if)#ip address 10.0.0.2 255.255.255.0
-... (IP untuk vlan 20, 30, dst.) ...
-</code></div>
-                             </div>
-                         </section>
-                         <section>
-                             <h2 class="modal-section-header"><i class="fas fa-check-double text-[var(--accent-teal)]"></i>Hasil Pengujian</h2>
-                             <div class="space-y-8">
-                                 <div class="p-6 border rounded-xl border-[var(--border-gold)] bg-[#f7f1e4]"><h3 class="font-semibold text-lg">a. Konektivitas Antar Departemen (VLAN)</h3><p class="opacity-80 mb-4 text-sm">Pengujian `ping` dari PC Dept_ManPer ke PC di departemen lain berhasil, membuktikan routing antar-VLAN berfungsi.</p><img src="https://i.imgur.com/mBpFH5s.png" alt="Hasil ping sukses antar VLAN" class="w-full h-auto rounded-lg shadow-md border border-[var(--border-gold)] enlargeable-image"></div>
-                                 <div class="p-6 border rounded-xl border-[var(--border-gold)] bg-[#f7f1e4]"><h3 class="font-semibold text-lg">b. Akses ke ServerFarm</h3><p class="opacity-80 mb-4 text-sm">Pengujian `ping` dari PC departemen ke Server Storage, Apps, dan Renderfarm menunjukkan konektivitas ke sumber daya internal berhasil.</p><img src="https://i.imgur.com/398G8bp.png" alt="Hasil ping sukses ke server internal" class="w-full h-auto rounded-lg shadow-md border border-[var(--border-gold)] enlargeable-image"></div>
-                                 <div class="p-6 border rounded-xl border-[var(--border-gold)] bg-[#f7f1e4]"><h3 class="font-semibold text-lg">c. Akses ke Web Server Eksternal (pj.com)</h3><p class="opacity-80 mb-4 text-sm">Akses melalui Web Browser dari PC departemen ke server www.pj.com berhasil, menandakan koneksi internet dan routing eksternal berjalan baik.</p><img src="https://i.imgur.com/51M7a1v.png" alt="Akses browser ke server eksternal berhasil" class="w-full h-auto rounded-lg shadow-md border border-[var(--border-gold)] enlargeable-image"></div>
-                                 <div class="p-6 border rounded-xl border-[var(--border-gold)] bg-[#f7f1e4]"><h3 class="font-semibold text-lg">d. Konektivitas WiFi</h3><p class="opacity-80 mb-4 text-sm">Smartphone berhasil terhubung ke WiFi, mendapatkan IP, dan melakukan `ping` ke PC departemen, menunjukkan Vlan WiFi terintegrasi dengan benar.</p><img src="https://i.imgur.com/jBze512.png" alt="Koneksi WiFi dan ping dari smartphone berhasil" class="w-full h-auto rounded-lg shadow-md border border-[var(--border-gold)] enlargeable-image"></div>
-                                 <div class="p-6 border rounded-xl border-[var(--border-gold)] bg-[#f7f1e4]"><h3 class="font-semibold text-lg">e. Koneksi VPN Teleworker</h3><p class="opacity-80 mb-4 text-sm">Pengguna jarak jauh (Teleworker) berhasil membangun koneksi VPN dan mengakses Server Storage, memastikan akses remote yang aman.</p><div class="grid grid-cols-1 md:grid-cols-2 gap-4"><img src="https://i.imgur.com/0bcP0sX.png" alt="Status koneksi VPN berhasil" class="w-full h-auto rounded-lg shadow-md border border-[var(--border-gold)] enlargeable-image"><img src="https://i.imgur.com/lqqKYFK.png" alt="Hasil ping sukses dari klien VPN" class="w-full h-auto rounded-lg shadow-md border border-[var(--border-gold)] enlargeable-image"></div></div>
-                             </div>
-                         </section>
-                     </div>
-                </div>
+                <iframe class="modal-iframe modal-main-content content-hidden h-full w-full" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div id="pieces-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="pieces-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="pieces-modal-title" class="modal-title">Studi Kasus: Modernisasi Jual Beli Mobil Bekas</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <iframe class="modal-iframe modal-main-content content-hidden h-full w-full" src="about:blank"></iframe>
             </div>
         </div>
     </div>
@@ -1617,129 +1512,6 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
         </div>
     </div>
     
-    <div id="digital-transformation-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="digital-transformation-modal-title">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 id="digital-transformation-modal-title" class="modal-title">Studi Kasus: Modernisasi Proses Jual Beli Mobil Bekas</h5>
-                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
-                <div class="modal-main-content content-hidden p-4">
-                    <div class="space-y-12">
-                        <section>
-                            <h2 class="modal-section-header"><i class="fas fa-exclamation-triangle text-[var(--accent-teal)]"></i>Tantangan Sistem Konvensional</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-                                <div class="bg-[#f7f1e4] rounded-lg shadow-md p-6 border border-[var(--border-gold)]"><i class="fas fa-hourglass-half text-4xl text-[var(--text-ink)] opacity-70"></i><h3 class="text-lg font-bold mt-4">Proses Lambat</h3><p class="mt-2 text-sm opacity-80">Pengecekan dan administrasi manual memakan waktu berjam-jam.</p></div>
-                                <div class="bg-[#f7f1e4] rounded-lg shadow-md p-6 border border-[var(--border-gold)]"><i class="fas fa-user-shield text-4xl text-[var(--text-ink)] opacity-70"></i><h3 class="text-lg font-bold mt-4">Risiko Keamanan</h3><p class="mt-2 text-sm opacity-80">Kurangnya validasi dokumen meningkatkan risiko penipuan.</p></div>
-                                <div class="bg-[#f7f1e4] rounded-lg shadow-md p-6 border border-[var(--border-gold)]"><i class="fas fa-balance-scale-right text-4xl text-[var(--text-ink)] opacity-70"></i><h3 class="text-lg font-bold mt-4">Harga Tidak Transparan</h3><p class="mt-2 text-sm opacity-80">Penawaran harga oleh dealer seringkali tidak memiliki dasar yang jelas.</p></div>
-                                <div class="bg-[#f7f1e4] rounded-lg shadow-md p-6 border border-[var(--border-gold)]"><i class="fas fa-bullhorn text-4xl text-[var(--text-ink)] opacity-70"></i><h3 class="text-lg font-bold mt-4">Pemasaran Terbatas</h3><p class="mt-2 text-sm opacity-80">Mengandalkan iklan koran membatasi jangkauan calon pembeli.</p></div>
-                            </div>
-                        </section>
-                        <section>
-                            <h2 class="modal-section-header"><i class="fas fa-search text-[var(--accent-teal)]"></i>Analisis Kelemahan (PIECES)</h2>
-                             <div class="text-justify max-w-4xl mx-auto mb-8">
-                                <p class="mb-6 text-center">Analisis PIECES membantu mengidentifikasi masalah dari enam sudut pandang kritis. Berikut adalah rincian masalah yang ditemukan dalam sistem konvensional:</p>
-                                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                    <div class="bg-[#f7f1e4] rounded-lg border-l-4 border-[var(--accent-teal)] p-4"><h4 class="font-bold text-lg">Performance (Kinerja)</h4><p class="opacity-80 mt-1 text-sm">Proses manual yang sangat lambat menyebabkan antrian panjang dan waktu tunggu yang tidak efisien bagi semua pihak.</p></div>
-                                    <div class="bg-[#f7f1e4] rounded-lg border-l-4 border-[var(--accent-teal)] p-4"><h4 class="font-bold text-lg">Information (Informasi)</h4><p class="opacity-80 mt-1 text-sm">Informasi tidak efektif karena jangkauan iklan terbatas dan data stok mobil tidak terpusat untuk akses real-time.</p></div>
-                                    <div class="bg-[#f7f1e4] rounded-lg border-l-4 border-[var(--accent-teal)] p-4"><h4 class="font-bold text-lg">Economy (Ekonomi)</h4><p class="opacity-80 mt-1 text-sm">Menimbulkan biaya tidak perlu seperti cetak iklan berulang dan rentan terhadap kesalahan pencatatan finansial.</p></div>
-                                    <div class="bg-[#f7f1e4] rounded-lg border-l-4 border-[var(--accent-teal)] p-4"><h4 class="font-bold text-lg">Control (Kendali)</h4><p class="opacity-80 mt-1 text-sm">Pengendalian terhadap aset dan data sangat lemah tanpa database terpusat, membuka celah penipuan atau kehilangan data.</p></div>
-                                    <div class="bg-[#f7f1e4] rounded-lg border-l-4 border-[var(--accent-teal)] p-4"><h4 class="font-bold text-lg">Efficiency (Efisiensi)</h4><p class="opacity-80 mt-1 text-sm">Banyak terjadi pengulangan pekerjaan (redundansi), di mana data yang sama harus ditulis berulang kali di berbagai formulir.</p></div>
-                                    <div class="bg-[#f7f1e4] rounded-lg border-l-4 border-[var(--accent-teal)] p-4"><h4 class="font-bold text-lg">Service (Layanan)</h4><p class="opacity-80 mt-1 text-sm">Kualitas layanan pelanggan rendah akibat proses yang lama, informasi terbatas, dan kurangnya transparansi.</p></div>
-                                </div>
-                             </div>
-                             <div class="chart-container"><canvas id="piecesChart"></canvas></div>
-                             <div class="text-justify max-w-4xl mx-auto my-8 pt-8 border-t border-[var(--border-gold)]">
-                                <h3 class="text-2xl font-bold text-center mb-6">Dasar Perhitungan Estimasi Waktu</h3>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
-                                     <div>
-                                         <h4 class="font-bold text-lg text-[var(--accent-teal)]">Pendataan & Administrasi (45 vs 5 menit)</h4>
-                                         <p class="mt-1 opacity-80 text-sm">Proses manual (form kertas, cek fisik, catat di buku) memakan waktu lama. Dengan sistem digital, admin hanya perlu verifikasi data yang sudah diinput oleh pemilik via portal.</p>
-                                     </div>
-                                     <div>
-                                         <h4 class="font-bold text-lg text-[var(--accent-teal)]">Pemasaran & Iklan (120 vs 10 menit)</h4>
-                                         <p class="mt-1 opacity-80 text-sm">Waktu manual merepresentasikan total usaha (desain, kirim ke media cetak, tunggu terbit). Proses digital hanya membutuhkan beberapa menit untuk unggah dan publikasi online.</p>
-                                     </div>
-                                     <div>
-                                         <h4 class="font-bold text-lg text-[var(--accent-teal)]">Proses Transaksi (30 vs 5 menit)</h4>
-                                         <p class="mt-1 opacity-80 text-sm">Transaksi manual (kuitansi, rekap buku, pembayaran tunai) lebih lambat. Transaksi digital (transfer, notifikasi otomatis) tercatat secara instan.</p>
-                                     </div>
-                                     <div>
-                                         <h4 class="font-bold text-lg text-[var(--accent-teal)]">Kontrol Inventaris (60 vs 2 menit)</h4>
-                                         <p class="mt-1 opacity-80 text-sm">Pengecekan stok manual secara periodik sangat tidak efisien. Dasbor digital menyajikan data inventaris akurat yang dapat diakses kapan saja dalam hitungan menit.</p>
-                                     </div>
-                                 </div>
-                            </div>
-                        </section>
-                         <section>
-                            <h2 class="modal-section-header"><i class="fas fa-cogs text-[var(--accent-teal)]"></i>Solusi: Alur Kerja Digital</h2>
-                            <p class="text-justify max-w-4xl mx-auto mb-8">Sistem baru menciptakan alur kerja yang transparan dan efisien, menghubungkan Pemilik, Dealer, dan Pembeli dalam satu platform. Proses yang tadinya rumit dan terputus-putus kini menjadi lancar dan terkoordinasi.</p>
-                            <div class="space-y-2 text-sm">
-                                <div class="flow-lane"><div class="flow-label" style="background-color: #a5d6a7;">Owner</div><div class="flow-steps"><div class="flow-step"><b>1.</b> Dokumen Lengkap</div><div class="flow-arrow">→</div><div class="flow-step"><b>13.</b> Harga Diperiksa</div><div class="flow-arrow">→</div><div class="flow-step"><b>14.</b> Harga Disetujui</div><div class="flow-arrow">→</div><div class="flow-step"><b>19.</b> Laporan Diterima</div></div></div>
-                                <div class="flow-lane"><div class="flow-label" style="background-color: #ffcc80;">Dealer</div><div class="flow-steps"><div class="flow-step"><b>2.</b> Administrasi</div><div class="flow-arrow">→</div><div class="flow-step"><b>3.</b> Pengiklanan</div><div class="flow-arrow">→</div><div class="flow-step"><b>5.</b> Pemeriksaan</div><div class="flow-arrow">→</div><div class="flow-step"><b>7.</b> Beri Spek</div><div class="flow-arrow">→</div><div class="flow-step"><b>8.</b> Dampingi</div><div class="flow-arrow">→</div><div class="flow-step"><b>12.</b> Negosiasi</div><div class="flow-arrow">→</div><div class="flow-step"><b>15.</b> Terima Laporan</div><div class="flow-arrow">→</div><div class="flow-step"><b>17.</b> Cek Data</div><div class="flow-arrow">→</div><div class="flow-step"><b>18.</b> Buat Laporan</div></div></div>
-                                <div class="flow-lane"><div class="flow-label" style="background-color: #90caf9;">Customer</div><div class="flow-steps"><div class="flow-step"><b>4.</b> Datang</div><div class="flow-arrow">→</div><div class="flow-step"><b>6.</b> Lihat Mobil</div><div class="flow-arrow">→</div><div class="flow-step"><b>9.</b> Test Drive</div><div class="flow-arrow">→</div><div class="flow-step"><b>10.</b> Evaluasi</div><div class="flow-arrow">→</div><div class="flow-step"><b>11.</b> Lihat Harga</div><div class="flow-arrow">→</div><div class="flow-step"><b>16.</b> Setuju Harga</div><div class="flow-arrow">→</div><div class="flow-step"><b>20.</b> Membeli</div><div class="flow-arrow">→</div><div class="flow-step"><b>21.</b> Terima Mobil</div></div></div>
-                            </div>
-                            <div class="mt-12 pt-8 border-t border-[var(--border-gold)]">
-                                 <h3 class="text-2xl font-bold text-center mb-8">Deskripsi Alur Kerja</h3>
-                                 <div class="flow-description-grid">
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #a5d6a7;">1</div><p class="text-sm"><b>Owner:</b> Pemilik mobil menyiapkan seluruh dokumen penting (STNK, BPKB, faktur) untuk memastikan legalitas kendaraan.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #ffcc80;">2</div><p class="text-sm"><b>Dealer:</b> Staf administrasi menerima dan memasukkan data serta dokumen dari pemilik ke dalam sistem digital.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #ffcc80;">3</div><p class="text-sm"><b>Dealer:</b> Setelah verifikasi, mobil otomatis diiklankan di platform online dealer dengan foto dan spesifikasi.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #90caf9;">4</div><p class="text-sm"><b>Customer:</b> Calon pembeli yang tertarik iklan online datang ke dealer untuk melihat unit secara langsung.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #ffcc80;">5</div><p class="text-sm"><b>Dealer:</b> Tim mekanik melakukan inspeksi mendetail pada mobil untuk memastikan kondisi dan kualitasnya.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #90caf9;">6</div><p class="text-sm"><b>Customer:</b> Calon pembeli melihat dan membandingkan berbagai jenis mobil yang tersedia di showroom.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #ffcc80;">7</div><p class="text-sm"><b>Dealer:</b> Petugas penjualan memberikan penjelasan rinci mengenai spesifikasi teknis dan fitur mobil.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #ffcc80;">8</div><p class="text-sm"><b>Dealer:</b> Petugas mendampingi pelanggan selama memeriksa mobil untuk menjawab semua pertanyaan.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #90caf9;">9</div><p class="text-sm"><b>Customer:</b> Calon pembeli melakukan test drive untuk merasakan performa dan kenyamanan mobil.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #90caf9;">10</div><p class="text-sm"><b>Customer:</b> Berdasarkan test drive, pembeli mengevaluasi apakah mobil sesuai dengan harapannya.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #90caf9;">11</div><p class="text-sm"><b>Customer:</b> Calon pembeli memeriksa harga yang ditawarkan untuk mobil yang telah diuji coba.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #ffcc80;">12</div><p class="text-sm"><b>Dealer:</b> Proses negosiasi harga terjadi antara pembeli dan tim penjualan untuk mencapai kesepakatan.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #a5d6a7;">13</div><p class="text-sm"><b>Owner:</b> Pemilik mobil menerima notifikasi penawaran harga akhir dari hasil negosiasi dan memeriksanya.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #a5d6a7;">14</div><p class="text-sm"><b>Owner:</b> Jika setuju, pemilik memberikan persetujuan atas harga jual tersebut melalui sistem.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #ffcc80;">15</div><p class="text-sm"><b>Dealer:</b> Dealer menerima konfirmasi persetujuan dari pemilik dan melanjutkan proses transaksi.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #90caf9;">16</div><p class="text-sm"><b>Customer:</b> Pembeli memberikan persetujuan akhir terhadap harga yang telah disepakati bersama.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #ffcc80;">17</div><p class="text-sm"><b>Dealer:</b> Administrasi memverifikasi kelengkapan data diri dan dokumen yang diperlukan dari pembeli.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #ffcc80;">18</div><p class="text-sm"><b>Dealer:</b> Sistem otomatis menghasilkan laporan penjualan yang kemudian diberikan kepada pembeli.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #a5d6a7;">19</div><p class="text-sm"><b>Owner:</b> Pemilik asli menerima laporan akhir bahwa mobilnya telah berhasil terjual.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #90caf9;">20</div><p class="text-sm"><b>Customer:</b> Pembeli melakukan pembayaran sesuai dengan nominal pada laporan penjualan.</p></div>
-                                    <div class="flow-description-item"><div class="flow-description-number" style="background-color: #90caf9;">21</div><p class="text-sm"><b>Customer:</b> Setelah lunas, pembeli secara resmi menerima unit mobil beserta seluruh dokumennya.</p></div>
-                                 </div>
-                            </div>
-                         </section>
-                         <section>
-                             <h2 class="modal-section-header"><i class="fas fa-star text-[var(--accent-teal)]"></i>Fitur & Dampak Sistem Baru</h2>
-                             <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                                 <div>
-                                     <div class="chart-container"><canvas id="featuresDonutChart"></canvas></div>
-                                     <div class="mt-8 pt-6 border-t border-[var(--border-gold)] text-left">
-                                         <h4 class="font-bold text-lg text-center mb-4">Penjelasan Kontribusi Fitur</h4>
-                                         <ul class="space-y-3 opacity-80 text-sm">
-                                             <li><b>Portal Pemilik (30%):</b> Berperan paling besar karena menjadi gerbang efisiensi, memotong langsung proses pendataan manual yang lambat.</li>
-                                             <li><b>Galeri Digital (25%):</b> Solusi langsung untuk masalah informasi dan layanan, memberikan jangkauan pasar dan pengalaman pelanggan yang lebih baik.</li>
-                                             <li><b>Manajemen Inventaris (25%):</b> Menjadi inti dari kendali sistem, menghilangkan masalah data tidak akurat dan pengecekan manual yang memakan waktu.</li>
-                                             <li><b>Transaksi Aman (20%):</b> Menjawab masalah ekonomi dan kendali dengan meminimalkan risiko kesalahan finansial dan meningkatkan keamanan.</li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                                 <div>
-                                     <div class="chart-container"><canvas id="impactRadarChart"></canvas></div>
-                                     <div class="mt-8 pt-6 border-t border-[var(--border-gold)] text-left">
-                                        <h4 class="font-bold text-lg text-center mb-4">Penjelasan Dampak Peningkatan (Skor 0-10)</h4>
-                                         <ul class="space-y-3 opacity-80 text-sm">
-                                             <li><b>Sistem Lama (Area Dalam):</b> Area yang kecil menunjukkan skor rendah di semua aspek PIECES, terutama pada Kendali (2/10) dan Kinerja (3/10), memvisualisasikan kelemahan utama.</li>
-                                             <li><b>Sistem Baru (Area Luar):</b> Area yang luas menunjukkan peningkatan signifikan dan menyeluruh. Skor tinggi seperti Efisiensi (10/10) dan Kinerja (9/10) membuktikan solusi berhasil mengatasi masalah inti.</li>
-                                         </ul>
-                                     </div>
-                                 </div>
-                             </div>
-                         </section>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
     <div id="greenhouse-prototype-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="greenhouse-prototype-modal-title">
         <div class="modal-content" style="max-width: 450px; height: 95%; max-height: 900px; padding: 10px; background-color: #333;">
             <div class="modal-header" style="background-color: var(--bg-parchment); border-bottom: none; padding-bottom: 5px; padding-top: 5px;">
@@ -1749,8 +1521,21 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
             <div class="modal-body" style="padding: 0; position: relative;">
                 <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
                 <div class="modal-main-content content-hidden h-full">
-                    <iframe id="greenhouse-iframe" class="modal-iframe"></iframe>
+                    <iframe id="greenhouse-iframe" class="modal-iframe" src="about:blank"></iframe>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="yagi-antenna-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="yagi-antenna-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="yagi-antenna-modal-title" class="modal-title">Desain dan Optimasi Antena Yagi</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <iframe class="modal-iframe modal-main-content content-hidden h-full w-full" src="about:blank"></iframe>
             </div>
         </div>
     </div>
@@ -1921,8 +1706,6 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
             };
 
             let modalTriggerElement = null, currentActiveModal = null, timelineObserver = null;
-            let transformationChartsInitialized = false;
-            let greenhouseAppInitialized = false;
 
             const openModal = (modal) => {
                 if (!modal || modal.classList.contains('active')) return;
@@ -1936,33 +1719,26 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
                     if(mainContent) mainContent.classList.remove('content-hidden');
                     modal.focus();
                     
-                    if (modal.id === 'digital-transformation-modal' && !transformationChartsInitialized) {
-                        createTransformationCharts();
-                        transformationChartsInitialized = true;
-                    }
-                    if (modal.id === 'greenhouse-prototype-modal' && !greenhouseAppInitialized) {
-                        createGreenhouseApp();
-                        greenhouseAppInitialized = true;
+                    if (modal.id === 'timeline-modal' && !timelineObserver) {
+                        const scrollContainer = modal.querySelector('.modal-body');
+                        if (scrollContainer) {
+                            timelineObserver = new IntersectionObserver((entries) => {
+                                entries.forEach(entry => {
+                                    if (entry.isIntersecting) {
+                                        entry.target.classList.add('is-visible');
+                                        timelineObserver.unobserve(entry.target);
+                                    }
+                                });
+                            }, { root: scrollContainer, threshold: 0.1 });
+                            modal.querySelectorAll('.fade-in-on-scroll').forEach(el => timelineObserver.observe(el));
+                        }
                     }
                 };
                 if (loader) loader.classList.add('show');
                 if (mainContent) mainContent.classList.add('content-hidden');
                 setTimeout(showContent, 1200); 
-                if (modal.id === 'timeline-modal' && !timelineObserver) {
-                    const scrollContainer = modal.querySelector('.modal-body');
-                    if (scrollContainer) {
-                        timelineObserver = new IntersectionObserver((entries) => {
-                            entries.forEach(entry => {
-                                if (entry.isIntersecting) {
-                                    entry.target.classList.add('is-visible');
-                                    timelineObserver.unobserve(entry.target);
-                                }
-                            });
-                        }, { root: scrollContainer, threshold: 0.1 });
-                        modal.querySelectorAll('.fade-in-on-scroll').forEach(el => timelineObserver.observe(el));
-                    }
-                }
             };
+
             const closeModal = (modal) => {
                 if (!modal || !modal.classList.contains('active')) return;
                 if (window.speechSynthesis.speaking) {
@@ -1972,21 +1748,24 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
                 document.body.classList.remove('body-no-scroll');
                 if (timelineObserver) { timelineObserver.disconnect(); timelineObserver = null; }
                 setTimeout(() => {
-                    const dynamicContent = modal.querySelector('.modal-iframe, .modal-image');
-                    if (dynamicContent) dynamicContent.src = '';
+                    modal.querySelectorAll('iframe').forEach(iframe => iframe.src = 'about:blank');
+                    const image = modal.querySelector('.modal-image');
+                    if (image) image.src = '';
                     const srsContainer = modal.querySelector('#srs-doc-container');
-                    if (srsContainer) {
-                        srsContainer.innerHTML = '';
-                    }
+                    if (srsContainer) srsContainer.innerHTML = '';
+
                     if (modalTriggerElement) modalTriggerElement.focus();
                     modalTriggerElement = null; currentActiveModal = null;
                 }, 400); 
             };
+
             document.querySelectorAll('[data-modal-target]').forEach(button => {
                 button.addEventListener('click', () => {
                     const modalId = button.dataset.modalTarget;
                     const modal = document.querySelector(modalId);
-                    
+                    if (!modal) return;
+
+                    // Handle Manuscript content
                     if (modalId === '#manuscript-modal') {
                         const manuscriptId = button.dataset.manuscriptId;
                         const manuscriptData = manuscripts[manuscriptId];
@@ -1996,18 +1775,29 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
                         }
                     }
 
+                    // Handle Image Viewer
                     if (modalId === '#image-viewer-modal') {
                          const imageSrc = button.dataset.src;
                          const imgElement = modal.querySelector('.modal-image');
                          if(imgElement) imgElement.src = imageSrc;
                     }
                     
+                    // Handle Google Drive embed
                     const docId = button.dataset.docId;
-                    if (modalId === '#srs-doc-modal' && docId) {
+                    if (docId && modalId === '#srs-doc-modal') {
                         const embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
                         const container = modal.querySelector('#srs-doc-container');
                         if (container) {
                             container.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full border-none"></iframe>`;
+                        }
+                    }
+                    
+                    // Handle generic iframe sources
+                    const iframeSrc = button.dataset.iframeSrc;
+                    if (iframeSrc) {
+                        const iframe = modal.querySelector('.modal-iframe');
+                        if (iframe && iframe.getAttribute('src') !== iframeSrc) {
+                            iframe.src = iframeSrc;
                         }
                     }
                     
@@ -2016,6 +1806,7 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
                     openModal(modal);
                 });
             });
+
             document.querySelectorAll('.modal-overlay').forEach(overlay => {
                 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(overlay); });
                 overlay.querySelector('.modal-close-btn')?.addEventListener('click', () => closeModal(overlay));
@@ -2269,7 +2060,7 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
                     });
                 });
             }
-            setupModalCopyToClipboard();
+            // setupModalCopyToClipboard(); // This can be removed as the modal is deleted
             
             function setupTextToSpeech() {
                 const synth = window.speechSynthesis;
@@ -2387,454 +2178,6 @@ Switch(config-if)#ip address 10.0.0.2 255.255.255.0
                 });
             }
             setupTextToSpeech();
-
-            function createTransformationCharts() {
-                const tooltipTitleCallback = (tooltipItems) => {
-                    const item = tooltipItems[0];
-                    let label = item.chart.data.labels[item.dataIndex];
-                    return Array.isArray(label) ? label.join(' ') : label;
-                };
-
-                const wrapLabel = (label) => {
-                    const maxLength = 16;
-                    if (label.length <= maxLength) return label;
-                    const words = label.split(' ');
-                    const lines = [];
-                    let currentLine = '';
-                    words.forEach(word => {
-                        if ((currentLine + word).length > maxLength) {
-                            lines.push(currentLine.trim());
-                            currentLine = '';
-                        }
-                        currentLine += word + ' ';
-                    });
-                    lines.push(currentLine.trim());
-                    return lines;
-                };
-                
-                const piecesCtx = document.getElementById('piecesChart');
-                if (piecesCtx) {
-                     new Chart(piecesCtx.getContext('2d'), {
-                        type: 'bar',
-                        data: {
-                            labels: ['Pendataan & Administrasi', 'Pemasaran & Iklan', 'Proses Transaksi', 'Kontrol Inventaris'].map(wrapLabel),
-                            datasets: [
-                                { label: 'Proses Manual (Menit)', data: [45, 120, 30, 60], backgroundColor: 'rgba(199, 165, 91, 0.5)', borderColor: 'rgba(199, 165, 91, 1)', borderWidth: 1 },
-                                { label: 'Proses Digital (Menit)', data: [5, 10, 5, 2], backgroundColor: 'rgba(59, 138, 133, 0.7)', borderColor: 'rgba(59, 138, 133, 1)', borderWidth: 1 }
-                            ]
-                        },
-                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: 'var(--text-ink)' } }, title: { display: true, text: 'Perbandingan Waktu Proses', color: 'var(--text-ink)', font: { size: 16, family: 'Amiri' } } }, scales: { x: { ticks: { color: 'var(--text-ink)' } }, y: { ticks: { color: 'var(--text-ink)' } } } }
-                    });
-                }
-               
-                const featuresDonutCtx = document.getElementById('featuresDonutChart');
-                if(featuresDonutCtx) {
-                    new Chart(featuresDonutCtx.getContext('2d'), {
-                        type: 'doughnut',
-                        data: {
-                            labels: ['Portal Pemilik', 'Galeri Digital', 'Manajemen Inventaris', 'Transaksi Aman'],
-                            datasets: [{
-                                label: 'Kontribusi Fitur',
-                                data: [30, 25, 25, 20],
-                                backgroundColor: ['#c7a55b', '#3b8a85', '#b8934c', '#3a2d20'],
-                                hoverOffset: 4
-                            }]
-                        },
-                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom', labels: { color: 'var(--text-ink)', font: { family: 'Amiri' } } } } }
-                    });
-                }
-
-                const impactRadarCtx = document.getElementById('impactRadarChart');
-                if(impactRadarCtx) {
-                     new Chart(impactRadarCtx.getContext('2d'), {
-                        type: 'radar',
-                        data: {
-                            labels: ['Performance', 'Information', 'Economy', 'Control', 'Efficiency', 'Service'],
-                            datasets: [
-                                { label: 'Sistem Lama', data: [3, 4, 3, 2, 3, 4], fill: true, backgroundColor: 'rgba(199, 165, 91, 0.2)', borderColor: 'rgba(199, 165, 91, 1)', pointBackgroundColor: 'rgba(199, 165, 91, 1)'},
-                                { label: 'Sistem Baru', data: [9, 8, 9, 9, 10, 9], fill: true, backgroundColor: 'rgba(59, 138, 133, 0.2)', borderColor: 'rgba(59, 138, 133, 1)', pointBackgroundColor: 'rgba(59, 138, 133, 1)'}
-                            ]
-                        },
-                        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { labels: { color: 'var(--text-ink)', font: { family: 'Amiri' } } } }, scales: { r: { min: 0, max: 10, ticks: { stepSize: 2, color: 'var(--text-ink)', backdropColor: 'rgba(253, 246, 227, 0.5)'}, pointLabels: { color: 'var(--text-ink)', font: { family: 'Amiri' }}, angleLines: {color: 'rgba(184, 147, 76, 0.5)'}, grid: { color: 'rgba(184, 147, 76, 0.5)' } } } }
-                    });
-                }
-            }
-            function createGreenhouseApp() {
-                const iframe = document.getElementById('greenhouse-iframe');
-                if (!iframe) return;
-
-                const greenhouseHTML = `
-                <!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dasbor Analisis: Greenhouse Cerdas v5</title>
-    <script src="https://cdn.tailwindcss.com"><\/script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"><\/script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/@phosphor-icons/web"><\/script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9;
-        }
-        #app-container {
-            max-width: 390px;
-            height: 860px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-        .view { display: none; }
-        .view.active { display: block; }
-        #nav-menu { transition: transform 0.3s ease-in-out; }
-        .toast {
-            position: fixed;
-            bottom: -100px;
-            left: 50%;
-            transform: translateX(-50%);
-            padding: 12px 20px;
-            background-color: #2d3748;
-            color: white;
-            border-radius: 9999px;
-            font-size: 14px;
-            z-index: 50;
-            transition: bottom 0.5s ease-in-out;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        .toast.show {
-            bottom: 30px;
-        }
-    </style>
-</head>
-<body class="flex justify-center items-center min-h-screen">
-
-    <div id="app-container" class="bg-white rounded-3xl border-8 border-gray-800 overflow-hidden relative">
-        <div id="main-view" class="h-full flex flex-col">
-            <header class="bg-white p-4 flex items-center justify-between border-b z-20">
-                <button id="menu-btn" class="p-2">
-                    <i class="ph-bold ph-list text-2xl"></i>
-                </button>
-                <h1 id="view-title" class="text-lg font-bold">Green House</h1>
-                <div class="w-8"></div>
-            </header>
-            
-            <main class="flex-grow overflow-y-auto p-4 bg-slate-50">
-                <!-- Dashboard View -->
-                <div id="dashboard-view" class="view active space-y-4">
-                    <div class="bg-white p-4 rounded-lg border">
-                        <h3 class="text-sm font-semibold text-gray-600 mb-3">Status Air</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-3"><i class="ph ph-thermometer-cold text-xl text-blue-500"></i><span class="text-sm text-gray-700">Suhu Air</span></div><span id="suhu-air" class="font-bold text-md">20.0°C</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-3"><i class="ph ph-plant text-xl text-green-500"></i><span class="text-sm text-gray-700">EC Air</span></div><span id="ec-air" class="font-bold text-md">1.5 s/cm</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-3"><i class="ph ph-drop text-xl text-orange-500"></i><span class="text-sm text-gray-700">pH Air</span></div><span id="ph-air" class="font-bold text-md">4.5</span>
-                            </div>
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center space-x-3"><i class="ph ph-waves text-xl text-cyan-500"></i><span class="text-sm text-gray-700">Ketinggian Air</span></div><span id="ketinggian-air" class="font-bold text-md">30 cm</span>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="bg-white p-4 rounded-lg border">
-                          <h3 class="text-sm font-semibold text-gray-600 mb-2">Tren Udara Greenhouse</h3>
-                          <canvas id="env-chart" height="120"></canvas>
-                     </div>
-                    <div class="bg-white p-4 rounded-lg border">
-                        <h3 class="text-sm font-semibold text-gray-600 mb-3">Kontrol Sistem</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <label for="kontrol-nutrisi" class="block text-sm font-medium text-gray-700 mb-1">Nutrisi AB (ml)</label>
-                                <div class="flex space-x-2">
-                                    <input type="number" id="kontrol-nutrisi" class="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="e.g. 50">
-                                    <button id="send-nutrisi" class="bg-blue-600 text-white px-4 rounded-md hover:bg-blue-700 flex-shrink-0">Kirim</button>
-                                </div>
-                            </div>
-                            <div>
-                                <label for="kontrol-ph" class="block text-sm font-medium text-gray-700 mb-1">pH Up/Down (ml)</label>
-                                <div class="flex space-x-2">
-                                    <input type="number" step="0.1" id="kontrol-ph" class="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="e.g. 10">
-                                    <button id="send-ph" class="bg-blue-600 text-white px-4 rounded-md hover:bg-blue-700 flex-shrink-0">Kirim</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Koneksi View -->
-                <div id="koneksi-view" class="view">
-                    <div class="bg-white p-4 rounded-lg border">
-                        <div class="space-y-4">
-                             <div class="flex flex-col items-center text-center">
-                                 <i class="ph ph-wifi-high text-4xl text-indigo-500"></i>
-                                 <h3 class="text-lg font-semibold mt-2">Koneksi Greenhouse</h3>
-                                 <p class="text-sm text-gray-600 pb-2">Hubungkan aplikasi dengan perangkat keras di greenhouse Anda.</p>
-                             </div>
-                            <div id="status-koneksi" class="text-center p-3 rounded-md bg-red-100 text-red-700">Status: Tidak tersambung</div>
-                            <div>
-                                <label for="ssid" class="block text-sm font-medium text-gray-700">SSID</label>
-                                <input type="text" id="ssid" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" placeholder="Nama WiFi Greenhouse">
-                            </div>
-                            <div>
-                                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                                <input type="password" id="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                            </div>
-                            <button id="connect-btn" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700">SIMPAN & SAMBUNGKAN</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Pesan View -->
-                <div id="pesan-view" class="view">
-                    <div class="bg-white p-4 rounded-lg border">
-                        <div class="space-y-4">
-                             <div class="flex flex-col items-center text-center">
-                                 <i class="ph ph-bell text-4xl text-orange-500"></i>
-                                 <h3 class="text-lg font-semibold mt-2">Pusat Notifikasi</h3>
-                                 <p class="text-sm text-gray-600 pb-2">Peringatan dan pembaruan sistem akan muncul di sini.</p>
-                             </div>
-                            <div id="pesan-list" class="space-y-3 pt-4 border-t">
-                                <!-- Pesan akan ditambahkan secara dinamis oleh JavaScript -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- Konfigurasi View -->
-                <div id="konfigurasi-view" class="view">
-                     <div class="bg-white p-4 rounded-lg border">
-                         <div class="space-y-3">
-                             <div class="flex flex-col items-center text-center">
-                                 <i class="ph ph-gear text-4xl text-green-500"></i>
-                                 <h3 class="text-lg font-semibold mt-2">Konfigurasi Hardware</h3>
-                             </div>
-                             <p class="text-sm text-center text-gray-600 pb-2">Sesuaikan jumlah jalur pipa hidroponik yang aktif dan dipantau oleh sistem.</p>
-                             <div>
-                                 <label for="jumlah-pipa" class="block text-sm font-medium text-gray-700">Jumlah Jalur Pipa Aktif</label>
-                                 <input type="number" id="jumlah-pipa" value="150" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                             </div>
-                              <button id="save-config-btn" class="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700">SIMPAN KONFIGURASI</button>
-                         </div>
-                       </div>
-                </div>
-
-            </main>
-        </div>
-
-        <!-- Navigation Menu -->
-        <div id="nav-menu" class="absolute top-0 left-0 h-full w-64 bg-gray-800 text-white p-6 z-30 transform -translate-x-full">
-            <h2 class="text-xl font-bold mb-8">Menu</h2>
-            <nav class="space-y-4">
-                <a href="#" class="nav-link block" data-view="dashboard-view" data-title="Green House">Dasbor Utama</a>
-                <a href="#" class="nav-link block" data-view="konfigurasi-view" data-title="Konfigurasi Hardware">Konfigurasi Hardware</a>
-                <a href="#" class="nav-link block" data-view="koneksi-view" data-title="Koneksi Greenhouse">Koneksi Greenhouse</a>
-                <a href="#" class="nav-link block" data-view="pesan-view" data-title="Pesan">Pesan Greenhouse</a>
-            </nav>
-        </div>
-        <div id="overlay" class="absolute inset-0 bg-black opacity-0 z-20 pointer-events-none transition-opacity duration-300"></div>
-
-    </div>
-    
-    <div id="toast-notification" class="toast"></div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const appState = {
-                suhuAir: 20.0,
-                ecAir: 1.5,
-                phAir: 4.5,
-                ketinggianAir: 30,
-                suhuUdara: 35,
-                kelembapanUdara: 67,
-                connected: false,
-            };
-
-            const chartData = {
-                labels: [],
-                datasets: [{
-                    label: 'Suhu Udara (°C)',
-                    data: [],
-                    borderColor: '#ef4444',
-                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                    fill: true,
-                    yAxisID: 'y',
-                    tension: 0.3
-                }, {
-                    label: 'Kelembapan (%RH)',
-                    data: [],
-                    borderColor: '#3b82f6',
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    fill: true,
-                    yAxisID: 'y1',
-                    tension: 0.3
-                }]
-            };
-
-            const menuBtn = document.getElementById('menu-btn');
-            const navMenu = document.getElementById('nav-menu');
-            const overlay = document.getElementById('overlay');
-            const viewTitle = document.getElementById('view-title');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const views = document.querySelectorAll('.view');
-            const connectBtn = document.getElementById('connect-btn');
-            const statusKoneksi = document.getElementById('status-koneksi');
-            const saveConfigBtn = document.getElementById('save-config-btn');
-            const jumlahPipaInput = document.getElementById('jumlah-pipa');
-            const pesanList = document.getElementById('pesan-list');
-            const toast = document.getElementById('toast-notification');
-
-            function showToast(message) {
-                toast.textContent = message;
-                toast.classList.add('show');
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 3000);
-            }
-
-            function toggleMenu() {
-                navMenu.classList.toggle('-translate-x-full');
-                overlay.classList.toggle('opacity-50');
-                overlay.classList.toggle('pointer-events-none');
-            }
-            
-            menuBtn.addEventListener('click', toggleMenu);
-            overlay.addEventListener('click', toggleMenu);
-
-            function showView(viewId, title) {
-                views.forEach(view => view.classList.remove('active'));
-                document.getElementById(viewId).classList.add('active');
-                viewTitle.textContent = title;
-                if (!navMenu.classList.contains('-translate-x-full')) {
-                    toggleMenu();
-                }
-            }
-
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showView(e.target.dataset.view, e.target.dataset.title);
-                });
-            });
-            
-            const ctx = document.getElementById('env-chart').getContext('2d');
-            const envChart = new Chart(ctx, {
-                type: 'line',
-                data: chartData,
-                options: {
-                    responsive: true,
-                    interaction: { mode: 'index', intersect: false },
-                    scales: {
-                        x: { display: true, ticks: { maxTicksLimit: 5 } },
-                        y: { type: 'linear', display: true, position: 'left', title: { display: false }, suggestedMin: 10, suggestedMax: 40},
-                        y1: { type: 'linear', display: true, position: 'right', title: { display: false }, grid: { drawOnChartArea: false }, suggestedMin: 40, suggestedMax: 90 }
-                    },
-                    plugins: { legend: { display: false } },
-                    elements: { point: { radius: 0 } }
-                }
-            });
-
-            connectBtn.addEventListener('click', () => {
-                statusKoneksi.textContent = 'Menyambungkan...';
-                statusKoneksi.className = 'text-center p-3 rounded-md bg-yellow-100 text-yellow-700';
-                setTimeout(() => {
-                    appState.connected = true;
-                    statusKoneksi.textContent = 'Status: Tersambung';
-                    statusKoneksi.className = 'text-center p-3 rounded-md bg-green-100 text-green-700';
-                    showToast('Berhasil tersambung ke Greenhouse!');
-                    addPesan('info', 'Koneksi Terhubung', 'Sistem berhasil terhubung ke greenhouse.');
-                }, 2000);
-            });
-
-            function loadConfig() {
-                const savedPipes = localStorage.getItem('jumlahPipa');
-                if (savedPipes) {
-                    jumlahPipaInput.value = savedPipes;
-                }
-            }
-            saveConfigBtn.addEventListener('click', () => {
-                localStorage.setItem('jumlahPipa', jumlahPipaInput.value);
-                showToast('Konfigurasi berhasil disimpan!');
-            });
-            
-            function addPesan(type, title, text) {
-                const icons = {
-                    warning: 'ph ph-warning-circle',
-                    error: 'ph ph-fire',
-                    info: 'ph ph-check-circle'
-                };
-                const colors = {
-                    warning: 'yellow',
-                    error: 'red',
-                    info: 'green'
-                };
-                const time = new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
-
-                const pesanDiv = document.createElement('div');
-                pesanDiv.className = \`bg-white p-4 rounded-lg border flex items-center space-x-3\`;
-                pesanDiv.innerHTML = \`
-                    <i class="\${icons[type]} text-3xl text-\${colors[type]}-500"></i>
-                    <div>
-                        <p class="font-semibold">\${title}</p>
-                        <p class="text-sm text-gray-500">\${text} - \${time}</p>
-                    </div>\`;
-                pesanList.prepend(pesanDiv);
-            }
-
-            function updateDashboard() {
-                if (!appState.connected) return;
-                
-                appState.suhuAir += (Math.random() - 0.5) * 0.2;
-                appState.ecAir += (Math.random() - 0.5) * 0.1;
-                appState.phAir += (Math.random() - 0.5) * 0.05;
-                appState.ketinggianAir += (Math.random() - 0.5) * 1;
-                appState.suhuUdara += (Math.random() - 0.5) * 0.3;
-                appState.kelembapanUdara += (Math.random() - 0.5) * 1;
-
-                document.getElementById('suhu-air').textContent = \`\${appState.suhuAir.toFixed(1)}°C\`;
-                document.getElementById('ec-air').textContent = \`\${appState.ecAir.toFixed(1)} s/cm\`;
-                document.getElementById('ph-air').textContent = appState.phAir.toFixed(1);
-                document.getElementById('ketinggian-air').textContent = \`\${Math.round(appState.ketinggianAir)} cm\`;
-
-                const now = new Date().toLocaleTimeString('id-ID', { minute: '2-digit', second: '2-digit' });
-                chartData.labels.push(now);
-                chartData.datasets[0].data.push(appState.suhuUdara.toFixed(1));
-                chartData.datasets[1].data.push(Math.round(appState.kelembapanUdara));
-
-                if(chartData.labels.length > 10) {
-                    chartData.labels.shift();
-                    chartData.datasets.forEach(dataset => dataset.data.shift());
-                }
-                envChart.update();
-                
-                if (Math.random() < 0.05) {
-                     addPesan('warning', 'Kekurangan pH', 'Tingkat pH air di bawah ambang batas normal.');
-                }
-                if (Math.random() < 0.03) {
-                    addPesan('error', 'Suhu Air Naik', 'Suhu air terdeteksi melebihi batas aman.');
-                }
-            }
-            
-            document.getElementById('send-nutrisi').addEventListener('click', () => showToast('Perintah pengiriman nutrisi terkirim.'));
-            document.getElementById('send-ph').addEventListener('click', () => showToast('Perintah penyesuaian pH terkirim.'));
-
-            loadConfig();
-            setInterval(updateDashboard, 2000);
-            
-            addPesan('warning', 'Kekurangan pH', 'Terdeteksi 2 menit lalu.');
-            addPesan('error', 'Suhu Air Naik', 'Terdeteksi 5 menit lalu.');
-        });
-    <\/script>
-</body>
-</html>
-                `;
-
-                iframe.srcdoc = greenhouseHTML;
-            }
         });
     </script>
 
