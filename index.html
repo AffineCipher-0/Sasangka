@@ -1791,61 +1791,66 @@
                     modal.querySelectorAll('iframe').forEach(iframe => iframe.src = 'about:blank');
                     const image = modal.querySelector('.modal-image');
                     if (image) image.src = '';
-                    const srsContainer = modal.querySelector('#srs-doc-container');
-                    if (srsContainer) srsContainer.innerHTML = '';
+                    const docContainer = modal.querySelector('.modal-body > .modal-main-content[id]');
+                    if(docContainer) docContainer.innerHTML = '';
+
 
                     if (modalTriggerElement) modalTriggerElement.focus();
                     modalTriggerElement = null; currentActiveModal = null;
                 }, 400); 
             };
 
-            document.querySelectorAll('[data-modal-target]').forEach(button => {
-                button.addEventListener('click', () => {
-                    const modalId = button.dataset.modalTarget;
-                    const modal = document.querySelector(modalId);
-                    if (!modal) return;
+            // *** FIX: Use event delegation for all modal triggers ***
+            document.addEventListener('click', (event) => {
+                const button = event.target.closest('[data-modal-target]');
+                if (!button) return;
+                
+                const modalId = button.dataset.modalTarget;
+                const modal = document.querySelector(modalId);
+                if (!modal) return;
 
-                    // Handle Manuscript content
-                    if (modalId === '#manuscript-modal') {
-                        const manuscriptId = button.dataset.manuscriptId;
-                        const manuscriptData = manuscripts[manuscriptId];
-                        if (manuscriptData) {
-                            modal.querySelector('#manuscript-modal-title').textContent = manuscriptData.title;
-                            modal.querySelector('#manuscript-modal-content').innerHTML = manuscriptData.content;
-                        }
+                // Handle Manuscript content
+                if (modalId === '#manuscript-modal') {
+                    const manuscriptId = button.dataset.manuscriptId;
+                    const manuscriptData = manuscripts[manuscriptId];
+                    if (manuscriptData) {
+                        modal.querySelector('#manuscript-modal-title').textContent = manuscriptData.title;
+                        modal.querySelector('#manuscript-modal-content').innerHTML = manuscriptData.content;
                     }
+                }
 
-                    // Handle Image Viewer
-                    if (modalId === '#image-viewer-modal') {
-                         const imageSrc = button.dataset.src;
-                         const imgElement = modal.querySelector('.modal-image');
-                         if(imgElement) imgElement.src = imageSrc;
+                // Handle Image Viewer
+                if (modalId === '#image-viewer-modal') {
+                     const imageSrc = button.dataset.src;
+                     const imgElement = modal.querySelector('.modal-image');
+                     if(imgElement) imgElement.src = imageSrc;
+                }
+                
+                // Handle Google Drive embed
+                const docId = button.dataset.docId;
+                if (docId) { 
+                    const embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
+                    const container = modal.querySelector('.modal-body > .modal-main-content[id]'); 
+                    if (container) {
+                        container.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full border-none" allow="fullscreen"></iframe>`;
                     }
-                    
-                    // Handle Google Drive embed
-                    const docId = button.dataset.docId;
-                    if (docId) { 
-                        const embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
-                        const container = modal.querySelector('.modal-body > .modal-main-content[id]'); 
-                        if (container) {
-                            container.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full border-none" allow="fullscreen"></iframe>`;
-                        }
+                }
+                
+                // Handle generic iframe sources
+                const iframeSrc = button.dataset.iframeSrc;
+                if (iframeSrc) {
+                    const iframe = modal.querySelector('.modal-iframe');
+                    if (iframe && iframe.getAttribute('src') !== iframeSrc) {
+                        iframe.src = iframeSrc;
                     }
-                    
-                    // Handle generic iframe sources
-                    const iframeSrc = button.dataset.iframeSrc;
-                    if (iframeSrc) {
-                        const iframe = modal.querySelector('.modal-iframe');
-                        if (iframe && iframe.getAttribute('src') !== iframeSrc) {
-                            iframe.src = iframeSrc;
-                        }
-                    }
-                    
-                    const parentModal = button.closest('.modal-overlay');
-                    if (parentModal) closeModal(parentModal);
-                    openModal(modal);
-                });
+                }
+                
+                const parentModal = button.closest('.modal-overlay');
+                if (parentModal) closeModal(parentModal);
+                
+                openModal(modal);
             });
+
 
             document.querySelectorAll('.modal-overlay').forEach(overlay => {
                 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(overlay); });
@@ -2058,49 +2063,6 @@
                 });
                 resizeCanvas(); createStars(); animateStars();
             }
-
-            document.querySelectorAll('.enlargeable-image').forEach(image => {
-                image.addEventListener('click', () => {
-                    const viewerModal = document.getElementById('image-viewer-modal');
-                    openModal(viewerModal);
-                    viewerModal.querySelector('.modal-image').src = image.src;
-                });
-            });
-
-            function setupModalCopyToClipboard() {
-                document.getElementById('amikom-network-modal').addEventListener('click', (event) => {
-                    const copyButton = event.target.closest('.copy-btn');
-                    if (!copyButton) return;
-
-                    const codeBlock = copyButton.closest('.code-block');
-                    const codeElement = codeBlock?.querySelector('code');
-                    const textToCopy = codeElement?.innerText;
-                    
-                    if (!textToCopy) return;
-
-                    navigator.clipboard.writeText(textToCopy).then(() => {
-                        const icon = copyButton.querySelector('i');
-                        const btnText = copyButton.querySelector('.btn-text');
-                        const originalClass = icon.className;
-                        const originalText = btnText ? btnText.textContent : '';
-                        
-                        if(btnText) btnText.textContent = 'Tersalin!';
-                        icon.className = 'fas fa-check';
-                        
-                        setTimeout(() => {
-                           if(btnText) btnText.textContent = originalText;
-                            icon.className = originalClass;
-                        }, 2000);
-                    }).catch(err => {
-                        console.error('Gagal menyalin teks:', err);
-                        const btnText = copyButton.querySelector('.btn-text');
-                        const originalText = btnText ? btnText.textContent : '';
-                        if(btnText) btnText.textContent = 'Gagal!';
-                        setTimeout(() => { if(btnText) btnText.textContent = originalText; }, 2000);
-                    });
-                });
-            }
-            // setupModalCopyToClipboard(); // This can be removed as the modal is deleted
             
             function setupTextToSpeech() {
                 const synth = window.speechSynthesis;
@@ -2223,13 +2185,4 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
 
