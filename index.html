@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algoritma | Portofolio Gatot Sasangka</title>
+    <title>Algoritma Peradaban | Portofolio Gatot Sasangka</title>
 
     <meta name="description" content="Portofolio Gatot Sasangka yang disajikan dalam tema Baitul Hikmah, menampilkan proyek-proyek di bidang Jaringan, IoT, AI, dan Pemrograman Web.">
     <meta name="keywords" content="Gatot Sasangka, portofolio, insinyur jaringan, IoT, AI, pengembangan web, Baitul Hikmah, astrolab, sasangkagatot@gmail.com, CV">
-    <meta property="og:title" content="Algoritma | Portofolio Gatot Sasangka">
+    <meta property="og:title" content="Algoritma Peradaban | Portofolio Gatot Sasangka">
     <meta property="og:description" content="Menjelajahi proyek-proyek inovatif dengan semangat intelektual Zaman Keemasan.">
     <meta property="og:image" content="https://placehold.co/1200x630/1a2a44/c7a55b?text=Algoritma+Peradaban">
     <meta property="og:url" content="https://affinecipher-0.github.io/Sasangka/">
@@ -843,7 +843,7 @@
                         <header class="pb-8">
                             <div class="container mx-auto px-6">
                                 <div class="architectural-header">
-                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">Algoritma</h1>
+                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">Algoritma Peradaban</h1>
                                      <div class="text-sm tracking-widest flex flex-col md:flex-row justify-center md:justify-between items-center text-[var(--text-light)]">
                                          <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
                                          <span class="live-datetime mt-2 md:mt-0"></span>
@@ -969,7 +969,7 @@
                             </article>
                             <article class="article-frame animate-on-scroll animation-delay-600">
                                 <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer">
-                                    <h4 class="text-2xl font-bold mb-2 hover:underline">Toko Online – SECONDHAND</h4>
+                                    <h4 class="text-2xl font-bold mb-2 hover:underline">Toko Online Barang Bekas – SECONDHAND</h4>
                                 </a>
                                 <p class="text-sm mb-4">Kategori: Pengembangan Web, E-Commerce, PHP, MySQL, HTML, CSS, JavaScript</p>
                                 <p class="text-justify">
@@ -991,10 +991,10 @@
                                 </div>
                             </article>
                             <article class="article-frame animate-on-scroll" style="animation-delay: 1s;">
-                                <h4 class="text-2xl font-bold mb-2">Transformasi Digital Studi Kasus: Modernisasi Proses Jual Beli Mobil</h4>
+                                <h4 class="text-2xl font-bold mb-2">Transformasi Digital Studi Kasus: Modernisasi Proses Jual Beli Mobil Bekas</h4>
                                 <p class="text-sm mb-4">Kategori: Analisis Sistem, Inovasi Digital, Desain Proses Bisnis</p>
                                 <p class="text-justify">
-                                    Studi kasus ini menganalisis modernisasi proses jual beli mobil, dari era klasik ke digital, dengan fokus pada pengembangan sistem informasi inovatif untuk menciptakan ekosistem yang transparan dan aman.
+                                    Studi kasus ini menganalisis modernisasi proses jual beli mobil bekas, dari era klasik ke digital, dengan fokus pada pengembangan sistem informasi inovatif untuk menciptakan ekosistem yang transparan dan aman.
                                 </p>
                                 <div class="text-right mt-6">
                                     <button data-modal-target="#pieces-modal" data-iframe-src="https://affinecipher-0.github.io/PIECES/" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</button>
@@ -1788,19 +1788,26 @@
                 document.body.classList.remove('body-no-scroll');
                 if (timelineObserver) { timelineObserver.disconnect(); timelineObserver = null; }
                 setTimeout(() => {
+                    // Stop iframes from playing in the background
                     modal.querySelectorAll('iframe').forEach(iframe => iframe.src = 'about:blank');
+                    
+                    // Clear the image in the image viewer modal
                     const image = modal.querySelector('.modal-image');
                     if (image) image.src = '';
-                    const docContainer = modal.querySelector('.modal-body > .modal-main-content[id]');
-                    if(docContainer) docContainer.innerHTML = '';
 
+                    // Specifically clear the content of modals that have dynamically injected iframes
+                    // to prevent issues on reopening. This avoids clearing the certificate gallery.
+                    if (modal.id === 'srs-doc-modal' || modal.id === 'cnn-doc-modal') {
+                        const docContainer = modal.querySelector('.modal-main-content[id]');
+                        if (docContainer) docContainer.innerHTML = '';
+                    }
 
                     if (modalTriggerElement) modalTriggerElement.focus();
                     modalTriggerElement = null; currentActiveModal = null;
                 }, 400); 
             };
 
-            // *** FIX: Use event delegation for all modal triggers ***
+            // *** Use event delegation for all modal triggers ***
             document.addEventListener('click', (event) => {
                 const button = event.target.closest('[data-modal-target]');
                 if (!button) return;
