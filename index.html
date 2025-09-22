@@ -104,6 +104,8 @@
             box-shadow: 0 0 0 4px var(--bg-parchment), 0 0 0 5px var(--border-gold);
             margin-bottom: 2rem;
             transition: all 0.3s ease-in-out;
+            position: relative;
+            z-index: 1;
         }
         .article-frame:hover {
             transform: translateY(-5px);
@@ -252,6 +254,21 @@
         #content-pages.content-visible { transform: translateX(0); }
         .page-content-wrapper { overflow-y: auto; position: relative; }
         
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        main#page-main-content > section.page {
+            position: relative;
+            z-index: 1;
+        }
+
         /* Sidebar Styling */
         .sidebar {
             width: 100%; transition: all 0.5s ease-in-out;
@@ -312,13 +329,15 @@
         /* Specific Component Adjustments for Light BG */
         .article-frame .classic-button, 
         .modal-body .classic-button,
-        .manuscript-item .classic-button {
+        .manuscript-item .classic-button,
+        .project-card .classic-button {
             color: var(--text-ink); border-color: var(--border-gold);
             box-shadow: 3px 3px 0 #dcd3c1;
         }
         .article-frame .classic-button:hover,
         .modal-body .classic-button:hover,
-        .manuscript-item .classic-button:hover {
+        .manuscript-item .classic-button:hover,
+        .project-card .classic-button:hover {
             color: var(--bg-parchment); background-color: var(--border-gold);
             box-shadow: 1px 1px 0 #dcd3c1;
         }
@@ -422,6 +441,8 @@
             text-align: center;
             color: var(--text-light);
             opacity: 0.7;
+            position: relative;
+            z-index: 1;
         }
         .footer-copyright {
             font-size: 0.8rem;
@@ -461,6 +482,55 @@
             font-size: 1rem;
             line-height: 1.7;
             text-align: justify;
+        }
+        
+        /* --- REVISED: PROJECT CARD STYLES FOR GRID LAYOUT--- */
+        .project-card {
+            background-color: var(--bg-parchment);
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 0 0 4px var(--bg-parchment), 0 0 0 5px var(--border-gold);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease-in-out;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 0 4px var(--bg-parchment), 0 0 0 5px var(--border-gold);
+        }
+        .project-image-placeholder {
+            width: 100%;
+            height: 250px;
+            margin: 0;
+            background-color: var(--bg-deep-blue);
+            color: var(--accent-gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-content .manuscript-title {
+            font-size: 1.6rem;
+            font-family: 'Amiri', serif;
+            font-weight: 700;
+        }
+        .project-content .manuscript-excerpt {
+            flex-grow: 1;
+        }
+        .project-buttons {
+            margin-top: auto;
+            padding-top: 1rem;
+            display: flex;
+            justify-content: flex-start;
+            gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         /* NEW: Text-to-Speech Button Styles */
@@ -586,10 +656,10 @@
                         <path class="astrolabe-st1" d="M179.3,73.2 L320.7,426.8 M73.2,179.3 L426.8,320.7 M73.2,320.7 L426.8,179.3 M179.3,426.8 L320.7,73.2"/>
                     </g>
                      <g id="astrolabe-markings" class="astrolabe-st1" font-size="12" font-family="Amiri, serif" fill="#c7a55b" stroke="none" letter-spacing="1">
-                        <text x="250" y="45" text-anchor="middle">N</text>
+                        <text x="250" y="45" text-anchor="middle">U</text>
                         <text x="250" y="465" text-anchor="middle">S</text>
-                        <text x="40" y="255" text-anchor="middle">W</text>
-                        <text x="460" y="255" text-anchor="middle">E</text>
+                        <text x="40" y="255" text-anchor="middle">B</text>
+                        <text x="460" y="255" text-anchor="middle">T</text>
                         <text x="355" y="65" text-anchor="middle" transform="rotate(30, 355, 65)">30°</text>
                         <text x="435" y="145" text-anchor="middle" transform="rotate(60, 435, 145)">60°</text>
                         <text x="435" y="355" text-anchor="middle" transform="rotate(120, 435, 355)">120°</text>
@@ -641,7 +711,7 @@
                     </p>
                 </div>
                 <div class="mt-8">
-                    <button id="open-book-btn" class="classic-button text-xl">Dossier</button>
+                    <button id="open-book-btn" class="classic-button text-xl">Buka Dokumen</button>
                 </div>
             </div>
         </section>
@@ -649,7 +719,7 @@
         <div id="content-pages" class="h-full sidebar-minimized">
 
             <div id="page-content-container" class="page-content-wrapper">
-                
+                <canvas id="particle-canvas"></canvas>
                 <main id="page-main-content" class="p-8">
                     <section id="home-page" class="page">
                         <header class="pb-8">
@@ -667,32 +737,36 @@
                         <div class="fancy-divider animate-on-scroll animation-delay-200"></div>
 
                         <h2 class="text-4xl md:text-5xl mb-4 leading-tight text-center animate-on-scroll animation-delay-200 text-[var(--text-light)]">Jejak Inovasi: Dari Algoritma Al-Khwarizmi hingga Kecerdasan Buatan</h2>
-                        <p id="current-date" class="text-base text-center animate-on-scroll animation-delay-400 text-[var(--text-light)] opacity-80"></p>
+                         <p class="max-w-3xl mx-auto text-center text-lg mb-10 text-[var(--text-light)] animate-on-scroll animation-delay-400">
+                           Sebuah penelusuran sejarah yang memetakan evolusi pemikiran komputasi, dari konsep fundamental yang diletakkan oleh Al-Khwarizmi hingga era kecerdasan buatan yang mendefinisikan kembali masa depan kita.
+                        </p>
                         
-                        <div class="text-lg leading-relaxed text-justify animate-on-scroll animation-delay-400 text-[var(--text-light)] space-y-8 mt-8">
-                            <div>
-                                <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--accent-gold)] pl-4">Abad ke-9 — Awal Algoritma</h3>
-                                <p>Sejarah teknologi adalah perjalanan panjang tentang bagaimana ide-ide besar lahir dari fondasi yang diletakkan oleh para pemikir terdahulu. Perjalanan ini dimulai pada abad ke-9, ketika seorang ilmuwan Muslim bernama Al-Khwarizmi memperkenalkan konsep algoritma, dasar dari semua komputasi modern. Pemikirannya menjadi pondasi logika yang memungkinkan manusia merancang mesin yang dapat menghitung, memproses data, dan menyelesaikan masalah secara sistematis. “Algoritma bukan sekadar perhitungan, tetapi cara berpikir yang membentuk masa depan teknologi.”</p>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--accent-gold)] pl-4">Abad ke-15 — Revolusi Mesin Cetak</h3>
-                                <p>Berabad-abad kemudian, pada abad ke-15, Johannes Gutenberg menemukan mesin cetak, sebuah inovasi yang merevolusi penyebaran informasi. Sebelum itu, pengetahuan hanya dikuasai segelintir orang, namun mesin cetak membuat buku dan ilmu pengetahuan menyebar ke seluruh dunia, dengan dampak yang setara dengan internet di era modern: mempercepat kolaborasi dan memperluas wawasan umat manusia.</p>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--accent-gold)] pl-4">Abad ke-18 — Revolusi Industri</h3>
-                                <p>Memasuki abad ke-18, Revolusi Industri mengubah dunia secara drastis melalui mesin uap dan mekanisasi. Untuk pertama kalinya, tenaga mekanis menggantikan kerja fisik manusia, memicu perubahan sosial besar dan melahirkan era industri modern. Era ini juga menjadi fondasi bagi lahirnya teknologi komunikasi instan di abad berikutnya.</p>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--accent-gold)] pl-4">Abad ke-19–20 — Telegraf, Komputer & Internet</h3>
-                                <p>Pada abad ke-19, Samuel Morse memperkenalkan telegraf, memungkinkan komunikasi jarak jauh hanya dalam hitungan detik. Sandi Morse menjadi bahasa universal pertama dalam komunikasi digital, membuka jalan bagi telepon, radio, hingga internet, dan untuk pertama kalinya informasi bergerak lebih cepat daripada manusia itu sendiri. Abad ke-20 menandai kelahiran komputer digital. Generasi pertama komputer sangat besar dan terbatas kemampuannya, tetapi dalam beberapa dekade, inovasi mikroprosesor dan sirkuit terintegrasi membuat komputer menjadi lebih kecil, cepat, dan terjangkau. Komputer berkembang dari sekadar alat hitung menjadi pusat kendali digital yang menopang kehidupan modern. Menjelang akhir abad ini, lahirlah internet, jaringan global yang menghubungkan miliaran orang dan perangkat, menghapus batasan geografis dan menghadirkan revolusi kedua dalam penyebaran informasi setelah mesin cetak.</p>
-                            </div>
-                             <div>
-                                <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--accent-gold)] pl-4">Abad ke-21 — Kecerdasan Buatan & IoT</h3>
-                                <p>Kini, di abad ke-21, kita memasuki era di mana teknologi mampu berpikir dan belajar sendiri. Kecerdasan Buatan (Artificial Intelligence) dan Internet of Things (IoT) memungkinkan perangkat saling berkomunikasi, menganalisis data, dan mengambil keputusan secara mandiri. Mobil dapat mengemudi sendiri, rumah menjadi pintar, dan industri bekerja tanpa campur tangan manusia. Namun, kemajuan ini juga menghadirkan tantangan etika dan tanggung jawab untuk memastikan teknologi digunakan demi kebaikan bersama.</p>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--accent-gold)] pl-4">Penutup</h3>
-                                <p>Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa sejarah, menggabungkan warisan klasik dengan inovasi modern. Setiap karya menjadi bukti bahwa perjalanan teknologi adalah kisah yang belum berakhir — narasi yang terus ditulis setiap hari oleh para insinyur, pemikir, dan pencipta di seluruh dunia.</p>
+                        <div class="article-frame animate-on-scroll animation-delay-600">
+                             <div class="space-y-8">
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-scroll mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-9 — Awal Algoritma</h3>
+                                    <p class="text-justify">Sejarah teknologi adalah perjalanan panjang tentang bagaimana ide-ide besar lahir dari fondasi yang diletakkan oleh para pemikir terdahulu. Perjalanan ini dimulai pada abad ke-9, ketika seorang ilmuwan Muslim bernama Al-Khwarizmi memperkenalkan konsep algoritma, dasar dari semua komputasi modern. Pemikirannya menjadi pondasi logika yang memungkinkan manusia merancang mesin yang dapat menghitung, memproses data, dan menyelesaikan masalah secara sistematis. “Algoritma bukan sekadar perhitungan, tetapi cara berpikir yang membentuk masa depan teknologi.”</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-print mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-15 — Revolusi Mesin Cetak</h3>
+                                    <p class="text-justify">Berabad-abad kemudian, pada abad ke-15, Johannes Gutenberg menemukan mesin cetak, sebuah inovasi yang merevolusi penyebaran informasi. Sebelum itu, pengetahuan hanya dikuasai segelintir orang, namun mesin cetak membuat buku dan ilmu pengetahuan menyebar ke seluruh dunia, dengan dampak yang setara dengan internet di era modern: mempercepat kolaborasi dan memperluas wawasan umat manusia.</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-cogs mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-18 — Revolusi Industri</h3>
+                                    <p class="text-justify">Memasuki abad ke-18, Revolusi Industri mengubah dunia secara drastis melalui mesin uap dan mekanisasi. Untuk pertama kalinya, tenaga mekanis menggantikan kerja fisik manusia, memicu perubahan sosial besar dan melahirkan era industri modern. Era ini juga menjadi fondasi bagi lahirnya teknologi komunikasi instan di abad berikutnya.</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-laptop-code mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-19–20 — Era Digital Awal</h3>
+                                    <p class="text-justify">Pada abad ke-19, telegraf memungkinkan komunikasi instan, mengubah dunia selamanya. Abad ke-20 menandai kelahiran komputer digital, yang berevolusi dari mesin raksasa menjadi perangkat pribadi. Menjelang akhir abad ini, lahirlah internet, jaringan global yang menghubungkan miliaran orang, menghapus batasan geografis dan memicu revolusi informasi kedua.</p>
+                                </div>
+                                 <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-brain mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-21 — Kecerdasan Buatan & IoT</h3>
+                                    <p class="text-justify">Kini, di abad ke-21, kita memasuki era di mana teknologi mampu berpikir dan belajar sendiri. Kecerdasan Buatan (AI) dan Internet of Things (IoT) memungkinkan perangkat saling berkomunikasi, menganalisis data, dan mengambil keputusan secara mandiri. Dari mobil otonom hingga rumah pintar, kemajuan ini membawa tantangan etika dan tanggung jawab baru.</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-infinity mr-4 text-3xl text-[var(--accent-teal)]"></i>Masa Depan</h3>
+                                    <p class="text-justify">Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa sejarah, menggabungkan warisan klasik dengan inovasi modern. Setiap karya menjadi bukti bahwa perjalanan teknologi adalah kisah yang belum berakhir — narasi yang terus ditulis setiap hari oleh para insinyur, pemikir, dan pencipta di seluruh dunia.</p>
+                                </div>
                             </div>
                         </div>
                     </section>
@@ -710,8 +784,13 @@
                             </div>
                         </header>
                         <div class="fancy-divider"></div>
-                        <div class="article-frame animate-on-scroll">
-                            <h3 class="text-3xl font-bold mb-8 text-center">Karakter & Filosofi</h3>
+                        <div class="text-center text-[var(--text-light)]">
+                            <h3 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Karakter & Filosofi</h3>
+                            <p class="max-w-3xl mx-auto text-lg mb-10 animate-on-scroll animation-delay-200">
+                                Sebuah gambaran mendalam mengenai prinsip, nilai, dan pendekatan yang menjadi landasan dalam setiap langkah profesional dan pribadi.
+                            </p>
+                        </div>
+                        <div class="article-frame animate-on-scroll animation-delay-400">
                             <div class="space-y-8">
                                 <div class="profile-trait">
                                     <div class="profile-trait-icon"><i class="fas fa-sitemap"></i></div>
@@ -768,83 +847,101 @@
                             </div>
                         </header>
                         <div class="fancy-divider"></div>
-                        <h3 class="text-3xl font-bold text-center mb-10 animate-on-scroll">Proyek Unggulan</h3>
-                        <div class="space-y-12">
-                            <article class="article-frame animate-on-scroll animation-delay-200">
-                                <h4 class="text-2xl font-bold mb-2">IMAGE CLASSIFICATION ALGORITMA CONVOLUTIONAL NEURAL NETWORK (CNN)</h4>
-                                <p class="text-sm mb-4">Kategori: Kecerdasan Buatan, Machine Learning, Computer Vision</p>
-                                <p class="text-justify">
-                                    Proyek ini mendalami salah satu pilar utama computer vision modern dengan mengimplementasikan algoritma Convolutional Neural Network (CNN) untuk tugas klasifikasi gambar. Model dilatih untuk mengenali dan membedakan berbagai kelas objek dari dataset gambar, menunjukkan pemahaman mendalam tentang arsitektur deep learning dan aplikasinya dalam analisis visual.
-                                </p>
-                                <div class="text-right mt-6 flex justify-end gap-4">
-                                    <button data-modal-target="#cnn-doc-modal" data-doc-id="17CLeDEZGMRex0O3yFGt6Bm2CJs-zb1K8" class="classic-button text-sm py-2 px-4">Buka Dokumen</button>
-                                    <button data-modal-target="#cnn-sim-modal" data-iframe-src="https://affinecipher-0.github.io/Algoritma-CNN/" class="classic-button text-sm py-2 px-4">Jalankan Simulasi</button>
-                                    <a href="https://github.com/AffineCipher-0/Algoritma-CNN" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat Repositori</a>
+                        <h3 class="text-3xl md:text-4xl font-bold text-center mb-4 animate-on-scroll">Proyek Unggulan</h3>
+                        <p class="max-w-3xl mx-auto text-center text-lg mb-10 animate-on-scroll animation-delay-200">Berikut adalah beberapa proyek unggulan yang telah saya kembangkan, yang mencerminkan keahlian serta pengalaman saya dalam merancang dan mengimplementasikan solusi teknologi.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <article class="project-card h-full flex flex-col animate-on-scroll animation-delay-400">
+                                <div class="project-image-placeholder"><span>CNN</span></div>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">KLASIFIKASI GAMBAR DENGAN ALGORITMA CNN</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Kecerdasan Buatan, Machine Learning, Computer Vision</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                        Proyek ini mendalami salah satu pilar utama visi komputer modern dengan mengimplementasikan algoritma Convolutional Neural Network (CNN) untuk tugas klasifikasi gambar. Model dilatih untuk mengenali dan membedakan berbagai kelas objek dari dataset gambar, menunjukkan pemahaman mendalam tentang arsitektur deep learning dan aplikasinya dalam analisis visual.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <button data-modal-target="#cnn-doc-modal" data-doc-id="17CLeDEZGMRex0O3yFGt6Bm2CJs-zb1K8" class="classic-button text-sm py-2 px-4">Buka Dokumen</button>
+                                        <button data-modal-target="#cnn-sim-modal" data-iframe-src="https://affinecipher-0.github.io/Algoritma-CNN/" class="classic-button text-sm py-2 px-4">Jalankan Simulasi</button>
+                                        <a href="https://github.com/AffineCipher-0/Algoritma-CNN" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat Repositori</a>
+                                    </div>
                                 </div>
                             </article>
-                            <article class="article-frame animate-on-scroll animation-delay-400">
-                                <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" rel="noopener noreferrer">
-                                    <h4 class="text-2xl font-bold mb-2 hover:underline">ALAT PENERJEMAH SANDI MORSE BERBASIS MIKROKONTROLLER</h4>
-                                </a>
-                                <p class="text-sm mb-4">Kategori: Mikrokontroller, Arduino (C++), Algoritma Brute Force</p>
-                                <p class="text-justify">
-                                    Di era ketika informasi melintasi dunia melalui ketukan telegraf, sandi morse adalah bahasa universal pertama. Proyek ini adalah sebuah penghormatan modern terhadap teknologi fundamental tersebut, dengan membangun alat penerjemah berbasis mikrokontroler yang mengurai sandi morse secara akurat menggunakan algoritma <i>brute force</i>.
-                                </p>
-                                <div class="text-right mt-6">
-                                    <button data-modal-target="#morse-modal" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</button>
+                            <article class="project-card h-full flex flex-col animate-on-scroll animation-delay-600">
+                                <div class="project-image-placeholder"><span>Morse</span></div>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">ALAT PENERJEMAH SANDI MORSE BERBASIS MIKROKONTROLER</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Mikrokontroller, Arduino (C++), Algoritma Brute Force</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                        Di era ketika informasi melintasi dunia melalui ketukan telegraf, sandi morse adalah bahasa universal pertama. Proyek ini adalah sebuah penghormatan modern terhadap teknologi fundamental tersebut, dengan membangun alat penerjemah berbasis mikrokontroler yang mengurai sandi morse secara akurat.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Baca Dokumen Penelitian</a>
+                                    </div>
                                 </div>
                             </article>
-                            <article class="article-frame animate-on-scroll animation-delay-600">
-                                <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer">
-                                    <h4 class="text-2xl font-bold mb-2 hover:underline">Toko Online Barang – SECONDHAND</h4>
-                                </a>
-                                <p class="text-sm mb-4">Kategori: Pengembangan Web, E-Commerce, PHP, MySQL, HTML, CSS, JavaScript</p>
-                                <p class="text-justify">
-                                    Melompat ke era '90-an, saat World Wide Web mulai membuka gerbang perdagangan global. Proyek ini mereplikasi semangat awal e-commerce dengan membangun 'Secondhand', sebuah platform fungsional untuk jual-beli barang bekas, lengkap dengan sistem manajemen admin yang komprehensif.
-                                </p>
-                                <div class="text-right mt-6">
-                                    <button data-modal-target="#secondhand-modal" class="classic-button text-sm py-2 px-4">Lihat Detail Proyek</button>
+                            <article class="project-card h-full flex flex-col animate-on-scroll animation-delay-800">
+                                <div class="project-image-placeholder"><span>Web</span></div>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">TOKO ONLINE SECONDHAND DENGAN PHP & MYSQL</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Pengembangan Web, E-Commerce, PHP Native</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                       Proyek ini mereplikasi semangat awal e-commerce dengan membangun platform fungsional untuk jual-beli barang bekas. Dikembangkan dengan PHP native, proyek ini mencakup fitur backend yang solid, manajemen basis data, serta panel admin yang komprehensif, menunjukkan penguasaan fundamental pengembangan web.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat Repositori</a>
+                                    </div>
                                 </div>
                             </article>
-                            <article class="article-frame animate-on-scroll animation-delay-800">
-                                <h4 class="text-2xl font-bold mb-2">Software Requirement Specification untuk Greenhouse Otomatisasi Hidroponik</h4>
-                                <p class="text-sm mb-4">Kategori: IoT, Perancangan Perangkat Lunak, Pertanian Cerdas, Perancangan Sistem, Client-Server</p>
-                                <p class="text-justify">
-                                    Kini, kita berada di ambang revolusi industri keempat, di mana dunia fisik dan digital menyatu. Dokumen SRS ini adalah cetak biru untuk masa depan pertanian cerdas, merancang arsitektur sistem IoT berskala besar untuk mengelola ratusan <i>greenhouse</i> hidroponik secara efisien melalui aplikasi mobile.
-                                </p>
-                                <div class="text-right mt-6 flex justify-end gap-4">
-                                    <button data-modal-target="#srs-doc-modal" data-doc-id="18pBCviFKwYibi60U-z4pLEpcf1EJ8UX1" class="classic-button text-sm py-2 px-4">Buka Dokumen SRS</button>
-                                    <button data-modal-target="#greenhouse-prototype-modal" data-iframe-src="https://affinecipher-0.github.io/prototype-greenhouse/" class="classic-button text-sm py-2 px-4">Lihat Prototipe</button>
+                            <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1s;">
+                                <div class="project-image-placeholder"><span>IoT</span></div>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">SRS GREENHOUSE HIDROPONIK CERDAS</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: IoT, Perancangan Perangkat Lunak, SRS</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                       Cetak biru untuk masa depan pertanian cerdas, merancang arsitektur sistem IoT berskala besar untuk mengelola ratusan greenhouse melalui aplikasi mobile. Dokumen SRS ini merinci kebutuhan fungsional dan non-fungsional, alur kerja sistem, dan desain antarmuka, menjadi fondasi pengembangan yang terstruktur.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <button data-modal-target="#srs-doc-modal" data-doc-id="18pBCviFKwYibi60U-z4pLEpcf1EJ8UX1" class="classic-button text-sm py-2 px-4">Buka Dokumen SRS</button>
+                                        <button data-modal-target="#greenhouse-prototype-modal" data-iframe-src="https://affinecipher-0.github.io/prototype-greenhouse/" class="classic-button text-sm py-2 px-4">Lihat Prototipe</button>
+                                    </div>
                                 </div>
                             </article>
-                            <article class="article-frame animate-on-scroll" style="animation-delay: 1s;">
-                                <h4 class="text-2xl font-bold mb-2">Transformasi Digital Studi Kasus: Modernisasi Proses Jual Beli Mobil</h4>
-                                <p class="text-sm mb-4">Kategori: Analisis Sistem, Inovasi Digital, Desain Proses Bisnis</p>
-                                <p class="text-justify">
-                                    Studi kasus ini menganalisis modernisasi proses jual beli mobil bekas, dari era klasik ke digital, dengan fokus pada pengembangan sistem informasi inovatif untuk menciptakan ekosistem yang transparan dan aman.
-                                </p>
-                                <div class="text-right mt-6">
-                                    <button data-modal-target="#pieces-modal" data-iframe-src="https://affinecipher-0.github.io/PIECES/" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</button>
+                            <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1.2s;">
+                                <div class="project-image-placeholder"><span>Analisis</span></div>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">ANALISIS PIECES TRANSFORMASI DIGITAL MOBIL BEKAS</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Analisis Sistem, Desain Proses Bisnis</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                        Menganalisis dan memetakan modernisasi proses jual beli mobil bekas, dari era klasik ke digital, menggunakan kerangka kerja PIECES. Studi ini mengidentifikasi kelemahan sistem konvensional dan merekomendasikan solusi digital untuk menciptakan ekosistem yang lebih transparan, efisien, dan aman bagi semua pihak.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <button data-modal-target="#pieces-modal" data-iframe-src="https://affinecipher-0.github.io/PIECES/" class="classic-button text-sm py-2 px-4">Baca Laporan Analisis</button>
+                                    </div>
                                 </div>
                             </article>
-                             <article class="article-frame animate-on-scroll" style="animation-delay: 1.2s;">
-                                <h4 class="text-2xl font-bold mb-2">Membangun Infrastruktur Jaringan PT AMIKOM</h4>
-                                <p class="text-sm mb-4">Kategori: Desain Infrastruktur Jaringan, VLAN, VPN, Keamanan Jaringan</p>
-                                <p class="text-justify">
-                                    Tujuan utamanya adalah untuk menciptakan sebuah jaringan yang kuat, aman, dan efisien untuk mendukung kebutuhan operasional dan produksi dari enam departemen yang berbeda.
-                                </p>
-                                <div class="text-right mt-6">
-                                    <button data-modal-target="#network-infra-modal" data-iframe-src="https://affinecipher-0.github.io/Infrastruktur-Jaringan/" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</button>
+                            <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1.4s;">
+                                <div class="project-image-placeholder"><span>Jaringan</span></div>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">DESAIN INFRASTRUKTUR JARINGAN PT AMIKOM</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Desain Infrastruktur Jaringan, Cisco</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                        Merancang dan mensimulasikan infrastruktur jaringan perusahaan yang kuat, aman, dan efisien menggunakan Cisco Packet Tracer. Desain ini mendukung kebutuhan operasional dan produksi dari enam departemen yang berbeda, lengkap dengan segmentasi jaringan, kebijakan keamanan, dan redundansi untuk ketersediaan tinggi.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <button data-modal-target="#network-infra-modal" data-iframe-src="https://affinecipher-0.github.io/Infrastruktur-Jaringan/" class="classic-button text-sm py-2 px-4">Lihat Desain Jaringan</button>
+                                    </div>
                                 </div>
                             </article>
-                            <article class="article-frame animate-on-scroll" style="animation-delay: 1.4s;">
-                                <h4 class="text-2xl font-bold mb-2">Desain dan Optimasi Antena Yagi</h4>
-                                <p class="text-sm mb-4">Kategori: Rekayasa Antena, Simulasi Elektromagnetik, Desain Frekuensi Radio (RF)</p>
-                                <p class="text-justify">
-                                    Tujuan utama proyek ini adalah untuk mendemonstrasikan proses rekayasa antena secara menyeluruh, mulai dari perhitungan teoretis awal, modifikasi desain secara manual, hingga optimasi otomatis menggunakan perangkat lunak simulasi. Proyek ini menjembatani konsep teori elektromagnetik dengan aplikasi praktis untuk menghasilkan sebuah antena Yagi 6 elemen yang memiliki kinerja tinggi dan terukur pada frekuensi target 1200 MHz.
-                                </p>
-                                <div class="text-right mt-6">
-                                    <button data-modal-target="#yagi-antenna-modal" data-iframe-src="https://affinecipher-0.github.io/TeknologiJaringanNirkabel/" class="classic-button text-sm py-2 px-4">Baca Selengkapnya</button>
+                            <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1.6s;">
+                                <div class="project-image-placeholder"><span>Antena</span></div>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">DESAIN DAN OPTIMASI ANTENA YAGI 6 ELEMEN</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Rekayasa Antena, Simulasi RF, Jaringan Nirkabel</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                       Menjembatani konsep teori elektromagnetik dengan aplikasi praktis untuk merancang dan mengoptimalkan antena Yagi 6 elemen. Proyek ini berfokus pada pencapaian kinerja tinggi pada frekuensi 1200 MHz, mencakup analisis pola radiasi, gain, dan impedansi untuk komunikasi nirkabel jarak jauh yang andal.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <button data-modal-target="#yagi-antenna-modal" data-iframe-src="https://affinecipher-0.github.io/TeknologiJaringanNirkabel/" class="classic-button text-sm py-2 px-4">Baca Laporan Desain</button>
+                                    </div>
                                 </div>
                             </article>
                         </div>
@@ -863,8 +960,13 @@
                             </div>
                         </header>
                         <div class="fancy-divider"></div>
-                        <div class="article-frame animate-on-scroll">
-                            <h3 class="text-3xl font-bold mb-8 text-center">Riwayat Pendidikan</h3>
+                        <div class="text-center text-[var(--text-light)]">
+                            <h3 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Riwayat Pendidikan</h3>
+                            <p class="max-w-3xl mx-auto text-lg mb-10 animate-on-scroll animation-delay-200">
+                                Jejak perjalanan akademis yang membentuk fondasi pengetahuan dan keahlian, dari pendidikan dasar hingga pencapaian di tingkat perguruan tinggi.
+                            </p>
+                        </div>
+                        <div class="article-frame animate-on-scroll animation-delay-400">
                             <div class="space-y-8 max-w-3xl mx-auto">
                                 <div class="pl-8 border-l-2 border-[var(--border-gold)] relative">
                                     <div class="absolute -left-[9px] top-1 w-4 h-4 bg-[var(--bg-parchment)] border-2 border-[var(--border-gold)] rounded-full"></div>
@@ -881,7 +983,7 @@
                                             <strong>Jaringan dan Keamanan:</strong> Kompeten dalam Keamanan Jaringan, Perancangan Jaringan, Jaringan Komputer Lanjutan, dan Infrastruktur IT.
                                         </li>
                                         <li>
-                                            <strong>Soft Skills dan Manajemen:</strong> Dibekali dengan pengetahuan Manajemen Strategik, Kepemimpinan, Metodologi Penelitian, dan Etika Profesi untuk mendukung kerja tim dan profesionalisme.
+                                            <strong>Keterampilan Lunak dan Manajemen:</strong> Dibekali dengan pengetahuan Manajemen Strategik, Kepemimpinan, Metodologi Penelitian, dan Etika Profesi untuk mendukung kerja tim dan profesionalisme.
                                         </li>
                                     </ul>
                                 </div>
@@ -907,15 +1009,19 @@
                             </div>
                         </header>
                         <div class="fancy-divider"></div>
-                        <div class="article-frame animate-on-scroll">
-                            <h3 class="text-3xl font-bold mb-4 text-center">Sertifikasi & Pencapaian</h3>
+                        <div class="text-center text-[var(--text-light)]">
+                            <h3 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Sertifikasi & Pencapaian</h3>
+                            <p class="max-w-3xl mx-auto text-lg mb-10 animate-on-scroll animation-delay-200">
+                                Komitmen terhadap pembelajaran berkelanjutan yang dibuktikan melalui serangkaian sertifikasi di bidang teknologi, memperkuat keahlian dalam pengembangan perangkat lunak, keamanan, dan infrastruktur jaringan.
+                            </p>
+                        </div>
+                        <div class="article-frame animate-on-scroll animation-delay-400">
                             <p class="text-justify mb-4">
                                 Memiliki pengetahuan dan keterampilan yang kuat dalam pengembangan perangkat lunak, jaringan komputer, serta keamanan jaringan. Ia memahami dasar-dasar pemrograman untuk membangun aplikasi dan sistem, mampu merakit, memperbaiki, dan mengelola perangkat keras komputer. Dalam bidang jaringan, ia menguasai konsep dasar dan lanjutan seperti konfigurasi switch, router, VLAN, inter-VLAN routing, dynamic addressing, serta manajemen jaringan wireless dengan standar keamanan yang baik.
                             </p>
                             <p class="text-justify mb-6">
-                                Selain itu, ia memiliki kemampuan dalam merancang dan menerapkan keamanan jaringan, termasuk penggunaan firewall, VPN, dan mitigasi serangan seperti Layer 2 attacks dan ancaman modern lainnya. Ia juga memahami prinsip desain jaringan yang aman, troubleshooting masalah jaringan, hingga manajemen perangkat yang terhubung ke internet dan layanan cloud. Kompetensi ini diperkuat dengan pemahaman tentang etika dan tanggung jawab dalam dunia IT, menjadikannya siap untuk menghadapi tantangan di bidang teknologi informasi.
+                                Selain itu, ia memiliki kemampuan dalam merancang dan menerapkan keamanan jaringan, termasuk penggunaan firewall, VPN, dan mitigasi serangan seperti Layer 2 attacks dan ancaman modern lainnya. Ia juga memahami prinsip desain jaringan yang aman, pemecahan masalah jaringan, hingga manajemen perangkat yang terhubung ke internet dan layanan cloud.
                             </p>
-                            <p class="text-justify mb-6">Komitmen terhadap pembelajaran berkelanjutan dibuktikan melalui serangkaian sertifikasi di bidang teknologi dan pengembangan diri.</p>
                             <div class="text-right mt-6">
                                 <button data-modal-target="#sertifikat-modal" class="classic-button">
                                     Lihat Galeri Sertifikat
@@ -928,7 +1034,7 @@
                         <header class="pb-8">
                              <div class="container mx-auto px-6">
                                 <div class="architectural-header">
-                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">Arah Ilmu</h1>
+                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">Gagasan ilmu</h1>
                                      <div class="text-sm tracking-widest flex flex-col md:flex-row justify-center md:justify-between items-center text-[var(--text-light)]">
                                          <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
                                          <span class="live-datetime mt-2 md:mt-0"></span>
@@ -937,14 +1043,14 @@
                             </div>
                         </header>
                         <div class="fancy-divider"></div>
-                        <div class="animate-on-scroll text-center text-[var(--text-light)]">
-                            <h3 class="text-4xl font-bold mb-4">Pustaka Pemikiran</h3>
-                            <p class="max-w-3xl mx-auto mb-10">
+                        <div class="text-center text-[var(--text-light)]">
+                            <h3 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Pustaka Pemikiran</h3>
+                            <p class="max-w-3xl mx-auto text-lg mb-10 animate-on-scroll animation-delay-200">
                                 Kumpulan manuskrip berisi pemikiran, analisis mendalam, dan refleksi tentang persimpangan antara teknologi, sejarah, dan filsafat. Setiap tulisan adalah upaya untuk menggali kearifan dari masa lalu untuk menerangi masa depan.
                             </p>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <article class="manuscript-item animate-on-scroll animation-delay-200">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <article class="manuscript-item animate-on-scroll animation-delay-400">
                                 <div class="flex-grow">
                                     <h4 class="manuscript-title">Etika Kecerdasan Buatan</h4>
                                     <p class="manuscript-excerpt mb-4">
@@ -956,7 +1062,7 @@
                                     <button data-modal-target="#manuscript-modal" data-manuscript-id="ai-ethics" class="classic-button text-sm py-2 px-4">Baca</button>
                                 </div>
                             </article>
-                             <article class="manuscript-item animate-on-scroll animation-delay-400">
+                             <article class="manuscript-item animate-on-scroll animation-delay-600">
                                 <div class="flex-grow">
                                     <h4 class="manuscript-title">Jaringan Sebagai Sistem Sosial</h4>
                                     <p class="manuscript-excerpt mb-4">
@@ -968,7 +1074,7 @@
                                     <button data-modal-target="#manuscript-modal" data-manuscript-id="social-network" class="classic-button text-sm py-2 px-4">Baca</button>
                                 </div>
                             </article>
-                             <article class="manuscript-item animate-on-scroll animation-delay-600">
+                             <article class="manuscript-item animate-on-scroll animation-delay-800">
                                 <div class="flex-grow">
                                     <h4 class="manuscript-title">IoT dan Konsep Keseimbangan Alam</h4>
                                     <p class="manuscript-excerpt mb-4">
@@ -980,7 +1086,7 @@
                                     <button data-modal-target="#manuscript-modal" data-manuscript-id="iot-balance" class="classic-button text-sm py-2 px-4">Baca</button>
                                 </div>
                             </article>
-                            <article class="manuscript-item animate-on-scroll animation-delay-800">
+                            <article class="manuscript-item animate-on-scroll" style="animation-delay: 1s;">
                                 <div class="flex-grow">
                                     <h4 class="manuscript-title">Dari Astrolab ke GPS</h4>
                                     <p class="manuscript-excerpt mb-4">
@@ -992,7 +1098,7 @@
                                     <button data-modal-target="#manuscript-modal" data-manuscript-id="astrolabe-gps" class="classic-button text-sm py-2 px-4">Baca</button>
                                 </div>
                             </article>
-                            <article class="manuscript-item animate-on-scroll" style="animation-delay: 1s;">
+                            <article class="manuscript-item animate-on-scroll" style="animation-delay: 1.2s;">
                                 <div class="flex-grow">
                                     <h4 class="manuscript-title">Musyawarah & Kode</h4>
                                     <p class="manuscript-excerpt mb-4">
@@ -1004,7 +1110,7 @@
                                     <button data-modal-target="#manuscript-modal" data-manuscript-id="musyawarah-code" class="classic-button text-sm py-2 px-4">Baca</button>
                                 </div>
                             </article>
-                            <article class="manuscript-item animate-on-scroll" style="animation-delay: 1.2s;">
+                            <article class="manuscript-item animate-on-scroll" style="animation-delay: 1.4s;">
                                 <div class="flex-grow">
                                     <h4 class="manuscript-title">Algoritma: Jejak Emas Al-Khwarizmi</h4>
                                     <p class="manuscript-excerpt mb-4">
@@ -1032,10 +1138,15 @@
                             </div>
                         </header>
                         <div class="fancy-divider"></div>
-                        <div class="article-frame animate-on-scroll">
-                            <h3 class="text-3xl font-bold mb-4 text-center">Kolaborasi Bersama</h3>
-                            <p class="max-w-xl mx-auto mb-6 text-center">
-                                Untuk diskusi lebih lanjut, kolaborasi proyek, atau pertanyaan seputar teknologi jaringan dan IoT, silakan kirimkan pesan Anda.
+                        <div class="text-center text-[var(--text-light)]">
+                           <h3 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Kolaborasi Bersama</h3>
+                           <p class="max-w-3xl mx-auto text-lg mb-10 animate-on-scroll animation-delay-200">
+                               Terbuka untuk diskusi, kolaborasi proyek, atau pertanyaan seputar teknologi. Mari terhubung dan ciptakan inovasi bersama.
+                           </p>
+                        </div>
+                        <div class="article-frame animate-on-scroll animation-delay-400">
+                            <p class="max-w-xl mx-auto mb-8 text-center">
+                                Untuk diskusi lebih lanjut, kolaborasi proyek, atau pertanyaan seputar teknologi jaringan dan IoT, silakan gunakan salah satu saluran komunikasi di bawah ini untuk mengirimkan pesan Anda.
                             </p>
                             <div class="flex justify-center items-center gap-4 flex-wrap mb-8">
                                 <button data-modal-target="#email-modal" class="classic-button">
@@ -1098,7 +1209,7 @@
                             <i class="fas fa-award mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Sertifikasi</span>
                         </a></li>
                         <li><a href="#khazanah-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
-                            <i class="fas fa-book-open mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Arah Ilmu</span>
+                            <i class="fas fa-book-open mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Gagasan ilmu</span>
                         </a></li>
                         <li><a href="#contact-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
                             <i class="fas fa-envelope mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Hubungi Saya</span>
@@ -1122,7 +1233,7 @@
     <div id="srs-doc-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="srs-doc-modal-title">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 id="srs-doc-modal-title" class="modal-title">Dokumen: Software Requirement Specification</h5>
+                <h5 id="srs-doc-modal-title" class="modal-title">Dokumen: Spesifikasi Kebutuhan Perangkat Lunak</h5>
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
             <div class="modal-body p-0">
@@ -1162,7 +1273,7 @@
     <div id="secondhand-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="secondhand-modal-title">
         <div class="modal-content" style="height: auto; max-width: 700px;">
             <div class="modal-header">
-                <h5 id="secondhand-modal-title" class="modal-title">SECONDHAND E-Commerce</h5>
+                <h5 id="secondhand-modal-title" class="modal-title">Toko Daring Secondhand</h5>
                 <button class="modal-close-btn" aria-label="Tutup">&times;</button>
             </div>
             <div class="modal-body p-8">
@@ -1258,7 +1369,7 @@
             <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
             <div class="relative modal-main-content content-hidden">
                 <button class="modal-close-btn absolute -top-10 right-0 text-[#fdf6e3] text-5xl">&times;</button>
-                <img class="modal-image max-h-[85vh] max-w-[90vw] h-auto w-auto" src="" alt="Tampilan Penuh Sertifikat" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1a2a44/e0d8c8?text=Image+Not+Found';">
+                <img class="modal-image max-h-[85vh] max-w-[90vw] h-auto w-auto" src="" alt="Tampilan Penuh Sertifikat" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1a2a44/e0d8c8?text=Gambar+Tidak+Ditemukan';">
             </div>
         </div>
     </div>
@@ -1368,7 +1479,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // --- Cached DOM elements ---
             const loader = document.getElementById('loader');
             const openBookBtn = document.getElementById('open-book-btn');
             const coverPage = document.getElementById('cover-page');
@@ -1380,27 +1490,26 @@
             const pageContentContainer = document.getElementById('page-content-container');
             const backToTopBtn = document.getElementById('back-to-top');
             
-            // --- Initial Loading Screen ---
             window.addEventListener('load', () => {
                 setTimeout(() => {
                     if(loader) loader.classList.add('hidden');
                 }, 2800);
             });
             
-            // --- Book Logic ---
             openBookBtn.addEventListener('click', () => {
                 coverPage.classList.add('cover-hidden');
                 contentPages.classList.add('content-visible');
                 stopAstrolabeAnimation();
+                startParticleAnimation();
             });
 
             closeBookBtn.addEventListener('click', () => {
                 coverPage.classList.remove('cover-hidden');
                 contentPages.classList.remove('content-visible');
                 startAstrolabeAnimation();
+                stopParticleAnimation();
             });
 
-            // --- Animation on Scroll & Page Navigation ---
             const animateOnScrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1414,36 +1523,41 @@
                     e.preventDefault();
                     const targetId = link.getAttribute('href').substring(1);
                     const targetPage = document.getElementById(targetId);
-                    const currentPage = Array.from(pages).find(p => !p.classList.contains('hidden'));
-                    
-                    if (!targetPage || (currentPage && currentPage.id === targetId)) return;
+                    const currentActiveLink = document.querySelector('.nav-link.active-page');
 
-                    navLinks.forEach(navLink => {
-                        const isActive = navLink === link;
-                        navLink.classList.toggle('active-page', isActive);
-                        navLink.setAttribute('aria-current', isActive ? 'page' : null);
-                    });
+                    if ((currentActiveLink && currentActiveLink.getAttribute('href') === link.getAttribute('href')) || !targetPage) {
+                        return;
+                    }
+
+                    navLinks.forEach(navLink => navLink.classList.remove('active-page'));
+                    link.classList.add('active-page');
+
+                    const currentPage = Array.from(pages).find(p => !p.classList.contains('hidden'));
+
+                    const switchPages = () => {
+                        pages.forEach(p => {
+                            p.classList.add('hidden');
+                            p.classList.remove('page-fade-in', 'page-fade-out');
+                            p.querySelectorAll('.animate-on-scroll').forEach(el => {
+                                animateOnScrollObserver.unobserve(el);
+                                el.classList.remove('is-visible');
+                            });
+                        });
+
+                        targetPage.classList.remove('hidden');
+                        targetPage.classList.add('page-fade-in');
+                        if(pageContentContainer) pageContentContainer.scrollTop = 0;
+
+                        targetPage.querySelectorAll('.animate-on-scroll').forEach(el => {
+                            animateOnScrollObserver.observe(el);
+                        });
+                    };
 
                     if (currentPage) {
-                        currentPage.querySelectorAll('.animate-on-scroll').forEach(el => {
-                            animateOnScrollObserver.unobserve(el);
-                            el.classList.remove('is-visible');
-                        });
-                        
                         currentPage.classList.add('page-fade-out');
-                        setTimeout(() => {
-                            currentPage.classList.add('hidden');
-                            currentPage.classList.remove('page-fade-out');
-                            
-                            targetPage.classList.remove('hidden');
-                            targetPage.classList.add('page-fade-in');
-                            if(pageContentContainer) pageContentContainer.scrollTop = 0;
-
-                            targetPage.querySelectorAll('.animate-on-scroll').forEach(el => {
-                                animateOnScrollObserver.observe(el);
-                            });
-
-                        }, 300);
+                        setTimeout(switchPages, 300);
+                    } else {
+                        switchPages();
                     }
                 });
             });
@@ -1464,15 +1578,10 @@
             });
             
             function setupDateTime() {
-                const articleDateElement = document.getElementById('current-date');
-                const staticDate = new Date('2025-09-15T00:00:00'); 
-                const articleDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
-                if (articleDateElement) {
-                     articleDateElement.textContent = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(staticDate);
-                }
-                
                 const liveTimeElements = document.querySelectorAll('.live-datetime');
                 if (liveTimeElements.length > 0) {
+                    const staticDate = new Date('2025-09-15T00:00:00'); 
+                    const articleDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
                     const formattedDate = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(staticDate);
                     const updateLiveTime = () => {
                         const now = new Date();
@@ -1647,13 +1756,13 @@
             const certificates = [
                 { src: "https://i.imgur.com/wZ7owwo.png", alt: "Sertifikat Magang DLHK DIY", title: "Magang DLHK DIY", desc: "Dinas Lingkungan Hidup & Kehutanan DIY - 2024" },
                 { src: "https://i.imgur.com/fgV6iQP.png", alt: "Sertifikat Literasi Digital", title: "Literasi Digital", desc: "Kemkominfo - 2023" },
-                { src: "https://i.imgur.com/eyW5LUw.png", alt: "Sertifikat Seminar Cyber Security", title: "Seminar Cyber Security", desc: "HIMATEKNO FTTI UNJAYA - 2023" },
+                { src: "https://i.imgur.com/eyW5LUw.png", alt: "Sertifikat Seminar Cyber Security", title: "Seminar Keamanan Siber", desc: "HIMATEKNO FTTI UNJAYA - 2023" },
                 { src: "https://i.imgur.com/fRg3hmp.png", alt: "Sertifikat Webinar Pengolahan Data", title: "Webinar Pengolahan Data", desc: "XREI Institute - 2023" },
                 { src: "https://i.imgur.com/ltwjESR.png", alt: "Sertifikat CCNA Security", title: "CCNA Security", desc: "Cisco Networking Academy - 2022" },
-                { src: "https://i.imgur.com/iCRbLK8.png", alt: "Sertifikat Switching, Routing, & Wireless", title: "Switching, Routing, & Wireless", desc: "Cisco Networking Academy - 2021" },
-                { src: "https://i.imgur.com/5frcsDW.png", alt: "Sertifikat Introduction to Networks", title: "Introduction to Networks", desc: "Cisco Networking Academy - 2021" },
-                { src: "https://i.imgur.com/zruR3Gv.png", alt: "Sertifikat Fundamental Python", title: "Fundamental Python", desc: "Progate - 2021" },
-                { src: "https://i.imgur.com/Pqwf8N1.png", alt: "Sertifikat IT Essentials", title: "IT Essentials", desc: "Cisco Networking Academy - 2020" }
+                { src: "https://i.imgur.com/iCRbLK8.png", alt: "Sertifikat Switching, Routing, & Nirkabel", title: "Switching, Routing, & Nirkabel", desc: "Cisco Networking Academy - 2021" },
+                { src: "https://i.imgur.com/5frcsDW.png", alt: "Sertifikat Pengenalan Jaringan", title: "Pengenalan Jaringan", desc: "Cisco Networking Academy - 2021" },
+                { src: "https://i.imgur.com/zruR3Gv.png", alt: "Sertifikat Dasar-dasar Python", title: "Dasar-dasar Python", desc: "Progate - 2021" },
+                { src: "https://i.imgur.com/Pqwf8N1.png", alt: "Sertifikat Dasar-dasar TI", title: "Dasar-dasar TI", desc: "Cisco Networking Academy - 2020" }
             ];
             const galleryContainer = document.querySelector('#sertifikat-modal-content');
             if(galleryContainer) {
@@ -1850,6 +1959,88 @@
                 resizeCanvas(); createStars(); animateStars();
             }
             
+            const particleCanvas = document.getElementById('particle-canvas');
+            let particleAnimationId = null;
+            let particles = [];
+            let particleCtx;
+
+            function startParticleAnimation() {
+                if (particleAnimationId || !particleCanvas) return;
+                particleCtx = particleCanvas.getContext('2d');
+                
+                const resizeCanvas = () => {
+                    particleCanvas.width = pageContentContainer.clientWidth;
+                    particleCanvas.height = pageContentContainer.scrollHeight;
+                    createParticles();
+                };
+
+                const createParticles = () => {
+                    particles = [];
+                    const particleCount = Math.floor((particleCanvas.width * particleCanvas.height) / 20000);
+                    for (let i = 0; i < particleCount; i++) {
+                        particles.push({
+                            x: Math.random() * particleCanvas.width,
+                            y: Math.random() * particleCanvas.height,
+                            vx: (Math.random() - 0.5) * 0.3,
+                            vy: (Math.random() - 0.5) * 0.3,
+                            radius: Math.random() * 1.5 + 1
+                        });
+                    }
+                };
+
+                const animateParticles = () => {
+                    particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+                    
+                    particles.forEach(p1 => {
+                        p1.x += p1.vx;
+                        p1.y += p1.vy;
+
+                        if (p1.x < 0 || p1.x > particleCanvas.width) p1.vx *= -1;
+                        if (p1.y < 0 || p1.y > particleCanvas.height) p1.vy *= -1;
+
+                        particleCtx.beginPath();
+                        particleCtx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
+                        particleCtx.fillStyle = 'rgba(199, 165, 91, 0.4)';
+                        particleCtx.fill();
+
+                        particles.forEach(p2 => {
+                            const dx = p1.x - p2.x;
+                            const dy = p1.y - p2.y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+
+                            if (dist < 150) {
+                                particleCtx.beginPath();
+                                particleCtx.moveTo(p1.x, p1.y);
+                                particleCtx.lineTo(p2.x, p2.y);
+                                particleCtx.strokeStyle = `rgba(199, 165, 91, ${0.8 - dist / 150})`;
+                                particleCtx.lineWidth = 0.5;
+                                particleCtx.stroke();
+                            }
+                        });
+                    });
+
+                    particleAnimationId = requestAnimationFrame(animateParticles);
+                };
+
+                const ro = new ResizeObserver(entries => {
+                    for (let entry of entries) {
+                        resizeCanvas();
+                    }
+                });
+                ro.observe(pageContentContainer);
+
+                resizeCanvas();
+                animateParticles();
+            }
+
+            function stopParticleAnimation() {
+                if(particleAnimationId) {
+                    cancelAnimationFrame(particleAnimationId);
+                    particleAnimationId = null;
+                }
+            }
+
+
             function setupTextToSpeech() {
                 const synth = window.speechSynthesis;
                 let utterance = null;
@@ -1886,7 +2077,6 @@
                         
                         if (synth.speaking && currentSpeakingButton === button) {
                             synth.cancel();
-                            // Reset manual karena 'onend' mungkin tidak selalu terpicu saat pembatalan.
                             resetAllButtons();
                             currentSpeakingButton = null;
                             utterance = null;
@@ -1935,7 +2125,6 @@
                     });
                 }
 
-                // TTS inside manuscript modal
                 document.querySelectorAll('[data-modal-target="#manuscript-modal"]').forEach(btn => {
                     btn.addEventListener('click', () => {
                         if (synth.speaking) synth.cancel();
