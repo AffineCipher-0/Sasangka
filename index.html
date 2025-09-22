@@ -497,18 +497,11 @@
             transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 0 4px var(--bg-parchment), 0 0 0 5px var(--border-gold);
         }
-        .project-image-placeholder {
+        .project-canvas {
             width: 100%;
             height: 250px;
-            margin: 0;
             background-color: var(--bg-deep-blue);
-            color: var(--accent-gold);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 2.5rem;
-            flex-shrink: 0;
+            display: block;
         }
         .project-content {
             padding: 1.5rem;
@@ -851,7 +844,7 @@
                         <p class="max-w-3xl mx-auto text-center text-lg mb-10 animate-on-scroll animation-delay-200">Berikut adalah beberapa proyek unggulan yang telah saya kembangkan, yang mencerminkan keahlian serta pengalaman saya dalam merancang dan mengimplementasikan solusi teknologi.</p>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                             <article class="project-card h-full flex flex-col animate-on-scroll animation-delay-400">
-                                <div class="project-image-placeholder"><span>CNN</span></div>
+                                <canvas id="cnn-canvas" class="project-canvas" width="500" height="250"></canvas>
                                 <div class="project-content">
                                     <h4 class="manuscript-title">KLASIFIKASI GAMBAR DENGAN ALGORITMA CNN</h4>
                                     <p class="text-sm mb-3 text-slate-600">Kategori: Kecerdasan Buatan, Machine Learning, Computer Vision</p>
@@ -866,7 +859,7 @@
                                 </div>
                             </article>
                             <article class="project-card h-full flex flex-col animate-on-scroll animation-delay-600">
-                                <div class="project-image-placeholder"><span>Morse</span></div>
+                                <canvas id="morse-canvas" class="project-canvas" width="500" height="250"></canvas>
                                 <div class="project-content">
                                     <h4 class="manuscript-title">ALAT PENERJEMAH SANDI MORSE BERBASIS MIKROKONTROLER</h4>
                                     <p class="text-sm mb-3 text-slate-600">Kategori: Mikrokontroller, Arduino (C++), Algoritma Brute Force</p>
@@ -879,7 +872,7 @@
                                 </div>
                             </article>
                             <article class="project-card h-full flex flex-col animate-on-scroll animation-delay-800">
-                                <div class="project-image-placeholder"><span>Web</span></div>
+                                <canvas id="web-canvas" class="project-canvas" width="500" height="250"></canvas>
                                 <div class="project-content">
                                     <h4 class="manuscript-title">TOKO ONLINE SECONDHAND DENGAN PHP & MYSQL</h4>
                                     <p class="text-sm mb-3 text-slate-600">Kategori: Pengembangan Web, E-Commerce, PHP Native</p>
@@ -892,7 +885,7 @@
                                 </div>
                             </article>
                             <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1s;">
-                                <div class="project-image-placeholder"><span>IoT</span></div>
+                                <canvas id="iot-canvas" class="project-canvas" width="500" height="250"></canvas>
                                 <div class="project-content">
                                     <h4 class="manuscript-title">SRS GREENHOUSE HIDROPONIK CERDAS</h4>
                                     <p class="text-sm mb-3 text-slate-600">Kategori: IoT, Perancangan Perangkat Lunak, SRS</p>
@@ -906,7 +899,7 @@
                                 </div>
                             </article>
                             <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1.2s;">
-                                <div class="project-image-placeholder"><span>Analisis</span></div>
+                                <canvas id="pieces-canvas" class="project-canvas" width="500" height="250"></canvas>
                                 <div class="project-content">
                                     <h4 class="manuscript-title">ANALISIS PIECES TRANSFORMASI DIGITAL MOBIL BEKAS</h4>
                                     <p class="text-sm mb-3 text-slate-600">Kategori: Analisis Sistem, Desain Proses Bisnis</p>
@@ -919,7 +912,7 @@
                                 </div>
                             </article>
                             <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1.4s;">
-                                <div class="project-image-placeholder"><span>Jaringan</span></div>
+                                <canvas id="network-canvas" class="project-canvas" width="500" height="250"></canvas>
                                 <div class="project-content">
                                     <h4 class="manuscript-title">DESAIN INFRASTRUKTUR JARINGAN PT AMIKOM</h4>
                                     <p class="text-sm mb-3 text-slate-600">Kategori: Desain Infrastruktur Jaringan, Cisco</p>
@@ -932,7 +925,7 @@
                                 </div>
                             </article>
                             <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1.6s;">
-                                <div class="project-image-placeholder"><span>Antena</span></div>
+                                <canvas id="yagi-canvas" class="project-canvas" width="500" height="250"></canvas>
                                 <div class="project-content">
                                     <h4 class="manuscript-title">DESAIN DAN OPTIMASI ANTENA YAGI 6 ELEMEN</h4>
                                     <p class="text-sm mb-3 text-slate-600">Kategori: Rekayasa Antena, Simulasi RF, Jaringan Nirkabel</p>
@@ -1179,7 +1172,7 @@
                 </main>
 
                 <footer class="page-footer">
-                    <p class="footer-copyright">&copy; 2025 GATOT SASANGKA | Diciptakan dengan Semangat Inovasi</p>
+                    <p class="footer-copyright">&copy; 2025 GATOT SASANGKA | Diciptakan dengan Imagination</p>
                 </footer>
 
             </div>
@@ -1510,10 +1503,250 @@
                 stopParticleAnimation();
             });
 
+            // --- CANVAS ANIMATION LOGIC ---
+            const canvasAnimations = {
+                'cnn-canvas': (ctx, w, h) => {
+                    let nodes = [];
+                    const layers = [4, 5, 3];
+                    let t = 0;
+                    for (let i = 0; i < layers.length; i++) {
+                        for (let j = 0; j < layers[i]; j++) {
+                            nodes.push({
+                                x: (i + 1) * (w / (layers.length + 1)),
+                                y: (j + 1) * (h / (layers[i] + 1)),
+                                r: h / 30,
+                                phase: Math.random() * Math.PI * 2
+                            });
+                        }
+                    }
+                    function loop() {
+                        ctx.clearRect(0, 0, w, h);
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.4)';
+                        ctx.lineWidth = 1;
+                        let offset = 0;
+                        for (let i = 0; i < layers.length - 1; i++) {
+                            for (let j = 0; j < layers[i]; j++) {
+                                for (let k = 0; k < layers[i+1]; k++) {
+                                    ctx.beginPath();
+                                    ctx.moveTo(nodes[offset+j].x, nodes[offset+j].y);
+                                    ctx.lineTo(nodes[offset+layers[i]+k].x, nodes[offset+layers[i]+k].y);
+                                    ctx.stroke();
+                                }
+                            }
+                            offset += layers[i];
+                        }
+                        nodes.forEach(node => {
+                            const pulse = (Math.sin(t * 0.05 + node.phase) + 1) / 2;
+                            ctx.beginPath();
+                            ctx.arc(node.x, node.y, node.r * (0.8 + pulse * 0.4), 0, Math.PI * 2);
+                            ctx.fillStyle = `rgba(199, 165, 91, ${0.5 + pulse * 0.5})`;
+                            ctx.fill();
+                        });
+                        t++;
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                'morse-canvas': (ctx, w, h) => {
+                    let signals = []; let t = 0;
+                    function loop() {
+                        ctx.clearRect(0, 0, w, h);
+                        if (t % 60 === 0) {
+                            signals.push({
+                                type: Math.random() > 0.4 ? 'dot' : 'dash',
+                                life: 0,
+                                maxLife: 120
+                            });
+                        }
+                        signals.forEach((s, i) => {
+                            s.life++;
+                            if (s.life > s.maxLife) signals.splice(i, 1);
+                            const progress = s.life / s.maxLife;
+                            const radius = progress * w / 3;
+                            ctx.strokeStyle = `rgba(199, 165, 91, ${1 - progress})`;
+                            ctx.lineWidth = 4 * (1 - progress);
+                            ctx.beginPath();
+                            if (s.type === 'dot') {
+                                ctx.arc(w/2, h/2, radius, 0, Math.PI * 2);
+                            } else {
+                                ctx.rect(w/2 - radius, h/2 - 10, radius * 2, 20);
+                            }
+                            ctx.stroke();
+                        });
+                        t++;
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                 'web-canvas': (ctx, w, h) => {
+                    ctx.font = `bold ${h/6}px "Font Awesome 6 Free"`;
+                    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                    const icons = [
+                        { char: '\uf07a', x: w*0.2, y: h*0.3, vx: 0.5, vy: -0.4 }, // cart
+                        { char: '\uf481', x: w*0.8, y: h*0.2, vx: -0.3, vy: 0.6 }, // box
+                        { char: '\uf155', x: w*0.5, y: h*0.8, vx: 0.2, vy: -0.5 }  // dollar
+                    ];
+                    function loop() {
+                        ctx.clearRect(0, 0, w, h);
+                        icons.forEach(icon => {
+                            icon.x += icon.vx; icon.y += icon.vy;
+                            if (icon.x < h/12 || icon.x > w - h/12) icon.vx *= -1;
+                            if (icon.y < h/12 || icon.y > h - h/12) icon.vy *= -1;
+                            ctx.fillStyle = `rgba(199, 165, 91, 0.8)`;
+                            ctx.fillText(icon.char, icon.x, icon.y);
+                        });
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                'iot-canvas': (ctx, w, h) => {
+                    let growth = 0; let t = 0;
+                    let particles = Array(20).fill().map(() => ({
+                        x: w/2, y: h, a: Math.random() * Math.PI*2, s: Math.random() * 1.5 + 0.5, r: Math.random() * h*0.4 + h*0.1
+                    }));
+                    function drawPlant(g) {
+                        ctx.strokeStyle = 'rgba(60, 138, 133, 0.8)';
+                        ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(w/2, h);
+                        const topY = h - Math.min(h * 0.8, g * 5);
+                        ctx.lineTo(w/2, topY); ctx.stroke();
+                        for (let i = 0; i < 5; i++) {
+                            const leafY = h - i * (h*0.15);
+                            if (topY < leafY) {
+                                ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(w/2, leafY);
+                                ctx.quadraticCurveTo(w/2 + (i%2==0?1:-1)*g, leafY - g/2, w/2 + (i%2==0?1:-1)*g*2, leafY - g);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    function loop() {
+                        ctx.clearRect(0, 0, w, h);
+                        if (growth < h * 0.3) growth += 0.1;
+                        drawPlant(growth);
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.7)';
+                        particles.forEach(p => {
+                           p.a += p.s * 0.01;
+                           const x = w/2 + Math.cos(p.a) * p.r;
+                           const y = h/2 + Math.sin(p.a) * p.r * 0.5 - h*0.1;
+                           ctx.beginPath(); ctx.arc(x, y, 2, 0, Math.PI * 2); ctx.fill();
+                        });
+                        t++;
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                'pieces-canvas': (ctx, w, h) => {
+                    const bars = [
+                        { h: 0, th: h * 0.7, label: 'P' }, { h: 0, th: h * 0.5, label: 'I' },
+                        { h: 0, th: h * 0.8, label: 'E' }, { h: 0, th: h * 0.6, label: 'C' },
+                        { h: 0, th: h * 0.4, label: 'E' }, { h: 0, th: h * 0.75, label: 'S' }
+                    ];
+                    const barWidth = w / (bars.length * 1.5);
+                    const gap = barWidth / 2;
+                    function loop() {
+                        ctx.clearRect(0, 0, w, h);
+                        ctx.font = `bold ${barWidth*0.4}px Amiri`; ctx.textAlign = 'center';
+                        bars.forEach((bar, i) => {
+                            if (bar.h < bar.th) bar.h += (bar.th - bar.h) * 0.05;
+                            const x = gap/2 + i * (barWidth + gap);
+                            ctx.fillStyle = 'rgba(60, 138, 133, 0.8)';
+                            ctx.fillRect(x, h - bar.h, barWidth, bar.h);
+                            ctx.fillStyle = 'rgba(199, 165, 91, 1)';
+                            ctx.fillText(bar.label, x + barWidth/2, h - bar.h - barWidth*0.3);
+                        });
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                'network-canvas': (ctx, w, h) => {
+                    const nodes = [ {x:w*0.2, y:h*0.2}, {x:w*0.8, y:h*0.2}, {x:w*0.5, y:h*0.5}, {x:w*0.2, y:h*0.8}, {x:w*0.8, y:h*0.8} ];
+                    const links = [ [0,2], [1,2], [2,3], [2,4], [3,4], [0,1] ];
+                    let packets = Array(15).fill().map(() => ({
+                        link: links[Math.floor(Math.random() * links.length)],
+                        progress: Math.random()
+                    }));
+                    function loop() {
+                        ctx.clearRect(0, 0, w, h);
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.4)'; ctx.lineWidth = 2;
+                        links.forEach(link => {
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[link[0]].x, nodes[link[0]].y);
+                            ctx.lineTo(nodes[link[1]].x, nodes[link[1]].y);
+                            ctx.stroke();
+                        });
+                        ctx.fillStyle = 'rgba(199, 165, 91, 1)';
+                        nodes.forEach(node => { ctx.beginPath(); ctx.arc(node.x, node.y, 8, 0, Math.PI*2); ctx.fill(); });
+                        ctx.fillStyle = 'rgba(60, 138, 133, 1)';
+                        packets.forEach(p => {
+                            p.progress += 0.01;
+                            if (p.progress > 1) {
+                                p.progress = 0;
+                                p.link = links[Math.floor(Math.random() * links.length)];
+                            }
+                            const start = nodes[p.link[0]]; const end = nodes[p.link[1]];
+                            const x = start.x + (end.x - start.x) * p.progress;
+                            const y = start.y + (end.y - start.y) * p.progress;
+                            ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
+                        });
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                'yagi-canvas': (ctx, w, h) => {
+                    let waves = []; let t = 0;
+                    const antennaX = w * 0.2;
+                    function drawAntenna() {
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.9)'; ctx.lineWidth = 4;
+                        ctx.beginPath(); ctx.moveTo(antennaX, h*0.2); ctx.lineTo(antennaX, h*0.8); ctx.stroke(); // Main boom
+                        const elements = [ {y:h*0.25, l:h*0.25}, {y:h*0.35, l:h*0.28}, {y:h*0.5, l:h*0.26}, {y:h*0.65, l:h*0.24} ];
+                        ctx.lineWidth = 6;
+                        elements.forEach((el, i) => {
+                            ctx.beginPath();
+                            ctx.moveTo(antennaX - (i==0?el.l*0.6:el.l), el.y);
+                            ctx.lineTo(antennaX + (i==0?el.l*0.6:el.l), el.y);
+                            ctx.stroke();
+                        });
+                    }
+                    function loop() {
+                        ctx.clearRect(0, 0, w, h);
+                        drawAntenna();
+                        if (t % 40 === 0) waves.push({ life: 0, maxLife: 150 });
+                        waves.forEach((wave, i) => {
+                            wave.life++;
+                            if (wave.life > wave.maxLife) waves.splice(i, 1);
+                            const progress = wave.life / wave.maxLife;
+                            ctx.strokeStyle = `rgba(199, 165, 91, ${1 - progress})`;
+                            ctx.lineWidth = 3 * (1 - progress);
+                            ctx.beginPath();
+                            ctx.arc(antennaX, h/2, progress * w, -Math.PI/3, Math.PI/3);
+                            ctx.stroke();
+                        });
+                        t++;
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                }
+            };
+            
+            function startCanvasAnimation(canvas) {
+                const animationFunc = canvasAnimations[canvas.id];
+                if (animationFunc) {
+                    const ctx = canvas.getContext('2d');
+                    animationFunc(ctx, canvas.width, canvas.height);
+                }
+            }
+
+
             const animateOnScrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
+                        
+                        const canvas = entry.target.querySelector('canvas.project-canvas');
+                        if (canvas && !canvas.dataset.animationStarted) {
+                            startCanvasAnimation(canvas);
+                            canvas.dataset.animationStarted = 'true';
+                        }
+
                     }
                 });
             }, { root: pageContentContainer, threshold: 0.1 });
