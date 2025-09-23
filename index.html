@@ -15,17 +15,6 @@
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>۞</text></svg>">
     
-    <!-- 
-        --- CATATAN OPTIMASI PERFORMA ---
-        Berdasarkan permintaan untuk optimasi, beberapa tindakan telah diambil dengan mempertimbangkan batasan file tunggal:
-        1. Lazy Loading Gambar: Atribut `loading="lazy"` sudah diterapkan pada gambar-gambar di galeri sertifikat. Ini menunda pemuatan gambar hingga pengguna membuka galeri, mempercepat waktu muat awal halaman.
-        2. Penundaan Pemuatan Skrip (Defer): Atribut `defer` ditambahkan pada tag <script> untuk pustaka eksternal (Tailwind CSS, Chart.js, Phosphor Icons). Ini memastikan skrip diunduh secara paralel tanpa memblokir rendering HTML, dan dieksekusi setelah halaman selesai di-parse.
-        
-        --- Keterbatasan ---
-        - Kompresi Gambar & Format WebP: Karena gambar dihosting di server eksternal (imgur.com), konversi ke format modern seperti WebP atau kompresi lebih lanjut tidak dapat dilakukan dari sisi kode ini. Lazy loading adalah strategi mitigasi terbaik dalam kasus ini.
-        - Minifikasi & Bundling: Dalam lingkungan ini, kode harus tetap dapat dibaca dan disajikan dalam satu file. Oleh karena itu, proses minifikasi (menghapus spasi) atau bundling (menggabungkan file) tidak diterapkan. Penempatan skrip utama di akhir <body> sudah merupakan praktik terbaik untuk menghindari pemblokiran render.
-    -->
-    
     <script src="https://cdn.tailwindcss.com" defer></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2404,6 +2393,7 @@
 
 </body>
 </html>
+
 
 
 
