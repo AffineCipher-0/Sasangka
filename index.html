@@ -15,15 +15,26 @@
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>۞</text></svg>">
     
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 
+        --- CATATAN OPTIMASI PERFORMA ---
+        Berdasarkan permintaan untuk optimasi, beberapa tindakan telah diambil dengan mempertimbangkan batasan file tunggal:
+        1. Lazy Loading Gambar: Atribut `loading="lazy"` sudah diterapkan pada gambar-gambar di galeri sertifikat. Ini menunda pemuatan gambar hingga pengguna membuka galeri, mempercepat waktu muat awal halaman.
+        2. Penundaan Pemuatan Skrip (Defer): Atribut `defer` ditambahkan pada tag <script> untuk pustaka eksternal (Tailwind CSS, Chart.js, Phosphor Icons). Ini memastikan skrip diunduh secara paralel tanpa memblokir rendering HTML, dan dieksekusi setelah halaman selesai di-parse.
+        
+        --- Keterbatasan ---
+        - Kompresi Gambar & Format WebP: Karena gambar dihosting di server eksternal (imgur.com), konversi ke format modern seperti WebP atau kompresi lebih lanjut tidak dapat dilakukan dari sisi kode ini. Lazy loading adalah strategi mitigasi terbaik dalam kasus ini.
+        - Minifikasi & Bundling: Dalam lingkungan ini, kode harus tetap dapat dibaca dan disajikan dalam satu file. Oleh karena itu, proses minifikasi (menghapus spasi) atau bundling (menggabungkan file) tidak diterapkan. Penempatan skrip utama di akhir <body> sudah merupakan praktik terbaik untuk menghindari pemblokiran render.
+    -->
+    
+    <script src="https://cdn.tailwindcss.com" defer></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&family=Scheherazade+New:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
     <style>
         /* --- THEME DEFINITIONS: BAYT AL-HIKMAH --- */
