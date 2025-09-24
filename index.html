@@ -864,10 +864,10 @@
                             <article class="project-card h-full flex flex-col animate-on-scroll animation-delay-600">
                                 <canvas id="morse-canvas" class="project-canvas" width="500" height="250"></canvas>
                                 <div class="project-content">
-                                    <h4 class="manuscript-title">ALAT PENERJEMAH SANDI MORSE BERBASIS MIKROKONTROLER</h4>
+                                    <h4 class="manuscript-title">ALAT PENERJEMAH SANDI MORSE BERBASIS MIKROKONTROLLER MENGGUNAKAN ALGORITMA BRUTE FORCE</h4>
                                     <p class="text-sm mb-3 text-slate-600">Kategori: Mikrokontroller, Arduino (C++), Algoritma Brute Force</p>
                                     <p class="manuscript-excerpt mb-4 text-justify">
-                                        Di era ketika informasi melintasi dunia melalui ketukan telegraf, sandi morse adalah bahasa universal pertama. Proyek ini adalah sebuah penghormatan modern terhadap teknologi fundamental tersebut, dengan membangun alat penerjemah berbasis mikrokontroler yang mengurai sandi morse secara akurat.
+                                        Proyek ini mewujudkan jembatan antara rekayasa perangkat keras dan ilmu algoritma fundamental dengan merancang sebuah alat fisik berbasis mikrokontroler yang mampu menerjemahkan sinyal sandi morse secara real-time. Keunikan proyek ini terletak pada implementasi algoritma <i>brute force</i> sebagai mesin penerjemahnya. Sistem secara metodis mencocokkan setiap pola titik dan garis yang masuk terhadap kamus sandi morse yang tersimpan hingga menemukan karakter yang valid. Ini adalah demonstrasi praktis tentang bagaimana pendekatan komputasi yang paling dasar sekalipun dapat diterapkan secara efektif pada perangkat keras untuk memecahkan tantangan komunikasi yang spesifik.
                                     </p>
                                     <div class="project-buttons">
                                         <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Baca Dokumen Penelitian</a>
@@ -904,7 +904,7 @@
                             <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1.2s;">
                                 <canvas id="pieces-canvas" class="project-canvas" width="500" height="250"></canvas>
                                 <div class="project-content">
-                                    <h4 class="manuscript-title">ANALISIS PIECES TRANSFORMASI DIGITAL MOBIL</h4>
+                                    <h4 class="manuscript-title">ANALISIS PIECES TRANSFORMASI DIGITAL JUAL BELI MOBIL</h4>
                                     <p class="text-sm mb-3 text-slate-600">Kategori: Analisis Sistem, Desain Proses Bisnis</p>
                                     <p class="manuscript-excerpt mb-4 text-justify">
                                         Menganalisis dan memetakan modernisasi proses jual beli mobil, dari era klasik ke digital, menggunakan kerangka kerja PIECES. Studi ini mengidentifikasi kelemahan sistem konvensional dan merekomendasikan solusi digital untuk menciptakan ekosistem yang lebih transparan, efisien, dan aman bagi semua pihak.
@@ -1509,221 +1509,611 @@
             // --- CANVAS ANIMATION LOGIC ---
             const canvasAnimations = {
                 'cnn-canvas': (ctx, w, h) => {
-                    let nodes = [];
-                    const layers = [4, 5, 3];
                     let t = 0;
-                    for (let i = 0; i < layers.length; i++) {
-                        for (let j = 0; j < layers[i]; j++) {
-                            nodes.push({
-                                x: (i + 1) * (w / (layers.length + 1)),
-                                y: (j + 1) * (h / (layers[i] + 1)),
-                                r: h / 30,
-                                phase: Math.random() * Math.PI * 2
-                            });
+                    const imgSize = h * 0.5;
+                    const imgX = w * 0.1;
+                    const imgY = (h - imgSize) / 2;
+                    const filterSize = imgSize / 4;
+                    let filterX = imgX, filterY = imgY;
+                    const featureMapSize = h * 0.6;
+                    const featureMapX = w * 0.6;
+                    const featureMapY = (h - featureMapSize) / 2;
+
+                    function drawGrid(x, y, size, cells, color) {
+                        const cellSize = size / cells;
+                        for (let i = 0; i < cells; i++) {
+                            for (let j = 0; j < cells; j++) {
+                                ctx.fillStyle = `rgba(${color}, ${Math.random() * 0.5 + 0.1})`;
+                                ctx.fillRect(x + i * cellSize, y + j * cellSize, cellSize, cellSize);
+                                ctx.strokeStyle = `rgba(${color}, 0.5)`;
+                                ctx.strokeRect(x + i * cellSize, y + j * cellSize, cellSize, cellSize);
+                            }
                         }
                     }
+
                     function loop() {
-                        ctx.clearRect(0, 0, w, h);
-                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.4)';
-                        ctx.lineWidth = 1;
-                        let offset = 0;
-                        for (let i = 0; i < layers.length - 1; i++) {
-                            for (let j = 0; j < layers[i]; j++) {
-                                for (let k = 0; k < layers[i+1]; k++) {
-                                    ctx.beginPath();
-                                    ctx.moveTo(nodes[offset+j].x, nodes[offset+j].y);
-                                    ctx.lineTo(nodes[offset+layers[i]+k].x, nodes[offset+layers[i]+k].y);
-                                    ctx.stroke();
-                                }
-                            }
-                            offset += layers[i];
-                        }
-                        nodes.forEach(node => {
-                            const pulse = (Math.sin(t * 0.05 + node.phase) + 1) / 2;
-                            ctx.beginPath();
-                            ctx.arc(node.x, node.y, node.r * (0.8 + pulse * 0.4), 0, Math.PI * 2);
-                            ctx.fillStyle = `rgba(199, 165, 91, ${0.5 + pulse * 0.5})`;
-                            ctx.fill();
-                        });
                         t++;
+                        ctx.clearRect(0, 0, w, h);
+                        
+                        // Gambar "Input Image"
+                        drawGrid(imgX, imgY, imgSize, 4, '60, 138, 133');
+
+                        // Animasikan "Filter"
+                        const steps = 4 - 1;
+                        const progress = (t % 120) / 120;
+                        const totalSteps = steps * steps;
+                        const currentStep = Math.floor(progress * totalSteps);
+                        filterX = imgX + (currentStep % steps) * (imgSize / 4);
+                        filterY = imgY + Math.floor(currentStep / steps) * (imgSize / 4);
+                        ctx.strokeStyle = `rgba(199, 165, 91, 1)`;
+                        ctx.lineWidth = 3;
+                        ctx.strokeRect(filterX, filterY, filterSize, filterSize);
+                        
+                        // Gambar "Feature Map" yang bertambah
+                        const featureMapCells = 3;
+                        const featureCellSize = featureMapSize / featureMapCells;
+                        for(let i = 0; i <= currentStep; i++) {
+                             const x = featureMapX + (i % featureMapCells) * featureCellSize;
+                             const y = featureMapY + Math.floor(i / featureMapCells) * featureCellSize;
+                             ctx.fillStyle = `rgba(199, 165, 91, 0.6)`;
+                             ctx.fillRect(x, y, featureCellSize, featureCellSize);
+                        }
+                        
+                        // Gambar panah
+                        ctx.beginPath();
+                        ctx.moveTo(imgX + imgSize + 10, h / 2);
+                        ctx.lineTo(featureMapX - 10, h / 2);
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.5)';
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                        
+                        // Label
+                        ctx.font = `14px Amiri`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.8)';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Input', imgX + imgSize/2, imgY - 15);
+                        ctx.fillText('Fitur', featureMapX + featureMapSize/2, featureMapY - 15);
+
+
                         requestAnimationFrame(loop);
                     }
                     loop();
                 },
                 'morse-canvas': (ctx, w, h) => {
-                    let signals = []; let t = 0;
-                    function loop() {
-                        ctx.clearRect(0, 0, w, h);
-                        if (t % 60 === 0) {
-                            signals.push({
-                                type: Math.random() > 0.4 ? 'dot' : 'dash',
-                                life: 0,
-                                maxLife: 120
-                            });
-                        }
-                        signals.forEach((s, i) => {
-                            s.life++;
-                            if (s.life > s.maxLife) signals.splice(i, 1);
-                            const progress = s.life / s.maxLife;
-                            const radius = progress * w / 3;
-                            ctx.strokeStyle = `rgba(199, 165, 91, ${1 - progress})`;
-                            ctx.lineWidth = 4 * (1 - progress);
+                    let t = 0;
+                    const dictionary = [
+                        { char: 'A', code: '.-' }, { char: 'B', code: '-...' }, { char: 'C', code: '-.-.' }, { char: 'D', code: '-..' },
+                        { char: 'E', code: '.' }, { char: 'F', code: '..-.' }, { char: 'G', code: '--.' }, { char: 'H', code: '....' },
+                        { char: 'I', code: '..' }, { char: 'J', code: '.---' }, { char: 'K', code: '-.-' }, { char: 'L', code: '.-..' },
+                        { char: 'M', code: '--' }, { char: 'N', code: '-.' }, { char: 'O', code: '---' }, { char: 'P', code: '.--.' },
+                        { char: 'Q', code: '--.-' }, { char: 'R', code: '.-.' }, { char: 'S', code: '...' }, { char: 'T', code: '-' },
+                        { char: 'U', code: '..-' }, { char: 'V', code: '...-' }, { char: 'W', code: '.--' }, { char: 'X', code: '-..-' },
+                        { char: 'Y', code: '-.--' }, { char: 'Z', code: '--..' }
+                    ];
+                    const signalsToTranslate = ['.--', '---', '...'];
+                    let currentSignalIndex = 0;
+                    let dictionaryCheckIndex = 0;
+                    let matchFound = false;
+                    let timeOfMatch = 0;
+
+                    function drawMicrocontroller(x, y, width, height) {
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 1)';
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.2)';
+                        ctx.lineWidth = 2;
+                        ctx.beginPath();
+                        ctx.roundRect(x, y, width, height, [5]);
+                        ctx.stroke();
+                        ctx.fill();
+
+                        ctx.lineWidth = 1.5;
+                        for(let i=0; i<6; i++) {
+                            const pinY = y + (i + 1) * (height / 7);
                             ctx.beginPath();
-                            if (s.type === 'dot') {
-                                ctx.arc(w/2, h/2, radius, 0, Math.PI * 2);
-                            } else {
-                                ctx.rect(w/2 - radius, h/2 - 10, radius * 2, 20);
-                            }
+                            ctx.moveTo(x - 10, pinY); ctx.lineTo(x, pinY);
+                            ctx.moveTo(x + width, pinY); ctx.lineTo(x + width + 10, pinY);
                             ctx.stroke();
-                        });
+                        }
+                    }
+
+                    function loop() {
                         t++;
+                        const currentSignal = signalsToTranslate[currentSignalIndex];
+                        ctx.clearRect(0, 0, w, h);
+
+                        const mcuX = w * 0.35, mcuY = h * 0.2, mcuW = w * 0.3, mcuH = h * 0.6;
+                        drawMicrocontroller(mcuX, mcuY, mcuW, mcuH);
+                        
+                        // 1. Draw Input Signal
+                        ctx.font = `bold ${h/8}px monospace`;
+                        ctx.fillStyle = 'rgba(60, 138, 133, 1)';
+                        ctx.textAlign = 'right';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(currentSignal, mcuX - 25, h/2);
+                        
+                        ctx.font = `bold ${h/12}px Amiri`;
+                        ctx.fillText("INPUT", mcuX - 25, h/2 - 25);
+
+
+                        // 2. Animate Brute Force Check
+                        if (!matchFound) {
+                            if (t % 4 === 0) { // Cycle through dictionary
+                                dictionaryCheckIndex++;
+                            }
+                            if (dictionaryCheckIndex >= dictionary.length) {
+                                dictionaryCheckIndex = 0; 
+                            }
+                            
+                            if (dictionary[dictionaryCheckIndex].code === currentSignal) {
+                                matchFound = true;
+                                timeOfMatch = t;
+                            }
+                        }
+
+                        // 3. Display dictionary check
+                        ctx.font = `bold ${h/10}px monospace`;
+                        ctx.textAlign = 'center';
+                        
+                        const checkItem = dictionary[dictionaryCheckIndex];
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.9)';
+                        ctx.fillText(`${checkItem.char} : ${checkItem.code}`, mcuX + mcuW/2, mcuY + mcuH/2);
+
+                        if (matchFound) {
+                            const timeSinceMatch = t - timeOfMatch;
+                            const highlightAlpha = Math.max(0, 1 - (timeSinceMatch / 60)); 
+                            
+                            // Highlight the match inside MCU
+                            ctx.fillStyle = `rgba(60, 138, 133, ${highlightAlpha * 0.5})`;
+                            const rectWidth = ctx.measureText(`${checkItem.char} : ${checkItem.code}`).width + 20;
+                            ctx.fillRect(mcuX + mcuW/2 - rectWidth/2, mcuY + mcuH/2 - h/10, rectWidth, h/5);
+                            
+                            // Display Output
+                            ctx.font = `bold ${h/8}px Amiri`;
+                            ctx.fillStyle = `rgba(60, 138, 133, 1)`;
+                            ctx.textAlign = 'left';
+                            ctx.fillText(checkItem.char, mcuX + mcuW + 25, h/2);
+                            
+                            ctx.font = `bold ${h/12}px Amiri`;
+                            ctx.fillText("OUTPUT", mcuX + mcuW + 25, h/2 - 25);
+
+                            if (timeSinceMatch > 120) { // Wait 2 seconds before next signal
+                                matchFound = false;
+                                dictionaryCheckIndex = 0; // -1 so it becomes 0 on next increment
+                                currentSignalIndex = (currentSignalIndex + 1) % signalsToTranslate.length;
+                            }
+                        }
+                        
                         requestAnimationFrame(loop);
                     }
                     loop();
                 },
                  'web-canvas': (ctx, w, h) => {
-                    ctx.font = `bold ${h/6}px "Font Awesome 6 Free"`;
-                    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-                    const icons = [
-                        { char: '\uf07a', x: w*0.2, y: h*0.3, vx: 0.5, vy: -0.4 }, // cart
-                        { char: '\uf481', x: w*0.8, y: h*0.2, vx: -0.3, vy: 0.6 }, // box
-                        { char: '\uf155', x: w*0.5, y: h*0.8, vx: 0.2, vy: -0.5 }  // dollar
-                    ];
+                    let t = 0;
+                    const client = { x: w * 0.2, y: h/2 };
+                    const server = { x: w * 0.8, y: h * 0.35 };
+                    const db = { x: w * 0.8, y: h * 0.65 };
+                    
+                    let packets = [];
+                    const cycleDuration = 360;
+
+                    function drawComponent(icon, label, x, y, size, color) {
+                        ctx.font = `bold ${size}px "Font Awesome 6 Free"`;
+                        ctx.fillStyle = color;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(icon, x, y);
+                        
+                        ctx.font = `bold ${size/3}px Amiri`;
+                        ctx.fillText(label, x, y + size/2 + 10);
+                    }
+
                     function loop() {
+                        t++;
                         ctx.clearRect(0, 0, w, h);
-                        icons.forEach(icon => {
-                            icon.x += icon.vx; icon.y += icon.vy;
-                            if (icon.x < h/12 || icon.x > w - h/12) icon.vx *= -1;
-                            if (icon.y < h/12 || icon.y > h - h/12) icon.vy *= -1;
-                            ctx.fillStyle = `rgba(199, 165, 91, 0.8)`;
-                            ctx.fillText(icon.char, icon.x, icon.y);
-                        });
+
+                        // Draw components
+                        drawComponent('\uf108', 'Client (Browser)', client.x, client.y, h*0.3, 'rgba(60, 138, 133, 1)');
+                        drawComponent('\uf1d3', 'Server (PHP)', server.x, server.y, h*0.25, 'rgba(199, 165, 91, 1)');
+                        drawComponent('\uf1c0', 'Database (MySQL)', db.x, db.y, h*0.25, 'rgba(199, 165, 91, 1)');
+
+                        // Animate packets based on cycle progress
+                        const progress = (t % cycleDuration) / cycleDuration;
+                        let packet;
+
+                        ctx.lineWidth = 2;
+                        ctx.font = `italic ${h/18}px Amiri`;
+                        ctx.textAlign = 'center';
+
+                        if (progress < 0.25) { // Client -> Server
+                            const p = progress / 0.25;
+                            packet = {
+                                x: client.x + (server.x - client.x) * p,
+                                y: client.y + (server.y - client.y) * p,
+                                color: 'rgba(60, 138, 133, 0.8)'
+                            };
+                            ctx.fillStyle = packet.color;
+                            ctx.fillText('HTTP Request', client.x + (server.x - client.x) * 0.5, client.y - 30);
+                        } else if (progress < 0.5) { // Server -> DB
+                            const p = (progress - 0.25) / 0.25;
+                            packet = {
+                                x: server.x + (db.x - server.x) * p,
+                                y: server.y + (db.y - server.y) * p,
+                                color: 'rgba(199, 165, 91, 0.8)'
+                            };
+                             ctx.fillStyle = packet.color;
+                             ctx.fillText('SQL Query', server.x + 30, server.y + (db.y - server.y)*0.5);
+                        } else if (progress < 0.75) { // DB -> Server
+                            const p = (progress - 0.5) / 0.25;
+                            packet = {
+                                x: db.x + (server.x - db.x) * p,
+                                y: db.y + (server.y - db.y) * p,
+                                color: 'rgba(199, 165, 91, 0.8)'
+                            };
+                             ctx.fillStyle = packet.color;
+                             ctx.fillText('SQL Result', server.x + 30, server.y + (db.y - server.y)*0.5);
+                        } else { // Server -> Client
+                             const p = (progress - 0.75) / 0.25;
+                             packet = {
+                                x: server.x + (client.x - server.x) * p,
+                                y: server.y + (client.y - server.y) * p,
+                                color: 'rgba(60, 138, 133, 0.8)'
+                            };
+                            ctx.fillStyle = packet.color;
+                            ctx.fillText('HTTP Response', client.x + (server.x - client.x) * 0.5, client.y - 30);
+                        }
+                        
+                        if (packet) {
+                            ctx.beginPath();
+                            ctx.arc(packet.x, packet.y, 5, 0, Math.PI * 2);
+                            ctx.fillStyle = packet.color;
+                            ctx.fill();
+                        }
+                        
+                        // Draw connecting lines
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.2)';
+                        ctx.beginPath();
+                        ctx.moveTo(client.x, client.y);
+                        ctx.lineTo(server.x, server.y);
+                        ctx.moveTo(server.x, server.y);
+                        ctx.lineTo(db.x, db.y);
+                        ctx.stroke();
+
                         requestAnimationFrame(loop);
                     }
                     loop();
                 },
                 'iot-canvas': (ctx, w, h) => {
                     let growth = 0; let t = 0;
-                    let particles = Array(20).fill().map(() => ({
-                        x: w/2, y: h, a: Math.random() * Math.PI*2, s: Math.random() * 1.5 + 0.5, r: Math.random() * h*0.4 + h*0.1
-                    }));
+                    const plantBaseY = h * 0.9;
+                    const sensors = [
+                        { icon: '\uf043', x: w * 0.15, y: h*0.3, color: '60, 138, 133' }, // water drop
+                        { icon: '\uf185', x: w * 0.85, y: h*0.3, color: '199, 165, 91' }, // sun
+                    ];
+                    let waves = [];
+
                     function drawPlant(g) {
-                        ctx.strokeStyle = 'rgba(60, 138, 133, 0.8)';
-                        ctx.lineWidth = 8; ctx.beginPath(); ctx.moveTo(w/2, h);
-                        const topY = h - Math.min(h * 0.8, g * 5);
+                        ctx.strokeStyle = `rgba(60, 138, 133, 1)`;
+                        ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(w/2, plantBaseY);
+                        const topY = plantBaseY - g;
                         ctx.lineTo(w/2, topY); ctx.stroke();
-                        for (let i = 0; i < 5; i++) {
-                            const leafY = h - i * (h*0.15);
-                            if (topY < leafY) {
-                                ctx.lineWidth = 4; ctx.beginPath(); ctx.moveTo(w/2, leafY);
-                                ctx.quadraticCurveTo(w/2 + (i%2==0?1:-1)*g, leafY - g/2, w/2 + (i%2==0?1:-1)*g*2, leafY - g);
-                                ctx.stroke();
-                            }
+                        const leaves = Math.floor(g / (h*0.1));
+                        for (let i = 0; i < leaves; i++) {
+                            const leafY = plantBaseY - (i+1)*(h*0.1);
+                            ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(w/2, leafY);
+                            ctx.quadraticCurveTo(w/2 + (i%2==0?1:-1)*15, leafY-10, w/2 + (i%2==0?1:-1)*30, leafY);
+                            ctx.stroke();
                         }
                     }
+
+                    if(t % 90 === 0 && growth < h*0.6) {
+                        const sensor = sensors[Math.floor(Math.random() * sensors.length)];
+                        waves.push({ sx: sensor.x, sy: sensor.y, progress: 0, color: sensor.color });
+                    }
+
                     function loop() {
-                        ctx.clearRect(0, 0, w, h);
-                        if (growth < h * 0.3) growth += 0.1;
-                        drawPlant(growth);
-                        ctx.fillStyle = 'rgba(199, 165, 91, 0.7)';
-                        particles.forEach(p => {
-                           p.a += p.s * 0.01;
-                           const x = w/2 + Math.cos(p.a) * p.r;
-                           const y = h/2 + Math.sin(p.a) * p.r * 0.5 - h*0.1;
-                           ctx.beginPath(); ctx.arc(x, y, 2, 0, Math.PI * 2); ctx.fill();
-                        });
                         t++;
+                        ctx.clearRect(0, 0, w, h);
+                        
+                        if (t % 120 === 0 && growth < h*0.6) {
+                            const sensor = sensors[Math.floor(Math.random() * sensors.length)];
+                            waves.push({ sx: sensor.x, sy: sensor.y, progress: 0, color: sensor.color });
+                        }
+
+                        waves.forEach((wave, i) => {
+                            wave.progress += 0.02;
+                            if (wave.progress > 1) {
+                                waves.splice(i, 1);
+                                if (growth < h*0.6) growth += 5;
+                                return;
+                            }
+                            const x = wave.sx + (w/2 - wave.sx) * wave.progress;
+                            const y = wave.sy + (plantBaseY - growth - wave.sy) * wave.progress;
+                            ctx.beginPath();
+                            ctx.arc(x, y, 3, 0, Math.PI*2);
+                            ctx.fillStyle = `rgba(${wave.color}, ${1-wave.progress})`;
+                            ctx.fill();
+                        });
+
+                        drawPlant(growth);
+                        
+                        ctx.font = `bold ${h/8}px "Font Awesome 6 Free"`; ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+                        sensors.forEach(s => {
+                            ctx.fillStyle = `rgba(${s.color}, 1)`;
+                            ctx.fillText(s.icon, s.x, s.y);
+                        });
+                        
                         requestAnimationFrame(loop);
                     }
                     loop();
                 },
                 'pieces-canvas': (ctx, w, h) => {
-                    const bars = [
-                        { h: 0, th: h * 0.7, label: 'P' }, { h: 0, th: h * 0.5, label: 'I' },
-                        { h: 0, th: h * 0.8, label: 'E' }, { h: 0, th: h * 0.6, label: 'C' },
-                        { h: 0, th: h * 0.4, label: 'E' }, { h: 0, th: h * 0.75, label: 'S' }
+                    let t = 0;
+                    const piecesFramework = [
+                        { name: 'PERFORMANCE', manualIcon: '\uf017', digitalIcon: '\uf135', manualDesc: 'Lamban', digitalDesc: 'Cepat' },
+                        { name: 'INFORMATION', manualIcon: '\uf15b', digitalIcon: '\uf1c0', manualDesc: 'Terpencar', digitalDesc: 'Terpusat' },
+                        { name: 'ECONOMICS', manualIcon: '\uf53d', digitalIcon: '\uf4c0', manualDesc: 'Boros', digitalDesc: 'Efisien' },
+                        { name: 'CONTROL', manualIcon: '\uf13e', digitalIcon: '\uf3ed', manualDesc: 'Lemah', digitalDesc: 'Aman' },
+                        { name: 'EFFICIENCY', manualIcon: '\uf074', digitalIcon: '\uf14a', manualDesc: 'Rumit', digitalDesc: 'Praktis' },
+                        { name: 'SERVICE', manualIcon: '\uf119', digitalIcon: '\uf118', manualDesc: 'Terbatas', digitalDesc: '24/7' }
                     ];
-                    const barWidth = w / (bars.length * 1.5);
-                    const gap = barWidth / 2;
+
+                    const manualX = w * 0.25;
+                    const digitalX = w * 0.75;
+                    const transitionDuration = 240; // frames for a full cycle
+
                     function loop() {
+                        t++;
                         ctx.clearRect(0, 0, w, h);
-                        ctx.font = `bold ${barWidth*0.4}px Amiri`; ctx.textAlign = 'center';
-                        bars.forEach((bar, i) => {
-                            if (bar.h < bar.th) bar.h += (bar.th - bar.h) * 0.05;
-                            const x = gap/2 + i * (barWidth + gap);
-                            ctx.fillStyle = 'rgba(60, 138, 133, 0.8)';
-                            ctx.fillRect(x, h - bar.h, barWidth, bar.h);
-                            ctx.fillStyle = 'rgba(199, 165, 91, 1)';
-                            ctx.fillText(bar.label, x + barWidth/2, h - bar.h - barWidth*0.3);
-                        });
+
+                        const cycleProgress = (t % transitionDuration) / transitionDuration;
+                        const currentIndex = Math.floor((t / transitionDuration) % piecesFramework.length);
+                        const currentItem = piecesFramework[currentIndex];
+
+                        // Draw divider
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.3)';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(w/2, h*0.1);
+                        ctx.lineTo(w/2, h*0.9);
+                        ctx.stroke();
+
+                        // Draw Titles
+                        ctx.font = `bold ${h/12}px Amiri`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.7)';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Sistem Manual', manualX, h * 0.2);
+                        ctx.fillText('Sistem Digital', digitalX, h * 0.2);
+                        
+                        // Draw Arrow
+                        ctx.font = `bold ${h/8}px "Font Awesome 6 Free"`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.5)';
+                        ctx.fillText('\uf061', w/2, h/2);
+
+                        // Draw PIECES elements
+                        ctx.font = `bold ${h/6}px "Font Awesome 6 Free"`;
+                        ctx.textBaseline = 'middle';
+
+                        // Manual side (Problem)
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.8)';
+                        ctx.fillText(currentItem.manualIcon, manualX, h/2);
+
+                        // Digital side (Solution)
+                        ctx.fillStyle = 'rgba(60, 138, 133, 1)';
+                        ctx.fillText(currentItem.digitalIcon, digitalX, h/2);
+                        
+                        // Draw descriptions
+                        ctx.font = `bold ${h/14}px Amiri`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.9)';
+                        ctx.fillText(currentItem.manualDesc, manualX, h * 0.7);
+                        ctx.fillStyle = 'rgba(60, 138, 133, 0.9)';
+                        ctx.fillText(currentItem.digitalDesc, digitalX, h * 0.7);
+
+                        // Draw current framework name
+                        const textWidth = ctx.measureText(currentItem.name).width;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.3)';
+                        ctx.fillRect(w/2 - textWidth/2 - 10, h * 0.85 - h/18, textWidth + 20, h/9);
+                        
+                        ctx.font = `${h/16}px Amiri`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 1)';
+                        ctx.fillText(currentItem.name, w/2, h*0.85);
+
+
                         requestAnimationFrame(loop);
                     }
                     loop();
                 },
                 'network-canvas': (ctx, w, h) => {
-                    const nodes = [ {x:w*0.2, y:h*0.2}, {x:w*0.8, y:h*0.2}, {x:w*0.5, y:h*0.5}, {x:w*0.2, y:h*0.8}, {x:w*0.8, y:h*0.8} ];
-                    const links = [ [0,2], [1,2], [2,3], [2,4], [3,4], [0,1] ];
-                    let packets = Array(15).fill().map(() => ({
-                        link: links[Math.floor(Math.random() * links.length)],
-                        progress: Math.random()
-                    }));
+                    let t = 0;
+                    const internet = { x: w * 0.1, y: h/2, icon: '\uf0c2' };
+                    const router = { x: w * 0.3, y: h/2, icon: '\uf381' };
+                    const coreSwitch = { x: w * 0.5, y: h/2, icon: '\uf796' };
+                    const servers = { x: w * 0.5, y: h * 0.15, icon: '\uf233' };
+                    const departments = [
+                        { name: 'Produksi', x: w*0.75, y: h*0.15, icon: '\uf109' },
+                        { name: 'R&D', x: w*0.85, y: h*0.35, icon: '\uf109' },
+                        { name: 'Pemasaran', x: w*0.9, y: h*0.55, icon: '\uf109' },
+                        { name: 'Penjualan', x: w*0.85, y: h*0.75, icon: '\uf109' },
+                        { name: 'HRD', x: w*0.75, y: h*0.95, icon: '\uf109' },
+                    ];
+                    const cycleDuration = 400;
+
+                    function drawComponent(icon, label, x, y, size, color) {
+                        ctx.font = `bold ${size}px "Font Awesome 6 Free"`;
+                        ctx.fillStyle = color;
+                        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                        ctx.fillText(icon, x, y);
+                        
+                        ctx.font = `bold ${size/3.5}px Amiri`;
+                        ctx.fillText(label, x, y + size/2 + 5);
+                    }
+
                     function loop() {
-                        ctx.clearRect(0, 0, w, h);
-                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.4)'; ctx.lineWidth = 2;
-                        links.forEach(link => {
-                            ctx.beginPath();
-                            ctx.moveTo(nodes[link[0]].x, nodes[link[0]].y);
-                            ctx.lineTo(nodes[link[1]].x, nodes[link[1]].y);
-                            ctx.stroke();
+                        t++;
+                        ctx.clearRect(0,0,w,h);
+                        
+                        // Draw components
+                        drawComponent(internet.icon, 'Internet', internet.x, internet.y, h*0.25, 'rgba(60, 138, 133, 1)');
+                        drawComponent(router.icon, 'Router', router.x, router.y, h*0.2, 'rgba(199, 165, 91, 1)');
+                        drawComponent(coreSwitch.icon, 'Core Switch', coreSwitch.x, coreSwitch.y, h*0.2, 'rgba(199, 165, 91, 1)');
+                        drawComponent(servers.icon, 'Servers', servers.x, servers.y, h*0.15, 'rgba(199, 165, 91, 1)');
+                        
+                        departments.forEach(dept => {
+                            drawComponent(dept.icon, dept.name, dept.x, dept.y, h*0.1, 'rgba(60, 138, 133, 1)');
                         });
-                        ctx.fillStyle = 'rgba(199, 165, 91, 1)';
-                        nodes.forEach(node => { ctx.beginPath(); ctx.arc(node.x, node.y, 8, 0, Math.PI*2); ctx.fill(); });
-                        ctx.fillStyle = 'rgba(60, 138, 133, 1)';
-                        packets.forEach(p => {
-                            p.progress += 0.01;
-                            if (p.progress > 1) {
-                                p.progress = 0;
-                                p.link = links[Math.floor(Math.random() * links.length)];
-                            }
-                            const start = nodes[p.link[0]]; const end = nodes[p.link[1]];
-                            const x = start.x + (end.x - start.x) * p.progress;
-                            const y = start.y + (end.y - start.y) * p.progress;
-                            ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill();
+                        
+                        // Draw connections
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.3)'; ctx.lineWidth = 1;
+                        ctx.beginPath(); ctx.moveTo(internet.x, internet.y); ctx.lineTo(router.x, router.y); ctx.stroke();
+                        ctx.beginPath(); ctx.moveTo(router.x, router.y); ctx.lineTo(coreSwitch.x, coreSwitch.y); ctx.stroke();
+                        ctx.beginPath(); ctx.moveTo(coreSwitch.x, coreSwitch.y); ctx.lineTo(servers.x, servers.y); ctx.stroke();
+                        departments.forEach(dept => {
+                            ctx.beginPath(); ctx.moveTo(coreSwitch.x, coreSwitch.y); ctx.lineTo(dept.x, dept.y); ctx.stroke();
                         });
+
+                        // Animate packets
+                        const progress = (t % cycleDuration) / cycleDuration;
+                        let packet;
+                        
+                        if (progress < 0.25) { // Internet -> Router -> Switch -> Server
+                           const p = progress / 0.25;
+                           if (p < 0.33) { packet = { x: internet.x + (router.x - internet.x) * (p/0.33), y: router.y }; }
+                           else if (p < 0.66) { packet = { x: router.x + (coreSwitch.x - router.x) * ((p-0.33)/0.33), y: router.y }; }
+                           else { packet = { x: coreSwitch.x, y: coreSwitch.y + (servers.y - coreSwitch.y) * ((p-0.66)/0.34) }; }
+                        } else if (progress < 0.5) { // Server -> Switch -> Dept
+                           const p = (progress - 0.25) / 0.25;
+                           const targetDept = departments[1]; // R&D
+                           if (p < 0.5) { packet = { x: servers.x, y: servers.y + (coreSwitch.y - servers.y) * (p/0.5) }; }
+                           else { packet = { x: coreSwitch.x + (targetDept.x-coreSwitch.x)*((p-0.5)/0.5), y: coreSwitch.y + (targetDept.y-coreSwitch.y)*((p-0.5)/0.5) }; }
+                        } else if (progress < 0.75) { // Dept -> Switch -> Dept
+                           const p = (progress - 0.5) / 0.25;
+                           const fromDept = departments[3]; // Penjualan
+                           const toDept = departments[0]; // Produksi
+                           if (p < 0.5) { packet = { x: fromDept.x + (coreSwitch.x - fromDept.x) * (p/0.5), y: fromDept.y + (coreSwitch.y - fromDept.y) * (p/0.5) }; }
+                           else { packet = { x: coreSwitch.x + (toDept.x-coreSwitch.x)*((p-0.5)/0.5), y: coreSwitch.y + (toDept.y-coreSwitch.y)*((p-0.5)/0.5) }; }
+                        } else { // Dept -> Switch -> Router -> Internet
+                           const p = (progress - 0.75) / 0.25;
+                           const fromDept = departments[4]; // HRD
+                           if (p < 0.33) { packet = { x: fromDept.x + (coreSwitch.x - fromDept.x)*(p/0.33), y: fromDept.y + (coreSwitch.y - fromDept.y)*(p/0.33) }; }
+                           else if (p < 0.66) { packet = { x: coreSwitch.x + (router.x - coreSwitch.x)*((p-0.33)/0.33), y: router.y }; }
+                           else { packet = { x: router.x + (internet.x - router.x)*((p-0.66)/0.34), y: router.y }; }
+                        }
+
+                        if (packet) {
+                            ctx.beginPath(); ctx.arc(packet.x, packet.y, 4, 0, Math.PI*2);
+                            ctx.fillStyle='rgba(220, 50, 50, 0.9)'; ctx.fill();
+                        }
+                        
                         requestAnimationFrame(loop);
                     }
                     loop();
                 },
                 'yagi-canvas': (ctx, w, h) => {
-                    let waves = []; let t = 0;
-                    const antennaX = w * 0.2;
+                    let t = 0;
+                    const boomY = h/2;
+                    // Disesuaikan menjadi 6 elemen sesuai judul: 1 reflektor, 1 driven, 4 direktor
+                    const elements = [
+                        { x: w * 0.15, h: h * 0.7, type: 'reflector' },
+                        { x: w * 0.3,  h: h * 0.65, type: 'driven' },
+                        { x: w * 0.5,  h: h * 0.6, type: 'director' },
+                        { x: w * 0.65, h: h * 0.57, type: 'director' },
+                        { x: w * 0.8,  h: h * 0.54, type: 'director' },
+                        { x: w * 0.9,  h: h * 0.51, type: 'director' }
+                    ];
+
                     function drawAntenna() {
-                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.9)'; ctx.lineWidth = 4;
-                        ctx.beginPath(); ctx.moveTo(antennaX, h*0.2); ctx.lineTo(antennaX, h*0.8); ctx.stroke(); // Main boom
-                        const elements = [ {y:h*0.25, l:h*0.25}, {y:h*0.35, l:h*0.28}, {y:h*0.5, l:h*0.26}, {y:h*0.65, l:h*0.24} ];
-                        ctx.lineWidth = 6;
-                        elements.forEach((el, i) => {
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 1)';
+                        ctx.lineWidth = 2;
+                        ctx.beginPath(); ctx.moveTo(w*0.1, boomY); ctx.lineTo(w, boomY); ctx.stroke();
+                        
+                        ctx.lineWidth = 4;
+                        elements.forEach(el => {
+                            ctx.strokeStyle = el.type === 'driven' ? 'rgba(60, 138, 133, 1)' : 'rgba(199, 165, 91, 1)';
                             ctx.beginPath();
-                            ctx.moveTo(antennaX - (i==0?el.l*0.6:el.l), el.y);
-                            ctx.lineTo(antennaX + (i==0?el.l*0.6:el.l), el.y);
+                            ctx.moveTo(el.x, boomY - el.h/2);
+                            ctx.lineTo(el.x, boomY + el.h/2);
                             ctx.stroke();
+                        });
+                        
+                        // Menambahkan label untuk kejelasan
+                        ctx.font = `12px Amiri`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.9)';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Reflektor', elements[0].x, boomY + elements[0].h/2 + 15);
+                        ctx.fillStyle = 'rgba(60, 138, 133, 0.9)';
+                        ctx.fillText('Driven', elements[1].x, boomY - elements[1].h/2 - 15);
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.9)';
+                        ctx.fillText('Direktor', elements[3].x, boomY + elements[3].h/2 + 15);
+                    }
+                    
+                    let particles = [];
+                    for (let i=0; i < 50; i++) {
+                        particles.push({
+                            x: Math.random() * -w,
+                            y: boomY + (Math.random() - 0.5) * h * 1.2,
+                            speed: 1 + Math.random() * 0.5
                         });
                     }
+
                     function loop() {
-                        ctx.clearRect(0, 0, w, h);
-                        drawAntenna();
-                        if (t % 40 === 0) waves.push({ life: 0, maxLife: 150 });
-                        waves.forEach((wave, i) => {
-                            wave.life++;
-                            if (wave.life > wave.maxLife) waves.splice(i, 1);
-                            const progress = wave.life / wave.maxLife;
-                            ctx.strokeStyle = `rgba(199, 165, 91, ${1 - progress})`;
-                            ctx.lineWidth = 3 * (1 - progress);
-                            ctx.beginPath();
-                            ctx.arc(antennaX, h/2, progress * w, -Math.PI/3, Math.PI/3);
-                            ctx.stroke();
-                        });
                         t++;
+                        ctx.clearRect(0, 0, w, h);
+                        
+                        const reflector = elements[0];
+                        const lastDirector = elements[elements.length-1];
+
+                        // Animasikan partikel yang sedang difokuskan
+                        particles.forEach(p => {
+                            p.x += p.speed;
+                            if (p.x > lastDirector.x) {
+                                p.x = Math.random() * -50;
+                                p.y = boomY + (Math.random() - 0.5) * h * 1.2;
+                            }
+                            if (p.x > reflector.x - 5 && p.x < reflector.x + 5 && Math.abs(p.y - boomY) < reflector.h/2) {
+                                p.x = reflector.x - 6; // Pantulkan partikel oleh reflektor
+                            }
+
+                            let focusFactor = 0;
+                            if (p.x > reflector.x) {
+                                focusFactor = (p.x - reflector.x) / (lastDirector.x - reflector.x);
+                            }
+                            
+                            p.y += (boomY - p.y) * 0.015 * focusFactor;
+                            
+                            const intensity = Math.min(1, focusFactor * 1.2);
+                            const r = 60 + (220 - 60) * intensity;
+                            const g = 138 + (50 - 138) * intensity;
+                            const b = 133 + (50 - 133) * intensity;
+                            const alpha = 0.4 + intensity * 0.5;
+
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                            ctx.fillStyle = `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${alpha})`;
+                            ctx.fill();
+                        });
+                        
+                        drawAntenna(); // Gambar antena di atas partikel
+
+                        // Animasikan pola radiasi yang dihasilkan
+                        const lobeProgress = (t % 150) / 150;
+                        const pulse = Math.sin(lobeProgress * Math.PI);
+                        const lobeSize = w * 0.5 * (0.9 + pulse * 0.1);
+                        const lobeOpacity = 0.4 + pulse * 0.3;
+                        
+                        const startX = elements[1].x; // Pola radiasi dimulai dari elemen driven
+                        const endX = startX + lobeSize;
+                        const controlY = h * 0.4 * (0.9 + pulse * 0.1);
+
+                        const gradient = ctx.createRadialGradient(startX, boomY, 0, startX, boomY, lobeSize);
+                        gradient.addColorStop(0, `rgba(199, 165, 91, ${lobeOpacity})`);
+                        gradient.addColorStop(0.5, `rgba(199, 165, 91, ${lobeOpacity * 0.5})`);
+                        gradient.addColorStop(1, `rgba(199, 165, 91, 0)`);
+                        ctx.fillStyle = gradient;
+
+                        ctx.beginPath();
+                        ctx.moveTo(startX, boomY);
+                        ctx.quadraticCurveTo(startX + lobeSize * 0.5, boomY - controlY, endX, boomY);
+                        ctx.quadraticCurveTo(startX + lobeSize * 0.5, boomY + controlY, startX, boomY);
+                        ctx.fill();
+                        
                         requestAnimationFrame(loop);
                     }
                     loop();
@@ -2396,5 +2786,13 @@
 
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
