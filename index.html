@@ -1557,6 +1557,12 @@
                 contentPages.classList.add('content-visible');
                 stopAstrolabeAnimation();
                 startParticleAnimation();
+
+                if (backgroundMusic && !backgroundMusic.paused) {
+                    backgroundMusic.pause();
+                    playText.classList.remove('hidden');
+                    stopText.classList.add('hidden');
+                }
             });
 
             closeBookBtn.addEventListener('click', () => {
@@ -2660,6 +2666,7 @@
 
 </body>
 </html>
+
 
 
 
