@@ -540,6 +540,11 @@
             color: var(--bg-parchment);
             border-color: var(--accent-teal);
         }
+        .project-audio-toggle.playing {
+            background-color: var(--accent-teal);
+            color: var(--bg-parchment);
+            border-color: var(--accent-teal);
+        }
         #tts-controls {
             padding-bottom: 1rem;
             margin-bottom: 1rem;
@@ -869,6 +874,14 @@
                                         <button data-modal-target="#cnn-doc-modal" data-doc-id="17CLeDEZGMRex0O3yFGt6Bm2CJs-zb1K8" class="classic-button text-sm py-2 px-4">Buka Dokumen</button>
                                         <button data-modal-target="#cnn-sim-modal" data-iframe-src="https://affinecipher-0.github.io/Algoritma-CNN/" class="classic-button text-sm py-2 px-4">Jalankan Simulasi</button>
                                         <a href="https://github.com/AffineCipher-0/Algoritma-CNN" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat Repositori</a>
+                                        <audio id="audio-cnn" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Membedah%20Jaringan%20Saraf%20Tiruan_%20Cara%20Kerja%20Convolutional%20Neural%20Networks%20(CNN)%20dari%20Piksel%20Hingga%20Mengenali%20Kucing.mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-cnn" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2 w-full justify-center mt-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
                                     </div>
                                 </div>
                             </article>
@@ -882,6 +895,14 @@
                                     </p>
                                     <div class="project-buttons">
                                         <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Baca Dokumen Penelitian</a>
+                                        <audio id="audio-morse" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Deep%20Dive%20Sandi%20Morse_%20Bongkar%20Penerjemah%20Otomatis%20Pakai%20Arduino%20dan%20Efek%20Algoritma%20Brute%20Force.mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-morse" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
                                     </div>
                                 </div>
                             </article>
@@ -909,6 +930,14 @@
                                     <div class="project-buttons">
                                         <button data-modal-target="#srs-doc-modal" data-doc-id="18pBCviFKwYibi60U-z4pLEpcf1EJ8UX1" class="classic-button text-sm py-2 px-4">Buka Dokumen SRS</button>
                                         <button data-modal-target="#greenhouse-prototype-modal" data-iframe-src="https://affinecipher-0.github.io/prototype-greenhouse/" class="classic-button text-sm py-2 px-4">Lihat Prototipe</button>
+                                        <audio id="audio-srs" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Bedah%20Dokumen%20SRS_%20Cetak%20Biru%20Aplikasi%20IoT%20untuk%20Otomatisasi%20100%20Greenhouse%20Hidroponik%20Skala%20Industri.mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-srs" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
                                     </div>
                                 </div>
                             </article>
@@ -922,6 +951,14 @@
                                     </p>
                                     <div class="project-buttons">
                                         <button data-modal-target="#pieces-modal" data-iframe-src="https://affinecipher-0.github.io/PIECES/" class="classic-button text-sm py-2 px-4">Baca Laporan Analisis</button>
+                                        <audio id="audio-pieces" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Rahasia%20Transformasi%20Jual%20Beli%20Mobil%20Bekas_%20Bedah%20PIECES%20dan%20Lonjakan%20Efisiensi%2090%25%20Lewat%20Platform%20Digital.mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-pieces" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
                                     </div>
                                 </div>
                             </article>
@@ -935,6 +972,14 @@
                                     </p>
                                     <div class="project-buttons">
                                         <button data-modal-target="#network-infra-modal" data-iframe-src="https://affinecipher-0.github.io/Infrastruktur-Jaringan/" class="classic-button text-sm py-2 px-4">Lihat Desain Jaringan</button>
+                                        <audio id="audio-network" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Bedah%20Tuntas%20Proyek%20Modernisasi%20Jaringan%20PT.%20AMIKOM_%20Rahasia%20VLAN%20dan%20VPN%20Membangun%20Fondasi%20Studio%20Animasi%20Tangguh%20(online-audio-converter.com).mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-network" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
                                     </div>
                                 </div>
                             </article>
@@ -948,6 +993,14 @@
                                     </p>
                                     <div class="project-buttons">
                                         <button data-modal-target="#yagi-antenna-modal" data-iframe-src="https://affinecipher-0.github.io/TeknologiJaringanNirkabel/" class="classic-button text-sm py-2 px-4">Baca Laporan Desain</button>
+                                        <audio id="audio-yagi" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Kompromi%20Ekstrem%20Optimasi%20Antena%20Yagi_%20Menjinakkan%20SWR%20Tinggi%20dengan%20Mengorbankan%20Gain%20dan%20Arah%20Fokus%20Menggunakan%20MMANA-GAL.mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-yagi" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
                                     </div>
                                 </div>
                             </article>
@@ -1065,10 +1118,14 @@
                                     </p>
                                 </div>
                                 <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
-                                    <audio controls style="height: 40px; max-width: 220px;">
+                                    <audio id="audio-ai-ethics" class="project-audio hidden">
                                         <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Menanam%20Kebajikan%20dalam%20Algoritma_%20Etika%20AI%20Melalui%20Kacamata%20Filsuf%20Islam%20Al-Farabi.mp3" type="audio/mpeg">
                                         Browser Anda tidak mendukung elemen audio.
                                     </audio>
+                                    <button data-audio-target="#audio-ai-ethics" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
                                     <button data-modal-target="#manuscript-modal" data-manuscript-id="ai-ethics" class="classic-button text-sm py-2 px-4">Baca</button>
                                 </div>
                             </article>
@@ -1080,10 +1137,14 @@
                                     </p>
                                 </div>
                                 <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
-                                    <audio controls style="height: 40px; max-width: 220px;">
+                                    <audio id="audio-social-network" class="project-audio hidden">
                                         <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Jalur%20Sutra%20vs%20Internet_%20Menguak%20Arteri%20Peradaban%20dan%20Cetak%20Biru%20Jaringan%20Global%20Pertama.mp3" type="audio/mpeg">
                                         Browser Anda tidak mendukung elemen audio.
                                     </audio>
+                                    <button data-audio-target="#audio-social-network" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
                                     <button data-modal-target="#manuscript-modal" data-manuscript-id="social-network" class="classic-button text-sm py-2 px-4">Baca</button>
                                 </div>
                             </article>
@@ -1095,10 +1156,14 @@
                                     </p>
                                 </div>
                                 <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
-                                    <audio controls style="height: 40px; max-width: 220px;">
+                                    <audio id="audio-iot-balance" class="project-audio hidden">
                                         <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/IoT%20Penjaga%20Alam_%20Menggali%20Konsep%20Keseimbangan%20'Mizan'%20untuk%20Teknologi%20Restoratif.mp3" type="audio/mpeg">
                                         Browser Anda tidak mendukung elemen audio.
                                     </audio>
+                                    <button data-audio-target="#audio-iot-balance" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
                                     <button data-modal-target="#manuscript-modal" data-manuscript-id="iot-balance" class="classic-button text-sm py-2 px-4">Baca</button>
                                 </div>
                             </article>
@@ -1110,10 +1175,14 @@
                                     </p>
                                 </div>
                                 <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
-                                    <audio controls style="height: 40px; max-width: 220px;">
+                                    <audio id="audio-astrolabe-gps" class="project-audio hidden">
                                         <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Astrolab%20ke%20GPS_%20Bongkar%20Benang%20Merah%20Evolusi%20Navigasi%2C%20dari%20Bintang%20Kuno%20ke%20Presisi%20Sentimeter.mp3" type="audio/mpeg">
                                         Browser Anda tidak mendukung elemen audio.
                                     </audio>
+                                    <button data-audio-target="#audio-astrolabe-gps" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
                                     <button data-modal-target="#manuscript-modal" data-manuscript-id="astrolabe-gps" class="classic-button text-sm py-2 px-4">Baca</button>
                                 </div>
                             </article>
@@ -1125,10 +1194,14 @@
                                     </p>
                                 </div>
                                 <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
-                                    <audio controls style="height: 40px; max-width: 220px;">
+                                    <audio id="audio-musyawarah-code" class="project-audio hidden">
                                         <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Musyawarah%20di%20Balik%20Kode_%20Menggali%20Kearifan%20Nusantara%20dalam%20Agile%20dan%20Open-Source%20Global.mp3" type="audio/mpeg">
                                         Browser Anda tidak mendukung elemen audio.
                                     </audio>
+                                    <button data-audio-target="#audio-musyawarah-code" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
                                     <button data-modal-target="#manuscript-modal" data-manuscript-id="musyawarah-code" class="classic-button text-sm py-2 px-4">Baca</button>
                                 </div>
                             </article>
@@ -1140,10 +1213,14 @@
                                     </p>
                                 </div>
                                 <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
-                                    <audio controls style="height: 40px; max-width: 220px;">
+                                    <audio id="audio-alkhawarizmi-algorithm" class="project-audio hidden">
                                         <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Al-Khwarizmi_%20Menggali%20Akar%20Algoritma%20Abad%20ke-9%2C%20Fondasi%20Logika%20Digital%20Dunia%20Modern.mp3" type="audio/mpeg">
                                         Browser Anda tidak mendukung elemen audio.
                                     </audio>
+                                    <button data-audio-target="#audio-alkhawarizmi-algorithm" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
                                     <button data-modal-target="#manuscript-modal" data-manuscript-id="alkhawarizmi-algorithm" class="classic-button text-sm py-2 px-4">Baca</button>
                                 </div>
                             </article>
@@ -2445,6 +2522,69 @@
             });
             document.addEventListener('keydown', e => { if (e.key === 'Escape' && currentActiveModal) closeModal(currentActiveModal); });
 
+            const audioToggleButtons = document.querySelectorAll('.project-audio-toggle');
+            const allProjectAudios = document.querySelectorAll('.project-audio');
+
+            audioToggleButtons.forEach(button => {
+                const audioId = button.dataset.audioTarget;
+                const audioElement = document.querySelector(audioId);
+                const buttonIcon = button.querySelector('i');
+                const buttonText = button.querySelector('span');
+
+                if (!audioElement) return;
+
+                button.addEventListener('click', () => {
+                    if (audioElement.paused) {
+                        allProjectAudios.forEach(audio => {
+                            if (audio !== audioElement && !audio.paused) {
+                                audio.pause();
+                            }
+                        });
+                        audioElement.play();
+                    } else {
+                        audioElement.pause();
+                    }
+                });
+
+                audioElement.addEventListener('play', () => {
+                    buttonIcon.className = 'fas fa-pause';
+                    if (buttonText) buttonText.textContent = 'Jeda Narasi';
+                    button.classList.add('playing');
+                });
+
+                audioElement.addEventListener('pause', () => {
+                    buttonIcon.className = 'fas fa-play';
+                    if (buttonText) buttonText.textContent = 'Dengarkan Narasi';
+                    button.classList.remove('playing');
+                    audioElement.currentTime = 0;
+                });
+
+                audioElement.addEventListener('ended', () => {
+                     buttonIcon.className = 'fas fa-play';
+                    if (buttonText) buttonText.textContent = 'Dengarkan Narasi';
+                    button.classList.remove('playing');
+                });
+            });
+            
+            allProjectAudios.forEach(audioEl => {
+                audioEl.addEventListener('play', () => {
+                    audioToggleButtons.forEach(btn => {
+                        const targetId = btn.dataset.audioTarget;
+                        if (`#${audioEl.id}` !== targetId) {
+                            const otherAudio = document.querySelector(targetId);
+                            if(otherAudio && !otherAudio.paused) {
+                                otherAudio.pause();
+                            }
+                            const icon = btn.querySelector('i');
+                            const text = btn.querySelector('span');
+                            icon.className = 'fas fa-play';
+                            if (text) text.textContent = 'Dengarkan Narasi';
+                            btn.classList.remove('playing');
+                        }
+                    });
+                });
+            });
+
             const certificates = [
                 { src: "https://i.imgur.com/wZ7owwo.png", alt: "Sertifikat Magang DLHK DIY", title: "Magang DLHK DIY", desc: "Dinas Lingkungan Hidup & Kehutanan DIY - 2024" },
                 { src: "https://i.imgur.com/fgV6iQP.png", alt: "Sertifikat Literasi Digital", title: "Literasi Digital", desc: "Kemkominfo - 2023" },
@@ -2666,19 +2806,6 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
