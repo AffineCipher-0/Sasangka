@@ -2663,10 +2663,13 @@
             if (starfieldCanvas) {
                 const ctx = starfieldCanvas.getContext('2d');
                 let stars = [];
+                let shootingStars = []; // Array untuk menyimpan meteor
+
                 const resizeCanvas = () => {
                     starfieldCanvas.width = window.innerWidth;
                     starfieldCanvas.height = window.innerHeight;
                 };
+
                 const createStars = () => {
                     stars = [];
                     const starCount = Math.floor((starfieldCanvas.width * starfieldCanvas.height) / 8000);
@@ -2681,27 +2684,72 @@
                         });
                     }
                 };
+
+                // Fungsi untuk membuat meteor baru
+                const createShootingStar = () => {
+                    shootingStars.push({
+                        x: Math.random() * starfieldCanvas.width * 1.5 - (starfieldCanvas.width * 0.25),
+                        y: 0,
+                        len: Math.random() * 80 + 20,
+                        speed: Math.random() * 8 + 12,
+                        opacity: 1,
+                    });
+                };
+
                 const animateStars = () => {
                     ctx.clearRect(0, 0, starfieldCanvas.width, starfieldCanvas.height);
+                    
+                    // Gambar bintang biasa
                     stars.forEach(star => {
                         star.y += star.speed;
                         if (star.y > starfieldCanvas.height) {
                             star.y = 0;
                             star.x = Math.random() * starfieldCanvas.width;
                         }
-                        
                         star.o += 0.003 * star.od;
                         if (star.o > 0.8 || star.o < 0.2) {
                             star.od *= -1;
                         }
-                        
                         ctx.beginPath();
                         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
                         ctx.fillStyle = `rgba(253, 246, 227, ${star.o})`;
                         ctx.fill();
                     });
+
+                    // Peluang untuk membuat meteor baru (jarang)
+                    if (Math.random() < 0.0015 && shootingStars.length < 2) {
+                        createShootingStar();
+                    }
+
+                    // Animasikan dan gambar meteor
+                    shootingStars.forEach((ss, index) => {
+                        ss.opacity -= 0.01;
+                        if (ss.opacity <= 0 || ss.y > starfieldCanvas.height || ss.x > starfieldCanvas.width) {
+                            shootingStars.splice(index, 1);
+                            return;
+                        }
+
+                        const x2 = ss.x + ss.len;
+                        const y2 = ss.y + ss.len;
+
+                        const gradient = ctx.createLinearGradient(ss.x, ss.y, x2, y2);
+                        gradient.addColorStop(0, `rgba(253, 246, 227, ${ss.opacity})`);
+                        gradient.addColorStop(1, 'rgba(253, 246, 227, 0)');
+
+                        ctx.beginPath();
+                        ctx.moveTo(ss.x, ss.y);
+                        ctx.lineTo(x2, y2);
+                        ctx.strokeStyle = gradient;
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+
+                        ss.x += ss.speed;
+                        ss.y += ss.speed;
+                    });
+
                     requestAnimationFrame(animateStars);
                 };
+                
                 window.addEventListener('resize', () => { resizeCanvas(); createStars(); });
                 resizeCanvas();
                 createStars();
