@@ -2663,62 +2663,49 @@
             if (starfieldCanvas) {
                 const ctx = starfieldCanvas.getContext('2d');
                 let stars = [];
-                let mouse = { x: 0, y: 0 };
-                const resizeCanvas = () => { starfieldCanvas.width = window.innerWidth; starfieldCanvas.height = window.innerHeight; };
+                const resizeCanvas = () => {
+                    starfieldCanvas.width = window.innerWidth;
+                    starfieldCanvas.height = window.innerHeight;
+                };
                 const createStars = () => {
                     stars = [];
-                    const starCount = Math.floor((starfieldCanvas.width * starfieldCanvas.height) / 5000);
+                    const starCount = Math.floor((starfieldCanvas.width * starfieldCanvas.height) / 8000);
                     for (let i = 0; i < starCount; i++) {
                         stars.push({
                             x: Math.random() * starfieldCanvas.width,
                             y: Math.random() * starfieldCanvas.height,
-                            z: Math.random() * starfieldCanvas.width, // Depth
-                            o: Math.random() * 0.8 + 0.2 // Opacity
+                            r: Math.random() * 1.2 + 0.3,
+                            o: Math.random() * 0.6 + 0.2,
+                            od: (Math.random() > 0.5) ? 1 : -1,
+                            speed: Math.random() * 0.1 + 0.05
                         });
                     }
                 };
                 const animateStars = () => {
                     ctx.clearRect(0, 0, starfieldCanvas.width, starfieldCanvas.height);
-                    ctx.fillStyle = "rgba(199, 165, 91, 0.5)";
-
-                    const centerX = starfieldCanvas.width / 2;
-                    const centerY = starfieldCanvas.height / 2;
-                    const warpFactor = 0.05 + (mouse.x / starfieldCanvas.width) * 0.1;
-
                     stars.forEach(star => {
-                        star.z -= warpFactor;
-                        if (star.z <= 0) {
-                            star.z = starfieldCanvas.width;
+                        star.y += star.speed;
+                        if (star.y > starfieldCanvas.height) {
+                            star.y = 0;
                             star.x = Math.random() * starfieldCanvas.width;
-                            star.y = Math.random() * starfieldCanvas.height;
                         }
                         
-                        const k = 128 / star.z;
-                        const px = star.x * k + centerX;
-                        const py = star.y * k + centerY;
-
-                        if (px >= 0 && px <= starfieldCanvas.width && py >= 0 && py <= starfieldCanvas.height) {
-                            const size = (1 - star.z / starfieldCanvas.width) * 2.5;
-                            ctx.globalAlpha = star.o;
-                            ctx.beginPath();
-                            ctx.arc(px, py, size, 0, Math.PI * 2);
-                            ctx.fill();
+                        star.o += 0.003 * star.od;
+                        if (star.o > 0.8 || star.o < 0.2) {
+                            star.od *= -1;
                         }
+                        
+                        ctx.beginPath();
+                        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(253, 246, 227, ${star.o})`;
+                        ctx.fill();
                     });
-
                     requestAnimationFrame(animateStars);
                 };
-
                 window.addEventListener('resize', () => { resizeCanvas(); createStars(); });
-                coverPage.addEventListener('mousemove', e => {
-                    mouse.x = e.clientX - (starfieldCanvas.width / 2);
-                    mouse.y = e.clientY - (starfieldCanvas.height / 2);
-                });
-                coverPage.addEventListener('mouseleave', () => {
-                    mouse.x = 0;
-                    mouse.y = 0;
-                });
-                resizeCanvas(); createStars(); animateStars();
+                resizeCanvas();
+                createStars();
+                animateStars();
             }
             
             const particleCanvas = document.getElementById('particle-canvas');
@@ -2807,6 +2794,7 @@
 
 </body>
 </html>
+
 
 
 
