@@ -364,13 +364,14 @@
         #astrolabe-svg {
             width: 800px; height: 800px;
             max-width: 90vw; max-height: 90vh;
-            opacity: 0.25;
+            opacity: 0.35; /* Ditingkatkan agar garis emas lebih terlihat */
             filter: drop-shadow(0 0 15px rgba(199, 165, 91, 0.5));
             transition: transform 0.2s ease-out;
         }
         #astrolabe-svg .astrolabe-st0 { fill: #c7a55b; }
+        #astrolabe-base > .astrolabe-st0 { fill: transparent; } /* Membuat latar belakang astrolab tembus pandang */
         #astrolabe-svg .astrolabe-st1 { fill: none; stroke: #c7a55b; stroke-width: 2; }
-        #astrolabe-svg .astrolabe-st2 { fill: #fdf6e3; opacity: 0.7; }
+        #astrolabe-svg .astrolabe-st2 { fill: transparent; opacity: 0.7; }
 
         /* --- STARFIELD CANVAS (ENHANCED) --- */
         #starfield-canvas {
@@ -2806,6 +2807,7 @@
 
 </body>
 </html>
+
 
 
 
