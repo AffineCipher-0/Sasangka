@@ -616,12 +616,43 @@
             from { transform: translateY(0%) scale(1); opacity: 0.7; }
             to { transform: translateY(-5%) scale(1.1); opacity: 1; }
         }
+
+        /* --- NEW: Page Transition Loader --- */
+        #page-transition-loader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 9998; /* Di bawah loader utama, di atas konten lain */
+            pointer-events: none;
+            display: flex;
+        }
+        .transition-gate {
+            width: 50vw;
+            height: 100vh;
+            background-color: #14233c; /* Sedikit lebih gelap untuk kontras */
+            border-color: var(--accent-gold);
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            color: var(--accent-gold);
+            text-shadow: 0 0 15px var(--accent-gold);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5) inset;
+        }
+        #gate-left { transform: translateX(-100%); border-right-width: 2px; }
+        #gate-right { transform: translateX(100%); border-left-width: 2px; }
+
+        body.loading-transition #gate-left,
+        body.loading-transition #gate-right {
+            transform: translateX(0);
+        }
         
     </style>
 </head>
 <body class="bg-[var(--bg-deep-blue)]">
 
-    <audio id="background-music" loop>
+    <audio id="background-music" loop preload="none">
         <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Dari%20Algoritma%20Al-Khwarizmi%20ke%20AI%20dan%20IoT_%20Membongkar%20Evolusi%20Inovasi%20Digital%20dan%20Filosofi%20di%20Baliknya.mp3" type="audio/mpeg">
         Browser Anda tidak mendukung elemen audio.
     </audio>
@@ -636,6 +667,14 @@
                 <p>By Sasangka</p>
             </div>
         </div>
+    </div>
+
+    <!-- NEW: Page Transition Loader -->
+    <div id="page-transition-loader">
+        <div id="gate-left" class="transition-gate">
+            <span>۞</span>
+        </div>
+        <div id="gate-right" class="transition-gate"></div>
     </div>
 
     <div id="book-container">
@@ -1631,23 +1670,48 @@
             });
             
             openBookBtn.addEventListener('click', () => {
-                coverPage.classList.add('cover-hidden');
-                contentPages.classList.add('content-visible');
-                stopAstrolabeAnimation();
-                startParticleAnimation();
+                // 1. Mulai animasi menutup gerbang
+                document.body.classList.add('loading-transition');
 
-                if (backgroundMusic && !backgroundMusic.paused) {
-                    backgroundMusic.pause();
-                    playText.classList.remove('hidden');
-                    stopText.classList.add('hidden');
-                }
+                // 2. Tunggu hingga gerbang tertutup sepenuhnya
+                setTimeout(() => {
+                    // 3. Ganti konten halaman di belakang layar
+                    coverPage.classList.add('cover-hidden');
+                    contentPages.classList.add('content-visible');
+                    pageContentContainer.scrollTop = 0; // Reset scroll ke atas
+                    stopAstrolabeAnimation();
+                    startParticleAnimation();
+
+                    if (backgroundMusic && !backgroundMusic.paused) {
+                        backgroundMusic.pause();
+                        playText.classList.remove('hidden');
+                        stopText.classList.add('hidden');
+                    }
+
+                    // 4. Tunggu DOM diperbarui, lalu mulai animasi membuka gerbang
+                    requestAnimationFrame(() => {
+                        setTimeout(() => document.body.classList.remove('loading-transition'), 50);
+                    });
+                }, 1200); // Durasi ini harus cocok dengan transisi CSS .transition-gate
             });
 
             closeBookBtn.addEventListener('click', () => {
-                coverPage.classList.remove('cover-hidden');
-                contentPages.classList.remove('content-visible');
-                startAstrolabeAnimation();
-                stopParticleAnimation();
+                // 1. Mulai animasi menutup gerbang
+                document.body.classList.add('loading-transition');
+
+                // 2. Tunggu hingga gerbang tertutup
+                setTimeout(() => {
+                    // 3. Ganti konten di belakang layar
+                    coverPage.classList.remove('cover-hidden');
+                    contentPages.classList.remove('content-visible');
+                    startAstrolabeAnimation();
+                    stopParticleAnimation();
+
+                    // 4. Tunggu DOM diperbarui, lalu mulai animasi membuka gerbang
+                    requestAnimationFrame(() => {
+                        setTimeout(() => document.body.classList.remove('loading-transition'), 50);
+                    });
+                }, 1200); // Cocokkan dengan durasi transisi CSS
             });
 
             // --- CANVAS ANIMATION LOGIC ---
@@ -2286,7 +2350,7 @@
 
                     }
                 });
-            }, { root: pageContentContainer, threshold: 0.1 });
+            }, { root: null, threshold: 0.1 });
 
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
@@ -2842,11 +2906,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
