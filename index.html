@@ -704,6 +704,9 @@
                         <circle class="astrolabe-st1" cx="250" cy="250" r="220"/>
                         <circle class="astrolabe-st1" cx="250" cy="250" r="180" stroke-dasharray="5, 5"/>
                         <circle class="astrolabe-st1" cx="250" cy="250" r="150"/>
+                        <!-- Cincin baru yang berputar -->
+                        <circle id="astrolabe-ring-1" class="astrolabe-st1" cx="250" cy="250" r="200" stroke-dasharray="2, 8"/>
+                        <circle id="astrolabe-ring-2" class="astrolabe-st1" cx="250" cy="250" r="120" stroke-dasharray="10, 5, 2, 5" stroke-width="1.5"/>
                         <path class="astrolabe-st1" d="M250,50v400 M50,250h400 M108.8,108.8l282.4,282.4 M108.8,391.2L391.2,108.8"/>
                         <path class="astrolabe-st1" d="M179.3,73.2 L320.7,426.8 M73.2,179.3 L426.8,320.7 M73.2,320.7 L426.8,179.3 M179.3,426.8 L320.7,73.2"/>
                     </g>
@@ -744,6 +747,11 @@
                         <path class="astrolabe-st1" d="M50,250 h400"/>
                         <circle class="astrolabe-st0" cx="100" cy="250" r="8"/>
                         <circle class="astrolabe-st0" cx="400" cy="250" r="8"/>
+                    </g>
+                    <!-- Jarum baru yang berlawanan arah -->
+                    <g id="astrolabe-ruler-alt" transform="rotate(0 250 250)">
+                        <path class="astrolabe-st1" d="M250,250 h180" stroke-dasharray="4, 4" stroke-width="1.5"/>
+                        <circle class="astrolabe-st0" cx="430" cy="250" r="5"/>
                     </g>
                 </svg>
             </div>
@@ -918,7 +926,7 @@
                                             <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Membedah%20Jaringan%20Saraf%20Tiruan_%20Cara%20Kerja%20Convolutional%20Neural%20Networks%20(CNN)%20dari%20Piksel%20Hingga%20Mengenali%20Kucing.mp3" type="audio/mpeg">
                                             Browser Anda tidak mendukung elemen audio.
                                         </audio>
-                                        <button data-audio-target="#audio-cnn" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2 w-full justify-center mt-2">
+                                        <button data-audio-target="#audio-cnn" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
                                             <i class="fas fa-play" aria-hidden="true"></i>
                                             <span>Dengarkan Narasi</span>
                                         </button>
@@ -2694,13 +2702,23 @@
             let lastRulerAngle = 0;
             const rete = document.getElementById('astrolabe-rete');
             const ruler = document.getElementById('astrolabe-ruler');
+            const rulerAlt = document.getElementById('astrolabe-ruler-alt');
+            const ring1 = document.getElementById('astrolabe-ring-1'); // Cincin baru 1
+            const ring2 = document.getElementById('astrolabe-ring-2'); // Cincin baru 2
             function animateAstrolabe(timestamp) {
-                if (!rete || !ruler) return;
                 const time = timestamp / 1000;
                 const currentRulerAngle = time * 30;
+                const counterRulerAngle = time * -15; // Kecepatan berlawanan arah
+                const reteAngle = time * 5;
+                const ring1Angle = time * -8;
+                const ring2Angle = time * 12;
 
-                rete.setAttribute('transform', `rotate(${time * 5} 250 250)`);
-                ruler.setAttribute('transform', `rotate(${currentRulerAngle} 250 250)`);
+                // Animasikan astrolab utama
+                if (rete) rete.setAttribute('transform', `rotate(${reteAngle} 250 250)`);
+                if (ruler) ruler.setAttribute('transform', `rotate(${currentRulerAngle} 250 250)`);
+                if (rulerAlt) rulerAlt.setAttribute('transform', `rotate(${counterRulerAngle} 250 250)`);
+                if (ring1) ring1.setAttribute('transform', `rotate(${ring1Angle} 250 250)`);
+                if (ring2) ring2.setAttribute('transform', `rotate(${ring2Angle} 250 250)`);
 
                 lastRulerAngle = currentRulerAngle;
 
