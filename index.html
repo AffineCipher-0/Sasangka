@@ -2708,10 +2708,10 @@
             function animateAstrolabe(timestamp) {
                 const time = timestamp / 1000;
                 const currentRulerAngle = time * 30;
-                const counterRulerAngle = time * -15; // Kecepatan berlawanan arah
+                const counterRulerAngle = time * -5; // Kecepatan berlawanan arah (diperlambat)
                 const reteAngle = time * 5;
                 const ring1Angle = time * -8;
-                const ring2Angle = time * 12;
+                const ring2Angle = time * 5;
 
                 // Animasikan astrolab utama
                 if (rete) rete.setAttribute('transform', `rotate(${reteAngle} 250 250)`);
