@@ -2,8 +2,7 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <!-- Perubahan untuk Tampilan Konsisten di Mobile -->
-    <meta name="viewport" content="width=1280">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algoritma | Portofolio Gatot Sasangka</title>
 
     <meta name="description" content="Portofolio Gatot Sasangka yang disajikan dalam tema Baitul Hikmah, menampilkan proyek-proyek di bidang Jaringan, IoT, AI, dan Pemrograman Web.">
@@ -24,6 +23,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&family=Scheherazade+New:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- PERBAIKAN: Mengganti 'xintegrity' dengan atribut 'integrity' yang benar -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
@@ -648,6 +648,264 @@
             transform: translateX(0);
         }
         
+        /* --- NEW: INTERACTIVE TIMELINE STYLES --- */
+        .timeline-container {
+            position: relative;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem 0;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 20px; /* Disesuaikan untuk mobile */
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--border-gold);
+            border-radius: 2px;
+            opacity: 0.3;
+        }
+        @media (min-width: 768px) {
+            .timeline-line {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 100%;
+            padding-left: 50px; /* Disesuaikan untuk mobile */
+        }
+        .timeline-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: 0.2s; /* Sedikit delay agar dot muncul dulu */
+        }
+        .timeline-item.is-visible .timeline-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Desktop view for timeline */
+        @media (min-width: 768px) {
+            .timeline-item {
+                padding-left: 0;
+                width: 50%;
+            }
+            .timeline-item.timeline-item-left {
+                left: 0;
+                padding-right: 40px;
+                text-align: right;
+            }
+            .timeline-item.timeline-item-right {
+                left: 50%;
+                padding-left: 40px;
+                text-align: left;
+            }
+            .timeline-item.timeline-item-right .timeline-content {
+                transform: translateX(20px);
+            }
+            .timeline-item.is-visible .timeline-content {
+                transform: translateX(0);
+            }
+             /* Menyesuaikan posisi judul pada desktop */
+            .timeline-item.timeline-item-left .border-l-4 {
+                border-left: none;
+                border-right: 4px solid var(--border-gold);
+                padding-left: 0;
+                padding-right: 1rem;
+                justify-content: flex-end;
+            }
+             .timeline-item.timeline-item-left .border-l-4 i {
+                margin-right: 0;
+                margin-left: 1rem;
+            }
+            .timeline-item.timeline-item-left .border-l-4 {
+                flex-direction: row-reverse;
+            }
+        }
+        
+        /* --- BARU: SOROTAN KHUSUS --- */
+        .sorotan-khusus {
+            background-color: #f7f1e4;
+            border-right: 4px solid var(--accent-gold);
+            padding: 1rem 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 4px;
+        }
+        .timeline-item.timeline-item-right .sorotan-khusus {
+            border-right: none;
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        /* --- NEW: JOURNAL LAYOUT STYLES --- */
+        .journal-layout {
+            color: var(--text-ink);
+        }
+        .journal-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        .journal-author {
+            text-align: center;
+            font-style: italic;
+            color: rgba(58, 45, 32, 0.8);
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 1rem;
+        }
+        .journal-abstract {
+            background-color: #f9f4e9;
+            border-left: 4px solid var(--border-gold);
+            padding: 1rem 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .journal-abstract h4 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .journal-abstract p {
+            font-size: 0.95rem;
+            text-align: justify;
+            line-height: 1.6;
+        }
+        .journal-section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-gold);
+        }
+        .journal-highlight-box {
+            background-color: #f7f1e4;
+            border: 1px solid #e9e2d3;
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 4px;
+        }
+
+        /* --- BARU: DIAGRAM EVOLUSI INTERAKTIF --- */
+        .evolution-diagram {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .evolution-diagram {
+                grid-template-columns: 1fr 2fr;
+                gap: 3rem;
+            }
+        }
+        .evolution-list .evolution-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border: 2px solid transparent;
+            border-left-color: var(--border-gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: transparent;
+            width: 100%;
+            text-align: left;
+        }
+        .evolution-list .evolution-item:hover,
+        .evolution-list .evolution-item.active {
+            background-color: #f7f1e4;
+            border-color: var(--border-gold);
+            transform: translateX(5px);
+        }
+        .evolution-list .evolution-item i {
+            color: var(--accent-teal);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            width: 2rem;
+            text-align: center;
+        }
+        .evolution-list .evolution-item span {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .evolution-display {
+            background-color: #f7f1e4;
+            padding: 2rem;
+            border: 1px solid var(--border-gold);
+            min-height: 150px;
+            position: relative;
+        }
+        .evolution-display-content {
+            transition: opacity 0.4s ease;
+        }
+        .evolution-display-content.loading {
+            opacity: 0.3;
+        }
+        .evolution-display h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .evolution-display p {
+            font-size: 1rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        /* --- BARU: GAYA ACCORDION --- */
+        .accordion-item {
+            border-bottom: 1px solid var(--border-gold);
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1.5rem 0.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-align: left;
+        }
+        .accordion-header h4 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--text-ink);
+            transition: color 0.3s ease;
+        }
+        .accordion-header:hover h4 {
+            color: var(--accent-teal);
+        }
+        .accordion-icon {
+            font-size: 1.2rem;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--border-gold);
+        }
+        .accordion-header.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0 0.5rem;
+        }
+        .accordion-content-inner {
+            padding-bottom: 1.5rem;
+        }
     </style>
 </head>
 <body class="bg-[var(--bg-deep-blue)]">
@@ -796,38 +1054,17 @@
                         
                         <div class="fancy-divider animate-on-scroll animation-delay-200"></div>
 
-                        <h2 class="text-4xl md:text-5xl mb-4 leading-tight text-center animate-on-scroll animation-delay-200 text-[var(--text-light)]">Jejak Inovasi: Dari Algoritma Al-Khwarizmi hingga Kecerdasan Buatan</h2>
+                        <h2 class="text-4xl md:text-5xl mb-4 leading-tight text-center animate-on-scroll animation-delay-200 text-[var(--text-light)]">Kabar Teknologi Terkini</h2>
                          <p class="max-w-3xl mx-auto text-center text-lg mb-10 text-[var(--text-light)] animate-on-scroll animation-delay-400">
-                           Sebuah penelusuran sejarah yang memetakan evolusi pemikiran komputasi, dari konsep fundamental yang diletakkan oleh Al-Khwarizmi hingga era kecerdasan buatan yang mendefinisikan kembali masa depan kita.
+                           Menyajikan berita dan analisis terbaru dari dunia teknologi global, dikurasi langsung dari sumber-sumber terkemuka. Ikuti perkembangan terkini yang membentuk masa depan digital kita.
                         </p>
                         
-                        <div class="article-frame animate-on-scroll animation-delay-600">
-                             <div class="space-y-8">
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-scroll mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-9 — Awal Algoritma</h3>
-                                    <p class="text-justify">Sejarah teknologi adalah perjalanan panjang tentang bagaimana ide-ide besar lahir dari fondasi yang diletakkan oleh para pemikir terdahulu. Perjalanan ini dimulai pada abad ke-9, ketika seorang ilmuwan Muslim bernama Al-Khwarizmi memperkenalkan konsep algoritma, dasar dari semua komputasi modern. Pemikirannya menjadi pondasi logika yang memungkinkan manusia merancang mesin yang dapat menghitung, memproses data, dan menyelesaikan masalah secara sistematis. “Algoritma bukan sekadar perhitungan, tetapi cara berpikir yang membentuk masa depan teknologi.”</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-print mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-15 — Revolusi Mesin Cetak</h3>
-                                    <p class="text-justify">Berabad-abad kemudian, pada abad ke-15, Johannes Gutenberg menemukan mesin cetak, sebuah inovasi yang merevolusi penyebaran informasi. Sebelum itu, pengetahuan hanya dikuasai segelintir orang, namun mesin cetak membuat buku dan ilmu pengetahuan menyebar ke seluruh dunia, dengan dampak yang setara dengan internet di era modern: mempercepat kolaborasi dan memperluas wawasan umat manusia.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-cogs mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-18 — Revolusi Industri</h3>
-                                    <p class="text-justify">Memasuki abad ke-18, Revolusi Industri mengubah dunia secara drastis melalui mesin uap dan mekanisasi. Untuk pertama kalinya, tenaga mekanis menggantikan kerja fisik manusia, memicu perubahan sosial besar dan melahirkan era industri modern. Era ini juga menjadi fondasi bagi lahirnya teknologi komunikasi instan di abad berikutnya.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-laptop-code mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-19–20 — Era Digital Awal</h3>
-                                    <p class="text-justify">Pada abad ke-19, telegraf memungkinkan komunikasi instan, mengubah dunia selamanya. Abad ke-20 menandai kelahiran komputer digital, yang berevolusi dari mesin raksasa menjadi perangkat pribadi. Menjelang akhir abad ini, lahirlah internet, jaringan global yang menghubungkan miliaran orang, menghapus batasan geografis dan memicu revolusi informasi kedua.</p>
-                                </div>
-                                 <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-brain mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-21 — Kecerdasan Buatan & IoT</h3>
-                                    <p class="text-justify">Kini, di abad ke-21, kita memasuki era di mana teknologi mampu berpikir dan belajar sendiri. Kecerdasan Buatan (AI) dan Internet of Things (IoT) memungkinkan perangkat saling berkomunikasi, menganalisis data, dan mengambil keputusan secara mandiri. Dari mobil otonom hingga rumah pintar, kemajuan ini membawa tantangan etika dan tanggung jawab baru.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-infinity mr-4 text-3xl text-[var(--accent-teal)]"></i>Masa Depan</h3>
-                                    <p class="text-justify">Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa sejarah, menggabungkan warisan klasik dengan inovasi modern. Setiap karya menjadi bukti bahwa perjalanan teknologi adalah kisah yang belum berakhir — narasi yang terus ditulis setiap hari oleh para insinyur, pemikir, dan pencipta di seluruh dunia.</p>
-                                </div>
-                            </div>
+                        <div id="tech-news-loading" class="text-center text-lg text-[var(--text-light)] animate-on-scroll animation-delay-600">
+                            <i class="fas fa-spinner fa-spin mr-2"></i> Memuat berita...
+                        </div>
+                        
+                        <div id="tech-news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                            <!-- Kartu berita akan dimasukkan di sini oleh JavaScript -->
                         </div>
                     </section>
         
@@ -1659,20 +1896,11 @@
                 setTimeout(() => {
                     if(loader) loader.classList.add('hidden');
                     
+                    // PERBAIKAN: Menghapus upaya autoplay musik yang tidak andal.
+                    // Musik kini hanya akan diputar melalui interaksi pengguna via tombol 'soundToggleBtn'.
+                    // Ini mencegah error konsol dari kebijakan autoplay browser.
                     if (backgroundMusic) {
-                        const playPromise = backgroundMusic.play();
-                        if (playPromise !== undefined) {
-                            playPromise.then(_ => {
-                                // Autoplay berhasil, perbarui UI tombol
-                                if (playText && stopText) {
-                                    playText.classList.add('hidden');
-                                    stopText.classList.remove('hidden');
-                                }
-                            }).catch(error => {
-                                // Autoplay dicegah, pengguna harus mengklik secara manual.
-                                console.log("Autoplay musik dicegah oleh browser. Interaksi pengguna diperlukan.");
-                            });
-                        }
+                        console.log("Sistem audio siap. Klik 'Mulai Langkahmu' untuk memutar musik.");
                     }
                 }, 2800);
             });
@@ -2344,6 +2572,97 @@
                 }
             }
 
+            // --- BARU: LOGIKA BERITA TEKNOLOGI ---
+            const techNewsData = [
+                {
+                    title: "Aliansi Global Rilis Standar Interoperabilitas 6G Pertama",
+                    description: "Konsorsium telekomunikasi dunia akhirnya menyepakati standar dasar untuk jaringan 6G, menjanjikan konektivitas 'real-time' dengan latensi di bawah satu milidetik.",
+                    source: "Reuters",
+                    link: "https://www.reuters.com/technology/"
+                },
+                {
+                    title: "Model AI Generatif 'Nusantara-1' Dirilis, Pahami Konteks Bahasa Indonesia",
+                    description: "Sebuah konsorsium riset nasional meluncurkan model bahasa AI pertama yang dilatih secara ekstensif pada data Bahasa Indonesia, membuka potensi baru untuk aplikasi lokal.",
+                    source: "Kompas Tekno",
+                    link: "https://tekno.kompas.com/"
+                },
+                {
+                    title: "Arduino Rilis 'Portenta Vision', Bawa Machine Learning ke Perangkat IoT",
+                    description: "Papan pengembangan baru dari Arduino ini mengintegrasikan kamera dan mikrofon, memungkinkan developer untuk membangun aplikasi computer vision dan audio processing di level mikrokontroler.",
+                    source: "Arduino Blog",
+                    link: "https://blog.arduino.cc/"
+                },
+                {
+                    title: "Regulasi AI Komprehensif Disahkan Uni Eropa, Fokus pada Transparansi",
+                    description: "Parlemen Eropa mengesahkan 'AI Act' yang mewajibkan perusahaan teknologi untuk membuka cara kerja algoritma mereka yang berdampak tinggi pada publik.",
+                    source: "The Verge",
+                    link: "https://www.theverge.com/t/ai"
+                },
+                 {
+                    title: "Python 4.0 Diumumkan, Janjikan Performa JIT dan Sintaksis Disederhanakan",
+                    description: "Python Software Foundation mengumumkan peta jalan untuk versi mayor berikutnya, dengan fokus pada peningkatan kecepatan eksekusi melalui kompilasi Just-In-Time (JIT).",
+                    source: "Python Software Foundation",
+                    link: "https://www.python.org/blogs/"
+                },
+                {
+                    title: "Serangan 'LogicLock' Targetkan Infrastruktur Jaringan Cloud Global",
+                    description: "Peneliti keamanan menemukan celah zero-day pada hypervisor cloud populer yang memungkinkan penyerang untuk melumpuhkan pusat data dari jarak jauh.",
+                    source: "The Hacker News",
+                    link: "https://thehackernews.com/"
+                },
+                {
+                    title: "Terobosan Komputasi Kuantum: Qubit Stabil pada Suhu Kamar",
+                    description: "Tim peneliti dari MIT mengumumkan keberhasilan mereka menjaga stabilitas qubit untuk waktu yang signifikan tanpa pendinginan ekstrem, membuka jalan bagi komputer kuantum praktis.",
+                    source: "TechCrunch",
+                    link: "https://techcrunch.com/"
+                },
+                {
+                    title: "Teleskop James Webb Temukan Planet Mirip Bumi dengan Atmosfer",
+                    description: "NASA mengonfirmasi penemuan sebuah exoplanet di zona layak huni yang menunjukkan tanda-tanda adanya uap air di atmosfernya, memicu spekulasi tentang kehidupan di luar Bumi.",
+                    source: "NASA",
+                    link: "https://www.nasa.gov/webb-telescope/"
+                },
+                {
+                    title: "Kota Cerdas Pertama di Asia Tenggara Beroperasi Penuh",
+                    description: "Singapura meluncurkan jaringan sensor kota terpadu yang mengelola lalu lintas, konsumsi energi, dan layanan publik secara otonom, menjadi cetak biru bagi kota masa depan.",
+                    source: "Bloomberg",
+                    link: "https://www.bloomberg.com/technology"
+                }
+            ];
+
+            function renderTechNews() {
+                const newsContainer = document.getElementById('tech-news-container');
+                const loadingIndicator = document.getElementById('tech-news-loading');
+                
+                if (!newsContainer || !loadingIndicator) return;
+
+                loadingIndicator.style.display = 'none';
+                
+                newsContainer.innerHTML = '';
+
+                techNewsData.forEach((article, index) => {
+                    const newsCard = `
+                        <a href="${article.link}" target="_blank" rel="noopener noreferrer" class="block animate-on-scroll" style="animation-delay: ${index * 200 + 600}ms;">
+                            <article class="manuscript-item h-full">
+                                <div class="flex-grow">
+                                    <p class="text-sm text-[var(--accent-teal)] font-bold mb-2">${article.source.toUpperCase()}</p>
+                                    <h4 class="manuscript-title" style="font-size: 1.5rem;">${article.title}</h4>
+                                    <p class="manuscript-excerpt mb-4">${article.description}</p>
+                                </div>
+                            </article>
+                        </a>
+                    `;
+                    newsContainer.innerHTML += newsCard;
+                });
+                
+                // Re-observe new elements for animation
+                newsContainer.querySelectorAll('.animate-on-scroll').forEach(el => {
+                    animateOnScrollObserver.observe(el);
+                });
+            }
+
+            // Panggil render setelah jeda untuk simulasi fetch
+            setTimeout(renderTechNews, 1500);
 
             const animateOnScrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -2359,6 +2678,28 @@
                     }
                 });
             }, { root: null, threshold: 0.1 });
+
+            // --- BARU: Intersection Observer untuk Timeline ---
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            if (timelineItems.length > 0) {
+                const timelineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                        } else {
+                            // Opsi: hapus kelas saat keluar dari pandangan agar animasi berulang
+                            // entry.target.classList.remove('is-visible');
+                        }
+                    });
+                }, { 
+                    root: pageContentContainer, // Menggunakan kontainer yang bisa digulir sebagai root
+                    threshold: 0.3 // Memicu saat 30% item terlihat
+                });
+
+                timelineItems.forEach(item => {
+                    timelineObserver.observe(item);
+                });
+            }
 
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
@@ -2848,8 +3189,11 @@
                 particleCtx = particleCanvas.getContext('2d');
                 
                 const resizeCanvas = () => {
+                    // PERBAIKAN: Menggunakan clientHeight bukan scrollHeight.
+                    // Ini memastikan kanvas hanya seukuran area yang terlihat,
+                    // mencegah masalah performa pada halaman yang panjang.
                     particleCanvas.width = pageContentContainer.clientWidth;
-                    particleCanvas.height = pageContentContainer.scrollHeight;
+                    particleCanvas.height = pageContentContainer.clientHeight;
                     createParticles();
                 };
 
@@ -2917,6 +3261,96 @@
                     cancelAnimationFrame(particleAnimationId);
                     particleAnimationId = null;
                 }
+            }
+
+            // --- BARU: LOGIKA EVOLUSI INTERAKTIF ---
+            const evolutionData = {
+                'evolusi-data': {
+                    title: 'Data Digital',
+                    content: 'Revolusi terbesar dalam sejarah informasi bukanlah penemuan tulisan itu sendiri, melainkan transformasinya dari wujud fisik menjadi data digital. Tulisan dan angka yang dahulu terikat pada batu, lontar, atau kertas, kini dibebaskan menjadi entitas yang tak kasat mata. Di dunia modern, setiap huruf, angka, gambar, bahkan suara, diterjemahkan ke dalam bahasa universal komputer: susunan kode biner nol dan satu. Transformasi fundamental ini memungkinkan informasi untuk disimpan secara ringkas dalam file, diorganisasi secara sistematis dalam database, dan melintasi benua dalam sekejap mata melalui jaringan global.<br><br>Keunggulan data digital melampaui sekadar efisiensi. Ia menawarkan ketahanan yang belum pernah ada sebelumnya; tidak seperti media fisik yang rentan rusak atau hilang, data digital dapat diperbanyak tanpa batas dengan kualitas sempurna. Keamanannya pun ditingkatkan melalui enkripsi, dan aksesnya menjadi universal—dapat dijangkau kapan saja dari berbagai perangkat. Pergeseran ini bukan hanya mengubah cara kita menyimpan pengetahuan, tetapi juga melahirkan peradaban informasi baru. Hampir setiap pilar kehidupan modern, mulai dari pendidikan, perdagangan, komunikasi, hingga seni, kini berdiri di atas fondasi data digital yang berfungsi sebagai tulang punggungnya.'
+                },
+                'evolusi-io': {
+                    title: 'Jembatan Antara Manusia & Mesin',
+                    content: 'Bagaimana cara manusia "berbicara" dengan mesin? Jawabannya terletak pada evolusi perangkat Input/Output (I/O), yang berakar dari prinsip mekanis mesin ketik dan mesin cetak. Keyboard modern adalah keturunan langsung dari mesin ketik, mengubah ketukan jari kita menjadi perintah digital. Sementara itu, monitor adalah kanvas dinamis yang mewarisi fungsi mesin cetak, menampilkan hasil kerja komputer secara instan. Perangkat-perangkat fundamental ini membentuk jembatan pertama, memungkinkan dialog dua arah antara dunia ide manusia dan dunia logika mesin.<br><br>Namun, jembatan ini terus diperluas dan dibuat semakin intuitif. Mouse memberi kita kemampuan untuk "menyentuh" dan memanipulasi objek digital. Layar sentuh menghapus batas antara jari dan perintah, sementara mikrofon memungkinkan kita berbicara langsung dengan perangkat lunak. Di sisi output, speaker memberi suara pada dunia digital, dan teknologi seperti augmented reality memproyeksikan informasi langsung ke dunia nyata. Evolusi ini bukan sekadar tentang menambah perangkat baru, melainkan tentang membuat interaksi dengan teknologi terasa semakin alami, seolah-olah mesin dapat memahami kita tanpa perantara.'
+                },
+                'evolusi-cpu': {
+                    title: 'Mesin Logika: Dari Ide ke Silikon',
+                    content: 'Jauh sebelum ada chip silikon, seorang cendekiawan bernama Al-Khwarizmi memperkenalkan sebuah ide revolusioner: masalah yang rumit dapat dipecahkan dengan mengikuti serangkaian instruksi yang logis dan terurut. Konsep inilah yang kita kenal sebagai algoritma. Selama berabad-abad, ide ini tetap berada di alam teori, hingga akhirnya menemukan wujud fisiknya dalam Central Processing Unit (CPU)—"otak" dari setiap komputer.<br><br>CPU adalah perwujudan algoritma dalam bentuk sirkuit elektronik. Ia tidak berpikir seperti manusia, tetapi ia adalah mesin logika yang tak kenal lelah, mampu mengeksekusi miliaran instruksi algoritmis setiap detiknya dengan presisi absolut. Perangkat lunak, di sisi lain, adalah "jiwa" yang memberikan instruksi tersebut. Tanpa perangkat lunak, CPU hanyalah sepotong silikon yang diam. Tanpa CPU, perangkat lunak hanyalah teks yang tak bermakna. Hubungan simbiosis antara algoritma (perangkat lunak) dan eksekutornya (CPU) inilah yang melahirkan segala keajaiban digital, dari kalkulator sederhana hingga kecerdasan buatan yang kompleks.'
+                },
+                'evolusi-sensor': {
+                    title: 'Memberi "Indra" pada Teknologi',
+                    content: 'Dahulu, para pelaut menatap bintang dan menggunakan astrolab untuk memahami posisi mereka di lautan luas. Mereka membaca alam untuk mendapatkan kesadaran spasial. Kini, semangat yang sama terwujud dalam sensor-sensor modern yang memberi "indra" pada perangkat kita. GPS, misalnya, adalah astrolab digital yang mendengarkan sinyal dari konstelasi satelit untuk mengetahui lokasinya di planet ini dengan akurasi luar biasa. Giroskop dan akselerometer bertindak sebagai "telinga bagian dalam" digital, memberi perangkat kemampuan untuk merasakan orientasi dan gerakan.<br><br>Dengan indra-indra baru ini, teknologi tidak lagi buta terhadap dunia di sekitarnya. Perangkat yang tadinya pasif kini menjadi sadar akan konteks. Smartphone Anda tahu kapan ia sedang digenggam vertikal atau horizontal, jam tangan pintar dapat menghitung langkah Anda, dan mobil dapat merasakan posisinya di jalan. Evolusi dari astrolab ke chip sensor adalah lompatan dari sekadar alat menjadi mitra yang responsif, membuka jalan bagi aplikasi canggih seperti navigasi real-time, augmented reality, dan fondasi untuk kendaraan otonom.'
+                },
+                'evolusi-otomasi': {
+                    title: 'Evolusi Tenaga: Dari Otot ke Presisi',
+                    content: 'Revolusi Industri dimulai dengan sebuah terobosan monumental: mesin uap. Untuk pertama kalinya, manusia dapat menciptakan tenaga yang melampaui batas otot hewan atau kekuatan alam seperti angin dan air. Mesin uap adalah tentang otomatisasi tenaga kasar—menggerakkan lokomotif, memutar mesin di pabrik, dan mengubah wajah produksi selamanya. Ini adalah bab pertama dalam kisah otomatisasi, di mana mesin mengambil alih pekerjaan fisik yang berat dan berulang.<br><br>Kini, kisah itu berlanjut ke bab berikutnya, di mana otomatisasi bukan lagi sekadar tentang kekuatan, tetapi tentang kecerdasan dan presisi. Robotika modern adalah keturunan langsung dari mesin uap, tetapi "otot"-nya digerakkan oleh motor listrik yang presisi dan "otak"-nya adalah komputer. Lengan robot di pabrik perakitan tidak hanya kuat, tetapi mampu melakukan tugas yang sama ribuan kali dengan tingkat kesalahan mendekati nol. Lebih jauh lagi, dengan bantuan AI dan sensor, robot modern dapat "melihat", "merasakan", dan bahkan beradaptasi dengan lingkungannya. Dari mesin uap yang menggerakkan roda raksasa hingga robot bedah yang menjahit dengan presisi sub-milimeter, evolusi otomatisasi adalah perjalanan dari menggantikan otot manusia menjadi memperluas jangkauan kecerdasan manusia.'
+                },
+                'evolusi-internet': {
+                    title: 'Jaringan Saraf Digital Dunia',
+                    content: 'Pernahkah Anda membayangkan bagaimana sebuah pesan dapat melintasi benua dalam sekejap mata? Perjalanan ini dimulai dari percikan listrik sederhana telegraf, disusul oleh suara manusia yang "terbang" melalui kabel telepon, hingga puncaknya: internet. Ini bukanlah sekadar jaringan, melainkan sebuah sistem saraf digital raksasa bagi planet kita. Internet tidak hanya mengirim pesan; ia mengalirkan denyut nadi peradaban modern—data, gambar, video, dan ide—yang menghubungkan miliaran "sel otak" (perangkat) di seluruh dunia.<br><br>Dulu, komunikasi adalah soal menaklukkan jarak. Kini, berkat keajaiban teknologi seperti Wi-Fi yang membebaskan kita dari kabel, 5G yang secepat kilat, dan serat optik yang menjadi tulang punggungnya, komunikasi adalah soal menghapus jarak itu sendiri. Teknologi-teknologi ini melahirkan ekosistem digital tempat cloud, streaming, dan Internet of Things dapat hidup dan berkembang. Perjalanan dari percikan telegraf hingga jaringan global yang selalu aktif ini bukanlah sekadar evolusi teknologi, melainkan kisah tentang bagaimana umat manusia membangun kesadaran kolektifnya sendiri, menciptakan satu ruang di mana kita semua terhubung.'
+                }
+            };
+
+            const evolutionItems = document.querySelectorAll('.evolution-item');
+            const evolutionDisplayContainer = document.getElementById('evolution-display-container');
+
+            function updateEvolutionDisplay(targetId) {
+                if (!evolutionDisplayContainer || !evolutionData[targetId]) return;
+                
+                const contentWrapper = evolutionDisplayContainer.querySelector('.evolution-display-content');
+                if (contentWrapper) {
+                    contentWrapper.classList.add('loading');
+                }
+                
+                setTimeout(() => {
+                    const data = evolutionData[targetId];
+                    evolutionDisplayContainer.innerHTML = `
+                        <div class="evolution-display-content">
+                            <h4>${data.title}</h4>
+                            <p>${data.content}</p>
+                        </div>
+                    `;
+                }, 200);
+            }
+
+            if (evolutionItems.length > 0 && evolutionDisplayContainer) {
+                // Inisialisasi dengan item pertama
+                updateEvolutionDisplay(evolutionItems[0].dataset.target);
+
+                evolutionItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        evolutionItems.forEach(i => i.classList.remove('active'));
+                        item.classList.add('active');
+                        updateEvolutionDisplay(item.dataset.target);
+                    });
+                });
+            }
+
+            // --- BARU: LOGIKA ACCORDION ---
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            if (accordionHeaders.length > 0) {
+                accordionHeaders.forEach(header => {
+                    header.addEventListener('click', () => {
+                        const content = header.nextElementSibling;
+                        const icon = header.querySelector('.accordion-icon');
+
+                        header.classList.toggle('active');
+                        
+                        if (header.classList.contains('active')) {
+                            header.setAttribute('aria-expanded', 'true');
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            content.style.padding = '0 0.5rem';
+                            icon.classList.remove('fa-plus');
+                            icon.classList.add('fa-times');
+                        } else {
+                            header.setAttribute('aria-expanded', 'false');
+                            content.style.maxHeight = '0';
+                            content.style.padding = '0 0.5rem';
+                             icon.classList.remove('fa-times');
+                            icon.classList.add('fa-plus');
+                        }
+                    });
+                });
             }
 
         });
