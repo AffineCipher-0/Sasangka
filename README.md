@@ -1,0 +1,2975 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <!-- Perubahan untuk Tampilan Konsisten di Mobile -->
+    <meta name="viewport" content="width=1280">
+    <title>Algoritma | Portofolio Gatot Sasangka</title>
+
+    <meta name="description" content="Portofolio Gatot Sasangka yang disajikan dalam tema Baitul Hikmah, menampilkan proyek-proyek di bidang Jaringan, IoT, AI, dan Pemrograman Web.">
+    <meta name="keywords" content="Gatot Sasangka, portofolio, insinyur jaringan, IoT, AI, pengembangan web, Baitul Hikmah, astrolab, sasangkagatot@gmail.com, CV">
+    <meta property="og:title" content="Algoritma | Portofolio Gatot Sasangka">
+    <meta property="og:description" content="Menjelajahi proyek-proyek inovatif dengan semangat intelektual Zaman Keemasan.">
+    <meta property="og:image" content="https://placehold.co/1200x630/1a2a44/c7a55b?text=Algoritma+Peradaban">
+    <meta property="og:url" content="https://affinecipher-0.github.io/Sasangka/">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>۞</text></svg>">
+    
+
+    
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&family=Scheherazade+New:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
+
+    <style>
+        /* --- THEME DEFINITIONS: BAYT AL-HIKMAH --- */
+        :root {
+            --bg-deep-blue: #1a2a44;
+            --bg-parchment: #fdf6e3;
+            --text-ink: #3a2d20;
+            --text-light: #e0d8c8;
+            --accent-gold: #c7a55b;
+            --accent-teal: #3b8a85;
+            --border-gold: #b8934c;
+        }
+
+        /* CSS Loading Screen Progres Lingkaran */
+        .loader {
+            position: fixed; top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background-color: var(--bg-deep-blue);
+            z-index: 9999;
+            display: flex; justify-content: center; align-items: center;
+            transition: opacity 1s ease-out, visibility 1s ease-out;
+            opacity: 1; visibility: visible;
+        }
+        .loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-content {
+            position: relative; width: 300px; height: 300px;
+            display: flex; justify-content: center; align-items: center;
+        }
+        .loader-svg { position: absolute; width: 100%; height: 100%; transform: rotate(-90deg); }
+        .progress-ring__circle {
+            stroke-dasharray: 817; stroke-dashoffset: 817;
+            stroke-linecap: round;
+            stroke: var(--accent-gold);
+            animation: progress-animation 2.8s linear forwards;
+        }
+        @keyframes progress-animation { from { stroke-dashoffset: 817; } to { stroke-dashoffset: 0; } }
+        .loader-text { text-align: center; }
+        .loader-text h2 {
+            font-family: 'Cinzel Decorative', cursive; font-size: 2rem;
+            color: var(--text-light); margin: 0; line-height: 1.2;
+        }
+        .loader-text p {
+            font-family: 'Amiri', serif; font-size: 0.9rem;
+            color: var(--text-light); opacity: 0.8; margin-top: 0.5rem;
+        }
+
+        /* General Theme Styling */
+        body {
+            font-family: 'Amiri', serif;
+            background-color: var(--bg-deep-blue);
+            color: var(--text-light);
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        
+        .body-no-scroll { overflow: hidden; }
+        .font-cinzel { font-family: 'Cinzel Decorative', cursive; }
+        .font-scheherazade { font-family: 'Scheherazade New', serif; }
+        
+        .animated-gradient-text {
+            background: linear-gradient(45deg, var(--accent-gold), #fdf6e3, var(--accent-gold));
+            background-size: 200% 200%;
+            -webkit-background-clip: text; background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-animation 5s ease infinite;
+        }
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
+        }
+
+        h2, h3, h4 { font-family: 'Amiri', serif; font-weight: 700; }
+
+        .article-frame {
+            border: 1px solid var(--border-gold);
+            padding: 1.5rem 2rem;
+            background-color: var(--bg-parchment);
+            color: var(--text-ink);
+            box-shadow: 0 0 0 4px var(--bg-parchment), 0 0 0 5px var(--border-gold);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            z-index: 1;
+        }
+        .article-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 0 4px var(--bg-parchment), 0 0 0 5px var(--border-gold);
+        }
+        
+        .fancy-divider {
+            border: 0; text-align: center; overflow: visible; height: 40px; margin: 2rem auto;
+        }
+        .fancy-divider::before {
+            content: '۞';
+            font-size: 28px;
+            color: var(--accent-gold);
+            animation: candle-flicker 5s linear infinite;
+        }
+        @keyframes candle-flicker {
+            0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(199, 165, 91, 0.6); }
+            50% { opacity: 0.8; text-shadow: 0 0 12px rgba(199, 165, 91, 0.8); }
+        }
+
+        .classic-button {
+            display: inline-block; background-color: transparent;
+            border: 2px solid var(--border-gold);
+            padding: 10px 20px;
+            color: var(--text-light);
+            text-decoration: none; font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+        .classic-button:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-deep-blue);
+            box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+            transform: translate(2px, 2px);
+        }
+        
+        .fade-in-on-scroll { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: opacity, transform; }
+        .fade-in-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+        .newspaper-columns { column-count: 1; }
+        @media (min-width: 992px) { .newspaper-columns { column-count: 2; column-gap: 2.5rem; } }
+        
+        /* Modal Styling */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(26, 42, 68, 0.85);
+            backdrop-filter: blur(4px);
+            z-index: 10000; display: flex;
+            justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0s 0.4s;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; transition: opacity 0.4s ease, visibility 0s; }
+        .modal-content {
+            background: var(--bg-parchment);
+            color: var(--text-ink); padding: 20px;
+            border: 2px solid var(--border-gold);
+            box-shadow: 0 0 0 8px var(--bg-parchment), 0 0 25px rgba(0,0,0,0.5);
+            width: 90%; height: 85%; max-width: 1200px;
+            position: relative; display: flex; flex-direction: column;
+            opacity: 0; transform: scale(0.95);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .modal-overlay.active .modal-content { opacity: 1; transform: scale(1); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; border-bottom: 1px solid var(--border-gold); flex-shrink: 0; }
+        .modal-title { font-family: 'Amiri', serif; font-weight: 700; font-size: 1.5rem; color: var(--text-ink); }
+        .modal-close-btn { font-size: 2rem; font-weight: bold; color: var(--border-gold); cursor: pointer; background: none; border: none; }
+        .modal-body { flex-grow: 1; padding-top: 15px; overflow-y: auto; position: relative; }
+        .modal-iframe { width: 100%; height: 100%; border: none; }
+
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 50px; height: 50px;
+            background-color: var(--accent-gold);
+            color: var(--bg-deep-blue);
+            border: 2px solid var(--text-ink);
+            border-radius: 50%; text-align: center;
+            font-size: 24px; line-height: 48px;
+            cursor: pointer; opacity: 0; visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            z-index: 1000; transform: translateY(20px);
+        }
+        #back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+        #back-to-top:hover { background-color: #fdf6e3; transform: scale(1.1); }
+        
+        /* Modal Loader */
+        .modal-loader {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(253, 246, 227, 0.95);
+            display: none; justify-content: center; align-items: center; z-index: 10;
+        }
+        .modal-loader.show { display: flex; }
+        .modal-loader-content {
+            position: relative; width: 150px; height: 150px;
+            display: flex; justify-content: center; align-items: center; text-align: center;
+        }
+        .modal-loader-svg { position: absolute; width: 100%; height: 100%; transform: rotate(-90deg); }
+        .modal-progress-ring__circle {
+            stroke-dasharray: 408; stroke-dashoffset: 408;
+            stroke-linecap: round; stroke: var(--accent-gold);
+            animation: modal-progress-animation 1.2s linear forwards;
+        }
+        @keyframes modal-progress-animation { from { stroke-dashoffset: 408; } to { stroke-dashoffset: 0; } }
+        .modal-loader-text {
+            color: var(--text-ink);
+            font-family: 'Cinzel Decorative', 'Amiri', serif; font-size: 1.1rem;
+        }
+        .content-hidden { visibility: hidden !important; opacity: 0 !important; transition: visibility 0s 0.3s, opacity 0.3s linear; }
+        
+        /* Certificate Gallery Enhancement */
+        .certificate-item { position: relative; overflow: hidden; }
+        .certificate-image { transition: transform 0.4s ease; }
+        .certificate-item:hover .certificate-image { transform: scale(1.1); }
+        .certificate-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(26, 42, 68, 0.85);
+            color: #e0d8c8;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+        }
+        .certificate-item:hover .certificate-overlay { opacity: 1; pointer-events: auto; }
+        
+        /* Sub-text color overrides for light backgrounds */
+        .article-frame .text-sm, .timeline-content .text-sm, .certificate-item .text-xs,
+        .article-frame p[class*="/"], .timeline-content p[class*="/"] {
+            color: rgba(58, 45, 32, 0.7) !important;
+        }
+
+        #book-container { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+        #cover-page {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 10; transition: transform 0.7s ease-in-out; transform: translateX(0);
+        }
+        #cover-page.cover-hidden { transform: translateX(-100%); }
+
+        #content-pages {
+            display: grid; grid-template-columns: 1fr 250px;
+            height: 100vh; transition: transform 0.7s ease-in-out;
+            position: absolute; width: 100%; top: 0; left: 0;
+            transform: translateX(100%);
+        }
+        #content-pages.content-visible { transform: translateX(0); }
+        .page-content-wrapper { overflow-y: auto; position: relative; }
+        
+        #particle-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        main#page-main-content > section.page {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            width: 100%; transition: all 0.5s ease-in-out;
+            overflow-y: auto;
+            background-color: var(--bg-parchment);
+            color: var(--text-ink);
+        }
+        .sidebar .nav-link { color: #5a5245; }
+        .sidebar .nav-link:hover:not(.active-page) { color: var(--accent-teal); }
+        .sidebar .nav-link.active-page {
+            color: var(--text-ink); font-weight: 700;
+        }
+
+        /* Memusatkan blok Daftar Isi */
+        #sidebar .space-y-4 {
+            display: table;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sidebar .classic-button {
+            color: var(--text-ink); border-color: var(--border-gold);
+            box-shadow: 3px 3px 0 var(--text-light);
+        }
+        .sidebar .classic-button:hover {
+            color: var(--bg-parchment); background-color: var(--border-gold);
+        }
+
+        #content-pages.sidebar-minimized { grid-template-columns: 1fr 80px; }
+        .sidebar .nav-text {
+            transition: opacity 0.2s ease-in-out, max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-block; vertical-align: middle; white-space: nowrap;
+            overflow: hidden; max-width: 150px;
+        }
+        #content-pages.sidebar-minimized .sidebar .nav-text { opacity: 0; max-width: 0; pointer-events: none; }
+        #content-pages.sidebar-minimized .sidebar .flex.justify-between { justify-content: center; }
+        .nav-link { display: flex; align-items: center; }
+        #content-pages.sidebar-minimized .sidebar .nav-link { justify-content: center; }
+        #content-pages.sidebar-minimized .sidebar .nav-link i,
+        #content-pages.sidebar-minimized .sidebar #close-book-btn i { margin-right: 0; }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-on-scroll { opacity: 0; }
+        .animate-on-scroll.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+        .animation-delay-200 { animation-delay: 0.2s; } .animation-delay-400 { animation-delay: 0.4s; }
+        .animation-delay-600 { animation-delay: 0.6s; } .animation-delay-800 { animation-delay: 0.8s; }
+
+        .nav-link .nav-text { transition: transform 0.3s ease; }
+        .nav-link:hover:not(.active-page) .nav-text { transform: translateX(4px); }
+        #content-pages.sidebar-minimized .nav-link:hover:not(.active-page) .nav-text { transform: translateX(0); }
+
+        /* --- ALIGNMENT FIX --- */
+        #content-pages.sidebar-minimized .sidebar {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        /* Specific Component Adjustments for Light BG */
+        .article-frame .classic-button, 
+        .modal-body .classic-button,
+        .manuscript-item .classic-button,
+        .project-card .classic-button {
+            color: var(--text-ink); border-color: var(--border-gold);
+            box-shadow: 3px 3px 0 #dcd3c1;
+        }
+        .article-frame .classic-button:hover,
+        .modal-body .classic-button:hover,
+        .manuscript-item .classic-button:hover,
+        .project-card .classic-button:hover {
+            color: var(--bg-parchment); background-color: var(--border-gold);
+            box-shadow: 1px 1px 0 #dcd3c1;
+        }
+        #email-address-container {
+            color: var(--text-light);
+        }
+
+        /* Page Transition Animation */
+        @keyframes page-fade-in { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes page-fade-out { from { opacity: 1; } to { opacity: 0; } }
+        .page-fade-in { animation: page-fade-in 0.4s ease-in forwards; }
+        .page-fade-out { animation: page-fade-out 0.3s ease-out forwards; }
+
+        /* --- ASTROLABE STYLES --- */
+        #astrolabe-wrapper {
+            position: absolute; top: 0; left: 50%;
+            transform: translateX(-50%); width: 100vw; height: 100vh;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 2; pointer-events: none;
+        }
+        #astrolabe-svg {
+            width: 800px; height: 800px;
+            max-width: 90vw; max-height: 90vh;
+            opacity: 0.35; /* Ditingkatkan agar garis emas lebih terlihat */
+            filter: drop-shadow(0 0 15px rgba(199, 165, 91, 0.5));
+            transition: transform 0.2s ease-out;
+        }
+        #astrolabe-svg .astrolabe-st0 { fill: #c7a55b; }
+        #astrolabe-base > .astrolabe-st0 { fill: transparent; } /* Membuat latar belakang astrolab tembus pandang */
+        #astrolabe-svg .astrolabe-st1 { fill: none; stroke: #c7a55b; stroke-width: 2; }
+        #astrolabe-svg .astrolabe-st2 { fill: transparent; opacity: 0.7; }
+
+        /* --- STARFIELD CANVAS (ENHANCED) --- */
+        #starfield-canvas {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: 1;
+            pointer-events: none;
+        }
+
+        /* --- HOVER GLOW EFFECT --- */
+        #cover-page .z-30 { transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        #cover-page .z-30:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3), 0 0 0 1px rgba(199, 165, 91, 0.4);
+            border-color: rgba(199, 165, 91, 0.6);
+        }
+
+        /* --- KHAZANAH ILMU STYLES --- */
+        .manuscript-item {
+            background-color: #f7f1e4;
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.5rem;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .manuscript-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 5px 10px 20px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+        .manuscript-title {
+            font-family: 'Scheherazade New', serif;
+            font-size: 1.8rem;
+            color: var(--text-ink);
+            margin-bottom: 0.5rem;
+        }
+        .manuscript-excerpt {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-ink);
+            opacity: 0.85;
+        }
+
+        /* --- NEW: ARCHITECTURAL HEADER --- */
+        .architectural-header {
+            position: relative;
+            padding: 2.5rem 1rem 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .architectural-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 60px;
+            border: 2px solid var(--border-gold);
+            border-top: none;
+            border-radius: 0 0 150px 150px;
+        }
+        
+        /* NEW: Footer Styles */
+        .page-footer {
+            border-top: 1px solid var(--border-gold);
+            margin-top: 4rem;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: var(--text-light);
+            opacity: 0.7;
+            position: relative;
+            z-index: 1;
+        }
+        .footer-copyright {
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            margin-top: 1.5rem;
+        }
+
+        /* NEW: Profile Traits Styles */
+        .profile-trait {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            background-color: #f9f4e9;
+            border: 1px solid #e9e2d3;
+        }
+        .profile-trait-icon {
+            flex-shrink: 0;
+            width: 4rem; height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--accent-teal);
+            background-color: var(--bg-parchment);
+            border-radius: 50%;
+            border: 2px solid var(--border-gold);
+        }
+        .profile-trait-content h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-ink);
+        }
+        .profile-trait-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        /* --- REVISED: PROJECT CARD STYLES FOR GRID LAYOUT--- */
+        .project-card {
+            background-color: var(--bg-parchment);
+            border: 1px solid var(--border-gold);
+            box-shadow: 0 0 0 4px var(--bg-parchment), 0 0 0 5px var(--border-gold);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease-in-out;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 0 4px var(--bg-parchment), 0 0 0 5px var(--border-gold);
+        }
+        .project-canvas {
+            width: 100%;
+            height: 250px;
+            background-color: var(--bg-deep-blue);
+            display: block;
+        }
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .project-content .manuscript-title {
+            font-size: 1.6rem;
+            font-family: 'Amiri', serif;
+            font-weight: 700;
+        }
+        .project-content .manuscript-excerpt {
+            flex-grow: 1;
+        }
+        .project-buttons {
+            margin-top: auto;
+            padding-top: 1rem;
+            display: flex;
+            justify-content: flex-start;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* NEW: Text-to-Speech Button Styles */
+        .tts-button {
+            border-width: 1px;
+            font-size: 0.8rem;
+            padding: 4px 10px;
+        }
+        .tts-button.playing {
+            background-color: var(--accent-teal);
+            color: var(--bg-parchment);
+            border-color: var(--accent-teal);
+        }
+        .project-audio-toggle.playing {
+            background-color: var(--accent-teal);
+            color: var(--bg-parchment);
+            border-color: var(--accent-teal);
+        }
+        #tts-controls {
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-gold);
+            display: none;
+            gap: 1rem;
+            align-items: center;
+        }
+        #tts-controls.active { display: flex; }
+
+        /* --- NEW: Animated Border for Cover Page --- */
+        .animated-border-box {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            pointer-events: none;
+            z-index: 25;
+            overflow: hidden;
+        }
+        .animated-border-box span {
+            position: absolute;
+            display: block;
+        }
+        .animated-border-box span:nth-child(1) { /* Top */
+            top: 0; left: -100%; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-gold));
+            animation: animate-border-1 6s linear infinite;
+        }
+        @keyframes animate-border-1 { 0% { left: -100%; } 50%, 100% { left: 100%; } }
+
+        .animated-border-box span:nth-child(2) { /* Right */
+            top: -100%; right: 0; width: 2px; height: 100%;
+            background: linear-gradient(180deg, transparent, var(--accent-gold));
+            animation: animate-border-2 6s linear infinite;
+            animation-delay: 1.5s;
+        }
+        @keyframes animate-border-2 { 0% { top: -100%; } 50%, 100% { top: 100%; } }
+
+        .animated-border-box span:nth-child(3) { /* Bottom */
+            bottom: 0; right: -100%; width: 100%; height: 2px;
+            background: linear-gradient(270deg, transparent, var(--accent-gold));
+            animation: animate-border-3 6s linear infinite;
+            animation-delay: 3s;
+        }
+        @keyframes animate-border-3 { 0% { right: -100%; } 50%, 100% { right: 100%; } }
+
+        .animated-border-box span:nth-child(4) { /* Left */
+            bottom: -100%; left: 0; width: 2px; height: 100%;
+            background: linear-gradient(360deg, transparent, var(--accent-gold));
+            animation: animate-border-4 6s linear infinite;
+            animation-delay: 4.5s;
+        }
+        @keyframes animate-border-4 { 0% { bottom: -100%; } 50%, 100% { bottom: 100%; } }
+
+        /* --- NEW: Animated Aurora Background Overlay --- */
+        #cover-page::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse at 50% 150%, rgba(29, 78, 216, 0.25) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 120%, rgba(56, 189, 248, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 130%, rgba(37, 99, 235, 0.20) 0%, transparent 45%);
+            animation: floating-lights 20s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+        @keyframes floating-lights {
+            from { transform: translateY(0%) scale(1); opacity: 0.7; }
+            to { transform: translateY(-5%) scale(1.1); opacity: 1; }
+        }
+
+        /* --- NEW: Page Transition Loader --- */
+        #page-transition-loader {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 9998; /* Di bawah loader utama, di atas konten lain */
+            pointer-events: none;
+            display: flex;
+        }
+        .transition-gate {
+            width: 50vw;
+            height: 100vh;
+            background-color: #14233c; /* Sedikit lebih gelap untuk kontras */
+            border-color: var(--accent-gold);
+            transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            color: var(--accent-gold);
+            text-shadow: 0 0 15px var(--accent-gold);
+            box-shadow: 0 0 30px rgba(0,0,0,0.5) inset;
+        }
+        #gate-left { transform: translateX(-100%); border-right-width: 2px; }
+        #gate-right { transform: translateX(100%); border-left-width: 2px; }
+
+        body.loading-transition #gate-left,
+        body.loading-transition #gate-right {
+            transform: translateX(0);
+        }
+        
+    </style>
+</head>
+<body class="bg-[var(--bg-deep-blue)]">
+
+    <audio id="background-music" loop preload="none">
+        <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Dari%20Algoritma%20Al-Khwarizmi%20ke%20AI%20dan%20IoT_%20Membongkar%20Evolusi%20Inovasi%20Digital%20dan%20Filosofi%20di%20Baliknya.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <svg class="loader-svg" viewBox="0 0 280 280">
+                <circle class="progress-ring__circle" stroke-width="6" fill="transparent" r="130" cx="140" cy="140"/>
+            </svg>
+            <div class="loader-text">
+                <h2>THE<br>ENGINEER</h2>
+                <p>By Sasangka</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW: Page Transition Loader -->
+    <div id="page-transition-loader">
+        <div id="gate-left" class="transition-gate">
+            <span>۞</span>
+        </div>
+        <div id="gate-right" class="transition-gate"></div>
+    </div>
+
+    <div id="book-container">
+
+        <section id="cover-page" class="relative w-full h-screen flex flex-col justify-center items-center text-center p-8 bg-[var(--bg-deep-blue)] overflow-hidden">
+            
+            <div class="animated-border-box">
+                <span></span><span></span><span></span><span></span>
+            </div>
+
+            <button id="sound-toggle" class="absolute top-8 right-8 z-50 text-[var(--text-light)] border border-[var(--text-light)]/50 px-4 py-2 text-sm font-bold tracking-widest hover:bg-[var(--text-light)] hover:text-[var(--bg-deep-blue)] transition-colors flex items-center justify-center gap-2" style="min-width: 160px;">
+                <span id="play-text" class="flex items-center gap-2">
+                    <i class="fas fa-play" aria-hidden="true"></i>
+                    <span>Mulai Langkahmu</span>
+                </span>
+                <span id="stop-text" class="hidden flex items-center gap-2">
+                    <i class="fas fa-pause" aria-hidden="true"></i>
+                    <span>Beristirahat</span>
+                </span>
+            </button>
+            
+            <!-- ASTROLABE AS BACKGROUND -->
+            <div id="astrolabe-wrapper">
+                <svg version="1.1" id="astrolabe-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+                    <g id="astrolabe-base">
+                        <circle class="astrolabe-st0" cx="250" cy="250" r="240"/>
+                        <circle class="astrolabe-st1" cx="250" cy="250" r="220"/>
+                        <circle class="astrolabe-st1" cx="250" cy="250" r="180" stroke-dasharray="5, 5"/>
+                        <circle class="astrolabe-st1" cx="250" cy="250" r="150"/>
+                        <!-- Cincin baru yang berputar -->
+                        <circle id="astrolabe-ring-1" class="astrolabe-st1" cx="250" cy="250" r="200" stroke-dasharray="2, 8"/>
+                        <circle id="astrolabe-ring-2" class="astrolabe-st1" cx="250" cy="250" r="120" stroke-dasharray="10, 5, 2, 5" stroke-width="1.5"/>
+                        <path class="astrolabe-st1" d="M250,50v400 M50,250h400 M108.8,108.8l282.4,282.4 M108.8,391.2L391.2,108.8"/>
+                        <path class="astrolabe-st1" d="M179.3,73.2 L320.7,426.8 M73.2,179.3 L426.8,320.7 M73.2,320.7 L426.8,179.3 M179.3,426.8 L320.7,73.2"/>
+                    </g>
+                     <g id="astrolabe-markings" class="astrolabe-st1" font-size="12" font-family="Amiri, serif" fill="#c7a55b" stroke="none" letter-spacing="1">
+                        <text x="250" y="45" text-anchor="middle">U</text>
+                        <text x="250" y="465" text-anchor="middle">S</text>
+                        <text x="40" y="255" text-anchor="middle">B</text>
+                        <text x="460" y="255" text-anchor="middle">T</text>
+                        <text x="355" y="65" text-anchor="middle" transform="rotate(30, 355, 65)">30°</text>
+                        <text x="435" y="145" text-anchor="middle" transform="rotate(60, 435, 145)">60°</text>
+                        <text x="435" y="355" text-anchor="middle" transform="rotate(120, 435, 355)">120°</text>
+                        <text x="355" y="435" text-anchor="middle" transform="rotate(150, 355, 435)">150°</text>
+                        <text x="145" y="435" text-anchor="middle" transform="rotate(210, 145, 435)">210°</text>
+                        <text x="65" y="355" text-anchor="middle" transform="rotate(240, 65, 355)">240°</text>
+                        <text x="65" y="145" text-anchor="middle" transform="rotate(300, 65, 145)">300°</text>
+                        <text x="145" y="65" text-anchor="middle" transform="rotate(330, 145, 65)">330°</text>
+                    </g>
+                    <g id="astrolabe-rete">
+                        <path class="astrolabe-st2" d="M250,250 m-200,0 a200,200 0 1,0 400,0 a200,200 0 1,0 -400,0"/>
+                        <path class="astrolabe-st0" d="M250,50 l10,20 l-20,0 z"/>
+                        <circle class="astrolabe-st0" cx="250" cy="250" r="10"/>
+                        <g transform="rotate(30 250 250)">
+                            <path class="astrolabe-st1" d="M250,90 a160,160 0 0,1 0,320"/>
+                            <path class="astrolabe-st0" d="M250,90 l-15,10 l15,10 z"/>
+                            <circle class="astrolabe-st0" cx="200" cy="150" r="5"/>
+                        </g>
+                        <g transform="rotate(-30 250 250)">
+                            <path class="astrolabe-st1" d="M250,90 a160,160 0 0,0 0,320"/>
+                            <path class="astrolabe-st0" d="M250,90 l15,10 l-15,10 z"/>
+                            <circle class="astrolabe-st0" cx="300" cy="150" r="5"/>
+                        </g>
+                        <path class="astrolabe-st1" d="M150,250 C 180,180 320,180 350,250"/>
+                        <path class="astrolabe-st1" d="M150,250 C 180,320 320,320 350,250"/>
+                        <circle class="astrolabe-st0" cx="150" cy="250" r="7"/>
+                        <circle class="astrolabe-st0" cx="350" cy="250" r="7"/>
+                    </g>
+                    <g id="astrolabe-ruler" transform="rotate(0 250 250)">
+                        <path class="astrolabe-st1" d="M50,250 h400"/>
+                        <circle class="astrolabe-st0" cx="100" cy="250" r="8"/>
+                        <circle class="astrolabe-st0" cx="400" cy="250" r="8"/>
+                    </g>
+                    <!-- Jarum baru yang berlawanan arah -->
+                    <g id="astrolabe-ruler-alt" transform="rotate(0 250 250)">
+                        <path class="astrolabe-st1" d="M250,250 h180" stroke-dasharray="4, 4" stroke-width="1.5"/>
+                        <circle class="astrolabe-st0" cx="430" cy="250" r="5"/>
+                    </g>
+                </svg>
+            </div>
+            
+            <canvas id="starfield-canvas"></canvas>
+
+            <div class="w-full max-w-5xl rounded-lg relative z-30 bg-[var(--bg-deep-blue)]/40 backdrop-blur-sm border border-[var(--border-gold)]/30 shadow-2xl mx-auto py-8 px-4 sm:px-8 md:px-16">
+                <h1 class="text-6xl md:text-8xl mb-4 font-cinzel tracking-wider animated-gradient-text">THE ENGINEER</h1>
+                <p class="text-xl md:text-2xl mt-4 font-amiri text-[var(--text-light)] mb-8">Portofolio Gatot Sasangka</p>
+                <p class="text-lg md:text-xl mt-4 font-amiri text-[var(--text-light)] opacity-90 max-w-3xl mx-auto">
+                    Menjelajahi Persimpangan Antara Kearifan Klasik dan Inovasi Modern
+                </p>
+                
+                <div class="border-y-2 border-[var(--border-gold)] py-2 mt-8">
+                    <p class="text-sm tracking-widest text-center">
+                        EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB
+                    </p>
+                </div>
+                <div class="mt-8">
+                    <button id="open-book-btn" class="classic-button text-xl">Buka Dokumen</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="content-pages" class="h-full sidebar-minimized">
+
+            <div id="page-content-container" class="page-content-wrapper">
+                <canvas id="particle-canvas"></canvas>
+                <main id="page-main-content" class="p-8">
+                    <section id="home-page" class="page">
+                        <header class="pb-8">
+                            <div class="container mx-auto px-6 text-center text-[var(--text-light)]">
+                                <div class="border-t-2 border-b-2 border-[var(--border-gold)] pt-4 pb-2" style="background-image: url('data:image/svg+xml,%3Csvg width=\'6\' height=\'6\' viewBox=\'0 0 6 6\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23c7a55b\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M5 0h1L0 6V5zM6 5v1H5z\'/%3E%3C/g%3E%3C/svg%3E');">
+                                    <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">THE ENGINEER</h1>
+                                    <div class="text-xs tracking-widest flex justify-between items-center text-[var(--text-light)]/80">
+                                        <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
+                                        <span class="live-datetime"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        
+                        <div class="fancy-divider animate-on-scroll animation-delay-200"></div>
+
+                        <h2 class="text-4xl md:text-5xl mb-4 leading-tight text-center animate-on-scroll animation-delay-200 text-[var(--text-light)]">Jejak Inovasi: Dari Algoritma Al-Khwarizmi hingga Kecerdasan Buatan</h2>
+                         <p class="max-w-3xl mx-auto text-center text-lg mb-10 text-[var(--text-light)] animate-on-scroll animation-delay-400">
+                           Sebuah penelusuran sejarah yang memetakan evolusi pemikiran komputasi, dari konsep fundamental yang diletakkan oleh Al-Khwarizmi hingga era kecerdasan buatan yang mendefinisikan kembali masa depan kita.
+                        </p>
+                        
+                        <div class="article-frame animate-on-scroll animation-delay-600">
+                             <div class="space-y-8">
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-scroll mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-9 — Awal Algoritma</h3>
+                                    <p class="text-justify">Sejarah teknologi adalah perjalanan panjang tentang bagaimana ide-ide besar lahir dari fondasi yang diletakkan oleh para pemikir terdahulu. Perjalanan ini dimulai pada abad ke-9, ketika seorang ilmuwan Muslim bernama Al-Khwarizmi memperkenalkan konsep algoritma, dasar dari semua komputasi modern. Pemikirannya menjadi pondasi logika yang memungkinkan manusia merancang mesin yang dapat menghitung, memproses data, dan menyelesaikan masalah secara sistematis. “Algoritma bukan sekadar perhitungan, tetapi cara berpikir yang membentuk masa depan teknologi.”</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-print mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-15 — Revolusi Mesin Cetak</h3>
+                                    <p class="text-justify">Berabad-abad kemudian, pada abad ke-15, Johannes Gutenberg menemukan mesin cetak, sebuah inovasi yang merevolusi penyebaran informasi. Sebelum itu, pengetahuan hanya dikuasai segelintir orang, namun mesin cetak membuat buku dan ilmu pengetahuan menyebar ke seluruh dunia, dengan dampak yang setara dengan internet di era modern: mempercepat kolaborasi dan memperluas wawasan umat manusia.</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-cogs mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-18 — Revolusi Industri</h3>
+                                    <p class="text-justify">Memasuki abad ke-18, Revolusi Industri mengubah dunia secara drastis melalui mesin uap dan mekanisasi. Untuk pertama kalinya, tenaga mekanis menggantikan kerja fisik manusia, memicu perubahan sosial besar dan melahirkan era industri modern. Era ini juga menjadi fondasi bagi lahirnya teknologi komunikasi instan di abad berikutnya.</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-laptop-code mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-19–20 — Era Digital Awal</h3>
+                                    <p class="text-justify">Pada abad ke-19, telegraf memungkinkan komunikasi instan, mengubah dunia selamanya. Abad ke-20 menandai kelahiran komputer digital, yang berevolusi dari mesin raksasa menjadi perangkat pribadi. Menjelang akhir abad ini, lahirlah internet, jaringan global yang menghubungkan miliaran orang, menghapus batasan geografis dan memicu revolusi informasi kedua.</p>
+                                </div>
+                                 <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-brain mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-21 — Kecerdasan Buatan & IoT</h3>
+                                    <p class="text-justify">Kini, di abad ke-21, kita memasuki era di mana teknologi mampu berpikir dan belajar sendiri. Kecerdasan Buatan (AI) dan Internet of Things (IoT) memungkinkan perangkat saling berkomunikasi, menganalisis data, dan mengambil keputusan secara mandiri. Dari mobil otonom hingga rumah pintar, kemajuan ini membawa tantangan etika dan tanggung jawab baru.</p>
+                                </div>
+                                <div>
+                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-infinity mr-4 text-3xl text-[var(--accent-teal)]"></i>Masa Depan</h3>
+                                    <p class="text-justify">Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa sejarah, menggabungkan warisan klasik dengan inovasi modern. Setiap karya menjadi bukti bahwa perjalanan teknologi adalah kisah yang belum berakhir — narasi yang terus ditulis setiap hari oleh para insinyur, pemikir, dan pencipta di seluruh dunia.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+        
+                    <section id="about-page" class="page hidden">
+                        <header class="pb-8">
+                            <div class="container mx-auto px-6 text-center text-[var(--text-light)]">
+                                <div class="border-t-2 border-b-2 border-[var(--border-gold)] pt-4 pb-2" style="background-image: url('data:image/svg+xml,%3Csvg width=\'6\' height=\'6\' viewBox=\'0 0 6 6\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23c7a55b\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M5 0h1L0 6V5zM6 5v1H5z\'/%3E%3C/g%3E%3C/svg%3E');">
+                                    <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">Profil Sang Inisiat</h1>
+                                    <div class="text-xs tracking-widest flex justify-between items-center text-[var(--text-light)]/80">
+                                        <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
+                                        <span class="live-datetime"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="fancy-divider"></div>
+                        <div class="text-center text-[var(--text-light)]">
+                            <h3 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Karakter & Filosofi</h3>
+                            <p class="max-w-3xl mx-auto text-lg mb-10 animate-on-scroll animation-delay-200">
+                                Sebuah gambaran mendalam mengenai prinsip, nilai, dan pendekatan yang menjadi landasan dalam setiap langkah profesional dan pribadi.
+                            </p>
+                        </div>
+                        <div class="article-frame animate-on-scroll animation-delay-400">
+                            <div class="space-y-8">
+                                <div class="profile-trait">
+                                    <div class="profile-trait-icon"><i class="fas fa-sitemap"></i></div>
+                                    <div class="profile-trait-content">
+                                        <h4>Terstruktur & Sistematis</h4>
+                                        <p>Memiliki pemikiran yang terarah, logis, dan efisien, dengan kemampuan merencanakan setiap langkah secara matang namun tetap sigap, sehingga keputusan dapat diambil cepat dan tepat. Menyukai keteraturan dan proses yang jelas, menjadikan setiap hal yang dikerjakan stabil, rapi, dan terorganisir, baik dalam kehidupan sehari-hari maupun saat menghadapi keputusan penting.</p>
+                                    </div>
+                                </div>
+                                <div class="profile-trait">
+                                    <div class="profile-trait-icon"><i class="fas fa-seedling"></i></div>
+                                    <div class="profile-trait-content">
+                                        <h4>Gigih & Tekun Belajar</h4>
+                                        <p>Memandang setiap tantangan sebagai peluang untuk bertumbuh. Dengan semangat belajar yang tinggi dan rasa ingin tahu yang besar, tidak mudah menyerah meski menghadapi masalah yang rumit. Pemecahan masalah bukan sekadar tugas, melainkan sumber kepuasan batin, yang mendorong untuk terus memperdalam pemahaman dan berkembang melalui pembelajaran berkelanjutan.</p>
+                                    </div>
+                                </div>
+                                <div class="profile-trait">
+                                    <div class="profile-trait-icon"><i class="fas fa-balance-scale"></i></div>
+                                    <div class="profile-trait-content">
+                                        <h4>Analitis & Penuh Pertimbangan</h4>
+                                        <p>Berpikiran kritis dan tenang dalam mengambil keputusan, dengan mengutamakan keseimbangan antara logika dan intuisi. Setiap langkah dianalisis dengan cermat, mempertimbangkan berbagai sudut pandang agar hasil yang dicapai stabil dan tepat.</p>
+                                    </div>
+                                </div>
+                                <div class="profile-trait">
+                                    <div class="profile-trait-icon"><i class="fas fa-shield-alt"></i></div>
+                                    <div class="profile-trait-content">
+                                        <h4>Integritas</h4>
+                                        <p>Menjunjung tinggi keadilan dan tanggung jawab dalam setiap aspek kehidupan. Tidak menyukai ketidakadilan atau penindasan, serta berkomitmen untuk membela hal yang benar. Menghargai kejujuran, keterbukaan, dan kerja sama yang sehat, serta memilih pendekatan damai namun tetap tegas dalam memegang prinsip.</p>
+                                    </div>
+                                </div>
+                                <div class="profile-trait">
+                                    <div class="profile-trait-icon"><i class="fas fa-dove"></i></div>
+                                    <div class="profile-trait-content">
+                                        <h4>Visioner & Pencari Kedamaian</h4>
+                                        <p>Memiliki pandangan jauh ke depan dan suka merencanakan masa depan dengan penuh pertimbangan. Mengutamakan keseimbangan antara karier, kehidupan pribadi, dan spiritualitas, sambil mencari kedamaian batin.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right mt-8">
+                                <button data-modal-target="#keahlian-modal" class="classic-button">Lihat Keahlian Utama</button>
+                            </div>
+                        </div>
+                    </section>
+        
+                    <section id="projects-page" class="page hidden">
+                        <header class="pb-8">
+                            <div class="container mx-auto px-6 text-center text-[var(--text-light)]">
+                                <div class="border-t-2 border-b-2 border-[var(--border-gold)] pt-4 pb-2" style="background-image: url('data:image/svg+xml,%3Csvg width=\'6\' height=\'6\' viewBox=\'0 0 6 6\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23c7a55b\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M5 0h1L0 6V5zM6 5v1H5z\'/%3E%3C/g%3E%3C/svg%3E');">
+                                    <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">Laporan Utama</h1>
+                                    <div class="text-xs tracking-widest flex justify-between items-center text-[var(--text-light)]/80">
+                                        <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
+                                        <span class="live-datetime"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="fancy-divider"></div>
+                        <h3 class="text-3xl md:text-4xl font-bold text-center mb-4 animate-on-scroll">Proyek Unggulan</h3>
+                        <p class="max-w-3xl mx-auto text-center text-lg mb-10 animate-on-scroll animation-delay-200">Berikut adalah beberapa proyek unggulan yang telah saya kembangkan, yang mencerminkan keahlian serta pengalaman saya dalam merancang dan mengimplementasikan solusi teknologi.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <article class="project-card h-full flex flex-col animate-on-scroll animation-delay-400">
+                                <canvas id="cnn-canvas" class="project-canvas" width="500" height="250"></canvas>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">KLASIFIKASI GAMBAR DENGAN ALGORITMA CNN</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Kecerdasan Buatan, Machine Learning, Computer Vision</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                        Proyek ini mendalami salah satu pilar utama visi komputer modern dengan mengimplementasikan algoritma Convolutional Neural Network (CNN) untuk tugas klasifikasi gambar. Model dilatih untuk mengenali dan membedakan berbagai kelas objek dari dataset gambar, menunjukkan pemahaman mendalam tentang arsitektur deep learning dan aplikasinya dalam analisis visual.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <button data-modal-target="#cnn-doc-modal" data-doc-id="17CLeDEZGMRex0O3yFGt6Bm2CJs-zb1K8" class="classic-button text-sm py-2 px-4">Buka Dokumen</button>
+                                        <button data-modal-target="#cnn-sim-modal" data-iframe-src="https://affinecipher-0.github.io/Algoritma-CNN/" class="classic-button text-sm py-2 px-4">Jalankan Simulasi</button>
+                                        <a href="https://github.com/AffineCipher-0/Algoritma-CNN" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat Repositori</a>
+                                        <audio id="audio-cnn" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Membedah%20Jaringan%20Saraf%20Tiruan_%20Cara%20Kerja%20Convolutional%20Neural%20Networks%20(CNN)%20dari%20Piksel%20Hingga%20Mengenali%20Kucing.mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-cnn" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="project-card h-full flex flex-col animate-on-scroll animation-delay-600">
+                                <canvas id="morse-canvas" class="project-canvas" width="500" height="250"></canvas>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">ALAT PENERJEMAH SANDI MORSE BERBASIS MIKROKONTROLLER MENGGUNAKAN ALGORITMA BRUTE FORCE</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Mikrokontroller, Arduino (C++), Algoritma Brute Force</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                        Proyek ini mewujudkan jembatan antara rekayasa perangkat keras dan ilmu algoritma fundamental dengan merancang sebuah alat fisik berbasis mikrokontroler yang mampu menerjemahkan sinyal sandi morse secara real-time. Keunikan proyek ini terletak pada implementasi algoritma <i>brute force</i> sebagai mesin penerjemahnya. Sistem secara metodis mencocokkan setiap pola titik dan garis yang masuk terhadap kamus sandi morse yang tersimpan hingga menemukan karakter yang valid. Ini adalah demonstrasi praktis tentang bagaimana pendekatan komputasi yang paling dasar sekalipun dapat diterapkan secara efektif pada perangkat keras untuk memecahkan tantangan komunikasi yang spesifik.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Baca Dokumen Penelitian</a>
+                                        <audio id="audio-morse" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Deep%20Dive%20Sandi%20Morse_%20Bongkar%20Penerjemah%20Otomatis%20Pakai%20Arduino%20dan%20Efek%20Algoritma%20Brute%20Force.mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-morse" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="project-card h-full flex flex-col animate-on-scroll animation-delay-800">
+                                <canvas id="web-canvas" class="project-canvas" width="500" height="250"></canvas>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">TOKO ONLINE SECONDHAND DENGAN PHP & MYSQL</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Pengembangan Web, E-Commerce, PHP Native</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                       Proyek ini mereplikasi semangat awal e-commerce dengan membangun platform fungsional untuk jual-beli barang bekas. Dikembangkan dengan PHP native, proyek ini mencakup fitur backend yang solid, manajemen basis data, serta panel admin yang komprehensif, menunjukkan penguasaan fundamental pengembangan web.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat Repositori</a>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1s;">
+                                <canvas id="iot-canvas" class="project-canvas" width="500" height="250"></canvas>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">SRS GREENHOUSE HIDROPONIK CERDAS</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: IoT, Perancangan Perangkat Lunak, SRS</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                       Cetak biru untuk masa depan pertanian cerdas, merancang arsitektur sistem IoT berskala besar untuk mengelola ratusan greenhouse melalui aplikasi mobile. Dokumen SRS ini merinci kebutuhan fungsional dan non-fungsional, alur kerja sistem, dan desain antarmuka, menjadi fondasi pengembangan yang terstruktur.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <button data-modal-target="#srs-doc-modal" data-doc-id="18pBCviFKwYibi60U-z4pLEpcf1EJ8UX1" class="classic-button text-sm py-2 px-4">Buka Dokumen SRS</button>
+                                        <button data-modal-target="#greenhouse-prototype-modal" data-iframe-src="https://affinecipher-0.github.io/prototype-greenhouse/" class="classic-button text-sm py-2 px-4">Lihat Prototipe</button>
+                                        <audio id="audio-srs" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Bedah%20Dokumen%20SRS_%20Cetak%20Biru%20Aplikasi%20IoT%20untuk%20Otomatisasi%20100%20Greenhouse%20Hidroponik%20Skala%20Industri.mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-srs" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1.2s;">
+                                <canvas id="pieces-canvas" class="project-canvas" width="500" height="250"></canvas>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">ANALISIS PIECES TRANSFORMASI DIGITAL JUAL BELI MOBIL</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Analisis Sistem, Desain Proses Bisnis</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                        Menganalisis dan memetakan modernisasi proses jual beli mobil, dari era klasik ke digital, menggunakan kerangka kerja PIECES. Studi ini mengidentifikasi kelemahan sistem konvensional dan merekomendasikan solusi digital untuk menciptakan ekosistem yang lebih transparan, efisien, dan aman bagi semua pihak.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <button data-modal-target="#pieces-modal" data-iframe-src="https://affinecipher-0.github.io/PIECES/" class="classic-button text-sm py-2 px-4">Baca Laporan Analisis</button>
+                                        <audio id="audio-pieces" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Rahasia%20Transformasi%20Jual%20Beli%20Mobil%20Bekas_%20Bedah%20PIECES%20dan%20Lonjakan%20Efisiensi%2090%25%20Lewat%20Platform%20Digital.mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-pieces" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1.4s;">
+                                <canvas id="network-canvas" class="project-canvas" width="500" height="250"></canvas>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">DESAIN INFRASTRUKTUR JARINGAN PT AMIKOM</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Desain Infrastruktur Jaringan, Cisco</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                        Merancang dan mensimulasikan infrastruktur jaringan perusahaan yang kuat, aman, dan efisien menggunakan Cisco Packet Tracer. Desain ini mendukung kebutuhan operasional dan produksi dari enam departemen yang berbeda, lengkap dengan segmentasi jaringan, kebijakan keamanan, dan redundansi untuk ketersediaan tinggi.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <button data-modal-target="#network-infra-modal" data-iframe-src="https://affinecipher-0.github.io/Infrastruktur-Jaringan/" class="classic-button text-sm py-2 px-4">Lihat Desain Jaringan</button>
+                                        <audio id="audio-network" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Bedah%20Tuntas%20Proyek%20Modernisasi%20Jaringan%20PT.%20AMIKOM_%20Rahasia%20VLAN%20dan%20VPN%20Membangun%20Fondasi%20Studio%20Animasi%20Tangguh%20(online-audio-converter.com).mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-network" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                            <article class="project-card h-full flex flex-col animate-on-scroll" style="animation-delay: 1.6s;">
+                                <canvas id="yagi-canvas" class="project-canvas" width="500" height="250"></canvas>
+                                <div class="project-content">
+                                    <h4 class="manuscript-title">DESAIN DAN OPTIMASI ANTENA YAGI 6 ELEMEN</h4>
+                                    <p class="text-sm mb-3 text-slate-600">Kategori: Rekayasa Antena, Simulasi RF, Jaringan Nirkabel</p>
+                                    <p class="manuscript-excerpt mb-4 text-justify">
+                                       Menjembatani konsep teori elektromagnetik dengan aplikasi praktis untuk merancang dan mengoptimalkan antena Yagi 6 elemen. Proyek ini berfokus pada pencapaian kinerja tinggi pada frekuensi 1200 MHz, mencakup analisis pola radiasi, gain, dan impedansi untuk komunikasi nirkabel jarak jauh yang andal.
+                                    </p>
+                                    <div class="project-buttons">
+                                        <button data-modal-target="#yagi-antenna-modal" data-iframe-src="https://affinecipher-0.github.io/TeknologiJaringanNirkabel/" class="classic-button text-sm py-2 px-4">Baca Laporan Desain</button>
+                                        <audio id="audio-yagi" class="project-audio hidden">
+                                            <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/proyek/Kompromi%20Ekstrem%20Optimasi%20Antena%20Yagi_%20Menjinakkan%20SWR%20Tinggi%20dengan%20Mengorbankan%20Gain%20dan%20Arah%20Fokus%20Menggunakan%20MMANA-GAL.mp3" type="audio/mpeg">
+                                            Browser Anda tidak mendukung elemen audio.
+                                        </audio>
+                                        <button data-audio-target="#audio-yagi" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                            <i class="fas fa-play" aria-hidden="true"></i>
+                                            <span>Dengarkan Narasi</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+        
+                    <section id="pendidikan-page" class="page hidden">
+                        <header class="pb-8">
+                            <div class="container mx-auto px-6 text-center text-[var(--text-light)]">
+                                <div class="border-t-2 border-b-2 border-[var(--border-gold)] pt-4 pb-2" style="background-image: url('data:image/svg+xml,%3Csvg width=\'6\' height=\'6\' viewBox=\'0 0 6 6\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23c7a55b\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M5 0h1L0 6V5zM6 5v1H5z\'/%3E%3C/g%3E%3C/svg%3E');">
+                                    <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">Latar Pendidikan</h1>
+                                    <div class="text-xs tracking-widest flex justify-between items-center text-[var(--text-light)]/80">
+                                        <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
+                                        <span class="live-datetime"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="fancy-divider"></div>
+                        <div class="text-center text-[var(--text-light)]">
+                            <h3 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Riwayat Pendidikan</h3>
+                            <p class="max-w-3xl mx-auto text-lg mb-10 animate-on-scroll animation-delay-200">
+                                Jejak perjalanan akademis yang membentuk fondasi pengetahuan dan keahlian, dari pendidikan dasar hingga pencapaian di tingkat perguruan tinggi.
+                            </p>
+                        </div>
+                        <div class="article-frame animate-on-scroll animation-delay-400">
+                            <div class="space-y-8 max-w-3xl mx-auto">
+                                <div class="pl-8 border-l-2 border-[var(--border-gold)] relative">
+                                    <div class="absolute -left-[9px] top-1 w-4 h-4 bg-[var(--bg-parchment)] border-2 border-[var(--border-gold)] rounded-full"></div>
+                                    <h4 class="text-2xl font-bold">Universitas Amikom Yogyakarta – S1 Teknik Informatika</h4>
+                                    <p class="text-md mb-2 italic">September 2019 – Juni 2023 (Cumlaude, IPK 3.83, Lulus dalam 3 tahun 9 bulan)</p>
+                                    <ul class="list-disc list-outside ml-5 space-y-2 text-justify">
+                                        <li>
+                                            <strong>Pemrograman dan Rekayasa Perangkat Lunak:</strong> Menguasai Rekayasa Perangkat Lunak, Pemrograman Web, Algoritma dan Pemrograman, serta Struktur Data untuk membangun aplikasi yang efisien dan terstruktur.
+                                        </li>
+                                        <li>
+                                            <strong>Data dan Analisis:</strong> Memiliki pemahaman dalam Sistem Basis Data, Kecerdasan Buatan (AI), Statistika, dan Metode Numerik untuk pengolahan dan analisis data.
+                                        </li>
+                                        <li>
+                                            <strong>Jaringan dan Keamanan:</strong> Kompeten dalam Keamanan Jaringan, Perancangan Jaringan, Jaringan Komputer Lanjutan, dan Infrastruktur IT.
+                                        </li>
+                                        <li>
+                                            <strong>Keterampilan Non-Teknis dan Manajemen:</strong> Dibekali dengan pengetahuan Manajemen Strategik, Kepemimpinan, Metodologi Penelitian, dan Etika Profesi untuk mendukung kerja tim dan profesionalisme.
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="pl-8 border-l-2 border-[var(--border-gold)] relative">
+                                    <div class="absolute -left-[9px] top-1 w-4 h-4 bg-[var(--bg-parchment)] border-2 border-[var(--border-gold)] rounded-full"></div>
+                                    <h4 class="text-2xl font-bold">SMA Negeri 1 Palopo – Jurusan IPA</h4>
+                                    <p class="text-md mb-1 italic">2009 – 2012</p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+        
+                    <section id="sertifikasi-page" class="page hidden">
+                        <header class="pb-8">
+                            <div class="container mx-auto px-6 text-center text-[var(--text-light)]">
+                                <div class="border-t-2 border-b-2 border-[var(--border-gold)] pt-4 pb-2" style="background-image: url('data:image/svg+xml,%3Csvg width=\'6\' height=\'6\' viewBox=\'0 0 6 6\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23c7a55b\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M5 0h1L0 6V5zM6 5v1H5z\'/%3E%3C/g%3E%3C/svg%3E');">
+                                    <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">Sertifikasi</h1>
+                                    <div class="text-xs tracking-widest flex justify-between items-center text-[var(--text-light)]/80">
+                                        <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
+                                        <span class="live-datetime"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="fancy-divider"></div>
+                        <div class="text-center text-[var(--text-light)]">
+                            <h3 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Sertifikasi & Pencapaian</h3>
+                            <p class="max-w-3xl mx-auto text-lg mb-10 animate-on-scroll animation-delay-200">
+                                Komitmen terhadap pembelajaran berkelanjutan yang dibuktikan melalui serangkaian sertifikasi di bidang teknologi, memperkuat keahlian dalam pengembangan perangkat lunak, keamanan, dan infrastruktur jaringan.
+                            </p>
+                        </div>
+                        <div class="article-frame animate-on-scroll animation-delay-400">
+                            <p class="text-justify mb-4">
+                                Memiliki pengetahuan dan keterampilan yang kuat dalam pengembangan perangkat lunak, jaringan komputer, serta keamanan jaringan. Ia memahami dasar-dasar pemrograman untuk membangun aplikasi dan sistem, mampu merakit, memperbaiki, dan mengelola perangkat keras komputer. Dalam bidang jaringan, ia menguasai konsep dasar dan lanjutan seperti konfigurasi switch, router, VLAN, inter-VLAN routing, dynamic addressing, serta manajemen jaringan wireless dengan standar keamanan yang baik.
+                            </p>
+                            <p class="text-justify mb-6">
+                                Selain itu, ia memiliki kemampuan dalam merancang dan menerapkan keamanan jaringan, termasuk penggunaan firewall, VPN, dan mitigasi serangan seperti Layer 2 attacks dan ancaman modern lainnya. Ia juga memahami prinsip desain jaringan yang aman, pemecahan masalah jaringan, hingga manajemen perangkat yang terhubung ke internet dan layanan cloud.
+                            </p>
+                            <div class="text-right mt-6">
+                                <button data-modal-target="#sertifikat-modal" class="classic-button">
+                                    Lihat Galeri Sertifikat
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="khazanah-page" class="page hidden">
+                        <header class="pb-8">
+                            <div class="container mx-auto px-6 text-center text-[var(--text-light)]">
+                                <div class="border-t-2 border-b-2 border-[var(--border-gold)] pt-4 pb-2" style="background-image: url('data:image/svg+xml,%3Csvg width=\'6\' height=\'6\' viewBox=\'0 0 6 6\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23c7a55b\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M5 0h1L0 6V5zM6 5v1H5z\'/%3E%3C/g%3E%3C/svg%3E');">
+                                    <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">Gagasan ilmu</h1>
+                                    <div class="text-xs tracking-widest flex justify-between items-center text-[var(--text-light)]/80">
+                                        <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
+                                        <span class="live-datetime"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="fancy-divider"></div>
+                        <div class="text-center text-[var(--text-light)]">
+                            <h3 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Pustaka Pemikiran</h3>
+                            <p class="max-w-3xl mx-auto text-lg mb-10 animate-on-scroll animation-delay-200">
+                                Kumpulan manuskrip berisi pemikiran, analisis mendalam, dan refleksi tentang persimpangan antara teknologi, sejarah, dan filsafat. Setiap tulisan adalah upaya untuk menggali kearifan dari masa lalu untuk menerangi masa depan.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <article class="manuscript-item animate-on-scroll animation-delay-400">
+                                <div class="flex-grow">
+                                    <h4 class="manuscript-title">Etika Kecerdasan Buatan</h4>
+                                    <p class="manuscript-excerpt mb-4">
+                                        Sebuah perenungan tentang tanggung jawab moral dalam menciptakan AI, terinspirasi dari prinsip-prinsip etika para filsuf Islam seperti Al-Farabi yang membahas tentang 'Kota Utama' (Al-Madinah al-Fadilah).
+                                    </p>
+                                </div>
+                                <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
+                                    <audio id="audio-ai-ethics" class="project-audio hidden">
+                                        <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Menanam%20Kebajikan%20dalam%20Algoritma_%20Etika%20AI%20Melalui%20Kacamata%20Filsuf%20Islam%20Al-Farabi.mp3" type="audio/mpeg">
+                                        Browser Anda tidak mendukung elemen audio.
+                                    </audio>
+                                    <button data-audio-target="#audio-ai-ethics" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
+                                    <button data-modal-target="#manuscript-modal" data-manuscript-id="ai-ethics" class="classic-button text-sm py-2 px-4">Baca</button>
+                                </div>
+                            </article>
+                             <article class="manuscript-item animate-on-scroll animation-delay-600">
+                                <div class="flex-grow">
+                                    <h4 class="manuscript-title">Jaringan Sebagai Sistem Sosial</h4>
+                                    <p class="manuscript-excerpt mb-4">
+                                        Analisis bagaimana konsep jaringan komputer modern mencerminkan struktur sosial dan jalur perdagangan kuno, seperti Jalur Sutra, dalam menyebarkan informasi dan inovasi.
+                                    </p>
+                                </div>
+                                <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
+                                    <audio id="audio-social-network" class="project-audio hidden">
+                                        <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Jalur%20Sutra%20vs%20Internet_%20Menguak%20Arteri%20Peradaban%20dan%20Cetak%20Biru%20Jaringan%20Global%20Pertama.mp3" type="audio/mpeg">
+                                        Browser Anda tidak mendukung elemen audio.
+                                    </audio>
+                                    <button data-audio-target="#audio-social-network" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
+                                    <button data-modal-target="#manuscript-modal" data-manuscript-id="social-network" class="classic-button text-sm py-2 px-4">Baca</button>
+                                </div>
+                            </article>
+                             <article class="manuscript-item animate-on-scroll animation-delay-800">
+                                <div class="flex-grow">
+                                    <h4 class="manuscript-title">IoT dan Konsep Keseimbangan Alam</h4>
+                                    <p class="manuscript-excerpt mb-4">
+                                        Menjelajahi bagaimana Internet of Things dapat digunakan untuk menciptakan harmoni antara teknologi dan lingkungan, sejalan dengan konsep 'Mizan' (keseimbangan) dalam kosmologi Islam.
+                                    </p>
+                                </div>
+                                <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
+                                    <audio id="audio-iot-balance" class="project-audio hidden">
+                                        <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/IoT%20Penjaga%20Alam_%20Menggali%20Konsep%20Keseimbangan%20'Mizan'%20untuk%20Teknologi%20Restoratif.mp3" type="audio/mpeg">
+                                        Browser Anda tidak mendukung elemen audio.
+                                    </audio>
+                                    <button data-audio-target="#audio-iot-balance" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
+                                    <button data-modal-target="#manuscript-modal" data-manuscript-id="iot-balance" class="classic-button text-sm py-2 px-4">Baca</button>
+                                </div>
+                            </article>
+                            <article class="manuscript-item animate-on-scroll" style="animation-delay: 1s;">
+                                <div class="flex-grow">
+                                    <h4 class="manuscript-title">Dari Astrolab ke GPS</h4>
+                                    <p class="manuscript-excerpt mb-4">
+                                       Jejak evolusi teknologi navigasi, dari instrumen astronomi klasik yang digunakan para penjelajah Muslim hingga sistem satelit global yang kita andalkan hari ini.
+                                    </p>
+                                </div>
+                                <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
+                                    <audio id="audio-astrolabe-gps" class="project-audio hidden">
+                                        <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Astrolab%20ke%20GPS_%20Bongkar%20Benang%20Merah%20Evolusi%20Navigasi%2C%20dari%20Bintang%20Kuno%20ke%20Presisi%20Sentimeter.mp3" type="audio/mpeg">
+                                        Browser Anda tidak mendukung elemen audio.
+                                    </audio>
+                                    <button data-audio-target="#audio-astrolabe-gps" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
+                                    <button data-modal-target="#manuscript-modal" data-manuscript-id="astrolabe-gps" class="classic-button text-sm py-2 px-4">Baca</button>
+                                </div>
+                            </article>
+                            <article class="manuscript-item animate-on-scroll" style="animation-delay: 1.2s;">
+                                <div class="flex-grow">
+                                    <h4 class="manuscript-title">Musyawarah & Kode</h4>
+                                    <p class="manuscript-excerpt mb-4">
+                                       Sebuah eksplorasi tentang bagaimana prinsip 'musyawarah'—pengambilan keputusan kolektif—tercermin dalam metodologi pengembangan perangkat lunak modern seperti Agile dan filosofi open-source.
+                                    </p>
+                                </div>
+                                <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
+                                    <audio id="audio-musyawarah-code" class="project-audio hidden">
+                                        <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Musyawarah%20di%20Balik%20Kode_%20Menggali%20Kearifan%20Nusantara%20dalam%20Agile%20dan%20Open-Source%20Global.mp3" type="audio/mpeg">
+                                        Browser Anda tidak mendukung elemen audio.
+                                    </audio>
+                                    <button data-audio-target="#audio-musyawarah-code" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
+                                    <button data-modal-target="#manuscript-modal" data-manuscript-id="musyawarah-code" class="classic-button text-sm py-2 px-4">Baca</button>
+                                </div>
+                            </article>
+                            <article class="manuscript-item animate-on-scroll" style="animation-delay: 1.4s;">
+                                <div class="flex-grow">
+                                    <h4 class="manuscript-title">Algoritma: Jejak Emas Al-Khwarizmi</h4>
+                                    <p class="manuscript-excerpt mb-4">
+                                       Menelusuri bagaimana konsep 'al-jabr' dan prosedur langkah-demi-langkah dari Al-Khwarizmi menjadi fondasi bagi setiap baris kode dan kecerdasan buatan yang kita kenal saat ini.
+                                    </p>
+                                </div>
+                                <div class="text-right mt-6 flex flex-wrap items-center justify-end gap-4">
+                                    <audio id="audio-alkhawarizmi-algorithm" class="project-audio hidden">
+                                        <source src="https://raw.githubusercontent.com/AffineCipher-0/Sasangka/main/Al-Khwarizmi_%20Menggali%20Akar%20Algoritma%20Abad%20ke-9%2C%20Fondasi%20Logika%20Digital%20Dunia%20Modern.mp3" type="audio/mpeg">
+                                        Browser Anda tidak mendukung elemen audio.
+                                    </audio>
+                                    <button data-audio-target="#audio-alkhawarizmi-algorithm" class="project-audio-toggle classic-button text-sm py-2 px-4 flex items-center gap-2">
+                                        <i class="fas fa-play" aria-hidden="true"></i>
+                                        <span>Dengarkan</span>
+                                    </button>
+                                    <button data-modal-target="#manuscript-modal" data-manuscript-id="alkhawarizmi-algorithm" class="classic-button text-sm py-2 px-4">Baca</button>
+                                </div>
+                            </article>
+                        </div>
+                    </section>
+        
+                    <section id="contact-page" class="page hidden">
+                        <header class="pb-8">
+                            <div class="container mx-auto px-6 text-center text-[var(--text-light)]">
+                                <div class="border-t-2 border-b-2 border-[var(--border-gold)] pt-4 pb-2" style="background-image: url('data:image/svg+xml,%3Csvg width=\'6\' height=\'6\' viewBox=\'0 0 6 6\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23c7a55b\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M5 0h1L0 6V5zM6 5v1H5z\'/%3E%3C/g%3E%3C/svg%3E');">
+                                    <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">Hubungi Saya</h1>
+                                    <div class="text-xs tracking-widest flex justify-between items-center text-[var(--text-light)]/80">
+                                        <span>EDISI KHUSUS: JARINGAN, IOT, AI & PEMROGRAMAN WEB</span>
+                                        <span class="live-datetime"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </header>
+                        <div class="fancy-divider"></div>
+                        <div class="text-center text-[var(--text-light)]">
+                           <h3 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Kolaborasi Bersama</h3>
+                           <p class="max-w-3xl mx-auto text-lg mb-10 animate-on-scroll animation-delay-200">
+                               Terbuka untuk diskusi, kolaborasi proyek, atau pertanyaan seputar teknologi. Mari terhubung dan ciptakan inovasi bersama.
+                           </p>
+                        </div>
+                        <div class="article-frame animate-on-scroll animation-delay-400">
+                            <p class="max-w-xl mx-auto mb-8 text-center">
+                                Untuk diskusi lebih lanjut, kolaborasi proyek, atau pertanyaan seputar teknologi jaringan dan IoT, silakan gunakan salah satu saluran komunikasi di bawah ini untuk mengirimkan pesan Anda.
+                            </p>
+                            <div class="flex justify-center items-center gap-4 flex-wrap mb-8">
+                                <button data-modal-target="#email-modal" class="classic-button">
+                                    <i class="fa-regular fa-envelope mr-2" aria-hidden="true"></i> Kirim Surel
+                                </button>
+                                <a href="https://wa.me/6287832165306" target="_blank" rel="noopener noreferrer" class="classic-button">
+                                    <i class="fa-brands fa-whatsapp mr-2" aria-hidden="true"></i> WhatsApp
+                                </a>
+                            </div>
+                            
+                            <div class="mt-12 text-center">
+                                <p class="max-w-xl mx-auto mb-4">
+                                    Jika ingin melihat pengembangan atau proyek lanjutan ini, silakan kunjungi repositori GitHub saya.
+                                </p>
+                                <a href="https://github.com/AffineCipher-0?tab=repositories" target="_blank" rel="noopener noreferrer" class="classic-button">
+                                    <i class="fa-solid fa-code-branch mr-2" aria-hidden="true"></i> Lihat Repositori
+                                </a>
+                            </div>
+        
+                            <div class="mt-12 text-center">
+                                <p class="max-w-xl mx-auto mb-4">
+                                    Seluruh catatan perjalanan akademik dan profesional tersaji dalam Daftar Riwayat Hidup yang dapat diunduh pada tautan berikut.
+                                </p>
+                                <a href="https://drive.google.com/file/d/1TyWofn9ny8CMwrwswL7F-4bP6iBBr8Yr/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="classic-button">
+                                     <i class="fa-solid fa-download mr-2" aria-hidden="true"></i> Unduh Biodata (CV)
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+
+                <footer class="page-footer">
+                    <p class="footer-copyright">&copy; 2025 GATOT SASANGKA | Diciptakan dengan Imagination</p>
+                </footer>
+
+            </div>
+
+            <nav id="sidebar" class="sidebar border-l-2 border-[var(--border-gold)] p-8">
+                <div class="sticky top-0">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold nav-text">Daftar Isi</h2>
+                        <button id="toggle-menu-btn" class="classic-button text-sm px-2 py-1" aria-label="Toggle Menu">
+                            <i class="fas fa-bars" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <ul class="space-y-4">
+                        <li><a href="#home-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300 active-page">
+                            <i class="fas fa-home mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Beranda</span>
+                        </a></li>
+                        <li><a href="#about-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
+                            <i class="fas fa-user mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Profil</span>
+                        </a></li>
+                        <li><a href="#projects-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
+                            <i class="fas fa-newspaper mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Laporan Utama</span>
+                        </a></li>
+                        <li><a href="#pendidikan-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
+                            <i class="fas fa-graduation-cap mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Latar Pendidikan</span>
+                        </a></li>
+                        <li><a href="#sertifikasi-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
+                            <i class="fas fa-award mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Sertifikasi</span>
+                        </a></li>
+                        <li><a href="#khazanah-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
+                            <i class="fas fa-book-open mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Gagasan ilmu</span>
+                        </a></li>
+                        <li><a href="#contact-page" class="nav-link block py-2 text-lg hover:underline transition-all duration-300">
+                            <i class="fas fa-envelope mr-4 w-6 text-center" aria-hidden="true"></i><span class="nav-text">Hubungi Saya</span>
+                        </a></li>
+                    </ul>
+                    <div class="mt-8">
+                        <button id="close-book-btn" class="classic-button w-full text-sm py-2">
+                            <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i><span class="nav-text">Kembali ke Sampul</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+
+        </div>
+
+    </div>
+    
+    <button id="back-to-top" title="Kembali ke atas" aria-label="Kembali ke atas"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+
+    <!-- MODALS -->
+    <div id="srs-doc-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="srs-doc-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="srs-doc-modal-title" class="modal-title">Dokumen: Spesifikasi Kebutuhan Perangkat Lunak</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat Dokumen...</div></div></div>
+                <div id="srs-doc-container" class="modal-main-content content-hidden h-full">
+                     <!-- iFrame will be injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="morse-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="morse-modal-title">
+        <div class="modal-content" style="height: auto; max-width: 700px;">
+            <div class="modal-header">
+                <h5 id="morse-modal-title" class="modal-title">ALAT PENERJEMAH SANDI MORSE</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-8">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <div class="modal-main-content content-hidden">
+                    <h4 class="text-xl font-bold mb-2">Tentang Proyek</h4>
+                    <p class="text-justify mb-4">
+                        Proyek ini adalah sebuah penghormatan modern terhadap teknologi fundamental komunikasi, yaitu Sandi Morse. Dengan menggunakan mikrokontroler, proyek ini membangun alat penerjemah yang mampu mengurai sandi morse secara akurat menggunakan algoritma brute force. Ini adalah contoh nyata dari aplikasi mikrokontroler dalam memecahkan masalah komunikasi klasik dengan pendekatan modern.
+                    </p>
+                    <h4 class="text-xl font-bold mb-2">Detail Teknis</h4>
+                    <p class="text-justify mb-4">
+                        Menggunakan platform **Arduino** dan bahasa pemrograman **C++**, sistem ini memproses input dari sensor (misalnya, tombol) untuk mendeteksi sinyal panjang dan pendek (dash-dot) dari sandi morse. Algoritma brute force yang sederhana namun efektif digunakan untuk mencocokkan pola sinyal dengan karakter alfabet dan angka yang sesuai.
+                    </p>
+                    <div class="text-right mt-6">
+                        <a href="https://jurnal.amikom.ac.id/index.php/infos/article/view/965" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Baca Dokumen Penelitian</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="secondhand-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="secondhand-modal-title">
+        <div class="modal-content" style="height: auto; max-width: 700px;">
+            <div class="modal-header">
+                <h5 id="secondhand-modal-title" class="modal-title">Toko Daring Secondhand</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-8">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <div class="modal-main-content content-hidden">
+                    <h4 class="text-xl font-bold mb-2">Tentang Proyek</h4>
+                    <p class="text-justify mb-4">
+                        'SECONDHAND' adalah platform e-commerce fungsional yang dibuat dari awal. Proyek ini dibangun untuk mendemonstrasikan pemahaman mendalam tentang pengembangan web, mulai dari frontend hingga backend. Sistem ini mencakup fitur-fitur penting seperti manajemen produk, keranjang belanja, proses checkout, dan panel admin yang komprehensif.
+                    </p>
+                    <h4 class="text-xl font-bold mb-2">Detail Teknis</h4>
+                    <p class="text-justify mb-4">
+                        Proyek ini dikembangkan menggunakan **PHP (Natif)** untuk logika backend, **MySQL** untuk basis data, dan kombinasi **HTML, CSS, dan JavaScript** untuk antarmuka pengguna. Ini menampilkan pemahaman kuat tentang arsitektur e-commerce dan praktik terbaik dalam pengembangan web.
+                    </p>
+                    <div class="text-right mt-6">
+                        <a href="https://github.com/AffineCipher-0/FinalProjectWeb-Secondhand" target="_blank" rel="noopener noreferrer" class="classic-button text-sm py-2 px-4">Lihat Repositori</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="keahlian-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="keahlian-modal-title">
+        <div class="modal-content" style="height: auto; max-width: 900px;">
+            <div class="modal-header">
+                <h5 id="keahlian-modal-title" class="modal-title">Keahlian Utama</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-8">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <div class="modal-main-content content-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-10 gap-y-8">
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[var(--border-gold)] pb-2"><i class="fas fa-network-wired text-[var(--accent-teal)] mr-2" aria-hidden="true"></i>Jaringan & Infrastruktur</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Administrasi Jaringan</li><li>Cisco Packet Tracer</li><li>Keamanan Jaringan</li><li>TCP/IP & Model OSI</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[var(--border-gold)] pb-2"><i class="fas fa-code text-[var(--accent-teal)] mr-2" aria-hidden="true"></i>Pengembangan Perangkat Lunak</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>PHP (Natif)</li><li>HTML, CSS, JavaScript</li><li>MySQL / SQL</li><li>Python (Dasar)</li><li>Git & GitHub</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[var(--border-gold)] pb-2"><i class="fas fa-microchip text-[var(--accent-teal)] mr-2" aria-hidden="true"></i>IoT & Mikrokontroller</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Arduino IDE (C++)</li><li>ESP8266/ESP32</li><li>Sensor & Aktuator</li><li>Perancangan Sistem Tertanam</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-3 border-b-2 border-[var(--border-gold)] pb-2"><i class="fas fa-file-alt text-[var(--accent-teal)] mr-2" aria-hidden="true"></i>Produktifitas & Perkantoran</h4>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Microsoft Office</li><li>Google Workspace</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="email-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="email-modal-title">
+        <div class="modal-content" style="height: auto; max-width: 500px;">
+            <div class="modal-header">
+                <h5 id="email-modal-title" class="modal-title">Alamat Surel</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body text-center py-8">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <div class="modal-main-content content-hidden">
+                    <p class="mb-4 text-lg">Anda dapat menghubungi saya melalui alamat surel berikut:</p>
+                    <p id="email-address-container" class="text-xl md:text-2xl font-bold bg-[var(--bg-deep-blue)] p-4 border border-[var(--border-gold)] mb-8 break-all"></p>
+                    <button id="copy-email-btn" class="classic-button w-full text-base py-3">Salin Alamat Surel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sertifikat-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="sertifikat-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="sertifikat-modal-title" class="modal-title">Galeri Sertifikat</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body">
+                 <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <div id="sertifikat-modal-content" class="modal-main-content content-hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="image-viewer-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="image-viewer-title">
+        <div class="modal-content h-auto max-h-full w-auto max-w-full bg-transparent border-none shadow-none p-4">
+            <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+            <div class="relative modal-main-content content-hidden">
+                <button class="modal-close-btn absolute -top-10 right-0 text-[#fdf6e3] text-5xl">&times;</button>
+                <img class="modal-image max-h-[85vh] max-w-[90vw] h-auto w-auto" src="" alt="Tampilan Penuh Sertifikat" onerror="this.onerror=null;this.src='https://placehold.co/800x600/1a2a44/e0d8c8?text=Gambar+Tidak+Ditemukan';">
+            </div>
+        </div>
+    </div>
+
+    <div id="network-infra-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="network-infra-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="network-infra-modal-title" class="modal-title">Laporan Infrastruktur Jaringan</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <iframe class="modal-iframe modal-main-content content-hidden h-full w-full" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div id="pieces-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="pieces-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="pieces-modal-title" class="modal-title">Studi Kasus: Modernisasi Jual Beli Mobil</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <iframe class="modal-iframe modal-main-content content-hidden h-full w-full" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div id="manuscript-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="manuscript-modal-title">
+        <div class="modal-content" style="max-width: 900px; height: auto; max-height: 85vh;">
+            <div class="modal-header">
+                <h5 id="manuscript-modal-title" class="modal-title">Manuskrip</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <div id="manuscript-modal-content" class="modal-main-content content-hidden p-4 text-justify">
+                    <!-- Konten Manuskrip akan disisipkan di sini oleh JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="greenhouse-prototype-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="greenhouse-prototype-modal-title">
+        <div class="modal-content" style="max-width: 450px; height: 95%; max-height: 900px; padding: 10px; background-color: #333;">
+            <div class="modal-header" style="background-color: var(--bg-parchment); border-bottom: none; padding-bottom: 5px; padding-top: 5px;">
+                <h5 id="greenhouse-prototype-modal-title" class="modal-title">Prototipe: Greenhouse Cerdas</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 0; position: relative;">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <div class="modal-main-content content-hidden h-full">
+                    <iframe id="greenhouse-iframe" class="modal-iframe" src="about:blank"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="yagi-antenna-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="yagi-antenna-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="yagi-antenna-modal-title" class="modal-title">Desain dan Optimasi Antena Yagi</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <iframe class="modal-iframe modal-main-content content-hidden h-full w-full" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div id="cnn-doc-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="cnn-doc-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="cnn-doc-modal-title" class="modal-title">Dokumen: Klasifikasi Gambar CNN</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat Dokumen...</div></div></div>
+                <div id="cnn-doc-container" class="modal-main-content content-hidden h-full">
+                     <!-- iFrame will be injected here by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cnn-sim-modal" class="modal-overlay" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="cnn-sim-modal-title">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="cnn-sim-modal-title" class="modal-title">Simulasi: Klasifikasi Gambar CNN</h5>
+                <button class="modal-close-btn" aria-label="Tutup">&times;</button>
+            </div>
+            <div class="modal-body p-0">
+                <div class="modal-loader"><div class="modal-loader-content"><svg class="modal-loader-svg" viewBox="0 0 150 150"><circle class="modal-progress-ring__circle" stroke-width="4" fill="transparent" r="65" cx="75" cy="75"/></svg><div class="modal-loader-text">Memuat...</div></div></div>
+                <iframe class="modal-iframe modal-main-content content-hidden h-full w-full" src="about:blank"></iframe>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const loader = document.getElementById('loader');
+            const openBookBtn = document.getElementById('open-book-btn');
+            const coverPage = document.getElementById('cover-page');
+            const contentPages = document.getElementById('content-pages');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pages = document.querySelectorAll('.page');
+            const toggleMenuBtn = document.getElementById('toggle-menu-btn');
+            const closeBookBtn = document.getElementById('close-book-btn');
+            const pageContentContainer = document.getElementById('page-content-container');
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            const soundToggleBtn = document.getElementById('sound-toggle');
+            const backgroundMusic = document.getElementById('background-music');
+            const playText = document.getElementById('play-text');
+            const stopText = document.getElementById('stop-text');
+
+            if (soundToggleBtn && backgroundMusic && playText && stopText) {
+                soundToggleBtn.addEventListener('click', () => {
+                    if (backgroundMusic.paused) {
+                        backgroundMusic.play().catch(e => console.log("Pemutaran audio dicegah oleh browser."));
+                        playText.classList.add('hidden');
+                        stopText.classList.remove('hidden');
+                    } else {
+                        backgroundMusic.pause();
+                        playText.classList.remove('hidden');
+                        stopText.classList.add('hidden');
+                    }
+                });
+            }
+
+            // Menangani animasi loader saat halaman pertama kali dimuat
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    if(loader) loader.classList.add('hidden');
+                    
+                    if (backgroundMusic) {
+                        const playPromise = backgroundMusic.play();
+                        if (playPromise !== undefined) {
+                            playPromise.then(_ => {
+                                // Autoplay berhasil, perbarui UI tombol
+                                if (playText && stopText) {
+                                    playText.classList.add('hidden');
+                                    stopText.classList.remove('hidden');
+                                }
+                            }).catch(error => {
+                                // Autoplay dicegah, pengguna harus mengklik secara manual.
+                                console.log("Autoplay musik dicegah oleh browser. Interaksi pengguna diperlukan.");
+                            });
+                        }
+                    }
+                }, 2800);
+            });
+            
+            // --- LOGIKA BUKA/TUTUP BUKU ---
+            const handleBookOpen = () => {
+                // 1. Mulai animasi menutup gerbang
+                document.body.classList.add('loading-transition');
+
+                // 2. Tunggu hingga gerbang tertutup sepenuhnya
+                setTimeout(() => {
+                    // 3. Ganti konten halaman di belakang layar
+                    coverPage.classList.add('cover-hidden');
+                    contentPages.classList.add('content-visible');
+                    if(pageContentContainer) pageContentContainer.scrollTop = 0; // Reset scroll ke atas
+                    stopAstrolabeAnimation();
+                    startParticleAnimation();
+
+                    if (backgroundMusic && !backgroundMusic.paused) {
+                        backgroundMusic.pause();
+                        playText.classList.remove('hidden');
+                        stopText.classList.add('hidden');
+                    }
+
+                    // 4. Tunggu DOM diperbarui, lalu mulai animasi membuka gerbang
+                    requestAnimationFrame(() => {
+                        setTimeout(() => document.body.classList.remove('loading-transition'), 50);
+                    });
+                }, 1200); // Durasi ini harus cocok dengan transisi CSS .transition-gate
+            };
+
+            const handleBookClose = () => {
+                // 1. Mulai animasi menutup gerbang
+                document.body.classList.add('loading-transition');
+
+                // 2. Tunggu hingga gerbang tertutup
+                setTimeout(() => {
+                    // 3. Ganti konten di belakang layar
+                    coverPage.classList.remove('cover-hidden');
+                    contentPages.classList.remove('content-visible');
+                    startAstrolabeAnimation();
+                    stopParticleAnimation();
+
+                    // 4. Tunggu DOM diperbarui, lalu mulai animasi membuka gerbang
+                    requestAnimationFrame(() => {
+                        setTimeout(() => document.body.classList.remove('loading-transition'), 50);
+                    });
+                }, 1200); // Cocokkan dengan durasi transisi CSS
+            };
+
+            if(openBookBtn) openBookBtn.addEventListener('click', handleBookOpen);
+            if(closeBookBtn) closeBookBtn.addEventListener('click', handleBookClose);
+
+            // --- CANVAS ANIMATION LOGIC ---
+            const canvasAnimations = {
+                // Animasi untuk kartu proyek "Klasifikasi Gambar CNN"
+                'cnn-canvas': (ctx, w, h) => {
+                    let t = 0;
+                    const imgSize = h * 0.5;
+                    const imgX = w * 0.1;
+                    const imgY = (h - imgSize) / 2;
+                    const filterSize = imgSize / 4;
+                    let filterX = imgX, filterY = imgY;
+                    const featureMapSize = h * 0.6;
+                    const featureMapX = w * 0.6;
+                    const featureMapY = (h - featureMapSize) / 2;
+
+                    function drawGrid(x, y, size, cells, color) {
+                        const cellSize = size / cells;
+                        for (let i = 0; i < cells; i++) {
+                            for (let j = 0; j < cells; j++) {
+                                ctx.fillStyle = `rgba(${color}, ${Math.random() * 0.5 + 0.1})`;
+                                ctx.fillRect(x + i * cellSize, y + j * cellSize, cellSize, cellSize);
+                                ctx.strokeStyle = `rgba(${color}, 0.5)`;
+                                ctx.strokeRect(x + i * cellSize, y + j * cellSize, cellSize, cellSize);
+                            }
+                        }
+                    }
+
+                    function loop() {
+                        t++;
+                        ctx.clearRect(0, 0, w, h);
+                        
+                        // Gambar "Input Image"
+                        drawGrid(imgX, imgY, imgSize, 4, '60, 138, 133');
+
+                        // Animasikan "Filter"
+                        const steps = 4 - 1;
+                        const progress = (t % 120) / 120;
+                        const totalSteps = steps * steps;
+                        const currentStep = Math.floor(progress * totalSteps);
+                        filterX = imgX + (currentStep % steps) * (imgSize / 4);
+                        filterY = imgY + Math.floor(currentStep / steps) * (imgSize / 4);
+                        ctx.strokeStyle = `rgba(199, 165, 91, 1)`;
+                        ctx.lineWidth = 3;
+                        ctx.strokeRect(filterX, filterY, filterSize, filterSize);
+                        
+                        // Gambar "Feature Map" yang bertambah
+                        const featureMapCells = 3;
+                        const featureCellSize = featureMapSize / featureMapCells;
+                        for(let i = 0; i <= currentStep; i++) {
+                             const x = featureMapX + (i % featureMapCells) * featureCellSize;
+                             const y = featureMapY + Math.floor(i / featureMapCells) * featureCellSize;
+                             ctx.fillStyle = `rgba(199, 165, 91, 0.6)`;
+                             ctx.fillRect(x, y, featureCellSize, featureCellSize);
+                        }
+                        
+                        // Gambar panah
+                        ctx.beginPath();
+                        ctx.moveTo(imgX + imgSize + 10, h / 2);
+                        ctx.lineTo(featureMapX - 10, h / 2);
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.5)';
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+                        
+                        // Label
+                        ctx.font = `14px Amiri`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.8)';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Input', imgX + imgSize/2, imgY - 15);
+                        ctx.fillText('Fitur', featureMapX + featureMapSize/2, featureMapY - 15);
+
+
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                // Animasi untuk kartu proyek "Penerjemah Sandi Morse"
+                'morse-canvas': (ctx, w, h) => {
+                    let t = 0;
+                    const dictionary = [
+                        { char: 'A', code: '.-' }, { char: 'B', code: '-...' }, { char: 'C', code: '-.-.' }, { char: 'D', code: '-..' },
+                        { char: 'E', code: '.' }, { char: 'F', code: '..-.' }, { char: 'G', code: '--.' }, { char: 'H', code: '....' },
+                        { char: 'I', code: '..' }, { char: 'J', code: '.---' }, { char: 'K', code: '-.-' }, { char: 'L', code: '.-..' },
+                        { char: 'M', code: '--' }, { char: 'N', code: '-.' }, { char: 'O', code: '---' }, { char: 'P', code: '.--.' },
+                        { char: 'Q', code: '--.-' }, { char: 'R', code: '.-.' }, { char: 'S', code: '...' }, { char: 'T', code: '-' },
+                        { char: 'U', code: '..-' }, { char: 'V', code: '...-' }, { char: 'W', code: '.--' }, { char: 'X', code: '-..-' },
+                        { char: 'Y', code: '-.--' }, { char: 'Z', code: '--..' }
+                    ];
+                    const signalsToTranslate = ['.--', '---', '...'];
+                    let currentSignalIndex = 0;
+                    let dictionaryCheckIndex = 0;
+                    let matchFound = false;
+                    let timeOfMatch = 0;
+
+                    function drawMicrocontroller(x, y, width, height) {
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 1)';
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.2)';
+                        ctx.lineWidth = 2;
+                        ctx.beginPath();
+                        ctx.roundRect(x, y, width, height, [5]);
+                        ctx.stroke();
+                        ctx.fill();
+
+                        ctx.lineWidth = 1.5;
+                        for(let i=0; i<6; i++) {
+                            const pinY = y + (i + 1) * (height / 7);
+                            ctx.beginPath();
+                            ctx.moveTo(x - 10, pinY); ctx.lineTo(x, pinY);
+                            ctx.moveTo(x + width, pinY); ctx.lineTo(x + width + 10, pinY);
+                            ctx.stroke();
+                        }
+                    }
+
+                    function loop() {
+                        t++;
+                        const currentSignal = signalsToTranslate[currentSignalIndex];
+                        ctx.clearRect(0, 0, w, h);
+
+                        const mcuX = w * 0.35, mcuY = h * 0.2, mcuW = w * 0.3, mcuH = h * 0.6;
+                        drawMicrocontroller(mcuX, mcuY, mcuW, mcuH);
+                        
+                        // 1. Draw Input Signal
+                        ctx.font = `bold ${h/8}px monospace`;
+                        ctx.fillStyle = 'rgba(60, 138, 133, 1)';
+                        ctx.textAlign = 'right';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(currentSignal, mcuX - 25, h/2);
+                        
+                        ctx.font = `bold ${h/12}px Amiri`;
+                        ctx.fillText("INPUT", mcuX - 25, h/2 - 25);
+
+
+                        // 2. Animate Brute Force Check
+                        if (!matchFound) {
+                            if (t % 4 === 0) { // Cycle through dictionary
+                                dictionaryCheckIndex++;
+                            }
+                            if (dictionaryCheckIndex >= dictionary.length) {
+                                dictionaryCheckIndex = 0; 
+                            }
+                            
+                            if (dictionary[dictionaryCheckIndex].code === currentSignal) {
+                                matchFound = true;
+                                timeOfMatch = t;
+                            }
+                        }
+
+                        // 3. Display dictionary check
+                        ctx.font = `bold ${h/10}px monospace`;
+                        ctx.textAlign = 'center';
+                        
+                        const checkItem = dictionary[dictionaryCheckIndex];
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.9)';
+                        ctx.fillText(`${checkItem.char} : ${checkItem.code}`, mcuX + mcuW/2, mcuY + mcuH/2);
+
+                        if (matchFound) {
+                            const timeSinceMatch = t - timeOfMatch;
+                            const highlightAlpha = Math.max(0, 1 - (timeSinceMatch / 60)); 
+                            
+                            // Highlight the match inside MCU
+                            ctx.fillStyle = `rgba(60, 138, 133, ${highlightAlpha * 0.5})`;
+                            const rectWidth = ctx.measureText(`${checkItem.char} : ${checkItem.code}`).width + 20;
+                            ctx.fillRect(mcuX + mcuW/2 - rectWidth/2, mcuY + mcuH/2 - h/10, rectWidth, h/5);
+                            
+                            // Display Output
+                            ctx.font = `bold ${h/8}px Amiri`;
+                            ctx.fillStyle = `rgba(60, 138, 133, 1)`;
+                            ctx.textAlign = 'left';
+                            ctx.fillText(checkItem.char, mcuX + mcuW + 25, h/2);
+                            
+                            ctx.font = `bold ${h/12}px Amiri`;
+                            ctx.fillText("OUTPUT", mcuX + mcuW + 25, h/2 - 25);
+
+                            if (timeSinceMatch > 120) { // Wait 2 seconds before next signal
+                                matchFound = false;
+                                dictionaryCheckIndex = 0; // -1 so it becomes 0 on next increment
+                                currentSignalIndex = (currentSignalIndex + 1) % signalsToTranslate.length;
+                            }
+                        }
+                        
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                // Animasi untuk kartu proyek "Toko Online Secondhand"
+                 'web-canvas': (ctx, w, h) => {
+                    let t = 0;
+                    const client = { x: w * 0.2, y: h/2 };
+                    const server = { x: w * 0.8, y: h * 0.35 };
+                    const db = { x: w * 0.8, y: h * 0.65 };
+                    
+                    let packets = [];
+                    const cycleDuration = 360;
+
+                    function drawComponent(icon, label, x, y, size, color) {
+                        ctx.font = `bold ${size}px "Font Awesome 6 Free"`;
+                        ctx.fillStyle = color;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(icon, x, y);
+                        
+                        ctx.font = `bold ${size/3}px Amiri`;
+                        ctx.fillText(label, x, y + size/2 + 10);
+                    }
+
+                    function loop() {
+                        t++;
+                        ctx.clearRect(0, 0, w, h);
+
+                        // Draw components
+                        drawComponent('\uf108', 'Client (Browser)', client.x, client.y, h*0.3, 'rgba(60, 138, 133, 1)');
+                        drawComponent('\uf1d3', 'Server (PHP)', server.x, server.y, h*0.25, 'rgba(199, 165, 91, 1)');
+                        drawComponent('\uf1c0', 'Database (MySQL)', db.x, db.y, h*0.25, 'rgba(199, 165, 91, 1)');
+
+                        // Animate packets based on cycle progress
+                        const progress = (t % cycleDuration) / cycleDuration;
+                        let packet;
+
+                        ctx.lineWidth = 2;
+                        ctx.font = `italic ${h/18}px Amiri`;
+                        ctx.textAlign = 'center';
+
+                        if (progress < 0.25) { // Client -> Server
+                            const p = progress / 0.25;
+                            packet = {
+                                x: client.x + (server.x - client.x) * p,
+                                y: client.y + (server.y - client.y) * p,
+                                color: 'rgba(60, 138, 133, 0.8)'
+                            };
+                            ctx.fillStyle = packet.color;
+                            ctx.fillText('HTTP Request', client.x + (server.x - client.x) * 0.5, client.y - 30);
+                        } else if (progress < 0.5) { // Server -> DB
+                            const p = (progress - 0.25) / 0.25;
+                            packet = {
+                                x: server.x + (db.x - server.x) * p,
+                                y: server.y + (db.y - server.y) * p,
+                                color: 'rgba(199, 165, 91, 0.8)'
+                            };
+                             ctx.fillStyle = packet.color;
+                             ctx.fillText('SQL Query', server.x + 30, server.y + (db.y - server.y)*0.5);
+                        } else if (progress < 0.75) { // DB -> Server
+                            const p = (progress - 0.5) / 0.25;
+                            packet = {
+                                x: db.x + (server.x - db.x) * p,
+                                y: db.y + (server.y - db.y) * p,
+                                color: 'rgba(199, 165, 91, 0.8)'
+                            };
+                             ctx.fillStyle = packet.color;
+                             ctx.fillText('SQL Result', server.x + 30, server.y + (db.y - server.y)*0.5);
+                        } else { // Server -> Client
+                             const p = (progress - 0.75) / 0.25;
+                             packet = {
+                                x: server.x + (client.x - server.x) * p,
+                                y: server.y + (client.y - server.y) * p,
+                                color: 'rgba(60, 138, 133, 0.8)'
+                            };
+                            ctx.fillStyle = packet.color;
+                            ctx.fillText('HTTP Response', client.x + (server.x - client.x) * 0.5, client.y - 30);
+                        }
+                        
+                        if (packet) {
+                            ctx.beginPath();
+                            ctx.arc(packet.x, packet.y, 5, 0, Math.PI * 2);
+                            ctx.fillStyle = packet.color;
+                            ctx.fill();
+                        }
+                        
+                        // Draw connecting lines
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.2)';
+                        ctx.beginPath();
+                        ctx.moveTo(client.x, client.y);
+                        ctx.lineTo(server.x, server.y);
+                        ctx.moveTo(server.x, server.y);
+                        ctx.lineTo(db.x, db.y);
+                        ctx.stroke();
+
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                // Animasi untuk kartu proyek "SRS Greenhouse Cerdas"
+                'iot-canvas': (ctx, w, h) => {
+                    let growth = 0; let t = 0;
+                    const plantBaseY = h * 0.9;
+                    const sensors = [
+                        { icon: '\uf043', x: w * 0.15, y: h*0.3, color: '60, 138, 133' }, // water drop
+                        { icon: '\uf185', x: w * 0.85, y: h*0.3, color: '199, 165, 91' }, // sun
+                    ];
+                    let waves = [];
+
+                    function drawPlant(g) {
+                        ctx.strokeStyle = `rgba(60, 138, 133, 1)`;
+                        ctx.lineWidth = 6; ctx.beginPath(); ctx.moveTo(w/2, plantBaseY);
+                        const topY = plantBaseY - g;
+                        ctx.lineTo(w/2, topY); ctx.stroke();
+                        const leaves = Math.floor(g / (h*0.1));
+                        for (let i = 0; i < leaves; i++) {
+                            const leafY = plantBaseY - (i+1)*(h*0.1);
+                            ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(w/2, leafY);
+                            ctx.quadraticCurveTo(w/2 + (i%2==0?1:-1)*15, leafY-10, w/2 + (i%2==0?1:-1)*30, leafY);
+                            ctx.stroke();
+                        }
+                    }
+
+                    if(t % 90 === 0 && growth < h*0.6) {
+                        const sensor = sensors[Math.floor(Math.random() * sensors.length)];
+                        waves.push({ sx: sensor.x, sy: sensor.y, progress: 0, color: sensor.color });
+                    }
+
+                    function loop() {
+                        t++;
+                        ctx.clearRect(0, 0, w, h);
+                        
+                        if (t % 120 === 0 && growth < h*0.6) {
+                            const sensor = sensors[Math.floor(Math.random() * sensors.length)];
+                            waves.push({ sx: sensor.x, sy: sensor.y, progress: 0, color: sensor.color });
+                        }
+
+                        waves.forEach((wave, i) => {
+                            wave.progress += 0.02;
+                            if (wave.progress > 1) {
+                                waves.splice(i, 1);
+                                if (growth < h*0.6) growth += 5;
+                                return;
+                            }
+                            const x = wave.sx + (w/2 - wave.sx) * wave.progress;
+                            const y = wave.sy + (plantBaseY - growth - wave.sy) * wave.progress;
+                            ctx.beginPath();
+                            ctx.arc(x, y, 3, 0, Math.PI*2);
+                            ctx.fillStyle = `rgba(${wave.color}, ${1-wave.progress})`;
+                            ctx.fill();
+                        });
+
+                        drawPlant(growth);
+                        
+                        ctx.font = `bold ${h/8}px "Font Awesome 6 Free"`; ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+                        sensors.forEach(s => {
+                            ctx.fillStyle = `rgba(${s.color}, 1)`;
+                            ctx.fillText(s.icon, s.x, s.y);
+                        });
+                        
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                // Animasi untuk kartu proyek "Analisis PIECES"
+                'pieces-canvas': (ctx, w, h) => {
+                    let t = 0;
+                    const piecesFramework = [
+                        { name: 'PERFORMANCE', manualIcon: '\uf017', digitalIcon: '\uf135', manualDesc: 'Lamban', digitalDesc: 'Cepat' },
+                        { name: 'INFORMATION', manualIcon: '\uf15b', digitalIcon: '\uf1c0', manualDesc: 'Terpencar', digitalDesc: 'Terpusat' },
+                        { name: 'ECONOMICS', manualIcon: '\uf53d', digitalIcon: '\uf4c0', manualDesc: 'Boros', digitalDesc: 'Efisien' },
+                        { name: 'CONTROL', manualIcon: '\uf13e', digitalIcon: '\uf3ed', manualDesc: 'Lemah', digitalDesc: 'Aman' },
+                        { name: 'EFFICIENCY', manualIcon: '\uf074', digitalIcon: '\uf14a', manualDesc: 'Rumit', digitalDesc: 'Praktis' },
+                        { name: 'SERVICE', manualIcon: '\uf119', digitalIcon: '\uf118', manualDesc: 'Terbatas', digitalDesc: '24/7' }
+                    ];
+
+                    const manualX = w * 0.25;
+                    const digitalX = w * 0.75;
+                    const transitionDuration = 240; // frames for a full cycle
+
+                    function loop() {
+                        t++;
+                        ctx.clearRect(0, 0, w, h);
+
+                        const cycleProgress = (t % transitionDuration) / transitionDuration;
+                        const currentIndex = Math.floor((t / transitionDuration) % piecesFramework.length);
+                        const currentItem = piecesFramework[currentIndex];
+
+                        // Draw divider
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.3)';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(w/2, h*0.1);
+                        ctx.lineTo(w/2, h*0.9);
+                        ctx.stroke();
+
+                        // Draw Titles
+                        ctx.font = `bold ${h/12}px Amiri`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.7)';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Sistem Manual', manualX, h * 0.2);
+                        ctx.fillText('Sistem Digital', digitalX, h * 0.2);
+                        
+                        // Draw Arrow
+                        ctx.font = `bold ${h/8}px "Font Awesome 6 Free"`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.5)';
+                        ctx.fillText('\uf061', w/2, h/2);
+
+                        // Draw PIECES elements
+                        ctx.font = `bold ${h/6}px "Font Awesome 6 Free"`;
+                        ctx.textBaseline = 'middle';
+
+                        // Manual side (Problem)
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.8)';
+                        ctx.fillText(currentItem.manualIcon, manualX, h/2);
+
+                        // Digital side (Solution)
+                        ctx.fillStyle = 'rgba(60, 138, 133, 1)';
+                        ctx.fillText(currentItem.digitalIcon, digitalX, h/2);
+                        
+                        // Draw descriptions
+                        ctx.font = `bold ${h/14}px Amiri`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.9)';
+                        ctx.fillText(currentItem.manualDesc, manualX, h * 0.7);
+                        ctx.fillStyle = 'rgba(60, 138, 133, 0.9)';
+                        ctx.fillText(currentItem.digitalDesc, digitalX, h * 0.7);
+
+                        // Draw current framework name
+                        const textWidth = ctx.measureText(currentItem.name).width;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.3)';
+                        ctx.fillRect(w/2 - textWidth/2 - 10, h * 0.85 - h/18, textWidth + 20, h/9);
+                        
+                        ctx.font = `${h/16}px Amiri`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 1)';
+                        ctx.fillText(currentItem.name, w/2, h*0.85);
+
+
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                // Animasi untuk kartu proyek "Desain Infrastruktur Jaringan"
+                'network-canvas': (ctx, w, h) => {
+                    let t = 0;
+                    const internet = { x: w * 0.1, y: h/2, icon: '\uf0c2' };
+                    const router = { x: w * 0.3, y: h/2, icon: '\uf381' };
+                    const coreSwitch = { x: w * 0.5, y: h/2, icon: '\uf796' };
+                    const servers = { x: w * 0.5, y: h * 0.15, icon: '\uf233' };
+                    const departments = [
+                        { name: 'Produksi', x: w*0.75, y: h*0.15, icon: '\uf109' },
+                        { name: 'R&D', x: w*0.85, y: h*0.35, icon: '\uf109' },
+                        { name: 'Pemasaran', x: w*0.9, y: h*0.55, icon: '\uf109' },
+                        { name: 'Penjualan', x: w*0.85, y: h*0.75, icon: '\uf109' },
+                        { name: 'HRD', x: w*0.75, y: h*0.95, icon: '\uf109' },
+                    ];
+                    const cycleDuration = 400;
+
+                    function drawComponent(icon, label, x, y, size, color) {
+                        ctx.font = `bold ${size}px "Font Awesome 6 Free"`;
+                        ctx.fillStyle = color;
+                        ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+                        ctx.fillText(icon, x, y);
+                        
+                        ctx.font = `bold ${size/3.5}px Amiri`;
+                        ctx.fillText(label, x, y + size/2 + 5);
+                    }
+
+                    function loop() {
+                        t++;
+                        ctx.clearRect(0,0,w,h);
+                        
+                        // Draw components
+                        drawComponent(internet.icon, 'Internet', internet.x, internet.y, h*0.25, 'rgba(60, 138, 133, 1)');
+                        drawComponent(router.icon, 'Router', router.x, router.y, h*0.2, 'rgba(199, 165, 91, 1)');
+                        drawComponent(coreSwitch.icon, 'Core Switch', coreSwitch.x, coreSwitch.y, h*0.2, 'rgba(199, 165, 91, 1)');
+                        drawComponent(servers.icon, 'Servers', servers.x, servers.y, h*0.15, 'rgba(199, 165, 91, 1)');
+                        
+                        departments.forEach(dept => {
+                            drawComponent(dept.icon, dept.name, dept.x, dept.y, h*0.1, 'rgba(60, 138, 133, 1)');
+                        });
+                        
+                        // Draw connections
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 0.3)'; ctx.lineWidth = 1;
+                        ctx.beginPath(); ctx.moveTo(internet.x, internet.y); ctx.lineTo(router.x, router.y); ctx.stroke();
+                        ctx.beginPath(); ctx.moveTo(router.x, router.y); ctx.lineTo(coreSwitch.x, coreSwitch.y); ctx.stroke();
+                        ctx.beginPath(); ctx.moveTo(coreSwitch.x, coreSwitch.y); ctx.lineTo(servers.x, servers.y); ctx.stroke();
+                        departments.forEach(dept => {
+                            ctx.beginPath(); ctx.moveTo(coreSwitch.x, coreSwitch.y); ctx.lineTo(dept.x, dept.y); ctx.stroke();
+                        });
+
+                        // Animate packets
+                        const progress = (t % cycleDuration) / cycleDuration;
+                        let packet;
+                        
+                        if (progress < 0.25) { // Internet -> Router -> Switch -> Server
+                           const p = progress / 0.25;
+                           if (p < 0.33) { packet = { x: internet.x + (router.x - internet.x) * (p/0.33), y: router.y }; }
+                           else if (p < 0.66) { packet = { x: router.x + (coreSwitch.x - router.x) * ((p-0.33)/0.33), y: router.y }; }
+                           else { packet = { x: coreSwitch.x, y: coreSwitch.y + (servers.y - coreSwitch.y) * ((p-0.66)/0.34) }; }
+                        } else if (progress < 0.5) { // Server -> Switch -> Dept
+                           const p = (progress - 0.25) / 0.25;
+                           const targetDept = departments[1]; // R&D
+                           if (p < 0.5) { packet = { x: servers.x, y: servers.y + (coreSwitch.y - servers.y) * (p/0.5) }; }
+                           else { packet = { x: coreSwitch.x + (targetDept.x-coreSwitch.x)*((p-0.5)/0.5), y: coreSwitch.y + (targetDept.y-coreSwitch.y)*((p-0.5)/0.5) }; }
+                        } else if (progress < 0.75) { // Dept -> Switch -> Dept
+                           const p = (progress - 0.5) / 0.25;
+                           const fromDept = departments[3]; // Penjualan
+                           const toDept = departments[0]; // Produksi
+                           if (p < 0.5) { packet = { x: fromDept.x + (coreSwitch.x - fromDept.x) * (p/0.5), y: fromDept.y + (coreSwitch.y - fromDept.y) * (p/0.5) }; }
+                           else { packet = { x: coreSwitch.x + (toDept.x-coreSwitch.x)*((p-0.5)/0.5), y: coreSwitch.y + (toDept.y-coreSwitch.y)*((p-0.5)/0.5) }; }
+                        } else { // Dept -> Switch -> Router -> Internet
+                           const p = (progress - 0.75) / 0.25;
+                           const fromDept = departments[4]; // HRD
+                           if (p < 0.33) { packet = { x: fromDept.x + (coreSwitch.x - fromDept.x)*(p/0.33), y: fromDept.y + (coreSwitch.y - fromDept.y)*(p/0.33) }; }
+                           else if (p < 0.66) { packet = { x: coreSwitch.x + (router.x - coreSwitch.x)*((p-0.33)/0.33), y: router.y }; }
+                           else { packet = { x: router.x + (internet.x - router.x)*((p-0.66)/0.34), y: router.y }; }
+                        }
+
+                        if (packet) {
+                            ctx.beginPath(); ctx.arc(packet.x, packet.y, 4, 0, Math.PI*2);
+                            ctx.fillStyle='rgba(220, 50, 50, 0.9)'; ctx.fill();
+                        }
+                        
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                },
+                // Animasi untuk kartu proyek "Desain Antena Yagi"
+                'yagi-canvas': (ctx, w, h) => {
+                    let t = 0;
+                    const boomY = h/2;
+                    // Disesuaikan menjadi 6 elemen sesuai judul: 1 reflektor, 1 driven, 4 direktor
+                    const elements = [
+                        { x: w * 0.15, h: h * 0.7, type: 'reflector' },
+                        { x: w * 0.3,  h: h * 0.65, type: 'driven' },
+                        { x: w * 0.5,  h: h * 0.6, type: 'director' },
+                        { x: w * 0.65, h: h * 0.57, type: 'director' },
+                        { x: w * 0.8,  h: h * 0.54, type: 'director' },
+                        { x: w * 0.9,  h: h * 0.51, type: 'director' }
+                    ];
+
+                    function drawAntenna() {
+                        ctx.strokeStyle = 'rgba(199, 165, 91, 1)';
+                        ctx.lineWidth = 2;
+                        ctx.beginPath(); ctx.moveTo(w*0.1, boomY); ctx.lineTo(w, boomY); ctx.stroke();
+                        
+                        ctx.lineWidth = 4;
+                        elements.forEach(el => {
+                            ctx.strokeStyle = el.type === 'driven' ? 'rgba(60, 138, 133, 1)' : 'rgba(199, 165, 91, 1)';
+                            ctx.beginPath();
+                            ctx.moveTo(el.x, boomY - el.h/2);
+                            ctx.lineTo(el.x, boomY + el.h/2);
+                            ctx.stroke();
+                        });
+                        
+                        // Menambahkan label untuk kejelasan
+                        ctx.font = `12px Amiri`;
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.9)';
+                        ctx.textAlign = 'center';
+                        ctx.fillText('Reflektor', elements[0].x, boomY + elements[0].h/2 + 15);
+                        ctx.fillStyle = 'rgba(60, 138, 133, 0.9)';
+                        ctx.fillText('Driven', elements[1].x, boomY - elements[1].h/2 - 15);
+                        ctx.fillStyle = 'rgba(199, 165, 91, 0.9)';
+                        ctx.fillText('Direktor', elements[3].x, boomY + elements[3].h/2 + 15);
+                    }
+                    
+                    let particles = [];
+                    for (let i=0; i < 50; i++) {
+                        particles.push({
+                            x: Math.random() * -w,
+                            y: boomY + (Math.random() - 0.5) * h * 1.2,
+                            speed: 1 + Math.random() * 0.5
+                        });
+                    }
+
+                    function loop() {
+                        t++;
+                        ctx.clearRect(0, 0, w, h);
+                        
+                        const reflector = elements[0];
+                        const lastDirector = elements[elements.length-1];
+
+                        // Animasikan partikel yang sedang difokuskan
+                        particles.forEach(p => {
+                            p.x += p.speed;
+                            if (p.x > lastDirector.x) {
+                                p.x = Math.random() * -50;
+                                p.y = boomY + (Math.random() - 0.5) * h * 1.2;
+                            }
+                            if (p.x > reflector.x - 5 && p.x < reflector.x + 5 && Math.abs(p.y - boomY) < reflector.h/2) {
+                                p.x = reflector.x - 6; // Pantulkan partikel oleh reflektor
+                            }
+
+                            let focusFactor = 0;
+                            if (p.x > reflector.x) {
+                                focusFactor = (p.x - reflector.x) / (lastDirector.x - reflector.x);
+                            }
+                            
+                            p.y += (boomY - p.y) * 0.015 * focusFactor;
+                            
+                            const intensity = Math.min(1, focusFactor * 1.2);
+                            const r = 60 + (220 - 60) * intensity;
+                            const g = 138 + (50 - 138) * intensity;
+                            const b = 133 + (50 - 133) * intensity;
+                            const alpha = 0.4 + intensity * 0.5;
+
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                            ctx.fillStyle = `rgba(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)}, ${alpha})`;
+                            ctx.fill();
+                        });
+                        
+                        drawAntenna(); // Gambar antena di atas partikel
+
+                        // Animasikan pola radiasi yang dihasilkan
+                        const lobeProgress = (t % 150) / 150;
+                        const pulse = Math.sin(lobeProgress * Math.PI);
+                        const lobeSize = w * 0.5 * (0.9 + pulse * 0.1);
+                        const lobeOpacity = 0.4 + pulse * 0.3;
+                        
+                        const startX = elements[1].x; // Pola radiasi dimulai dari elemen driven
+                        const endX = startX + lobeSize;
+                        const controlY = h * 0.4 * (0.9 + pulse * 0.1);
+
+                        const gradient = ctx.createRadialGradient(startX, boomY, 0, startX, boomY, lobeSize);
+                        gradient.addColorStop(0, `rgba(199, 165, 91, ${lobeOpacity})`);
+                        gradient.addColorStop(0.5, `rgba(199, 165, 91, ${lobeOpacity * 0.5})`);
+                        gradient.addColorStop(1, `rgba(199, 165, 91, 0)`);
+                        ctx.fillStyle = gradient;
+
+                        ctx.beginPath();
+                        ctx.moveTo(startX, boomY);
+                        ctx.quadraticCurveTo(startX + lobeSize * 0.5, boomY - controlY, endX, boomY);
+                        ctx.quadraticCurveTo(startX + lobeSize * 0.5, boomY + controlY, startX, boomY);
+                        ctx.fill();
+                        
+                        requestAnimationFrame(loop);
+                    }
+                    loop();
+                }
+            };
+            
+            // Fungsi untuk memulai animasi pada canvas yang terlihat di layar
+            function startCanvasAnimation(canvas) {
+                const animationFunc = canvasAnimations[canvas.id];
+                if (animationFunc) {
+                    const ctx = canvas.getContext('2d');
+                    animationFunc(ctx, canvas.width, canvas.height);
+                }
+            }
+
+            // Observer untuk mendeteksi elemen yang masuk ke viewport dan memicu animasi
+            const animateOnScrollObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        
+                        const canvas = entry.target.querySelector('canvas.project-canvas');
+                        if (canvas && !canvas.dataset.animationStarted) {
+                            startCanvasAnimation(canvas);
+                            canvas.dataset.animationStarted = 'true';
+                        }
+
+                    }
+                });
+            }, { root: null, threshold: 0.1 });
+
+            // --- LOGIKA NAVIGASI HALAMAN ---
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href').substring(1);
+                    const targetPage = document.getElementById(targetId);
+                    const currentActiveLink = document.querySelector('.nav-link.active-page');
+
+                    // Jangan lakukan apa-apa jika link yang sama diklik atau target tidak ada
+                    if ((currentActiveLink && currentActiveLink.getAttribute('href') === link.getAttribute('href')) || !targetPage) {
+                        return;
+                    }
+
+                    // Perbarui kelas aktif pada link navigasi
+                    navLinks.forEach(navLink => navLink.classList.remove('active-page'));
+                    link.classList.add('active-page');
+
+                    const currentPage = Array.from(pages).find(p => !p.classList.contains('hidden'));
+
+                    // Fungsi untuk menukar halaman dengan efek fade
+                    const switchPages = () => {
+                        pages.forEach(p => {
+                            p.classList.add('hidden');
+                            p.classList.remove('page-fade-in', 'page-fade-out');
+                            p.querySelectorAll('.animate-on-scroll').forEach(el => {
+                                animateOnScrollObserver.unobserve(el);
+                                el.classList.remove('is-visible');
+                            });
+                        });
+
+                        targetPage.classList.remove('hidden');
+                        targetPage.classList.add('page-fade-in');
+                        if(pageContentContainer) pageContentContainer.scrollTop = 0;
+
+                        targetPage.querySelectorAll('.animate-on-scroll').forEach(el => {
+                            animateOnScrollObserver.observe(el);
+                        });
+                    };
+
+                    // Terapkan efek fade-out sebelum fade-in halaman baru
+                    if (currentPage) {
+                        currentPage.classList.add('page-fade-out');
+                        setTimeout(switchPages, 300);
+                    } else {
+                        switchPages();
+                    }
+                });
+            });
+
+            // Inisialisasi observer untuk elemen di halaman pertama yang terlihat
+            const initialPage = document.querySelector('.page:not(.hidden)');
+            if (initialPage) {
+                initialPage.querySelectorAll('.animate-on-scroll').forEach(el => {
+                    animateOnScrollObserver.observe(el);
+                });
+            }
+
+            // Logika untuk tombol minimize/maximize sidebar
+            toggleMenuBtn.addEventListener('click', () => {
+                const icon = toggleMenuBtn.querySelector('i');
+                contentPages.classList.toggle('sidebar-minimized');
+                const isMinimized = contentPages.classList.contains('sidebar-minimized');
+                icon.className = isMinimized ? 'fas fa-bars' : 'fas fa-times';
+                toggleMenuBtn.setAttribute('aria-label', isMinimized ? 'Buka Menu' : 'Tutup Menu');
+            });
+            
+            // Fungsi untuk menampilkan tanggal dan waktu yang berjalan
+            function setupDateTime() {
+                const liveTimeElements = document.querySelectorAll('.live-datetime');
+                if (liveTimeElements.length > 0) {
+                    const staticDate = new Date('2025-09-15T00:00:00'); 
+                    const articleDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
+                    const formattedDate = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(staticDate);
+                    const updateLiveTime = () => {
+                        const now = new Date();
+                        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Makassar' };
+                        const formattedTime = new Intl.DateTimeFormat('id-ID', timeOptions).format(now).replace(/\./g, ':');
+                        liveTimeElements.forEach(el => el.textContent = `${formattedDate} | ${formattedTime}`);
+                    };
+                    updateLiveTime();
+                    setInterval(updateLiveTime, 1000);
+                }
+            }
+            setupDateTime();
+
+            // Menyisipkan alamat email secara dinamis untuk menghindari deteksi bot sederhana
+            const emailContainer = document.getElementById('email-address-container');
+            if (emailContainer) {
+                const user = 'sasangkagatot';
+                const domain = 'gmail.com';
+                emailContainer.textContent = `${user}@${domain}`;
+            }
+
+            // Logika untuk tombol "Kembali ke Atas"
+            if (pageContentContainer && backToTopBtn) {
+                pageContentContainer.addEventListener('scroll', () => {
+                    backToTopBtn.classList.toggle('show', pageContentContainer.scrollTop > 300);
+                });
+                backToTopBtn.addEventListener('click', () => {
+                    pageContentContainer.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            // --- KONTEN MODAL (POP-UP) ---
+            const manuscripts = {
+                'ai-ethics': {
+                    title: "Etika Kecerdasan Buatan: Cermin 'Kota Utama' Al-Farabi",
+                    content: `<p class="mb-4">Dalam mahakaryanya, "Al-Madinah al-Fadilah" (Kota Utama), filsuf besar Al-Farabi mengemukakan visi sebuah masyarakat ideal yang dipimpin oleh akal budi dan kebajikan. Pemimpinnya, yang ia sebut sebagai "Failasuf-Raja," adalah sosok yang tidak hanya cerdas secara intelektual tetapi juga sempurna secara moral. Visi ini, meski berusia lebih dari seribu tahun, menawarkan kerangka berpikir yang sangat relevan untuk tantangan terbesar kita di abad ke-21: pengembangan Kecerdasan Buatan (AI) yang beretika.</p><p class="mb-4">Jika kita memandang AI sebagai "pemimpin" atau "pengambil keputusan" dalam berbagai sistem modern—mulai dari diagnosis medis, sistem peradilan, hingga kendaraan otonom—maka pertanyaan mendasar yang harus kita ajukan adalah: "Nilai-nilai kebajikan apa yang kita tanamkan padanya?" AI yang hanya dioptimalkan untuk efisiensi dan keuntungan, tanpa landasan etika yang kuat, berisiko menciptakan masyarakat distopia yang dingin dan tidak adil—kebalikan total dari Kota Utama Al-Farabi.</p><p class="mb-4">Membangun AI yang beretika berarti kita harus menjadi "Failasuf-Raja" bagi ciptaan kita. Kita harus secara sadar merancang algoritma yang adil (bebas dari bias), transparan (dapat dijelaskan cara kerjanya), dan akuntabel (ada pihak yang bertanggung jawab atas tindakannya). Ini bukan sekadar tantangan teknis, melainkan sebuah keharusan filosofis. Kita harus memastikan bahwa AI yang kita kembangkan berfungsi untuk mengangkat martabat kemanusiaan, memperkuat keadilan, dan mendorong kesejahteraan bersama, persis seperti pilar-pilar yang menopang "Kota Utama" yang diimpikan Al-Farabi.</p>`
+                },
+                'social-network': {
+                    title: "Jaringan Sebagai Sistem Sosial: Gema Jalur Sutra di Era Digital",
+                    content: `<p class="mb-4">Jalur Sutra bukanlah sekadar rute perdagangan kuno untuk sutra dan rempah-rempah. Ia adalah jaringan global pertama yang revolusioner, sebuah arteri peradaban yang memompa tidak hanya barang, tetapi juga gagasan, teknologi, seni, dan bahkan agama melintasi benua. Di setiap persinggahannya—dari Samarkand hingga Baghdad—terjadi pertukaran pengetahuan yang memperkaya setiap kebudayaan yang terlibat. Konsep ini memiliki gema yang kuat dalam arsitektur jaringan komputer modern.</p><p class="mb-4">Internet, pada intinya, adalah Jalur Sutra digital. Router dan switch berfungsi sebagai 'kota-kota persinggahan' (caravanserai), mengarahkan paket-paket data—'karavan' informasi modern—melalui jalur yang paling efisien. Protokol TCP/IP adalah 'bahasa bersama' yang memungkinkan komunikasi antara 'pedagang' dari berbagai 'bangsa' (sistem operasi dan perangkat). Sama seperti Jalur Sutra yang memiliki jalur utama dan rute-rute alternatif untuk menghindari bahaya, internet dirancang dengan redundansi untuk memastikan informasi tetap mengalir meskipun ada gangguan di satu titik.</p><p>Lebih dalam lagi, dampak sosial keduanya pun serupa. Jalur Sutra memicu Renaisans di Eropa dengan membawa kembali pengetahuan klasik dari dunia Islam. Internet telah memicu revolusi informasi global, mendemokratisasi akses terhadap pengetahuan dan memungkinkan kolaborasi dalam skala yang belum pernah terjadi sebelumnya. Memahami jaringan komputer bukan hanya sebagai entitas teknis, tetapi sebagai sistem sosial yang hidup, membantu kita merancang teknologi yang tidak hanya menghubungkan mesin, tetapi juga memberdayakan manusia.</p>`
+                },
+                'iot-balance': {
+                    title: "IoT dan Konsep Keseimbangan Alam: Menuju 'Mizan' Teknologi",
+                    content: `<p class="mb-4">Dalam pemikiran kosmologi Islam, terdapat konsep 'Mizan' yang berarti keseimbangan. Alam semesta, menurut pandangan ini, diciptakan dalam harmoni yang sempurna, di mana setiap elemen memiliki peran dan fungsinya dalam menjaga tatanan kosmik. Gangguan terhadap keseimbangan ini akan menimbulkan kerusakan ('fasad'). Di tengah krisis iklim dan degradasi lingkungan saat ini, konsep 'Mizan' menawarkan lensa yang kuat untuk melihat potensi sejati dari Internet of Things (IoT).</p><p class="mb-4">Secara tradisional, teknologi sering dipandang sebagai kekuatan yang eksploitatif terhadap alam. Namun, IoT memiliki potensi untuk membalikkan narasi ini. Bayangkan sebuah sistem pertanian cerdas ('smart farming') di mana sensor-sensor IoT di tanah mengukur kelembapan dan nutrisi secara presisi, memungkinkan irigasi dan pemupukan hanya saat diperlukan. Ini bukan hanya tentang efisiensi, tetapi tentang mengembalikan 'Mizan' ke dalam praktik pertanian, mengurangi limbah air dan polusi bahan kimia secara drastis.</p><p>Contoh lain adalah jaringan sensor polusi udara di kota-kota besar yang dapat memberikan data real-time untuk mengatur lalu lintas dan operasi industri, atau 'smart grid' yang menyeimbangkan pasokan energi terbarukan yang fluktuatif dengan permintaan konsumen. Dalam semua aplikasi ini, IoT tidak bertindak sebagai penakluk alam, melainkan sebagai 'penjaga' atau 'pengamat' yang membantu kita memahami dan merespons ritme alam dengan lebih bijaksana. Mengembangkan IoT dengan kesadaran akan 'Mizan' berarti menciptakan teknologi yang tidak hanya 'pintar', tetapi juga 'bijaksana'—teknologi yang membantu kita hidup selaras dengan planet ini, bukan melawannya.</p>`
+                },
+                'astrolabe-gps': {
+                    title: "Dari Astrolab ke GPS: Evolusi Memetakan Dunia",
+                    content: `<p class="mb-4">Astrolab adalah salah satu instrumen ilmiah paling canggih di zamannya. Di tangan para navigator dan astronom Muslim pada Abad Pertengahan, perangkat kuningan yang rumit ini bukan sekadar alat, melainkan jendela menuju kosmos. Ia adalah kalkulator analog yang memungkinkan penggunanya menentukan waktu, memprediksi posisi bintang, dan yang terpenting, menemukan arah kiblat dan menavigasi lautan luas serta gurun yang tak bertepi. Astrolab adalah perwujudan dari penguasaan matematika dan astronomi untuk memetakan posisi diri di dunia.</p><p class="mb-4">Ribuan tahun kemudian, prinsip fundamental di balik astrolab tetap hidup dalam teknologi yang kita gunakan setiap hari: Global Positioning System (GPS). Jika astrolab menggunakan posisi benda-benda langit sebagai titik referensi, GPS menggunakan konstelasi satelit buatan manusia yang mengorbit Bumi. Keduanya bekerja dengan prinsip yang sama: triangulasi. Astrolab melakukannya secara visual dan matematis di atas piringan logam, sementara GPS melakukannya dengan mengukur selisih waktu tempuh sinyal radio dari beberapa satelit.</p><p>Perjalanan dari astrolab ke GPS adalah kisah epik tentang evolusi presisi. Dari menentukan lintang dengan akurasi beberapa derajat, kini kita dapat menentukan lokasi kita di mana pun di planet ini dengan akurasi beberapa sentimeter. Namun, semangat di baliknya tetap sama: dorongan manusia untuk memahami posisinya dalam ruang dan waktu. Teknologi ini, baik yang kuno maupun yang modern, adalah bukti dari kecerdasan kolektif umat manusia dalam upaya tanpa akhir untuk menjawab pertanyaan paling mendasar: "Di manakah kita berada?"</p>`
+                },
+                'musyawarah-code': {
+                    title: "Musyawarah & Kode: Kearifan Kolektif dalam Era Digital",
+                    content: `<p class="mb-4">Jauh sebelum istilah 'kolaborasi' dan 'kerja tim' menjadi frasa kunci dalam manajemen modern, budaya Nusantara telah mengenal konsep 'musyawarah'—sebuah proses pengambilan keputusan yang menekankan dialog, saling mendengarkan, dan pencarian mufakat untuk kebaikan bersama. Kearifan ini bukan sekadar tradisi sosial, melainkan sebuah filosofi kerja yang sangat relevan dengan dunia pengembangan teknologi saat ini, khususnya dalam metodologi Agile dan gerakan open-source.</p><p class="mb-4">Perhatikan ritual harian dalam metodologi Agile seperti 'daily stand-up' atau 'sprint retrospective'. Ini adalah bentuk musyawarah modern. Setiap anggota tim, terlepas dari jabatannya, memiliki suara yang setara untuk menyampaikan kemajuan, kendala, dan ide perbaikan. Tujuannya bukan untuk melapor kepada atasan, melainkan untuk menciptakan transparansi dan memecahkan masalah secara kolektif. Keputusan tidak datang dari atas ke bawah, melainkan lahir dari diskusi dan kesepakatan tim. Ini adalah inti dari musyawarah untuk mufakat.</p><p class="mb-4">Filosofi ini mencapai puncaknya dalam ekosistem 'open-source'. Sebuah proyek seperti Linux atau Python dibangun oleh ribuan kontributor dari seluruh dunia yang tidak saling kenal. Mereka berkolaborasi melalui 'pull requests' (usulan perubahan) dan 'code reviews' (peninjauan kode). Setiap usulan diperdebatkan secara terbuka, diperbaiki bersama, dan diterima berdasarkan manfaat teknisnya, bukan karena otoritas pengusulnya. Ini adalah musyawarah dalam skala global, di mana kecerdasan kolektif terbukti mampu menciptakan perangkat lunak yang andal dan inovatif. Dengan demikian, kearifan kuno tentang musyawarah tidaklah usang; ia justru hidup dan berkembang dalam bentuk baris-baris kode yang membangun masa depan digital kita.</p>`
+                },
+                'alkhawarizmi-algorithm': {
+                    title: "Algoritma: Jejak Emas Al-Khwarizmi di Dunia Digital",
+                    content: `<p class="mb-4">Setiap kali kita menggunakan aplikasi, mencari informasi di internet, atau bahkan saat komputer melakukan booting, kita sedang menyaksikan warisan intelektual agung dari seorang cendekiawan Muslim abad ke-9: Muhammad ibn Musa al-Khwarizmi. Namanya tidak hanya abadi sebagai 'algoritma', tetapi karyanya, "Al-Kitab al-Mukhtasar fi Hisab al-Jabr wal-Muqabala," meletakkan fondasi bagi cara berpikir sistematis yang menjadi jantung dunia digital.</p><p class="mb-4">Al-Khwarizmi tidak menemukan angka, tetapi ia merevolusi cara kita menggunakannya. Ia memperkenalkan metode pemecahan masalah yang dapat dipecah menjadi serangkaian langkah terbatas, jelas, dan dapat diulang—inilah esensi dari sebuah algoritma. Konsep 'al-jabr' (pemulihan atau penyelesaian) yang ia perkenalkan adalah tentang memanipulasi persamaan untuk menemukan solusi yang tidak diketahui. Ini adalah lompatan konseptual yang luar biasa: dari sekadar berhitung menjadi sebuah sistem penalaran logis yang abstrak.</p><p class="mb-4">Warisan ini begitu mendalam. Bahasa pemrograman modern, pada dasarnya, adalah alat untuk menuliskan algoritma yang dapat dipahami mesin. Ketika seorang developer menulis sebuah fungsi 'if-else' atau 'for loop', mereka sedang menerapkan logika langkah-demi-langkah yang sama seperti yang dirintis Al-Khwarizmi. Bahkan sistem kecerdasan buatan yang paling kompleks sekalipun, pada intinya, adalah tumpukan algoritma canggih yang memproses data untuk 'belajar' dan membuat keputusan. Memahami sejarah ini mengingatkan kita bahwa teknologi tercanggih sekalipun berakar pada kearifan kuno dan pencarian manusia yang tak kenal lelah akan keteraturan dan logika di alam semesta.</p>`
+                }
+            };
+
+            // Variabel global untuk manajemen state modal
+            let modalTriggerElement = null, currentActiveModal = null, parentModalForViewer = null;
+
+            const openModal = (modal) => {
+                if (!modal || modal.classList.contains('active')) return;
+                modalTriggerElement = document.activeElement;
+                currentActiveModal = modal;
+                modal.classList.add('active');
+                document.body.classList.add('body-no-scroll');
+                const loader = modal.querySelector('.modal-loader'), mainContent = modal.querySelector('.modal-main-content');
+                // Menampilkan loader sebelum konten dimuat
+                const showContent = () => {
+                    if(loader) loader.classList.remove('show');
+                    if(mainContent) mainContent.classList.remove('content-hidden');
+                    modal.focus();
+                };
+                
+                if (loader) loader.classList.add('show');
+                if (mainContent) mainContent.classList.add('content-hidden');
+                setTimeout(showContent, 1200); 
+            };
+
+            const closeModal = (modal) => {
+                if (!modal || !modal.classList.contains('active')) return;
+                // Menghentikan sintesis suara jika sedang berjalan saat modal ditutup
+                if (window.speechSynthesis.speaking) {
+                    window.speechSynthesis.cancel();
+                }
+
+                // Menutup modal dan mengembalikan state scroll
+                modal.classList.remove('active');
+
+                if (modal.id === 'image-viewer-modal' && parentModalForViewer) {
+                    parentModalForViewer.classList.add('active');
+                    currentActiveModal = parentModalForViewer;
+                    parentModalForViewer = null;
+                } else {
+                    document.body.classList.remove('body-no-scroll');
+                    currentActiveModal = null;
+                }
+
+                // Membersihkan konten modal (iframe, gambar) setelah ditutup
+                setTimeout(() => {
+                    if (modal.id === 'image-viewer-modal') {
+                        const image = modal.querySelector('.modal-image');
+                        if (image) image.src = '';
+                    } else {
+                         modal.querySelectorAll('iframe').forEach(iframe => iframe.src = 'about:blank');
+                        if (modal.id === 'srs-doc-modal' || modal.id === 'cnn-doc-modal') {
+                            const docContainer = modal.querySelector('.modal-main-content[id]');
+                            if (docContainer) docContainer.innerHTML = '';
+                        }
+                    }
+                    if (!parentModalForViewer && modalTriggerElement) {
+                        modalTriggerElement.focus();
+                    }
+                }, 400); 
+            };
+
+            // Event listener utama untuk semua tombol yang membuka modal
+            document.addEventListener('click', (event) => {
+                const button = event.target.closest('[data-modal-target]');
+                if (!button) return;
+                
+                const modalId = button.dataset.modalTarget;
+                const modal = document.querySelector(modalId);
+                if (!modal) return;
+
+                const parentModal = button.closest('.modal-overlay');
+                // Menangani kasus khusus saat membuka image viewer dari dalam modal lain
+
+                if (parentModal && modalId === '#image-viewer-modal') {
+                    parentModalForViewer = parentModal;
+                    parentModal.classList.remove('active');
+                } else if (parentModal) {
+                    closeModal(parentModal);
+                }
+
+                // Memuat konten manuskrip ke dalam modal
+                if (modalId === '#manuscript-modal') {
+                    const manuscriptId = button.dataset.manuscriptId;
+                    const manuscriptData = manuscripts[manuscriptId];
+                    if (manuscriptData) {
+                        modal.querySelector('#manuscript-modal-title').textContent = manuscriptData.title;
+                        modal.querySelector('#manuscript-modal-content').innerHTML = manuscriptData.content;
+                    }
+                }
+
+                // Memuat gambar ke dalam image viewer
+                if (modalId === '#image-viewer-modal') {
+                     const imageSrc = button.dataset.src;
+                     const imgElement = modal.querySelector('.modal-image');
+                     if(imgElement) imgElement.src = imageSrc;
+                }
+                
+                // Memuat dokumen Google Drive ke dalam iframe
+                const docId = button.dataset.docId;
+                if (docId) { 
+                    const embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
+                    const container = modal.querySelector('.modal-body > .modal-main-content[id]'); 
+                    if (container) {
+                        container.innerHTML = `<iframe src="${embedUrl}" class="w-full h-full border-none" allow="fullscreen"></iframe>`;
+                    }
+                }
+                
+                // Memuat URL lain ke dalam iframe (untuk simulasi, prototipe, dll.)
+                const iframeSrc = button.dataset.iframeSrc;
+                if (iframeSrc) {
+                    const iframe = modal.querySelector('.modal-iframe');
+                    if (iframe && iframe.getAttribute('src') !== iframeSrc) {
+                        iframe.src = iframeSrc;
+                    }
+                }
+                
+                openModal(modal);
+            });
+
+            // Event listener untuk menutup modal saat mengklik area luar atau tombol close
+            document.querySelectorAll('.modal-overlay').forEach(overlay => {
+                overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(overlay); });
+                overlay.querySelector('.modal-close-btn')?.addEventListener('click', () => closeModal(overlay));
+            });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape' && currentActiveModal) closeModal(currentActiveModal); });
+
+            // --- LOGIKA AUDIO NARASI PROYEK ---
+            const audioToggleButtons = document.querySelectorAll('.project-audio-toggle');
+            const allProjectAudios = document.querySelectorAll('.project-audio');
+
+            // Menangani klik pada tombol play/pause narasi
+            audioToggleButtons.forEach(button => {
+                const audioId = button.dataset.audioTarget;
+                const audioElement = document.querySelector(audioId);
+                const buttonIcon = button.querySelector('i');
+                const buttonText = button.querySelector('span');
+
+                if (!audioElement) return;
+
+                button.addEventListener('click', () => {
+                    if (audioElement.paused) {
+                        // Hentikan semua audio lain sebelum memulai yang baru
+                        allProjectAudios.forEach(audio => {
+                            if (audio !== audioElement && !audio.paused) {
+                                audio.pause();
+                            }
+                        });
+                        audioElement.play();
+                    } else {
+                        audioElement.pause();
+                    }
+                });
+
+                // Perbarui UI tombol saat audio diputar, dijeda, atau selesai
+                audioElement.addEventListener('play', () => {
+                    buttonIcon.className = 'fas fa-pause';
+                    if (buttonText) buttonText.textContent = 'Jeda Narasi';
+                    button.classList.add('playing');
+                });
+
+                audioElement.addEventListener('pause', () => {
+                    buttonIcon.className = 'fas fa-play';
+                    if (buttonText) buttonText.textContent = 'Dengarkan Narasi';
+                    button.classList.remove('playing');
+                    audioElement.currentTime = 0;
+                });
+
+                audioElement.addEventListener('ended', () => {
+                     buttonIcon.className = 'fas fa-play';
+                    if (buttonText) buttonText.textContent = 'Dengarkan Narasi';
+                    button.classList.remove('playing');
+                });
+            });
+            
+            // Memastikan hanya satu audio yang bisa diputar pada satu waktu
+            allProjectAudios.forEach(audioEl => {
+                audioEl.addEventListener('play', () => {
+                    audioToggleButtons.forEach(btn => {
+                        const targetId = btn.dataset.audioTarget;
+                        if (`#${audioEl.id}` !== targetId) {
+                            const otherAudio = document.querySelector(targetId);
+                            if(otherAudio && !otherAudio.paused) {
+                                otherAudio.pause();
+                            }
+                            const icon = btn.querySelector('i');
+                            const text = btn.querySelector('span');
+                            icon.className = 'fas fa-play';
+                            if (text) text.textContent = 'Dengarkan Narasi';
+                            btn.classList.remove('playing');
+                        }
+                    });
+                });
+            });
+
+            // Data untuk galeri sertifikat
+            const certificates = [
+                { src: "https://i.imgur.com/wZ7owwo.png", alt: "Sertifikat Magang DLHK DIY", title: "Magang DLHK DIY", desc: "Dinas Lingkungan Hidup & Kehutanan DIY - 2024" },
+                { src: "https://i.imgur.com/fgV6iQP.png", alt: "Sertifikat Literasi Digital", title: "Literasi Digital", desc: "Kemkominfo - 2023" },
+                { src: "https://i.imgur.com/eyW5LUw.png", alt: "Sertifikat Seminar Cyber Security", title: "Seminar Keamanan Siber", desc: "HIMATEKNO FTTI UNJAYA - 2023" },
+                { src: "https://i.imgur.com/fRg3hmp.png", alt: "Sertifikat Webinar Pengolahan Data", title: "Webinar Pengolahan Data", desc: "XREI Institute - 2023" },
+                { src: "https://i.imgur.com/ltwjESR.png", alt: "Sertifikat CCNA Security", title: "CCNA Security", desc: "Cisco Networking Academy - 2022" },
+                { src: "https://i.imgur.com/iCRbLK8.png", alt: "Sertifikat Switching, Routing, & Nirkabel", title: "Switching, Routing, & Nirkabel", desc: "Cisco Networking Academy - 2021" },
+                { src: "https://i.imgur.com/5frcsDW.png", alt: "Sertifikat Pengenalan Jaringan", title: "Pengenalan Jaringan", desc: "Cisco Networking Academy - 2021" },
+                { src: "https://i.imgur.com/zruR3Gv.png", alt: "Sertifikat Dasar-dasar Python", title: "Dasar-dasar Python", desc: "Progate - 2021" },
+                { src: "https://i.imgur.com/Pqwf8N1.png", alt: "Sertifikat Dasar-dasar TI", title: "Dasar-dasar TI", desc: "Cisco Networking Academy - 2020" }
+            ];
+            const galleryContainer = document.querySelector('#sertifikat-modal-content');
+            // Membangun galeri sertifikat secara dinamis
+            if(galleryContainer) {
+                galleryContainer.innerHTML = certificates.map(cert => `
+                    <button data-modal-target="#image-viewer-modal" data-src="${cert.src}" class="block border-2 border-[var(--border-gold)] hover:border-[var(--accent-teal)] transition-all duration-300 p-2 group text-left certificate-item">
+                        <div class="relative">
+                            <img src="${cert.src}" alt="${cert.alt}" class="w-full h-auto object-cover certificate-image" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1a2a44/e0d8c8?text=Error';">
+                           <div class="certificate-overlay">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="mb-2" viewBox="0 0 16 16" aria-hidden="true"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg>
+                                <span class="text-sm font-semibold">Lihat Detail</span>
+                           </div>
+                        </div>
+                        <p class="text-center text-sm mt-2 font-semibold">${cert.title}</p>
+                        <p class="text-center text-xs">${cert.desc}</p>
+                    </button>
+                `).join('');
+            }
+
+            // Logika untuk tombol "Salin Alamat Surel"
+            const copyEmailBtn = document.getElementById('copy-email-btn');
+            if (copyEmailBtn) {
+                copyEmailBtn.addEventListener('click', () => {
+                    const emailAddress = document.getElementById('email-address-container').textContent;
+                    const originalText = copyEmailBtn.textContent;
+                    navigator.clipboard.writeText(emailAddress).then(() => {
+                        copyEmailBtn.textContent = 'Alamat Surel Tersalin!';
+                        setTimeout(() => copyEmailBtn.textContent = originalText, 2000);
+                    }).catch(err => console.error('Gagal menyalin:', err));
+                });
+            }
+
+            // --- ANIMASI ASTROLABE ---
+            let animationFrameId = null;
+            let lastRulerAngle = 0;
+            const rete = document.getElementById('astrolabe-rete'); // Jaring-jaring bintang
+            const ruler = document.getElementById('astrolabe-ruler'); // Jarum utama
+            const rulerAlt = document.getElementById('astrolabe-ruler-alt'); // Jarum berlawanan arah
+            const ring1 = document.getElementById('astrolabe-ring-1'); // Cincin luar
+            const ring2 = document.getElementById('astrolabe-ring-2'); // Cincin dalam
+            function animateAstrolabe(timestamp) {
+                const time = timestamp / 1000;
+                const currentRulerAngle = time * 30; // Kecepatan jarum utama
+                const counterRulerAngle = time * -10; // Kecepatan jarum berlawanan arah (diperlambat dari -15)
+                const reteAngle = time * 5; // Kecepatan jaring-jaring
+                const ring1Angle = time * -8; // Kecepatan cincin 1
+                const ring2Angle = time * 12; // Kecepatan cincin 2
+
+                // Animasikan astrolab utama
+                if (rete) rete.setAttribute('transform', `rotate(${reteAngle} 250 250)`);
+                if (ruler) ruler.setAttribute('transform', `rotate(${currentRulerAngle} 250 250)`);
+                if (rulerAlt) rulerAlt.setAttribute('transform', `rotate(${counterRulerAngle} 250 250)`);
+                if (ring1) ring1.setAttribute('transform', `rotate(${ring1Angle} 250 250)`);
+                if (ring2) ring2.setAttribute('transform', `rotate(${ring2Angle} 250 250)`);
+
+                lastRulerAngle = currentRulerAngle;
+
+
+                animationFrameId = requestAnimationFrame(animateAstrolabe);
+            }
+            function startAstrolabeAnimation() { if (!animationFrameId) animationFrameId = requestAnimationFrame(animateAstrolabe); }
+            function stopAstrolabeAnimation() { if (animationFrameId) { cancelAnimationFrame(animationFrameId); animationFrameId = null; } }
+            startAstrolabeAnimation();
+            
+            // Efek paralaks pada astrolab saat mouse bergerak di halaman sampul
+            const astrolabeSvg = document.getElementById('astrolabe-svg');
+            if (coverPage && astrolabeSvg) {
+                coverPage.addEventListener('mousemove', (e) => {
+                    const { clientX, clientY, currentTarget } = e;
+                    const { clientWidth, clientHeight } = currentTarget;
+                    const x = (clientX / clientWidth - 0.5) * 2;
+                    const y = (clientY / clientHeight - 0.5) * 2;
+                    astrolabeSvg.style.transform = `translate(${x * -10}px, ${y * -10}px)`;
+                });
+                coverPage.addEventListener('mouseleave', () => { astrolabeSvg.style.transform = 'translate(0, 0)'; });
+            }
+
+            // --- ANIMASI LATAR BELAKANG BINTANG & METEOR ---
+            const starfieldCanvas = document.getElementById('starfield-canvas');
+            if (starfieldCanvas) {
+                const ctx = starfieldCanvas.getContext('2d');
+                let stars = [];
+                let shootingStars = []; // Array untuk menyimpan meteor
+
+                const resizeCanvas = () => {
+                    starfieldCanvas.width = window.innerWidth;
+                    starfieldCanvas.height = window.innerHeight;
+                };
+
+                const createStars = () => {
+                    stars = [];
+                    const starCount = Math.floor((starfieldCanvas.width * starfieldCanvas.height) / 8000);
+                    for (let i = 0; i < starCount; i++) {
+                        stars.push({
+                            x: Math.random() * starfieldCanvas.width,
+                            y: Math.random() * starfieldCanvas.height,
+                            r: Math.random() * 1.2 + 0.3,
+                            o: Math.random() * 0.6 + 0.2,
+                            od: (Math.random() > 0.5) ? 1 : -1,
+                            speed: Math.random() * 0.1 + 0.05
+                        });
+                    }
+                };
+
+                // Fungsi untuk membuat meteor baru
+                const createShootingStar = () => {
+                    shootingStars.push({
+                        x: Math.random() * starfieldCanvas.width * 1.5 - (starfieldCanvas.width * 0.25),
+                        y: 0,
+                        len: Math.random() * 80 + 20,
+                        speed: Math.random() * 8 + 12,
+                        opacity: 1,
+                    });
+                };
+
+                const animateStars = () => {
+                    ctx.clearRect(0, 0, starfieldCanvas.width, starfieldCanvas.height);
+                    
+                    // Gambar bintang biasa
+                    stars.forEach(star => {
+                        star.y += star.speed;
+                        if (star.y > starfieldCanvas.height) {
+                            star.y = 0;
+                            star.x = Math.random() * starfieldCanvas.width;
+                        }
+                        star.o += 0.003 * star.od;
+                        if (star.o > 0.8 || star.o < 0.2) {
+                            star.od *= -1;
+                        }
+                        ctx.beginPath();
+                        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(253, 246, 227, ${star.o})`;
+                        ctx.fill();
+                    });
+
+                    // Peluang untuk membuat meteor baru (jarang)
+                    if (Math.random() < 0.0015 && shootingStars.length < 2) {
+                        createShootingStar();
+                    }
+
+                    // Animasikan dan gambar meteor
+                    shootingStars.forEach((ss, index) => {
+                        ss.opacity -= 0.01;
+                        if (ss.opacity <= 0 || ss.y > starfieldCanvas.height || ss.x > starfieldCanvas.width) {
+                            shootingStars.splice(index, 1);
+                            return;
+                        }
+
+                        const x2 = ss.x + ss.len;
+                        const y2 = ss.y + ss.len;
+
+                        const gradient = ctx.createLinearGradient(ss.x, ss.y, x2, y2);
+                        gradient.addColorStop(0, `rgba(253, 246, 227, ${ss.opacity})`);
+                        gradient.addColorStop(1, 'rgba(253, 246, 227, 0)');
+
+                        ctx.beginPath();
+                        ctx.moveTo(ss.x, ss.y);
+                        ctx.lineTo(x2, y2);
+                        ctx.strokeStyle = gradient;
+                        ctx.lineWidth = 2;
+                        ctx.stroke();
+
+                        ss.x += ss.speed;
+                        ss.y += ss.speed;
+                    });
+
+                    requestAnimationFrame(animateStars);
+                };
+                
+                window.addEventListener('resize', () => { resizeCanvas(); createStars(); });
+                resizeCanvas();
+                createStars();
+                animateStars();
+            }
+            
+            // --- ANIMASI LATAR BELAKANG PARTIKEL (DI HALAMAN ISI) ---
+            const particleCanvas = document.getElementById('particle-canvas');
+            let particleAnimationId = null;
+            let particles = [];
+            let particleCtx;
+
+            function startParticleAnimation() {
+                if (particleAnimationId || !particleCanvas) return;
+                particleCtx = particleCanvas.getContext('2d');
+                // Fungsi untuk menyesuaikan ukuran canvas dengan kontainernya
+                const resizeCanvas = () => {
+                    particleCanvas.width = pageContentContainer.clientWidth;
+                    particleCanvas.height = pageContentContainer.scrollHeight;
+                    createParticles();
+                };
+
+                const createParticles = () => {
+                    particles = [];
+                    const particleCount = Math.floor((particleCanvas.width * particleCanvas.height) / 20000);
+                    for (let i = 0; i < particleCount; i++) {
+                        particles.push({
+                            x: Math.random() * particleCanvas.width,
+                            y: Math.random() * particleCanvas.height,
+                            vx: (Math.random() - 0.5) * 0.3,
+                            vy: (Math.random() - 0.5) * 0.3,
+                            radius: Math.random() * 1.5 + 1
+                        });
+                    }
+                };
+
+                // Loop utama animasi partikel
+                const animateParticles = () => {
+                    particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+                    
+                    particles.forEach(p1 => {
+                        p1.x += p1.vx;
+                        p1.y += p1.vy;
+
+                        if (p1.x < 0 || p1.x > particleCanvas.width) p1.vx *= -1;
+                        if (p1.y < 0 || p1.y > particleCanvas.height) p1.vy *= -1;
+
+                        // Gambar partikel
+                        particleCtx.beginPath();
+                        particleCtx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
+                        particleCtx.fillStyle = 'rgba(199, 165, 91, 0.4)';
+                        particleCtx.fill();
+
+                        // Gambar garis penghubung antar partikel yang berdekatan
+                        particles.forEach(p2 => {
+                            const dx = p1.x - p2.x;
+                            const dy = p1.y - p2.y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+
+                            if (dist < 150) {
+                                particleCtx.beginPath();
+                                particleCtx.moveTo(p1.x, p1.y);
+                                particleCtx.lineTo(p2.x, p2.y);
+                                particleCtx.strokeStyle = `rgba(199, 165, 91, ${0.8 - dist / 150})`;
+                                particleCtx.lineWidth = 0.5;
+                                particleCtx.stroke();
+                            }
+                        });
+                    });
+
+                    particleAnimationId = requestAnimationFrame(animateParticles);
+                };
+
+                // Gunakan ResizeObserver untuk menyesuaikan canvas saat ukuran kontainer berubah
+                const ro = new ResizeObserver(entries => {
+                    for (let entry of entries) {
+                        resizeCanvas();
+                    }
+                });
+                ro.observe(pageContentContainer);
+
+                resizeCanvas();
+                animateParticles();
+            }
+
+            function stopParticleAnimation() {
+                if(particleAnimationId) {
+                    cancelAnimationFrame(particleAnimationId);
+                    particleAnimationId = null;
+                }
+            }
+
+        });
+    </script>
+
+</body>
+</html>
