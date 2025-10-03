@@ -22,9 +22,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&family=Scheherazade+New:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- PERBAIKAN: Mengganti 'xintegrity' dengan atribut 'integrity' yang benar -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
@@ -1869,6 +1868,23 @@
         </div>
     </div>
 
+    <!-- BARU: Peringatan Lihat Sumber Halaman -->
+    <div id="source-warning-overlay" class="modal-overlay">
+        <div class="modal-content" style="height: auto; max-width: 500px;">
+            <div class="modal-header">
+                <h5 class="modal-title">Akses Ditolak</h5>
+            </div>
+            <div class="modal-body text-center py-8">
+                <i class="fas fa-exclamation-triangle text-5xl text-red-600 mb-4"></i>
+                <p class="text-lg">Untuk menjaga integritas intelektual dan hak cipta dari manuskrip ini, akses untuk melihat kode sumber halaman telah dinonaktifkan.</p>
+                <p class="text-sm mt-4">Terima kasih atas pengertian Anda.</p>
+                <button id="close-warning-btn" class="classic-button mt-8">Saya Mengerti</button>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1888,6 +1904,49 @@
             const backgroundMusic = document.getElementById('background-music');
             const playText = document.getElementById('play-text');
             const stopText = document.getElementById('stop-text');
+
+            // --- BARU: Logika Peringatan Lihat Sumber Halaman ---
+            const sourceWarningOverlay = document.getElementById('source-warning-overlay');
+            const closeWarningBtn = document.getElementById('close-warning-btn');
+
+            function showSourceWarning() {
+                if (sourceWarningOverlay) {
+                    sourceWarningOverlay.classList.add('active');
+                }
+            }
+
+            if (closeWarningBtn) {
+                closeWarningBtn.addEventListener('click', () => {
+                    if (sourceWarningOverlay) {
+                        sourceWarningOverlay.classList.remove('active');
+                    }
+                });
+            }
+
+            document.addEventListener('contextmenu', e => {
+                e.preventDefault();
+                showSourceWarning();
+            });
+
+            // --- BARU: Deteksi Pembukaan Developer Tools ---
+            const devToolsThreshold = 160;
+            let devToolsOpen = false;
+
+            function checkDevTools() {
+                if (window.outerWidth - window.innerWidth > devToolsThreshold || window.outerHeight - window.innerHeight > devToolsThreshold) {
+                    if (!devToolsOpen) {
+                        showSourceWarning();
+                        devToolsOpen = true;
+                    }
+                } else {
+                    devToolsOpen = false;
+                }
+            }
+
+            // Memeriksa secara berkala
+            setInterval(checkDevTools, 1000);
+
+            // --- AKHIR DARI LOGIKA DETEKSI DEV TOOLS ---
 
             if (soundToggleBtn && backgroundMusic && playText && stopText) {
                 soundToggleBtn.addEventListener('click', () => {
