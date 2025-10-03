@@ -145,6 +145,13 @@
             transform: translate(2px, 2px);
         }
         
+        .classic-button.active {
+            background-color: var(--accent-gold);
+            color: var(--bg-deep-blue);
+            box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+            transform: translate(2px, 2px);
+        }
+        
         .fade-in-on-scroll { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: opacity, transform; }
         .fade-in-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
 
@@ -2722,7 +2729,7 @@
                 button.addEventListener('click', () => {
                     const selectedCategory = button.dataset.category;
                     // Perbarui tampilan tombol aktif
-                    categoryButtons.forEach(btn => btn.classList.remove('active', 'translate-y-0.5', 'shadow-sm'));
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
                     fetchAndRenderTechNews(selectedCategory);
                 });
