@@ -1935,6 +1935,20 @@
                 showSourceWarning();
             });
 
+            // --- BARU: Deteksi penekanan tombol keyboard ---
+            document.addEventListener('keydown', e => {
+                // Blok F12
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                    showSourceWarning();
+                }
+                // Blok Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+                if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'i' || e.key === 'j')) {
+                    e.preventDefault();
+                    showSourceWarning();
+                }
+            });
+
             // --- BARU: Deteksi Pembukaan Developer Tools ---
             const devToolsThreshold = 160;
             let devToolsOpen = false;
