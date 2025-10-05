@@ -2,8 +2,7 @@
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <!-- Perubahan untuk Tampilan Konsisten di Mobile -->
-    <meta name="viewport" content="width=1280">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Algoritma | Portofolio Gatot Sasangka</title>
 
     <meta name="description" content="Portofolio Gatot Sasangka yang disajikan dalam tema Baitul Hikmah, menampilkan proyek-proyek di bidang Jaringan, IoT, AI, dan Pemrograman Web.">
@@ -23,8 +22,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@700&family=Scheherazade+New:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
     <script src="https://unpkg.com/@phosphor-icons/web" defer></script>
 
@@ -140,6 +139,13 @@
             cursor: pointer;
         }
         .classic-button:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-deep-blue);
+            box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+            transform: translate(2px, 2px);
+        }
+        
+        .classic-button.active {
             background-color: var(--accent-gold);
             color: var(--bg-deep-blue);
             box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
@@ -648,6 +654,264 @@
             transform: translateX(0);
         }
         
+        /* --- NEW: INTERACTIVE TIMELINE STYLES --- */
+        .timeline-container {
+            position: relative;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 2rem 0;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 20px; /* Disesuaikan untuk mobile */
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: var(--border-gold);
+            border-radius: 2px;
+            opacity: 0.3;
+        }
+        @media (min-width: 768px) {
+            .timeline-line {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 100%;
+            padding-left: 50px; /* Disesuaikan untuk mobile */
+        }
+        .timeline-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition-delay: 0.2s; /* Sedikit delay agar dot muncul dulu */
+        }
+        .timeline-item.is-visible .timeline-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Desktop view for timeline */
+        @media (min-width: 768px) {
+            .timeline-item {
+                padding-left: 0;
+                width: 50%;
+            }
+            .timeline-item.timeline-item-left {
+                left: 0;
+                padding-right: 40px;
+                text-align: right;
+            }
+            .timeline-item.timeline-item-right {
+                left: 50%;
+                padding-left: 40px;
+                text-align: left;
+            }
+            .timeline-item.timeline-item-right .timeline-content {
+                transform: translateX(20px);
+            }
+            .timeline-item.is-visible .timeline-content {
+                transform: translateX(0);
+            }
+             /* Menyesuaikan posisi judul pada desktop */
+            .timeline-item.timeline-item-left .border-l-4 {
+                border-left: none;
+                border-right: 4px solid var(--border-gold);
+                padding-left: 0;
+                padding-right: 1rem;
+                justify-content: flex-end;
+            }
+             .timeline-item.timeline-item-left .border-l-4 i {
+                margin-right: 0;
+                margin-left: 1rem;
+            }
+            .timeline-item.timeline-item-left .border-l-4 {
+                flex-direction: row-reverse;
+            }
+        }
+        
+        /* --- BARU: SOROTAN KHUSUS --- */
+        .sorotan-khusus {
+            background-color: #f7f1e4;
+            border-right: 4px solid var(--accent-gold);
+            padding: 1rem 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 4px;
+        }
+        .timeline-item.timeline-item-right .sorotan-khusus {
+            border-right: none;
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        /* --- NEW: JOURNAL LAYOUT STYLES --- */
+        .journal-layout {
+            color: var(--text-ink);
+        }
+        .journal-title {
+            font-family: 'Amiri', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        .journal-author {
+            text-align: center;
+            font-style: italic;
+            color: rgba(58, 45, 32, 0.8);
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 1rem;
+        }
+        .journal-abstract {
+            background-color: #f9f4e9;
+            border-left: 4px solid var(--border-gold);
+            padding: 1rem 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .journal-abstract h4 {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .journal-abstract p {
+            font-size: 0.95rem;
+            text-align: justify;
+            line-height: 1.6;
+        }
+        .journal-section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-gold);
+        }
+        .journal-highlight-box {
+            background-color: #f7f1e4;
+            border: 1px solid #e9e2d3;
+            border-left: 4px solid var(--accent-gold);
+            padding: 1.25rem 1.5rem;
+            margin-top: 1.5rem;
+            border-radius: 4px;
+        }
+
+        /* --- BARU: DIAGRAM EVOLUSI INTERAKTIF --- */
+        .evolution-diagram {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .evolution-diagram {
+                grid-template-columns: 1fr 2fr;
+                gap: 3rem;
+            }
+        }
+        .evolution-list .evolution-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border: 2px solid transparent;
+            border-left-color: var(--border-gold);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: transparent;
+            width: 100%;
+            text-align: left;
+        }
+        .evolution-list .evolution-item:hover,
+        .evolution-list .evolution-item.active {
+            background-color: #f7f1e4;
+            border-color: var(--border-gold);
+            transform: translateX(5px);
+        }
+        .evolution-list .evolution-item i {
+            color: var(--accent-teal);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            width: 2rem;
+            text-align: center;
+        }
+        .evolution-list .evolution-item span {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .evolution-display {
+            background-color: #f7f1e4;
+            padding: 2rem;
+            border: 1px solid var(--border-gold);
+            min-height: 150px;
+            position: relative;
+        }
+        .evolution-display-content {
+            transition: opacity 0.4s ease;
+        }
+        .evolution-display-content.loading {
+            opacity: 0.3;
+        }
+        .evolution-display h4 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .evolution-display p {
+            font-size: 1rem;
+            line-height: 1.7;
+            text-align: justify;
+        }
+        
+        /* --- BARU: GAYA ACCORDION --- */
+        .accordion-item {
+            border-bottom: 1px solid var(--border-gold);
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 1.5rem 0.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            text-align: left;
+        }
+        .accordion-header h4 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--text-ink);
+            transition: color 0.3s ease;
+        }
+        .accordion-header:hover h4 {
+            color: var(--accent-teal);
+        }
+        .accordion-icon {
+            font-size: 1.2rem;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--border-gold);
+        }
+        .accordion-header.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0 0.5rem;
+        }
+        .accordion-content-inner {
+            padding-bottom: 1.5rem;
+        }
     </style>
 </head>
 <body class="bg-[var(--bg-deep-blue)]">
@@ -796,44 +1060,34 @@
                         
                         <div class="fancy-divider animate-on-scroll animation-delay-200"></div>
 
-                        <h2 class="text-4xl md:text-5xl mb-4 leading-tight text-center animate-on-scroll animation-delay-200 text-[var(--text-light)]">Jejak Inovasi: Dari Algoritma Al-Khwarizmi hingga Kecerdasan Buatan</h2>
+                        <h2 class="text-4xl md:text-5xl mb-4 leading-tight text-center animate-on-scroll animation-delay-200 text-[var(--text-light)]">Kabar Teknologi Terkini</h2>
                          <p class="max-w-3xl mx-auto text-center text-lg mb-10 text-[var(--text-light)] animate-on-scroll animation-delay-400">
-                           Sebuah penelusuran sejarah yang memetakan evolusi pemikiran komputasi, dari konsep fundamental yang diletakkan oleh Al-Khwarizmi hingga era kecerdasan buatan yang mendefinisikan kembali masa depan kita.
+                           Menyajikan berita dan analisis terbaru dari dunia teknologi global, dikurasi langsung dari sumber-sumber terkemuka. Ikuti perkembangan terkini yang membentuk masa depan digital kita.
                         </p>
+
+                        <!-- BARU: Tombol Kategori Berita -->
+                        <div id="news-categories" class="flex flex-wrap justify-center gap-4 mb-8 animate-on-scroll animation-delay-600">
+                            <button class="classic-button news-category-btn active" data-category="all">Semua</button>
+                            <button class="classic-button news-category-btn" data-category="ai">AI</button>
+                            <button class="classic-button news-category-btn" data-category="networking">Jaringan</button>
+                            <button class="classic-button news-category-btn" data-category="iot">IoT</button>
+                            <button class="classic-button news-category-btn" data-category="cybersecurity">Keamanan Siber</button>
+                            <button class="classic-button news-category-btn" data-category="programming">Pemrograman</button>
+                            <button id="refresh-news-btn" class="classic-button news-category-btn" title="Segarkan Berita"><i class="fas fa-sync-alt"></i></button>
+                        </div>
                         
-                        <div class="article-frame animate-on-scroll animation-delay-600">
-                             <div class="space-y-8">
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-scroll mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-9 — Awal Algoritma</h3>
-                                    <p class="text-justify">Sejarah teknologi adalah perjalanan panjang tentang bagaimana ide-ide besar lahir dari fondasi yang diletakkan oleh para pemikir terdahulu. Perjalanan ini dimulai pada abad ke-9, ketika seorang ilmuwan Muslim bernama Al-Khwarizmi memperkenalkan konsep algoritma, dasar dari semua komputasi modern. Pemikirannya menjadi pondasi logika yang memungkinkan manusia merancang mesin yang dapat menghitung, memproses data, dan menyelesaikan masalah secara sistematis. “Algoritma bukan sekadar perhitungan, tetapi cara berpikir yang membentuk masa depan teknologi.”</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-print mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-15 — Revolusi Mesin Cetak</h3>
-                                    <p class="text-justify">Berabad-abad kemudian, pada abad ke-15, Johannes Gutenberg menemukan mesin cetak, sebuah inovasi yang merevolusi penyebaran informasi. Sebelum itu, pengetahuan hanya dikuasai segelintir orang, namun mesin cetak membuat buku dan ilmu pengetahuan menyebar ke seluruh dunia, dengan dampak yang setara dengan internet di era modern: mempercepat kolaborasi dan memperluas wawasan umat manusia.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-cogs mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-18 — Revolusi Industri</h3>
-                                    <p class="text-justify">Memasuki abad ke-18, Revolusi Industri mengubah dunia secara drastis melalui mesin uap dan mekanisasi. Untuk pertama kalinya, tenaga mekanis menggantikan kerja fisik manusia, memicu perubahan sosial besar dan melahirkan era industri modern. Era ini juga menjadi fondasi bagi lahirnya teknologi komunikasi instan di abad berikutnya.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-laptop-code mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-19–20 — Era Digital Awal</h3>
-                                    <p class="text-justify">Pada abad ke-19, telegraf memungkinkan komunikasi instan, mengubah dunia selamanya. Abad ke-20 menandai kelahiran komputer digital, yang berevolusi dari mesin raksasa menjadi perangkat pribadi. Menjelang akhir abad ini, lahirlah internet, jaringan global yang menghubungkan miliaran orang, menghapus batasan geografis dan memicu revolusi informasi kedua.</p>
-                                </div>
-                                 <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-brain mr-4 text-3xl text-[var(--accent-teal)]"></i>Abad ke-21 — Kecerdasan Buatan & IoT</h3>
-                                    <p class="text-justify">Kini, di abad ke-21, kita memasuki era di mana teknologi mampu berpikir dan belajar sendiri. Kecerdasan Buatan (AI) dan Internet of Things (IoT) memungkinkan perangkat saling berkomunikasi, menganalisis data, dan mengambil keputusan secara mandiri. Dari mobil otonom hingga rumah pintar, kemajuan ini membawa tantangan etika dan tanggung jawab baru.</p>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-bold mb-3 border-l-4 border-[var(--border-gold)] pl-4 flex items-center"><i class="fas fa-infinity mr-4 text-3xl text-[var(--accent-teal)]"></i>Masa Depan</h3>
-                                    <p class="text-justify">Portofolio ini menyajikan proyek-proyek yang berdiri di atas bahu para raksasa sejarah, menggabungkan warisan klasik dengan inovasi modern. Setiap karya menjadi bukti bahwa perjalanan teknologi adalah kisah yang belum berakhir — narasi yang terus ditulis setiap hari oleh para insinyur, pemikir, dan pencipta di seluruh dunia.</p>
-                                </div>
-                            </div>
+                        <div id="tech-news-loading" class="text-center text-lg text-[var(--text-light)]">
+                            <i class="fas fa-spinner fa-spin mr-2"></i> Memuat berita...
+                        </div>
+                        
+                        <div id="tech-news-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Kartu berita akan dimasukkan di sini oleh JavaScript -->
                         </div>
                     </section>
         
                     <section id="about-page" class="page hidden">
                         <header class="pb-8">
-                            <div class="container mx-auto px-6 text-center text-[var(--text-light)]">
+                            <div class="container mx-auto px-6 text-center text-[var(--text-light)]"> 
                                 <div class="border-t-2 border-b-2 border-[var(--border-gold)] pt-4 pb-2" style="background-image: url('data:image/svg+xml,%3Csvg width=\'6\' height=\'6\' viewBox=\'0 0 6 6\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23c7a55b\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Cpath d=\'M5 0h1L0 6V5zM6 5v1H5z\'/%3E%3C/g%3E%3C/svg%3E');">
                                     <h1 class="text-5xl md:text-7xl font-cinzel tracking-wider mb-4 animated-gradient-text">Profil Sang Inisiat</h1>
                                     <div class="text-xs tracking-widest flex justify-between items-center text-[var(--text-light)]/80">
@@ -1621,6 +1875,23 @@
         </div>
     </div>
 
+    <!-- BARU: Peringatan Lihat Sumber Halaman -->
+    <div id="source-warning-overlay" class="modal-overlay">
+        <div class="modal-content" style="height: auto; max-width: 500px;">
+            <div class="modal-header">
+                <h5 class="modal-title">Akses Ditolak</h5>
+            </div>
+            <div class="modal-body text-center py-8">
+                <i class="fas fa-exclamation-triangle text-5xl text-red-600 mb-4"></i>
+                <p class="text-lg">Untuk menjaga integritas intelektual dan hak cipta dari manuskrip ini, akses untuk melihat kode sumber halaman telah dinonaktifkan.</p>
+                <p class="text-sm mt-4">Terima kasih atas pengertian Anda.</p>
+                <button id="close-warning-btn" class="classic-button mt-8">Saya Mengerti</button>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1641,6 +1912,63 @@
             const playText = document.getElementById('play-text');
             const stopText = document.getElementById('stop-text');
 
+            // --- BARU: Logika Peringatan Lihat Sumber Halaman ---
+            const sourceWarningOverlay = document.getElementById('source-warning-overlay');
+            const closeWarningBtn = document.getElementById('close-warning-btn');
+
+            function showSourceWarning() {
+                if (sourceWarningOverlay) {
+                    sourceWarningOverlay.classList.add('active');
+                }
+            }
+
+            if (closeWarningBtn) {
+                closeWarningBtn.addEventListener('click', () => {
+                    if (sourceWarningOverlay) {
+                        sourceWarningOverlay.classList.remove('active');
+                    }
+                });
+            }
+
+            document.addEventListener('contextmenu', e => {
+                e.preventDefault();
+                showSourceWarning();
+            });
+
+            // --- BARU: Deteksi penekanan tombol keyboard ---
+            document.addEventListener('keydown', e => {
+                // Blok F12
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                    showSourceWarning();
+                }
+                // Blok Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+                if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'i' || e.key === 'j')) {
+                    e.preventDefault();
+                    showSourceWarning();
+                }
+            });
+
+            // --- BARU: Deteksi Pembukaan Developer Tools ---
+            const devToolsThreshold = 160;
+            let devToolsOpen = false;
+
+            function checkDevTools() {
+                if (window.outerWidth - window.innerWidth > devToolsThreshold || window.outerHeight - window.innerHeight > devToolsThreshold) {
+                    if (!devToolsOpen) {
+                        showSourceWarning();
+                        devToolsOpen = true;
+                    }
+                } else {
+                    devToolsOpen = false;
+                }
+            }
+
+            // Memeriksa secara berkala
+            setInterval(checkDevTools, 1000);
+
+            // --- AKHIR DARI LOGIKA DETEKSI DEV TOOLS ---
+
             if (soundToggleBtn && backgroundMusic && playText && stopText) {
                 soundToggleBtn.addEventListener('click', () => {
                     if (backgroundMusic.paused) {
@@ -1655,31 +1983,20 @@
                 });
             }
 
-            // Menangani animasi loader saat halaman pertama kali dimuat
             window.addEventListener('load', () => {
                 setTimeout(() => {
                     if(loader) loader.classList.add('hidden');
                     
+                    // PERBAIKAN: Menghapus upaya autoplay musik yang tidak andal.
+                    // Musik kini hanya akan diputar melalui interaksi pengguna via tombol 'soundToggleBtn'.
+                    // Ini mencegah error konsol dari kebijakan autoplay browser.
                     if (backgroundMusic) {
-                        const playPromise = backgroundMusic.play();
-                        if (playPromise !== undefined) {
-                            playPromise.then(_ => {
-                                // Autoplay berhasil, perbarui UI tombol
-                                if (playText && stopText) {
-                                    playText.classList.add('hidden');
-                                    stopText.classList.remove('hidden');
-                                }
-                            }).catch(error => {
-                                // Autoplay dicegah, pengguna harus mengklik secara manual.
-                                console.log("Autoplay musik dicegah oleh browser. Interaksi pengguna diperlukan.");
-                            });
-                        }
+                        console.log("Sistem audio siap. Klik 'Mulai Langkahmu' untuk memutar musik.");
                     }
                 }, 2800);
             });
             
-            // --- LOGIKA BUKA/TUTUP BUKU ---
-            const handleBookOpen = () => {
+            openBookBtn.addEventListener('click', () => {
                 // 1. Mulai animasi menutup gerbang
                 document.body.classList.add('loading-transition');
 
@@ -1688,7 +2005,7 @@
                     // 3. Ganti konten halaman di belakang layar
                     coverPage.classList.add('cover-hidden');
                     contentPages.classList.add('content-visible');
-                    if(pageContentContainer) pageContentContainer.scrollTop = 0; // Reset scroll ke atas
+                    pageContentContainer.scrollTop = 0; // Reset scroll ke atas
                     stopAstrolabeAnimation();
                     startParticleAnimation();
 
@@ -1703,9 +2020,9 @@
                         setTimeout(() => document.body.classList.remove('loading-transition'), 50);
                     });
                 }, 1200); // Durasi ini harus cocok dengan transisi CSS .transition-gate
-            };
+            });
 
-            const handleBookClose = () => {
+            closeBookBtn.addEventListener('click', () => {
                 // 1. Mulai animasi menutup gerbang
                 document.body.classList.add('loading-transition');
 
@@ -1722,14 +2039,10 @@
                         setTimeout(() => document.body.classList.remove('loading-transition'), 50);
                     });
                 }, 1200); // Cocokkan dengan durasi transisi CSS
-            };
-
-            if(openBookBtn) openBookBtn.addEventListener('click', handleBookOpen);
-            if(closeBookBtn) closeBookBtn.addEventListener('click', handleBookClose);
+            });
 
             // --- CANVAS ANIMATION LOGIC ---
             const canvasAnimations = {
-                // Animasi untuk kartu proyek "Klasifikasi Gambar CNN"
                 'cnn-canvas': (ctx, w, h) => {
                     let t = 0;
                     const imgSize = h * 0.5;
@@ -1801,7 +2114,6 @@
                     }
                     loop();
                 },
-                // Animasi untuk kartu proyek "Penerjemah Sandi Morse"
                 'morse-canvas': (ctx, w, h) => {
                     let t = 0;
                     const dictionary = [
@@ -1909,7 +2221,6 @@
                     }
                     loop();
                 },
-                // Animasi untuk kartu proyek "Toko Online Secondhand"
                  'web-canvas': (ctx, w, h) => {
                     let t = 0;
                     const client = { x: w * 0.2, y: h/2 };
@@ -2005,7 +2316,6 @@
                     }
                     loop();
                 },
-                // Animasi untuk kartu proyek "SRS Greenhouse Cerdas"
                 'iot-canvas': (ctx, w, h) => {
                     let growth = 0; let t = 0;
                     const plantBaseY = h * 0.9;
@@ -2070,7 +2380,6 @@
                     }
                     loop();
                 },
-                // Animasi untuk kartu proyek "Analisis PIECES"
                 'pieces-canvas': (ctx, w, h) => {
                     let t = 0;
                     const piecesFramework = [
@@ -2147,7 +2456,6 @@
                     }
                     loop();
                 },
-                // Animasi untuk kartu proyek "Desain Infrastruktur Jaringan"
                 'network-canvas': (ctx, w, h) => {
                     let t = 0;
                     const internet = { x: w * 0.1, y: h/2, icon: '\uf0c2' };
@@ -2233,7 +2541,6 @@
                     }
                     loop();
                 },
-                // Animasi untuk kartu proyek "Desain Antena Yagi"
                 'yagi-canvas': (ctx, w, h) => {
                     let t = 0;
                     const boomY = h/2;
@@ -2348,7 +2655,6 @@
                 }
             };
             
-            // Fungsi untuk memulai animasi pada canvas yang terlihat di layar
             function startCanvasAnimation(canvas) {
                 const animationFunc = canvasAnimations[canvas.id];
                 if (animationFunc) {
@@ -2357,7 +2663,133 @@
                 }
             }
 
-            // Observer untuk mendeteksi elemen yang masuk ke viewport dan memicu animasi
+            // --- BARU: LOGIKA BERITA TEKNOLOGI ---
+            const newsCategories = {
+                all: 'technology OR AI OR programming OR IoT OR cybersecurity',
+                ai: '"artificial intelligence" OR "generative AI" OR "machine learning"',
+                networking: '"computer network" OR "network infrastructure" OR 5G OR 6G',
+                iot: '"internet of things" OR IoT',
+                cybersecurity: 'cybersecurity OR "data breach" OR malware OR vulnerability',
+                programming: 'programming OR "software development" OR python OR javascript'
+            };
+            
+            async function fetchAndRenderTechNews(category = 'all') {
+                const newsContainer = document.getElementById('tech-news-container');
+                const loadingIndicator = document.getElementById('tech-news-loading');
+                
+                loadingIndicator.style.display = 'block';
+                newsContainer.innerHTML = '';
+            
+                const query = newsCategories[category] || newsCategories.all;
+                
+                // Definisikan dua sumber: Global (en-US) dan Indonesia (id-ID)
+                const rssUrlGlobal = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=en-US&gl=US&ceid=US:en`;
+                const rssUrlIndonesia = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=id&gl=ID&ceid=ID:id`;
+            
+                const apiUrlGlobal = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrlGlobal)}`;
+                const apiUrlIndonesia = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrlIndonesia)}`;
+            
+                try {
+                    // Ambil berita dari kedua sumber secara paralel
+                    const [responseGlobal, responseIndonesia] = await Promise.all([
+                        fetch(apiUrlGlobal),
+                        fetch(apiUrlIndonesia)
+                    ]);
+            
+                    if (!responseGlobal.ok || !responseIndonesia.ok) {
+                        throw new Error(`HTTP error! Status: Global ${responseGlobal.status}, Indonesia ${responseIndonesia.status}`);
+                    }
+            
+                    const resultGlobal = await responseGlobal.json();
+                    const resultIndonesia = await responseIndonesia.json();
+            
+                    let combinedItems = [];
+                    if (resultGlobal.status === 'ok') {
+                        combinedItems.push(...resultGlobal.items);
+                    }
+                    if (resultIndonesia.status === 'ok') {
+                        combinedItems.push(...resultIndonesia.items);
+                    }
+            
+                    // Hapus duplikat berdasarkan judul berita
+                    const uniqueTitles = new Set();
+                    const uniqueItems = combinedItems.filter(item => {
+                        if (!uniqueTitles.has(item.title)) {
+                            uniqueTitles.add(item.title);
+                            return true;
+                        }
+                        return false;
+                    });
+            
+                    // Acak urutan berita untuk variasi
+                    const shuffledItems = uniqueItems.sort(() => 0.5 - Math.random());
+            
+                    loadingIndicator.style.display = 'none';
+                    newsContainer.innerHTML = '';
+            
+                    shuffledItems.slice(0, 12).forEach((item, index) => { // Tampilkan hingga 12 berita
+                        // Ekstrak deskripsi bersih dari HTML
+                        const tempDiv = document.createElement('div');
+                        tempDiv.innerHTML = item.description;
+                        const source = tempDiv.querySelector('a')?.textContent || 'Sumber Tidak Diketahui';
+                        const descriptionText = tempDiv.querySelector('font[size="-1"]')?.textContent.split('...')[1]?.trim() || '';
+            
+                        const newsCard = `
+                            <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="block animate-on-scroll" style="animation-delay: ${index * 150 + 600}ms;">
+                                <article class="manuscript-item h-full">
+                                    <div class="flex-grow">
+                                        <p class="text-sm text-[var(--accent-teal)] font-bold mb-2">${source.toUpperCase()}</p>
+                                        <h4 class="manuscript-title" style="font-size: 1.5rem;">${item.title}</h4>
+                                        ${descriptionText ? `<p class="manuscript-excerpt mb-4 text-justify">${descriptionText}</p>` : ''}
+                                    </div>
+                                </article>
+                            </a>
+                        `;
+                        newsContainer.innerHTML += newsCard;
+                    });
+            
+                    // Re-observe new elements for animation
+                    newsContainer.querySelectorAll('.animate-on-scroll').forEach(el => {
+                        animateOnScrollObserver.observe(el);
+                    });
+            
+                } catch (error) {
+                    console.error("Gagal mengambil berita:", error);
+                    loadingIndicator.innerHTML = `<i class="fas fa-exclamation-triangle mr-2"></i> Gagal memuat berita. Silakan coba lagi nanti.`;
+                }
+            }
+
+            // Panggil fungsi untuk pertama kali
+            fetchAndRenderTechNews('all');
+
+            // Tambahkan event listener untuk tombol kategori
+            const categoryButtons = document.querySelectorAll('.news-category-btn');
+            categoryButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const selectedCategory = button.dataset.category;
+                    // Perbarui tampilan tombol aktif
+                    categoryButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    fetchAndRenderTechNews(selectedCategory);
+                });
+            });
+
+            // --- BARU: LOGIKA TOMBOL SEGARKAN BERITA ---
+            const refreshButton = document.getElementById('refresh-news-btn');
+            if (refreshButton) {
+                refreshButton.addEventListener('click', (e) => {
+                    const activeCategory = document.querySelector('.news-category-btn.active')?.dataset.category || 'all';
+                    fetchAndRenderTechNews(activeCategory);
+                });
+            }
+
+            // --- BARU: PEMBARUAN BERITA OTOMATIS ---
+            // Set interval untuk memuat ulang berita setiap 24 jam (86400000 milidetik)
+            setInterval(() => {
+                const activeCategory = document.querySelector('.news-category-btn.active')?.dataset.category || 'all';
+                fetchAndRenderTechNews(activeCategory);
+            }, 86400000);
+
             const animateOnScrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -2373,7 +2805,28 @@
                 });
             }, { root: null, threshold: 0.1 });
 
-            // --- LOGIKA NAVIGASI HALAMAN ---
+            // --- BARU: Intersection Observer untuk Timeline ---
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            if (timelineItems.length > 0) {
+                const timelineObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                        } else {
+                            // Opsi: hapus kelas saat keluar dari pandangan agar animasi berulang
+                            // entry.target.classList.remove('is-visible');
+                        }
+                    });
+                }, { 
+                    root: pageContentContainer, // Menggunakan kontainer yang bisa digulir sebagai root
+                    threshold: 0.3 // Memicu saat 30% item terlihat
+                });
+
+                timelineItems.forEach(item => {
+                    timelineObserver.observe(item);
+                });
+            }
+
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -2381,18 +2834,15 @@
                     const targetPage = document.getElementById(targetId);
                     const currentActiveLink = document.querySelector('.nav-link.active-page');
 
-                    // Jangan lakukan apa-apa jika link yang sama diklik atau target tidak ada
                     if ((currentActiveLink && currentActiveLink.getAttribute('href') === link.getAttribute('href')) || !targetPage) {
                         return;
                     }
 
-                    // Perbarui kelas aktif pada link navigasi
                     navLinks.forEach(navLink => navLink.classList.remove('active-page'));
                     link.classList.add('active-page');
 
                     const currentPage = Array.from(pages).find(p => !p.classList.contains('hidden'));
 
-                    // Fungsi untuk menukar halaman dengan efek fade
                     const switchPages = () => {
                         pages.forEach(p => {
                             p.classList.add('hidden');
@@ -2412,7 +2862,6 @@
                         });
                     };
 
-                    // Terapkan efek fade-out sebelum fade-in halaman baru
                     if (currentPage) {
                         currentPage.classList.add('page-fade-out');
                         setTimeout(switchPages, 300);
@@ -2422,7 +2871,6 @@
                 });
             });
 
-            // Inisialisasi observer untuk elemen di halaman pertama yang terlihat
             const initialPage = document.querySelector('.page:not(.hidden)');
             if (initialPage) {
                 initialPage.querySelectorAll('.animate-on-scroll').forEach(el => {
@@ -2430,7 +2878,6 @@
                 });
             }
 
-            // Logika untuk tombol minimize/maximize sidebar
             toggleMenuBtn.addEventListener('click', () => {
                 const icon = toggleMenuBtn.querySelector('i');
                 contentPages.classList.toggle('sidebar-minimized');
@@ -2439,15 +2886,13 @@
                 toggleMenuBtn.setAttribute('aria-label', isMinimized ? 'Buka Menu' : 'Tutup Menu');
             });
             
-            // Fungsi untuk menampilkan tanggal dan waktu yang berjalan
             function setupDateTime() {
                 const liveTimeElements = document.querySelectorAll('.live-datetime');
                 if (liveTimeElements.length > 0) {
-                    const staticDate = new Date('2025-09-15T00:00:00'); 
                     const articleDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
-                    const formattedDate = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(staticDate);
                     const updateLiveTime = () => {
                         const now = new Date();
+                        const formattedDate = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(now);
                         const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Makassar' };
                         const formattedTime = new Intl.DateTimeFormat('id-ID', timeOptions).format(now).replace(/\./g, ':');
                         liveTimeElements.forEach(el => el.textContent = `${formattedDate} | ${formattedTime}`);
@@ -2458,7 +2903,6 @@
             }
             setupDateTime();
 
-            // Menyisipkan alamat email secara dinamis untuk menghindari deteksi bot sederhana
             const emailContainer = document.getElementById('email-address-container');
             if (emailContainer) {
                 const user = 'sasangkagatot';
@@ -2466,7 +2910,6 @@
                 emailContainer.textContent = `${user}@${domain}`;
             }
 
-            // Logika untuk tombol "Kembali ke Atas"
             if (pageContentContainer && backToTopBtn) {
                 pageContentContainer.addEventListener('scroll', () => {
                     backToTopBtn.classList.toggle('show', pageContentContainer.scrollTop > 300);
@@ -2476,7 +2919,6 @@
                 });
             }
 
-            // --- KONTEN MODAL (POP-UP) ---
             const manuscripts = {
                 'ai-ethics': {
                     title: "Etika Kecerdasan Buatan: Cermin 'Kota Utama' Al-Farabi",
@@ -2504,7 +2946,6 @@
                 }
             };
 
-            // Variabel global untuk manajemen state modal
             let modalTriggerElement = null, currentActiveModal = null, parentModalForViewer = null;
 
             const openModal = (modal) => {
@@ -2514,7 +2955,7 @@
                 modal.classList.add('active');
                 document.body.classList.add('body-no-scroll');
                 const loader = modal.querySelector('.modal-loader'), mainContent = modal.querySelector('.modal-main-content');
-                // Menampilkan loader sebelum konten dimuat
+                
                 const showContent = () => {
                     if(loader) loader.classList.remove('show');
                     if(mainContent) mainContent.classList.remove('content-hidden');
@@ -2528,12 +2969,10 @@
 
             const closeModal = (modal) => {
                 if (!modal || !modal.classList.contains('active')) return;
-                // Menghentikan sintesis suara jika sedang berjalan saat modal ditutup
+                
                 if (window.speechSynthesis.speaking) {
                     window.speechSynthesis.cancel();
                 }
-
-                // Menutup modal dan mengembalikan state scroll
                 modal.classList.remove('active');
 
                 if (modal.id === 'image-viewer-modal' && parentModalForViewer) {
@@ -2545,7 +2984,6 @@
                     currentActiveModal = null;
                 }
 
-                // Membersihkan konten modal (iframe, gambar) setelah ditutup
                 setTimeout(() => {
                     if (modal.id === 'image-viewer-modal') {
                         const image = modal.querySelector('.modal-image');
@@ -2563,7 +3001,7 @@
                 }, 400); 
             };
 
-            // Event listener utama untuk semua tombol yang membuka modal
+
             document.addEventListener('click', (event) => {
                 const button = event.target.closest('[data-modal-target]');
                 if (!button) return;
@@ -2573,7 +3011,6 @@
                 if (!modal) return;
 
                 const parentModal = button.closest('.modal-overlay');
-                // Menangani kasus khusus saat membuka image viewer dari dalam modal lain
 
                 if (parentModal && modalId === '#image-viewer-modal') {
                     parentModalForViewer = parentModal;
@@ -2582,7 +3019,6 @@
                     closeModal(parentModal);
                 }
 
-                // Memuat konten manuskrip ke dalam modal
                 if (modalId === '#manuscript-modal') {
                     const manuscriptId = button.dataset.manuscriptId;
                     const manuscriptData = manuscripts[manuscriptId];
@@ -2592,14 +3028,12 @@
                     }
                 }
 
-                // Memuat gambar ke dalam image viewer
                 if (modalId === '#image-viewer-modal') {
                      const imageSrc = button.dataset.src;
                      const imgElement = modal.querySelector('.modal-image');
                      if(imgElement) imgElement.src = imageSrc;
                 }
                 
-                // Memuat dokumen Google Drive ke dalam iframe
                 const docId = button.dataset.docId;
                 if (docId) { 
                     const embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
@@ -2609,7 +3043,6 @@
                     }
                 }
                 
-                // Memuat URL lain ke dalam iframe (untuk simulasi, prototipe, dll.)
                 const iframeSrc = button.dataset.iframeSrc;
                 if (iframeSrc) {
                     const iframe = modal.querySelector('.modal-iframe');
@@ -2621,18 +3054,16 @@
                 openModal(modal);
             });
 
-            // Event listener untuk menutup modal saat mengklik area luar atau tombol close
+
             document.querySelectorAll('.modal-overlay').forEach(overlay => {
                 overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(overlay); });
                 overlay.querySelector('.modal-close-btn')?.addEventListener('click', () => closeModal(overlay));
             });
             document.addEventListener('keydown', e => { if (e.key === 'Escape' && currentActiveModal) closeModal(currentActiveModal); });
 
-            // --- LOGIKA AUDIO NARASI PROYEK ---
             const audioToggleButtons = document.querySelectorAll('.project-audio-toggle');
             const allProjectAudios = document.querySelectorAll('.project-audio');
 
-            // Menangani klik pada tombol play/pause narasi
             audioToggleButtons.forEach(button => {
                 const audioId = button.dataset.audioTarget;
                 const audioElement = document.querySelector(audioId);
@@ -2643,7 +3074,6 @@
 
                 button.addEventListener('click', () => {
                     if (audioElement.paused) {
-                        // Hentikan semua audio lain sebelum memulai yang baru
                         allProjectAudios.forEach(audio => {
                             if (audio !== audioElement && !audio.paused) {
                                 audio.pause();
@@ -2655,7 +3085,6 @@
                     }
                 });
 
-                // Perbarui UI tombol saat audio diputar, dijeda, atau selesai
                 audioElement.addEventListener('play', () => {
                     buttonIcon.className = 'fas fa-pause';
                     if (buttonText) buttonText.textContent = 'Jeda Narasi';
@@ -2676,7 +3105,6 @@
                 });
             });
             
-            // Memastikan hanya satu audio yang bisa diputar pada satu waktu
             allProjectAudios.forEach(audioEl => {
                 audioEl.addEventListener('play', () => {
                     audioToggleButtons.forEach(btn => {
@@ -2696,8 +3124,8 @@
                 });
             });
 
-            // Data untuk galeri sertifikat
             const certificates = [
+                { src: "https://i.imgur.com/kKZz1sp.png", alt: "Sertifikat Ethical Hacker", title: "Ethical Hacker For Dummies", desc: "Digital Talent Scholarship - 2025" },
                 { src: "https://i.imgur.com/wZ7owwo.png", alt: "Sertifikat Magang DLHK DIY", title: "Magang DLHK DIY", desc: "Dinas Lingkungan Hidup & Kehutanan DIY - 2024" },
                 { src: "https://i.imgur.com/fgV6iQP.png", alt: "Sertifikat Literasi Digital", title: "Literasi Digital", desc: "Kemkominfo - 2023" },
                 { src: "https://i.imgur.com/eyW5LUw.png", alt: "Sertifikat Seminar Cyber Security", title: "Seminar Keamanan Siber", desc: "HIMATEKNO FTTI UNJAYA - 2023" },
@@ -2709,7 +3137,6 @@
                 { src: "https://i.imgur.com/Pqwf8N1.png", alt: "Sertifikat Dasar-dasar TI", title: "Dasar-dasar TI", desc: "Cisco Networking Academy - 2020" }
             ];
             const galleryContainer = document.querySelector('#sertifikat-modal-content');
-            // Membangun galeri sertifikat secara dinamis
             if(galleryContainer) {
                 galleryContainer.innerHTML = certificates.map(cert => `
                     <button data-modal-target="#image-viewer-modal" data-src="${cert.src}" class="block border-2 border-[var(--border-gold)] hover:border-[var(--accent-teal)] transition-all duration-300 p-2 group text-left certificate-item">
@@ -2726,7 +3153,6 @@
                 `).join('');
             }
 
-            // Logika untuk tombol "Salin Alamat Surel"
             const copyEmailBtn = document.getElementById('copy-email-btn');
             if (copyEmailBtn) {
                 copyEmailBtn.addEventListener('click', () => {
@@ -2739,21 +3165,20 @@
                 });
             }
 
-            // --- ANIMASI ASTROLABE ---
             let animationFrameId = null;
             let lastRulerAngle = 0;
-            const rete = document.getElementById('astrolabe-rete'); // Jaring-jaring bintang
-            const ruler = document.getElementById('astrolabe-ruler'); // Jarum utama
-            const rulerAlt = document.getElementById('astrolabe-ruler-alt'); // Jarum berlawanan arah
-            const ring1 = document.getElementById('astrolabe-ring-1'); // Cincin luar
-            const ring2 = document.getElementById('astrolabe-ring-2'); // Cincin dalam
+            const rete = document.getElementById('astrolabe-rete');
+            const ruler = document.getElementById('astrolabe-ruler');
+            const rulerAlt = document.getElementById('astrolabe-ruler-alt');
+            const ring1 = document.getElementById('astrolabe-ring-1'); // Cincin baru 1
+            const ring2 = document.getElementById('astrolabe-ring-2'); // Cincin baru 2
             function animateAstrolabe(timestamp) {
                 const time = timestamp / 1000;
-                const currentRulerAngle = time * 30; // Kecepatan jarum utama
-                const counterRulerAngle = time * -10; // Kecepatan jarum berlawanan arah (diperlambat dari -15)
-                const reteAngle = time * 5; // Kecepatan jaring-jaring
-                const ring1Angle = time * -8; // Kecepatan cincin 1
-                const ring2Angle = time * 12; // Kecepatan cincin 2
+                const currentRulerAngle = time * 30;
+                const counterRulerAngle = time * -5; // Kecepatan berlawanan arah (diperlambat)
+                const reteAngle = time * 5;
+                const ring1Angle = time * -8;
+                const ring2Angle = time * 5;
 
                 // Animasikan astrolab utama
                 if (rete) rete.setAttribute('transform', `rotate(${reteAngle} 250 250)`);
@@ -2771,7 +3196,6 @@
             function stopAstrolabeAnimation() { if (animationFrameId) { cancelAnimationFrame(animationFrameId); animationFrameId = null; } }
             startAstrolabeAnimation();
             
-            // Efek paralaks pada astrolab saat mouse bergerak di halaman sampul
             const astrolabeSvg = document.getElementById('astrolabe-svg');
             if (coverPage && astrolabeSvg) {
                 coverPage.addEventListener('mousemove', (e) => {
@@ -2784,7 +3208,6 @@
                 coverPage.addEventListener('mouseleave', () => { astrolabeSvg.style.transform = 'translate(0, 0)'; });
             }
 
-            // --- ANIMASI LATAR BELAKANG BINTANG & METEOR ---
             const starfieldCanvas = document.getElementById('starfield-canvas');
             if (starfieldCanvas) {
                 const ctx = starfieldCanvas.getContext('2d');
@@ -2882,7 +3305,6 @@
                 animateStars();
             }
             
-            // --- ANIMASI LATAR BELAKANG PARTIKEL (DI HALAMAN ISI) ---
             const particleCanvas = document.getElementById('particle-canvas');
             let particleAnimationId = null;
             let particles = [];
@@ -2891,10 +3313,13 @@
             function startParticleAnimation() {
                 if (particleAnimationId || !particleCanvas) return;
                 particleCtx = particleCanvas.getContext('2d');
-                // Fungsi untuk menyesuaikan ukuran canvas dengan kontainernya
+                
                 const resizeCanvas = () => {
+                    // PERBAIKAN: Menggunakan clientHeight bukan scrollHeight.
+                    // Ini memastikan kanvas hanya seukuran area yang terlihat,
+                    // mencegah masalah performa pada halaman yang panjang.
                     particleCanvas.width = pageContentContainer.clientWidth;
-                    particleCanvas.height = pageContentContainer.scrollHeight;
+                    particleCanvas.height = pageContentContainer.clientHeight;
                     createParticles();
                 };
 
@@ -2912,7 +3337,6 @@
                     }
                 };
 
-                // Loop utama animasi partikel
                 const animateParticles = () => {
                     particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
                     
@@ -2923,13 +3347,11 @@
                         if (p1.x < 0 || p1.x > particleCanvas.width) p1.vx *= -1;
                         if (p1.y < 0 || p1.y > particleCanvas.height) p1.vy *= -1;
 
-                        // Gambar partikel
                         particleCtx.beginPath();
                         particleCtx.arc(p1.x, p1.y, p1.radius, 0, Math.PI * 2);
                         particleCtx.fillStyle = 'rgba(199, 165, 91, 0.4)';
                         particleCtx.fill();
 
-                        // Gambar garis penghubung antar partikel yang berdekatan
                         particles.forEach(p2 => {
                             const dx = p1.x - p2.x;
                             const dy = p1.y - p2.y;
@@ -2949,7 +3371,6 @@
                     particleAnimationId = requestAnimationFrame(animateParticles);
                 };
 
-                // Gunakan ResizeObserver untuk menyesuaikan canvas saat ukuran kontainer berubah
                 const ro = new ResizeObserver(entries => {
                     for (let entry of entries) {
                         resizeCanvas();
@@ -2966,6 +3387,96 @@
                     cancelAnimationFrame(particleAnimationId);
                     particleAnimationId = null;
                 }
+            }
+
+            // --- BARU: LOGIKA EVOLUSI INTERAKTIF ---
+            const evolutionData = {
+                'evolusi-data': {
+                    title: 'Data Digital',
+                    content: 'Revolusi terbesar dalam sejarah informasi bukanlah penemuan tulisan itu sendiri, melainkan transformasinya dari wujud fisik menjadi data digital. Tulisan dan angka yang dahulu terikat pada batu, lontar, atau kertas, kini dibebaskan menjadi entitas yang tak kasat mata. Di dunia modern, setiap huruf, angka, gambar, bahkan suara, diterjemahkan ke dalam bahasa universal komputer: susunan kode biner nol dan satu. Transformasi fundamental ini memungkinkan informasi untuk disimpan secara ringkas dalam file, diorganisasi secara sistematis dalam database, dan melintasi benua dalam sekejap mata melalui jaringan global.<br><br>Keunggulan data digital melampaui sekadar efisiensi. Ia menawarkan ketahanan yang belum pernah ada sebelumnya; tidak seperti media fisik yang rentan rusak atau hilang, data digital dapat diperbanyak tanpa batas dengan kualitas sempurna. Keamanannya pun ditingkatkan melalui enkripsi, dan aksesnya menjadi universal—dapat dijangkau kapan saja dari berbagai perangkat. Pergeseran ini bukan hanya mengubah cara kita menyimpan pengetahuan, tetapi juga melahirkan peradaban informasi baru. Hampir setiap pilar kehidupan modern, mulai dari pendidikan, perdagangan, komunikasi, hingga seni, kini berdiri di atas fondasi data digital yang berfungsi sebagai tulang punggungnya.'
+                },
+                'evolusi-io': {
+                    title: 'Jembatan Antara Manusia & Mesin',
+                    content: 'Bagaimana cara manusia "berbicara" dengan mesin? Jawabannya terletak pada evolusi perangkat Input/Output (I/O), yang berakar dari prinsip mekanis mesin ketik dan mesin cetak. Keyboard modern adalah keturunan langsung dari mesin ketik, mengubah ketukan jari kita menjadi perintah digital. Sementara itu, monitor adalah kanvas dinamis yang mewarisi fungsi mesin cetak, menampilkan hasil kerja komputer secara instan. Perangkat-perangkat fundamental ini membentuk jembatan pertama, memungkinkan dialog dua arah antara dunia ide manusia dan dunia logika mesin.<br><br>Namun, jembatan ini terus diperluas dan dibuat semakin intuitif. Mouse memberi kita kemampuan untuk "menyentuh" dan memanipulasi objek digital. Layar sentuh menghapus batas antara jari dan perintah, sementara mikrofon memungkinkan kita berbicara langsung dengan perangkat lunak. Di sisi output, speaker memberi suara pada dunia digital, dan teknologi seperti augmented reality memproyeksikan informasi langsung ke dunia nyata. Evolusi ini bukan sekadar tentang menambah perangkat baru, melainkan tentang membuat interaksi dengan teknologi terasa semakin alami, seolah-olah mesin dapat memahami kita tanpa perantara.'
+                },
+                'evolusi-cpu': {
+                    title: 'Mesin Logika: Dari Ide ke Silikon',
+                    content: 'Jauh sebelum ada chip silikon, seorang cendekiawan bernama Al-Khwarizmi memperkenalkan sebuah ide revolusioner: masalah yang rumit dapat dipecahkan dengan mengikuti serangkaian instruksi yang logis dan terurut. Konsep inilah yang kita kenal sebagai algoritma. Selama berabad-abad, ide ini tetap berada di alam teori, hingga akhirnya menemukan wujud fisiknya dalam Central Processing Unit (CPU)—"otak" dari setiap komputer.<br><br>CPU adalah perwujudan algoritma dalam bentuk sirkuit elektronik. Ia tidak berpikir seperti manusia, tetapi ia adalah mesin logika yang tak kenal lelah, mampu mengeksekusi miliaran instruksi algoritmis setiap detiknya dengan presisi absolut. Perangkat lunak, di sisi lain, adalah "jiwa" yang memberikan instruksi tersebut. Tanpa perangkat lunak, CPU hanyalah sepotong silikon yang diam. Tanpa CPU, perangkat lunak hanyalah teks yang tak bermakna. Hubungan simbiosis antara algoritma (perangkat lunak) dan eksekutornya (CPU) inilah yang melahirkan segala keajaiban digital, dari kalkulator sederhana hingga kecerdasan buatan yang kompleks.'
+                },
+                'evolusi-sensor': {
+                    title: 'Memberi "Indra" pada Teknologi',
+                    content: 'Dahulu, para pelaut menatap bintang dan menggunakan astrolab untuk memahami posisi mereka di lautan luas. Mereka membaca alam untuk mendapatkan kesadaran spasial. Kini, semangat yang sama terwujud dalam sensor-sensor modern yang memberi "indra" pada perangkat kita. GPS, misalnya, adalah astrolab digital yang mendengarkan sinyal dari konstelasi satelit untuk mengetahui lokasinya di planet ini dengan akurasi luar biasa. Giroskop dan akselerometer bertindak sebagai "telinga bagian dalam" digital, memberi perangkat kemampuan untuk merasakan orientasi dan gerakan.<br><br>Dengan indra-indra baru ini, teknologi tidak lagi buta terhadap dunia di sekitarnya. Perangkat yang tadinya pasif kini menjadi sadar akan konteks. Smartphone Anda tahu kapan ia sedang digenggam vertikal atau horizontal, jam tangan pintar dapat menghitung langkah Anda, dan mobil dapat merasakan posisinya di jalan. Evolusi dari astrolab ke chip sensor adalah lompatan dari sekadar alat menjadi mitra yang responsif, membuka jalan bagi aplikasi canggih seperti navigasi real-time, augmented reality, dan fondasi untuk kendaraan otonom.'
+                },
+                'evolusi-otomasi': {
+                    title: 'Evolusi Tenaga: Dari Otot ke Presisi',
+                    content: 'Revolusi Industri dimulai dengan sebuah terobosan monumental: mesin uap. Untuk pertama kalinya, manusia dapat menciptakan tenaga yang melampaui batas otot hewan atau kekuatan alam seperti angin dan air. Mesin uap adalah tentang otomatisasi tenaga kasar—menggerakkan lokomotif, memutar mesin di pabrik, dan mengubah wajah produksi selamanya. Ini adalah bab pertama dalam kisah otomatisasi, di mana mesin mengambil alih pekerjaan fisik yang berat dan berulang.<br><br>Kini, kisah itu berlanjut ke bab berikutnya, di mana otomatisasi bukan lagi sekadar tentang kekuatan, tetapi tentang kecerdasan dan presisi. Robotika modern adalah keturunan langsung dari mesin uap, tetapi "otot"-nya digerakkan oleh motor listrik yang presisi dan "otak"-nya adalah komputer. Lengan robot di pabrik perakitan tidak hanya kuat, tetapi mampu melakukan tugas yang sama ribuan kali dengan tingkat kesalahan mendekati nol. Lebih jauh lagi, dengan bantuan AI dan sensor, robot modern dapat "melihat", "merasakan", dan bahkan beradaptasi dengan lingkungannya. Dari mesin uap yang menggerakkan roda raksasa hingga robot bedah yang menjahit dengan presisi sub-milimeter, evolusi otomatisasi adalah perjalanan dari menggantikan otot manusia menjadi memperluas jangkauan kecerdasan manusia.'
+                },
+                'evolusi-internet': {
+                    title: 'Jaringan Saraf Digital Dunia',
+                    content: 'Pernahkah Anda membayangkan bagaimana sebuah pesan dapat melintasi benua dalam sekejap mata? Perjalanan ini dimulai dari percikan listrik sederhana telegraf, disusul oleh suara manusia yang "terbang" melalui kabel telepon, hingga puncaknya: internet. Ini bukanlah sekadar jaringan, melainkan sebuah sistem saraf digital raksasa bagi planet kita. Internet tidak hanya mengirim pesan; ia mengalirkan denyut nadi peradaban modern—data, gambar, video, dan ide—yang menghubungkan miliaran "sel otak" (perangkat) di seluruh dunia.<br><br>Dulu, komunikasi adalah soal menaklukkan jarak. Kini, berkat keajaiban teknologi seperti Wi-Fi yang membebaskan kita dari kabel, 5G yang secepat kilat, dan serat optik yang menjadi tulang punggungnya, komunikasi adalah soal menghapus jarak itu sendiri. Teknologi-teknologi ini melahirkan ekosistem digital tempat cloud, streaming, dan Internet of Things dapat hidup dan berkembang. Perjalanan dari percikan telegraf hingga jaringan global yang selalu aktif ini bukanlah sekadar evolusi teknologi, melainkan kisah tentang bagaimana umat manusia membangun kesadaran kolektifnya sendiri, menciptakan satu ruang di mana kita semua terhubung.'
+                }
+            };
+
+            const evolutionItems = document.querySelectorAll('.evolution-item');
+            const evolutionDisplayContainer = document.getElementById('evolution-display-container');
+
+            function updateEvolutionDisplay(targetId) {
+                if (!evolutionDisplayContainer || !evolutionData[targetId]) return;
+                
+                const contentWrapper = evolutionDisplayContainer.querySelector('.evolution-display-content');
+                if (contentWrapper) {
+                    contentWrapper.classList.add('loading');
+                }
+                
+                setTimeout(() => {
+                    const data = evolutionData[targetId];
+                    evolutionDisplayContainer.innerHTML = `
+                        <div class="evolution-display-content">
+                            <h4>${data.title}</h4>
+                            <p>${data.content}</p>
+                        </div>
+                    `;
+                }, 200);
+            }
+
+            if (evolutionItems.length > 0 && evolutionDisplayContainer) {
+                // Inisialisasi dengan item pertama
+                updateEvolutionDisplay(evolutionItems[0].dataset.target);
+
+                evolutionItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        evolutionItems.forEach(i => i.classList.remove('active'));
+                        item.classList.add('active');
+                        updateEvolutionDisplay(item.dataset.target);
+                    });
+                });
+            }
+
+            // --- BARU: LOGIKA ACCORDION ---
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            if (accordionHeaders.length > 0) {
+                accordionHeaders.forEach(header => {
+                    header.addEventListener('click', () => {
+                        const content = header.nextElementSibling;
+                        const icon = header.querySelector('.accordion-icon');
+
+                        header.classList.toggle('active');
+                        
+                        if (header.classList.contains('active')) {
+                            header.setAttribute('aria-expanded', 'true');
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            content.style.padding = '0 0.5rem';
+                            icon.classList.remove('fa-plus');
+                            icon.classList.add('fa-times');
+                        } else {
+                            header.setAttribute('aria-expanded', 'false');
+                            content.style.maxHeight = '0';
+                            content.style.padding = '0 0.5rem';
+                             icon.classList.remove('fa-times');
+                            icon.classList.add('fa-plus');
+                        }
+                    });
+                });
             }
 
         });
