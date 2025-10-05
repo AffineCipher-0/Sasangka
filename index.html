@@ -2672,62 +2672,87 @@
                 cybersecurity: 'cybersecurity OR "data breach" OR malware OR vulnerability',
                 programming: 'programming OR "software development" OR python OR javascript'
             };
-
+            
             async function fetchAndRenderTechNews(category = 'all') {
                 const newsContainer = document.getElementById('tech-news-container');
                 const loadingIndicator = document.getElementById('tech-news-loading');
                 
                 loadingIndicator.style.display = 'block';
                 newsContainer.innerHTML = '';
-
+            
                 const query = newsCategories[category] || newsCategories.all;
-                const rssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=en-US&gl=US&ceid=US:en`;
-                // Menggunakan layanan rss2json untuk konversi RSS ke JSON yang lebih stabil
-                const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrl)}`;
-
+                
+                // Definisikan dua sumber: Global (en-US) dan Indonesia (id-ID)
+                const rssUrlGlobal = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=en-US&gl=US&ceid=US:en`;
+                const rssUrlIndonesia = `https://news.google.com/rss/search?q=${encodeURIComponent(query)}&hl=id&gl=ID&ceid=ID:id`;
+            
+                const apiUrlGlobal = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrlGlobal)}`;
+                const apiUrlIndonesia = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rssUrlIndonesia)}`;
+            
                 try {
-                    const response = await fetch(apiUrl);
-                    // Tambahkan jeda buatan untuk UX, agar loader tidak berkedip terlalu cepat
-                    await new Promise(resolve => setTimeout(resolve, 500));
-
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    const result = await response.json();
-
-                    if (result.status !== 'ok') {
-                        throw new Error(`API error: ${result.message}`);
+                    // Ambil berita dari kedua sumber secara paralel
+                    const [responseGlobal, responseIndonesia] = await Promise.all([
+                        fetch(apiUrlGlobal),
+                        fetch(apiUrlIndonesia)
+                    ]);
+            
+                    if (!responseGlobal.ok || !responseIndonesia.ok) {
+                        throw new Error(`HTTP error! Status: Global ${responseGlobal.status}, Indonesia ${responseIndonesia.status}`);
                     }
-
-                    const items = result.items;
-
+            
+                    const resultGlobal = await responseGlobal.json();
+                    const resultIndonesia = await responseIndonesia.json();
+            
+                    let combinedItems = [];
+                    if (resultGlobal.status === 'ok') {
+                        combinedItems.push(...resultGlobal.items);
+                    }
+                    if (resultIndonesia.status === 'ok') {
+                        combinedItems.push(...resultIndonesia.items);
+                    }
+            
+                    // Hapus duplikat berdasarkan judul berita
+                    const uniqueTitles = new Set();
+                    const uniqueItems = combinedItems.filter(item => {
+                        if (!uniqueTitles.has(item.title)) {
+                            uniqueTitles.add(item.title);
+                            return true;
+                        }
+                        return false;
+                    });
+            
+                    // Acak urutan berita untuk variasi
+                    const shuffledItems = uniqueItems.sort(() => 0.5 - Math.random());
+            
                     loadingIndicator.style.display = 'none';
                     newsContainer.innerHTML = '';
-
-                    items.slice(0, 9).forEach((item, index) => { // Batasi hingga 9 berita
+            
+                    shuffledItems.slice(0, 12).forEach((item, index) => { // Tampilkan hingga 12 berita
                         // Ekstrak deskripsi bersih dari HTML
                         const tempDiv = document.createElement('div');
                         tempDiv.innerHTML = item.description;
                         const source = tempDiv.querySelector('a')?.textContent || 'Sumber Tidak Diketahui';
                         const descriptionText = tempDiv.querySelector('font[size="-1"]')?.textContent.split('...')[1]?.trim() || '';
-
+            
                         const newsCard = `
                             <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="block animate-on-scroll" style="animation-delay: ${index * 150 + 600}ms;">
                                 <article class="manuscript-item h-full">
                                     <div class="flex-grow">
                                         <p class="text-sm text-[var(--accent-teal)] font-bold mb-2">${source.toUpperCase()}</p>
                                         <h4 class="manuscript-title" style="font-size: 1.5rem;">${item.title}</h4>
-                                        ${descriptionText ? `<p class="manuscript-excerpt mb-4">${descriptionText}</p>` : ''}
+                                        ${descriptionText ? `<p class="manuscript-excerpt mb-4 text-justify">${descriptionText}</p>` : ''}
                                     </div>
                                 </article>
                             </a>
                         `;
                         newsContainer.innerHTML += newsCard;
                     });
-
+            
                     // Re-observe new elements for animation
                     newsContainer.querySelectorAll('.animate-on-scroll').forEach(el => {
                         animateOnScrollObserver.observe(el);
                     });
-
+            
                 } catch (error) {
                     console.error("Gagal mengambil berita:", error);
                     loadingIndicator.innerHTML = `<i class="fas fa-exclamation-triangle mr-2"></i> Gagal memuat berita. Silakan coba lagi nanti.`;
@@ -2740,7 +2765,7 @@
             // Tambahkan event listener untuk tombol kategori
             const categoryButtons = document.querySelectorAll('.news-category-btn');
             categoryButtons.forEach(button => {
-                button.addEventListener('click', () => {
+                button.addEventListener('click', (e) => {
                     const selectedCategory = button.dataset.category;
                     // Perbarui tampilan tombol aktif
                     categoryButtons.forEach(btn => btn.classList.remove('active'));
@@ -2752,7 +2777,7 @@
             // --- BARU: LOGIKA TOMBOL SEGARKAN BERITA ---
             const refreshButton = document.getElementById('refresh-news-btn');
             if (refreshButton) {
-                refreshButton.addEventListener('click', () => {
+                refreshButton.addEventListener('click', (e) => {
                     const activeCategory = document.querySelector('.news-category-btn.active')?.dataset.category || 'all';
                     fetchAndRenderTechNews(activeCategory);
                 });
@@ -2864,11 +2889,10 @@
             function setupDateTime() {
                 const liveTimeElements = document.querySelectorAll('.live-datetime');
                 if (liveTimeElements.length > 0) {
-                    const staticDate = new Date('2025-09-15T00:00:00'); 
                     const articleDateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'Asia/Makassar' };
-                    const formattedDate = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(staticDate);
                     const updateLiveTime = () => {
                         const now = new Date();
+                        const formattedDate = new Intl.DateTimeFormat('id-ID', articleDateOptions).format(now);
                         const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Makassar' };
                         const formattedTime = new Intl.DateTimeFormat('id-ID', timeOptions).format(now).replace(/\./g, ':');
                         liveTimeElements.forEach(el => el.textContent = `${formattedDate} | ${formattedTime}`);
