@@ -1,0 +1,95 @@
+/* --- ANIMATIONS & TRANSITIONS --- */
+
+/* Loader Animation */
+@keyframes progress-animation { from { stroke-dashoffset: 817; } to { stroke-dashoffset: 0; } }
+
+/* Gradient Text Animation */
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
+}
+
+/* Fancy Divider Animation */
+@keyframes candle-flicker {
+    0%, 100% { opacity: 1; text-shadow: 0 0 8px rgba(199, 165, 91, 0.6); }
+    50% { opacity: 0.8; text-shadow: 0 0 12px rgba(199, 165, 91, 0.8); }
+}
+
+/* Modal Loader Animation */
+@keyframes modal-progress-animation { from { stroke-dashoffset: 408; } to { stroke-dashoffset: 0; } }
+
+/* Scroll Animations */
+.fade-in-on-scroll { opacity: 0; transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: opacity, transform; }
+.fade-in-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.animate-on-scroll { opacity: 0; }
+.animate-on-scroll.is-visible { animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.animation-delay-200 { animation-delay: 0.2s; } .animation-delay-400 { animation-delay: 0.4s; }
+.animation-delay-600 { animation-delay: 0.6s; } .animation-delay-800 { animation-delay: 0.8s; }
+
+/* Page Transition Animation */
+@keyframes page-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes page-fade-out { from { opacity: 1; } to { opacity: 0; } }
+.page-fade-in { animation: page-fade-in 0.4s ease-in forwards; }
+.page-fade-out { animation: page-fade-out 0.3s ease-out forwards; }
+
+/* Animated Border for Cover Page */
+.animated-border-box {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 25;
+    overflow: hidden;
+}
+.animated-border-box span {
+    position: absolute;
+    display: block;
+}
+.animated-border-box span:nth-child(1) { /* Top */
+    top: 0; left: -100%; width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-gold));
+    animation: animate-border-1 6s linear infinite;
+}
+@keyframes animate-border-1 { 0% { left: -100%; } 50%, 100% { left: 100%; } }
+
+.animated-border-box span:nth-child(2) { /* Right */
+    top: -100%; right: 0; width: 2px; height: 100%;
+    background: linear-gradient(180deg, transparent, var(--accent-gold));
+    animation: animate-border-2 6s linear infinite;
+    animation-delay: 1.5s;
+}
+@keyframes animate-border-2 { 0% { top: -100%; } 50%, 100% { top: 100%; } }
+
+.animated-border-box span:nth-child(3) { /* Bottom */
+    bottom: 0; right: -100%; width: 100%; height: 2px;
+    background: linear-gradient(270deg, transparent, var(--accent-gold));
+    animation: animate-border-3 6s linear infinite;
+    animation-delay: 3s;
+}
+@keyframes animate-border-3 { 0% { right: -100%; } 50%, 100% { right: 100%; } }
+
+.animated-border-box span:nth-child(4) { /* Left */
+    bottom: -100%; left: 0; width: 2px; height: 100%;
+    background: linear-gradient(360deg, transparent, var(--accent-gold));
+    animation: animate-border-4 6s linear infinite;
+    animation-delay: 4.5s;
+}
+@keyframes animate-border-4 { 0% { bottom: -100%; } 50%, 100% { bottom: 100%; } }
+
+/* Animated Aurora Background Overlay */
+#cover-page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0;
+    background: 
+        radial-gradient(ellipse at 50% 150%, rgba(29, 78, 216, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 120%, rgba(56, 189, 248, 0.15) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 130%, rgba(37, 99, 235, 0.20) 0%, transparent 45%);
+    animation: floating-lights 20s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+@keyframes floating-lights {
+    from { transform: translateY(0%) scale(1); opacity: 0.7; }
+    to { transform: translateY(-5%) scale(1.1); opacity: 1; }
+}

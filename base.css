@@ -1,0 +1,123 @@
+/* --- THEME DEFINITIONS: BAYT AL-HIKMAH --- */
+:root {
+    --bg-deep-blue: #1a2a44;
+    --bg-parchment: #fdf6e3;
+    --text-ink: #3a2d20;
+    --text-light: #e0d8c8;
+    --accent-gold: #c7a55b;
+    --accent-teal: #3b8a85;
+    --border-gold: #b8934c;
+}
+
+/* General Theme Styling */
+body {
+    font-family: 'Amiri', serif;
+    background-color: var(--bg-deep-blue);
+    color: var(--text-light);
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.body-no-scroll { overflow: hidden; }
+.font-cinzel { font-family: 'Cinzel Decorative', cursive; }
+.font-scheherazade { font-family: 'Scheherazade New', serif; }
+
+h2, h3, h4 { font-family: 'Amiri', serif; font-weight: 700; }
+
+/* --- UTILITIES & SHARED STYLES --- */
+
+.animated-gradient-text {
+    background: linear-gradient(45deg, var(--accent-gold), #fdf6e3, var(--accent-gold));
+    background-size: 200% 200%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-animation 5s ease infinite;
+}
+
+.fancy-divider {
+    border: 0; text-align: center; overflow: visible; height: 40px; margin: 2rem auto;
+}
+.fancy-divider::before {
+    content: '۞';
+    font-size: 28px;
+    color: var(--accent-gold);
+    animation: candle-flicker 5s linear infinite;
+}
+
+.classic-button {
+    display: inline-block; background-color: transparent;
+    border: 2px solid var(--border-gold);
+    padding: 10px 20px;
+    color: var(--text-light);
+    text-decoration: none; font-weight: 700;
+    transition: all 0.3s;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+    cursor: pointer;
+}
+.classic-button:hover {
+    background-color: var(--accent-gold);
+    color: var(--bg-deep-blue);
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+    transform: translate(2px, 2px);
+}
+
+.classic-button.active {
+    background-color: var(--accent-gold);
+    color: var(--bg-deep-blue);
+    box-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+    transform: translate(2px, 2px);
+}
+
+.newspaper-columns { column-count: 1; }
+@media (min-width: 992px) { .newspaper-columns { column-count: 2; column-gap: 2.5rem; } }
+
+/* Sub-text color overrides for light backgrounds */
+.article-frame .text-sm, .timeline-content .text-sm, .certificate-item .text-xs, .project-card .text-sm,
+.article-frame p[class*="/"], .timeline-content p[class*="/"] {
+    /* Meningkatkan opacity dari 0.7 ke 0.8 untuk kontras yang lebih baik */
+    color: rgba(58, 45, 32, 0.8) !important;
+}
+
+/* Specific Component Adjustments for Light BG */
+.article-frame .classic-button, 
+.modal-body .classic-button,
+.manuscript-item .classic-button,
+.project-card .classic-button {
+    color: var(--text-ink); border-color: var(--border-gold);
+    box-shadow: 3px 3px 0 #dcd3c1;
+}
+.article-frame .classic-button:hover,
+.modal-body .classic-button:hover,
+.manuscript-item .classic-button:hover,
+.project-card .classic-button:hover {
+    color: var(--bg-parchment); background-color: var(--border-gold);
+    box-shadow: 1px 1px 0 #dcd3c1;
+}
+
+.sidebar .classic-button {
+    color: var(--text-ink); border-color: var(--border-gold);
+    box-shadow: 3px 3px 0 var(--text-light);
+}
+.sidebar .classic-button:hover {
+    color: var(--bg-parchment); background-color: var(--border-gold);
+}
+
+#email-address-container {
+    color: var(--text-light);
+}
+
+/* Back to Top Button */
+#back-to-top {
+    position: fixed; bottom: 30px; right: 30px;
+    width: 50px; height: 50px;
+    background-color: var(--accent-gold);
+    color: var(--bg-deep-blue);
+    border: 2px solid var(--text-ink);
+    border-radius: 50%; text-align: center;
+    font-size: 24px; line-height: 48px;
+    cursor: pointer; opacity: 0; visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    z-index: 1000; transform: translateY(20px);
+}
+#back-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
+#back-to-top:hover { background-color: #fdf6e3; transform: scale(1.1); }
