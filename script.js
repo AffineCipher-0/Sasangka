@@ -1400,6 +1400,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- BARU: LOGIKA DRAGGABLE SIDEBAR ---
+    const sidebar = document.getElementById('sidebar');
+    // MODIFIKASI: Seluruh sidebar kini menjadi handle, tidak hanya header.
+    const dragHandle = sidebar; 
+
+    if (sidebar && dragHandle) {
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        const startDrag = (e) => {
+            // MODIFIKASI: Jangan mulai drag jika targetnya adalah tombol atau link.
+            if (e.target.closest('button') || e.target.closest('a')) {
+                return;
+            }
+
+            isDragging = true;
+            // Menggunakan clientX/Y untuk posisi absolut di layar
+            offsetX = e.clientX - sidebar.getBoundingClientRect().left;
+            offsetY = e.clientY - sidebar.getBoundingClientRect().top;
+
+            // Menambahkan kelas untuk efek visual saat di-drag
+            sidebar.classList.add('dragging');
+            document.addEventListener('mousemove', onDrag);
+            document.addEventListener('mouseup', stopDrag);
+        };
+
+        const onDrag = (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+
+            // Posisi baru berdasarkan pergerakan mouse
+            let newLeft = e.clientX - offsetX;
+            let newTop = e.clientY - offsetY;
+
+            // Batasan agar tidak keluar dari viewport
+            newLeft = Math.max(0, Math.min(newLeft, window.innerWidth - sidebar.offsetWidth));
+            newTop = Math.max(0, Math.min(newTop, window.innerHeight - sidebar.offsetHeight));
+
+            sidebar.style.left = `${newLeft}px`;
+            sidebar.style.top = `${newTop}px`;
+        };
+
+        const stopDrag = () => {
+            isDragging = false;
+            sidebar.classList.remove('dragging');
+            document.removeEventListener('mousemove', onDrag);
+            document.removeEventListener('mouseup', stopDrag);
+        };
+
+        dragHandle.addEventListener('mousedown', startDrag);
+    }
+
     // --- BARU: LOGIKA ACCORDION ---
     const accordionHeaders = document.querySelectorAll('.accordion-header');
     if (accordionHeaders.length > 0) {

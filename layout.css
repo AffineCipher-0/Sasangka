@@ -1,50 +1,97 @@
-/* --- MAIN LAYOUT STRUCTURE --- */
+/* --- MAIN LAYOUT STYLES --- */
 
-#book-container { position: relative; width: 100%; height: 100vh; overflow: hidden; }
+#book-container { 
+    position: relative; 
+    width: 100%; 
+    height: 100vh; 
+    overflow: hidden; 
+}
 
 #cover-page {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    z-index: 10; transition: transform 0.7s ease-in-out; transform: translateX(0);
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    z-index: 10; 
+    transition: transform 0.7s ease-in-out; 
+    transform: translateX(0);
 }
-#cover-page.cover-hidden { transform: translateX(-100%); }
+#cover-page.cover-hidden { 
+    transform: translateX(-100%); 
+}
 
 #content-pages {
-    display: grid; grid-template-columns: 1fr 250px;
-    height: 100vh; transition: transform 0.7s ease-in-out;
-    position: absolute; width: 100%; top: 0; left: 0;
+    /* Dihapus: display: grid; grid-template-columns: 1fr 250px; */
+    height: 100vh; 
+    transition: transform 0.7s ease-in-out;
+    position: absolute; 
+    width: 100%; 
+    top: 0; 
+    left: 0;
     transform: translateX(100%);
 }
-#content-pages.content-visible { transform: translateX(0); }
-
-.page-content-wrapper { overflow-y: auto; position: relative; }
-
-main#page-main-content > section.page {
-    position: relative;
-    z-index: 1;
+#content-pages.content-visible { 
+    transform: translateX(0); 
 }
 
-/* Sidebar Styling */
+.page-content-wrapper { 
+    overflow-y: auto; 
+    position: relative; 
+    width: 100%;
+    height: 100%;
+}
+
+/* --- SIDEBAR STYLES (MODIFIED FOR DRAGGING) --- */
 .sidebar {
-    width: 100%; transition: all 0.5s ease-in-out;
+    /* MODIFIKASI: Mengubah dari bagian grid menjadi elemen fixed */
+    position: fixed;
+    top: 5vh; /* Posisi awal */
+    right: 2rem; /* Posisi awal */
+    width: 280px; /* Lebar tetap */
+    height: auto; /* Tinggi otomatis */
+    max-height: 90vh; /* Batas tinggi */
+    z-index: 1001; /* Di atas konten halaman */
+    
+    transition: all 0.5s ease-in-out;
     overflow-y: auto;
     background-color: var(--bg-parchment);
     color: var(--text-ink);
+    border-radius: 8px; /* Sedikit lengkungan */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3); /* Bayangan lebih kuat */
 }
-.sidebar .nav-link { color: #5a5245; }
-.sidebar .nav-link:hover:not(.active-page) { color: var(--accent-teal); }
+
+.sidebar.dragging {
+    cursor: grabbing;
+    user-select: none; /* Mencegah teks terseleksi saat di-drag */
+    transition: none; /* MODIFIKASI: Matikan transisi saat di-drag agar responsif */
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.sidebar-drag-handle, #sidebar-header {
+    cursor: grab;
+    color: var(--border-gold);
+    font-size: 1.2rem;
+}
+
+.sidebar .nav-link { 
+    color: #5a5245; 
+}
+.sidebar .nav-link:hover:not(.active-page) { 
+    color: var(--accent-teal); 
+}
 .sidebar .nav-link.active-page {
-    color: var(--text-ink); font-weight: 700;
+    color: var(--text-ink); 
+    font-weight: 700;
 }
 
-/* Memusatkan blok Daftar Isi */
-#sidebar .space-y-4 {
-    display: table;
-    margin-left: auto;
-    margin-right: auto;
+/* Penyesuaian untuk mode minimized */
+#content-pages.sidebar-minimized .sidebar { 
+    width: 80px; /* Lebar saat diciutkan */
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
-
-/* Minimized Sidebar */
-#content-pages.sidebar-minimized { grid-template-columns: 1fr 80px; }
 .sidebar .nav-text {
     transition: opacity 0.2s ease-in-out, max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: inline-block; vertical-align: middle; white-space: nowrap;
@@ -52,54 +99,9 @@ main#page-main-content > section.page {
 }
 #content-pages.sidebar-minimized .sidebar .nav-text { opacity: 0; max-width: 0; pointer-events: none; }
 #content-pages.sidebar-minimized .sidebar .flex.justify-between { justify-content: center; }
-.nav-link { display: flex; align-items: center; }
-#content-pages.sidebar-minimized .sidebar .nav-link { justify-content: center; }
-#content-pages.sidebar-minimized .sidebar .nav-link i,
+.sidebar .nav-link { display: flex; align-items: center; }
+#content-pages.sidebar-minimized .sidebar .nav-link { 
+    justify-content: center; 
+}
+#content-pages.sidebar-minimized .sidebar .nav-link i { margin-right: 0 !important; }
 #content-pages.sidebar-minimized .sidebar #close-book-btn i { margin-right: 0; }
-
-.nav-link .nav-text { transition: transform 0.3s ease; }
-.nav-link:hover:not(.active-page) .nav-text { transform: translateX(4px); }
-#content-pages.sidebar-minimized .nav-link:hover:not(.active-page) .nav-text { transform: translateX(0); }
-
-/* --- ALIGNMENT FIX --- */
-#content-pages.sidebar-minimized .sidebar {
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
-
-/* --- ARCHITECTURAL HEADER --- */
-.architectural-header {
-    position: relative;
-    padding: 2.5rem 1rem 1.5rem;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-.architectural-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    height: 60px;
-    border: 2px solid var(--border-gold);
-    border-top: none;
-    border-radius: 0 0 150px 150px;
-}
-
-/* --- FOOTER STYLES --- */
-.page-footer {
-    border-top: 1px solid var(--border-gold);
-    margin-top: 4rem;
-    padding: 2rem 1rem;
-    text-align: center;
-    color: var(--text-light);
-    opacity: 0.7;
-    position: relative;
-    z-index: 1;
-}
-.footer-copyright {
-    font-size: 0.8rem;
-    letter-spacing: 0.05em;
-    margin-top: 1.5rem;
-}
