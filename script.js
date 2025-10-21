@@ -877,6 +877,12 @@ document.addEventListener('DOMContentLoaded', () => {
             updateLiveTime();
             setInterval(updateLiveTime, 1000);
         }
+
+        // BARU: Logika untuk memperbarui tahun hak cipta secara dinamis
+        const copyrightYearEl = document.getElementById('copyright-year');
+        if (copyrightYearEl) {
+            copyrightYearEl.textContent = new Date().getFullYear();
+        }
     }
     setupDateTime();
 
